@@ -10,6 +10,12 @@ final class e2e_TCHDWPLaunchSinSintaxis4x4SpanishSS: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
         
         let pages = Pages(app: app)
         
@@ -18,21 +24,19 @@ final class e2e_TCHDWPLaunchSinSintaxis4x4SpanishSS: XCTestCase {
         app.launch()
         pages.clearAppCache()
         pages.resetPersistentStorage()
+        pages.reachMenuPageIfOnVocabPage()
     }
     
     override func tearDownWithError() throws {
-//        app.terminate()
+        app.terminate()
         try super.tearDownWithError()
     }
 
-       
     
     func testLaunchSinSintaxis4x4SpanishSS() throws {
         
         let pages = Pages(app: app)
-        app.launch()
-        
-        
+        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.sintaxis4x4Spanish.tap()
         

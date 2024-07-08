@@ -70,7 +70,7 @@ final class EditPage: XCTestCase {
     }
 
     
-    func testLaunchEditPage() throws {
+    func EditPageLaunch() throws {
 //        navigateToCopyVocab()
 //        createNewVocabCopy()
 //        verifyNewVocabExists()

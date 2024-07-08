@@ -11,6 +11,12 @@ final class e2e_TCHDWPLaunchchild4SS: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
         
         let pages = Pages(app: app)
         
@@ -19,6 +25,7 @@ final class e2e_TCHDWPLaunchchild4SS: XCTestCase {
         app.launch()
         pages.clearAppCache()
         pages.resetPersistentStorage()
+        pages.reachMenuPageIfOnVocabPage()
     }
     
     override func tearDownWithError() throws {
@@ -30,8 +37,7 @@ final class e2e_TCHDWPLaunchchild4SS: XCTestCase {
     func testLaunchchild4SS() throws {
         
         let pages = Pages(app: app)
-        app.launch()
-        
+        pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
         pages.myQuickChatVocab.tap()
         pages.childQuickChatVocab.tap()
         pages.quickChatChild4SS.tap()

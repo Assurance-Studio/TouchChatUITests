@@ -195,12 +195,76 @@ class Pages {
         app.alerts["Clear"].scrollViews.otherElements.buttons["Yes"].tap()
     }
     
+    func reachEditPronunciations(){
+        app.navigationBars.buttons["Menu"].tap()
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        elementsQuery.buttons["Edit Pronunciations"].tap()
+        let pronunciationsNavigationBar = popoversQuery.navigationBars["Pronunciations"]
+        let existsPronunciationsNavigationBar = pronunciationsNavigationBar.waitForExistence(timeout: 5)
+        pronunciationsNavigationBar.buttons["Add"].tap()
+    }
+    
     func restoreToDefaultsAbbreviation(){
         let popoversQuery = app.popovers
         popoversQuery.toolbars["Toolbar"].buttons["Restore Defaults"].tap()
         XCTAssertTrue(app.staticTexts["Are you sure you want to restore all default values?"].exists, "The restore modal doesn't appear")
         app.alerts["Restore Defaults"].scrollViews.otherElements.buttons["Yes"].tap()
         popoversQuery.navigationBars["Abbreviations"].buttons["Done"].tap()
+    }
+    
+    func addPronunciations(){
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let pronunciationsNavigationBar = popoversQuery.navigationBars["Pronunciations"]
+        app.textFields.element(boundBy: 2).tap()
+        app.textFields.element(boundBy: 2).typeText("test")
+        app.textFields.element(boundBy: 3).tap()
+        app.textFields.element(boundBy: 3).typeText("Test by e2e")
+        pronunciationsNavigationBar.buttons["Save"].tap()
+    }
+    
+    func scrollForSearchPronunciations(){
+        let scrollViewToolbar = app.staticTexts["⛄"]
+        XCTAssertTrue(scrollViewToolbar.exists, "Toolbar doesn't exist.")
+        
+        let elementPosition = scrollViewToolbar.frame.origin
+        let elementSize = scrollViewToolbar.frame.size
+        let centerX = elementPosition.x + elementSize.width / 2
+        let centerY = elementPosition.y + elementSize.height / 2
+        
+        let startCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: centerY / UIScreen.main.bounds.height))
+        let endCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: (centerY + 100) / UIScreen.main.bounds.height))
+        
+        startCoordinate.press(forDuration: 0.1, thenDragTo: endCoordinate)
+    }
+    
+    func searchPronunciations(){
+        app.searchFields["Search"].tap()
+        app.searchFields["Search"].typeText("test")
+    }
+    
+    func deletePronunciations(){
+        let popoversQuery = XCUIApplication().popovers
+        let toolbar = popoversQuery.toolbars["Toolbar"]
+        toolbar.buttons["Edit"].tap()
+        
+        let tablesQuery = popoversQuery.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Remove test, Test by e2e"]/*[[".cells.buttons[\"Remove test, Test by e2e\"]",".buttons[\"Remove test, Test by e2e\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        toolbar.buttons["Done"].tap()
+        popoversQuery.navigationBars["Pronunciations"].buttons["Cancel"].tap()
+    }
+    
+    func vocabDesc(){
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
     }
     
     func resetPersistentStorage() {
@@ -254,18 +318,6 @@ class Pages {
         sleep(10)
     }
     
-    func reachMenuPageIfOnVocabPage() {
-        sleep(3)
-        if mainPage.menuButton.exists {
-            if vocabPage.vocabButton.exists{
-                vocabPage.vocabButton.tap()
-                vocabPage.chooseNewVocab.tap()
-                XCTAssert(mainPage.editButton.exists)}
-        } else {
-            print("We already are on the vocabulary list screen.")
-        }
-    }
-    
     func deleteVocabFromVocabPageIfExisting(textVerified: String, maxScrolls: Int = 5, timeout: TimeInterval = 5) {
         var scrollAttempts = 0
         var textFound = false
@@ -310,6 +362,19 @@ class Pages {
         XCTAssertFalse(textFound, "The text '\(textVerified)' was found on the screen after \(scrollAttempts) scroll attempts.")
     }
     
+    func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {
+        let startTime = Date()
+        var scrollAttempts = 0
+        
+        while !element.exists || !element.isHittable {
+            if scrollAttempts >= maxScrolls || Date().timeIntervalSince(startTime) >= timeout {
+            }
+            app.swipeUp()
+            scrollAttempts += 1
+            sleep(1)
+        }
+    }
+    
     func scrollUpUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {
         let startTime = Date()
         var scrollAttempts = 0
@@ -322,4 +387,61 @@ class Pages {
             sleep(1)
         }
     }
+    
+    func assertElementExists(element: XCUIElement, timeout: TimeInterval = 5) -> Bool {
+        let existsPredicate = NSPredicate(format: "exists == true")
+        let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: element)
+        
+        let result = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        return result == .completed
+    }
+    
+    func tapFirstLockedImage() {
+        // Access the first image with the identifier 'locked'
+        let lockedImages = app.images.matching(identifier: "locked")
+        if lockedImages.count > 0 {
+            let firstLockedImage = lockedImages.element(boundBy: 0)
+            if firstLockedImage.exists {
+                firstLockedImage.tap()
+            } else {
+                print("The first 'locked' image does not exist.")
+            }
+        } else {
+            print("No images with the identifier 'locked' were found.")
+        }
+    }
+    
+    func reachMenuPageIfOnVocabPage() {
+        sleep(3)
+        
+        if mainPage.menuButton.exists {
+            if vocabPage.vocabButton.exists {
+                vocabPage.vocabButton.tap()
+                vocabPage.chooseNewVocab.tap()
+                XCTAssert(mainPage.editButton.exists)}
+            print("********* We reached the Vocab list page")
+            
+            // Access the element by its identifier
+            let expandIndicator = app.images["expandIndicator"]
+            
+            // Check if the element exists
+            let existsExpandIndicator = assertElementExists(element: expandIndicator, timeout: 5)
+            
+            if existsExpandIndicator {
+                scrollUpUntilElementIsVisible(element: mainPage.cancelSearchButton)
+                tapFirstLockedImage()
+                print("********* We opened the first vocabulary")
+                
+                if vocabPage.vocabButton.exists{
+                    vocabPage.vocabButton.tap()
+                    vocabPage.chooseNewVocab.tap()
+                    XCTAssert(mainPage.editButton.exists)}
+                else {
+                    print("********* The 'Vocabulary failed to open in reach menu if on vocab page func.")
+                }
+            }
+            print("********* We already are on the vocabulary list screen.")
+        }
+    }
 }
+

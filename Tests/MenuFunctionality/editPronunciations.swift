@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchSintaxis4x5SpanishSS: XCTestCase {
+final class e2e_TCHDWPeditPronunciations: XCTestCase {
     
    
     var app = XCUIApplication()
@@ -32,33 +32,49 @@ final class e2e_TCHDWPLaunchSintaxis4x5SpanishSS: XCTestCase {
         app.terminate()
         try super.tearDownWithError()
     }
-    
-    func testLaunchSintaxis4x5SpanishSS() throws {
+
+    func testLaunchEditPronunciations() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
-        pages.SpanishVocab.tap()
-        pages.sintaxis4x5Spanish.tap()
+        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
+        pages.spellingSS.tap()
         
-        pages.verifyTheVocab(lastElement: " transporte", vocabWord: "comida", vocabElement: 4, nameElement: "lugares")
+        //add pronunciations
+        pages.reachEditPronunciations()
+        pages.addPronunciations()
         
+        //edit & delete pronunciations
+        pages.scrollForSearchPronunciations()
+        pages.searchPronunciations()
+        pages.deletePronunciations()
         
-        XCTAssertTrue(app.buttons["pescado"].exists)
-        app.buttons["pescado"].tap()
-        app.buttons["pan"].tap()
+        //clearAllPronunciations
+        app.buttons["Clear"].tap()
+        XCTAssertTrue(app.staticTexts["Are you sure you want to erase all?"].exists, "The clear modal doesn't appear")
+        app.buttons["Yes"].tap()
         
-        pages.checkSdbText(sdbText: "Pescado pan ")
-        
-        pages.backButton.tap()
+        //restoreToDefaults
+        app.buttons["Restore Defaults"].tap()
+        XCTAssertTrue(app.staticTexts["Are you sure you want to restore all default values?"].exists, "The Restore Defaults modal doesn't appear")
+        app.buttons["Yes"].tap()
+        app.buttons["Done"].tap()
         
         pages.backToVocab();
         
-        print("SinSintaxis 4x5 Spanish Test Finished with success!")
+        print("Edit Pronunciations Test Finished with success!")
         
         app.terminate()
         
     }
 }
+
+
+
+
+
+
+
+
 
 
 

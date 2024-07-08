@@ -10,6 +10,12 @@ final class e2e_TCHDWPLaunchSpellingSS: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
         
         let pages = Pages(app: app)
         
@@ -18,6 +24,7 @@ final class e2e_TCHDWPLaunchSpellingSS: XCTestCase {
         app.launch()
         pages.clearAppCache()
         pages.resetPersistentStorage()
+        pages.reachMenuPageIfOnVocabPage()
     }
     
     override func tearDownWithError() throws {
@@ -28,16 +35,16 @@ final class e2e_TCHDWPLaunchSpellingSS: XCTestCase {
     func testLaunchSpellingSS() throws {
         
         let pages = Pages(app: app)
-        app.launch()
-        
+        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
         pages.spellingSS.tap()
         
-        pages.verifyTheVocab(lastElement: "BACKSPACE", vocabWord: "Mom ", vocabElement: 4, nameElement: "Is ")
+        pages.verifyTheVocab(lastElement: "BACKSPACE", vocabWord: "PHRASES", vocabElement: 5, nameElement: "TEXTING")
         
-        XCTAssertTrue(app.buttons["more "].exists)
-        app.buttons["more "].tap()
+        XCTAssertTrue(app.buttons["Good Morning"].exists)
+        app.buttons["Good Morning"].tap()
         
-        pages.checkSdbText(sdbText: "Mom more ")
+        pages.checkSdbText(sdbText: "Good morning, how are you? ")
+        pages.backButton.tap()
     
         pages.backToVocab();
         

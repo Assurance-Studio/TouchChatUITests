@@ -15,6 +15,12 @@ final class e2e_TCHDWPLaunchmultiChatStudent: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
         
         let pages = Pages(app: app)
         
@@ -23,6 +29,7 @@ final class e2e_TCHDWPLaunchmultiChatStudent: XCTestCase {
         app.launch()
         pages.clearAppCache()
         pages.resetPersistentStorage()
+        pages.reachMenuPageIfOnVocabPage()
     }
     
     override func tearDownWithError() throws {
@@ -30,13 +37,11 @@ final class e2e_TCHDWPLaunchmultiChatStudent: XCTestCase {
         try super.tearDownWithError()
     }
 
-       
     
     func testLaunchmultiChatStudent() throws {
         
         let pages = Pages(app: app)
-        app.launch()
-        
+        pages.scrollDownUntilElementIsVisible(element: pages.multiChat15Vocab)
         pages.multiChat15Vocab.tap()
         pages.multiChatStudentSS.tap()
         

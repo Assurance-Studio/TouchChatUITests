@@ -11,6 +11,12 @@ final class e2e_TCHDWPLaunchTecladoSS: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
         
         let pages = Pages(app: app)
         
@@ -19,6 +25,7 @@ final class e2e_TCHDWPLaunchTecladoSS: XCTestCase {
         app.launch()
         pages.clearAppCache()
         pages.resetPersistentStorage()
+        pages.reachMenuPageIfOnVocabPage()
     }
     
     override func tearDownWithError() throws {
@@ -26,19 +33,15 @@ final class e2e_TCHDWPLaunchTecladoSS: XCTestCase {
         try super.tearDownWithError()
     }
 
-       
     
     func testLaunchTecladoSS() throws {
         
         let pages = Pages(app: app)
-        app.launch()
-        
-        
+        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.tecladoSS.tap()
         
-        pages.verifyTheVocab(lastElement: "?", vocabWord: "FRASES", vocabElement: 3, nameElement: "yo ")
-        
+        pages.verifyTheVocab(lastElement: "?", vocabWord: "FRASES", vocabElement: 6, nameElement: "FRASES")
         
         XCTAssertTrue(app.buttons["Hola, ¿cómo estás?"].exists)
         app.buttons["Hola, ¿cómo estás?"].tap()

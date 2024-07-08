@@ -11,6 +11,12 @@ final class e2e_TCHDWPLaunchEpelerfrancais: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
         
         let pages = Pages(app: app)
         
@@ -19,6 +25,7 @@ final class e2e_TCHDWPLaunchEpelerfrancais: XCTestCase {
         app.launch()
         pages.clearAppCache()
         pages.resetPersistentStorage()
+        pages.reachMenuPageIfOnVocabPage()
     }
     
     override func tearDownWithError() throws {
@@ -29,12 +36,11 @@ final class e2e_TCHDWPLaunchEpelerfrancais: XCTestCase {
     func testLaunchEpelerFrancaisSS() throws {
         
         let pages = Pages(app: app)
-        app.launch()
-        
+        pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.epelerFrancaisSS.tap()
         
-        pages.verifyTheVocab(lastElement: "?", vocabWord: "PHRASES", vocabElement: 3, nameElement: "j'ai ")
+        pages.verifyTheVocab(lastElement: "?", vocabWord: "PHRASES", vocabElement: 6, nameElement: "PHRASES")
         
         XCTAssertTrue(app.buttons["Bonjour!"].exists)
         app.buttons["Bonjour!"].tap()

@@ -15,6 +15,12 @@ final class e2e_TCHDWPLaunchWordPower140SS: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
         
         let pages = Pages(app: app)
         
@@ -23,6 +29,7 @@ final class e2e_TCHDWPLaunchWordPower140SS: XCTestCase {
         app.launch()
         pages.clearAppCache()
         pages.resetPersistentStorage()
+        pages.reachMenuPageIfOnVocabPage()
     }
     
     override func tearDownWithError() throws {
@@ -35,8 +42,7 @@ final class e2e_TCHDWPLaunchWordPower140SS: XCTestCase {
     func testLaunchWordPower140SS() throws {
         
         let pages = Pages(app: app)
-        app.launch()
-        
+        pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower140Position.tap()
         pages.wordPower140SS.tap()
