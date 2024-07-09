@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchafasiaEspanolSS: XCTestCase {
+final class afasiaEspanolSSTests: XCTestCase {
     
     var app = XCUIApplication()
 

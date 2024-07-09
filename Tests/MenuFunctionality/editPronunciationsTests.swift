@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPeditPronunciations: XCTestCase {
+final class editPronunciationsTests: XCTestCase {
     
    
     var app = XCUIApplication()

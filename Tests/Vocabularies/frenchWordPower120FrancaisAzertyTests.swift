@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchwordPower120Azerty: XCTestCase {
+final class WordPower120AzertyTests: XCTestCase {
     
    
     var app = XCUIApplication()

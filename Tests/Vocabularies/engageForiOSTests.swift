@@ -4,7 +4,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchEngageiOSSS: XCTestCase {
+final class EngageiOSSSTests: XCTestCase {
     
     var app = XCUIApplication()
 

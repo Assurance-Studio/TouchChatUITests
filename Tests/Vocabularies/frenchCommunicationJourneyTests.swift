@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchCommunicationJourneyFrancais: XCTestCase {
+final class communicationJourneyFrancaisTests: XCTestCase {
     
    
     var app = XCUIApplication()

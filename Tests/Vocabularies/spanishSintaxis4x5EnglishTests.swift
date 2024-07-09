@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchSintaxis4x5EnglishSS: XCTestCase {
+final class Sintaxis4x5EnglishSSTests: XCTestCase {
     
     var app = XCUIApplication()
 

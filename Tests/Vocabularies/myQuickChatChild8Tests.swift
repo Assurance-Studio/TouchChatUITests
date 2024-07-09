@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchchild8SS: XCTestCase {
+final class Child8SSTests: XCTestCase {
     
     var app = XCUIApplication()
 

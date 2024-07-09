@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchmultiChat15SS: XCTestCase {
+final class hmultiChat15SSTests: XCTestCase {
     
     var app = XCUIApplication()
 

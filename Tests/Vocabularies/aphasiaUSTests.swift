@@ -4,7 +4,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchaphasiaUSSS: XCTestCase {
+final class AphasiaUSSSTests: XCTestCase {
     
     var app = XCUIApplication()
 

@@ -1,14 +1,10 @@
-//
-//  basicTest.swift
-//  TouchChatTests
-//
 //  Created by Alin Voinescu on 24.04.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 //
 
 import XCTest
 
-final class e2e_TCHDWPLaunchWordPower80SS: XCTestCase {
+final class WordPower80SSTests: XCTestCase {
     
     var app = XCUIApplication()
 

@@ -4,7 +4,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchmyCoreSS: XCTestCase {
+final class MyCoreSSTests: XCTestCase {
     
     var app = XCUIApplication()
 

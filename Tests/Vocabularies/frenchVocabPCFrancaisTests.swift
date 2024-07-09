@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchvocabPCfrancais: XCTestCase {
+final class vocabPCfrancaisTests: XCTestCase {
     
    
     var app = XCUIApplication()

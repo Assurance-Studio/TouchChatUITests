@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchTecladoSS: XCTestCase {
+final class TecladoSSTests: XCTestCase {
     
    
     var app = XCUIApplication()

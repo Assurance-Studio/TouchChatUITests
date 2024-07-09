@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPeditAbbreviations: XCTestCase {
+final class editAbbreviationsTests: XCTestCase {
     
    
     var app = XCUIApplication()

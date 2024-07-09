@@ -8,7 +8,7 @@
 
 import XCTest
 
-final class _1_CopyVocabulary: XCTestCase {
+final class copyVocabularyTests: XCTestCase {
     
     var app = XCUIApplication()
     //var app: XCUIApplication

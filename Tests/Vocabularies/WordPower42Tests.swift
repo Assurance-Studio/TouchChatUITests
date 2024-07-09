@@ -4,7 +4,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchWordPower42SS: XCTestCase {
+final class WordPower42SSTests: XCTestCase {
     
     var app = XCUIApplication()
 

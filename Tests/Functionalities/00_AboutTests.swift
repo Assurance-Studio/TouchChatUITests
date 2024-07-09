@@ -1,14 +1,9 @@
-//
-//  00_About.swift
-//  TouchChatUITests
-//
 //  Created by Marius N on 07.06.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
-final class _0_About: XCTestCase {
+final class aboutTests: XCTestCase {
     
     var app = XCUIApplication()
 

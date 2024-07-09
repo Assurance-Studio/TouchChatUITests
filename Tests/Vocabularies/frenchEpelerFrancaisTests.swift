@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchEpelerfrancais: XCTestCase {
+final class epelerfrancaisTests: XCTestCase {
     
    
     var app = XCUIApplication()

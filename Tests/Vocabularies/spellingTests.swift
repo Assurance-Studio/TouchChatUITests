@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchSpellingSS: XCTestCase {
+final class SpellingSSTests: XCTestCase {
     
     var app = XCUIApplication()
 

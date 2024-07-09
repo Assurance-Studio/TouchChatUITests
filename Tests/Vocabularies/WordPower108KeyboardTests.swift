@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchWordPower108SSKeyboard: XCTestCase {
+final class WordPower108SSKeyboardTests: XCTestCase {
     
     var app = XCUIApplication()
 

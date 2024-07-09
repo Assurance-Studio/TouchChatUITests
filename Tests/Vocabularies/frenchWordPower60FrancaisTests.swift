@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchwordPower60Francais: XCTestCase {
+final class WordPower60FrancaisTests: XCTestCase {
     
    
     var app = XCUIApplication()

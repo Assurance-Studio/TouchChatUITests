@@ -8,7 +8,7 @@
 
 import XCTest
 
-final class e2e_TCHDWPLaunchWordPower48SS: XCTestCase {
+final class WordPower48SSTests: XCTestCase {
     
     var app = XCUIApplication()
 
