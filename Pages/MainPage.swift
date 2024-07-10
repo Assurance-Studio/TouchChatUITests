@@ -136,6 +136,10 @@ class MainPage {
     func copy4BasicSS(vocabName: String, vocabDescription: String) {
         copyVocab(vocabType: _4BasicSS, vocabName: vocabName, vocabDescription: vocabDescription)
     }
+    
+    func copySpellingVocab(vocabName: String, vocabDescription: String){
+        copyVocab(vocabType: vocabSpellingSS, vocabName: vocabName, vocabDescription: vocabDescription)
+    }
     // To add more vocabs
     
     func deleteVocabFromMainPage(vocabDesc:String) {

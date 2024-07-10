@@ -106,7 +106,7 @@ class Pages {
         app.navigationBars.buttons["Vocab"].tap()
         app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
         
-        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
+//        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
     }
     
     func checkSdbText(sdbText: String){
@@ -167,6 +167,17 @@ class Pages {
         app.buttons["."].tap()
         app.buttons["t"].tap()
         app.buttons["BackButton"].tap()
+    }
+    
+    func writeTestBy(){
+        let tbutton = app.buttons["t"]
+        let waitForTButton = tbutton.waitForExistence(timeout: 5)
+        app.buttons["t"].tap()
+        app.buttons["e"].tap()
+        app.buttons["s"].tap()
+        app.buttons["t"].tap()
+        app.buttons["b"].tap()
+        app.buttons["y"].tap()
     }
     
     func reachToEditAbbreviation(){
@@ -256,6 +267,19 @@ class Pages {
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         toolbar.buttons["Done"].tap()
         popoversQuery.navigationBars["Pronunciations"].buttons["Cancel"].tap()
+    }
+    
+    func openStoreTextBtn(){
+        app.navigationBars.buttons["Menu"].tap()
+        app.popovers.scrollViews.otherElements.buttons["Store Text to Button"].tap()
+        XCTAssertTrue(app.staticTexts["Select the button where you want to store your composed message"].exists, "The Store Text modal doesn't appear")
+        app.alerts["Store Text to Button?"].scrollViews.otherElements.buttons["Continue"].tap()
+    }
+    
+    func checkIfTheStoreButtonWorks(){
+        app.buttons["SPACE"].tap()
+        XCTAssertTrue(app.buttons["Testby"].exists, "The StoreTextButton is not visible")
+        app.buttons["Testby"].tap()
     }
     
     func vocabDesc(){
