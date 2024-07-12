@@ -1,42 +1,69 @@
-//
-//  editPageLayoutTests.swift
 //  TouchChatUITests
-//
-//  Created by Alin Voinescu on 11.07.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
-final class editPageLayoutTests: XCTestCase {
+final class EditPageLayoutTests: XCTestCase {
+    
+    
+     var app = XCUIApplication()
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+     override func setUpWithError() throws {
+         try super.setUpWithError()
+         continueAfterFailure = false
+         
+         let pages = Pages(app: app)
+         
+         app = XCUIApplication()
+         app.launchArguments.append("--reset")
+         app.launch()
+         pages.clearAppCache()
+         pages.resetPersistentStorage()
+         pages.reachMenuPageIfOnVocabPage()
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.terminate()
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    func testEditPageLayoutPage() throws {
+        
+        let pages = Pages(app: app)
+        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        
+        //copy a new vocab
+        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary"], vocab: vocabularyName)
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        //open the Edit Page Layout tab
+        pages.editPage()
+        pages.addPageLayout()
+        
+        //change the page name
+        pages.changeThePageName()
+        
+        //change the rows and columns
+        pages.changeRowsAndColumns()
+        
+        //select image
+        pages.selectImageLayout()
+        
+        //clear image and save the section
+        pages.clearImageLayout()
+        
+        pages.backToVocab()
+        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+        
+        print("Edit Page Layout Test Finished with success!")
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+    
 }
+
+
