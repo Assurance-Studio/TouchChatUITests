@@ -13,7 +13,7 @@ final class copyVocabularyTests: XCTestCase {
     var app = XCUIApplication()
     //var app: XCUIApplication
     
-    let vocabularyName = "copied vocabulary"
+    let vocabularyName = "copied vocabulary test"
     let vocabylaryDesc = "vocabulary description e2e"
     var vocabName = "vocabulary"
     lazy var mainPage: MainPage = {

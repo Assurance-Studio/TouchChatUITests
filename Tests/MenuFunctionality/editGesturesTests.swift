@@ -37,7 +37,7 @@ final class EditGesturesTests: XCTestCase {
         
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
-        let vocabularyName = "copied vocabulary"
+        let vocabularyName = "copied vocabulary gestures"
         let vocabylaryDesc = "vocabulary description e2e"
         var vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
@@ -46,7 +46,7 @@ final class EditGesturesTests: XCTestCase {
         
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary"], vocab: vocabularyName)
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary gestures"], vocab: vocabularyName)
 
         pages.editPage()
         pages.addNewGesture()
@@ -54,7 +54,7 @@ final class EditGesturesTests: XCTestCase {
         pages.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
-        print("Test Finished with success!")
+        print("Edit Gestures Test Finished with success!")
     }
     
 }

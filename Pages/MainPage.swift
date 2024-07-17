@@ -143,7 +143,9 @@ class MainPage {
     // To add more vocabs
     
     func deleteVocabFromMainPage(vocabDesc:String) {
+        sleep(5)
         editButton.tap()
+        sleep(5)
         deleteVocabButtonCircle.tap()
         deleteVocabButtonSquare.tap()
         app.alerts["Delete Vocabulary"].scrollViews.otherElements.buttons["Continue"].tap()
@@ -160,6 +162,7 @@ class MainPage {
 
     if vocabToOpen.exists && vocabToOpen.isHittable {
             vocabToOpen.tap()
+            sleep(3)
         } else {
             print("The vocabulary you're trying to open does not exist or is not hittable")
         }

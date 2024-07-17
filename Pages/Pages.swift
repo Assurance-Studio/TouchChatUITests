@@ -103,6 +103,7 @@ class Pages {
     }
     //new functions
     func backToVocab(){
+        sleep(3)
         app.navigationBars.buttons["Vocab"].tap()
         app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
         
@@ -110,6 +111,7 @@ class Pages {
     }
     
     func editPage() {
+        sleep(3)
         app.navigationBars.buttons["Menu"].tap()
         app.buttons["Edit Page"].tap()
     }
@@ -132,6 +134,7 @@ class Pages {
 
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Navigate Back"]/*[[".cells.staticTexts[\"Navigate Back\"]",".staticTexts[\"Navigate Back\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Repeat Last Spoken"]/*[[".cells.staticTexts[\"Repeat Last Spoken\"]",".staticTexts[\"Repeat Last Spoken\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        sleep(3)
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Speech Message"]/*[[".cells.staticTexts[\"Speech Message\"]",".staticTexts[\"Speech Message\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
         app.buttons["Save"].tap()
@@ -140,6 +143,7 @@ class Pages {
     }
     
     func addPageLayout() {
+        sleep(5)
         app.navigationBars.buttons["Menu"].tap()
         app.buttons["Edit Page Layout"].tap()
     }
@@ -442,6 +446,13 @@ class Pages {
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["PRC Symbols"]/*[[".cells.staticTexts[\"PRC Symbols\"]",".staticTexts[\"PRC Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["C"]/*[[".cells.staticTexts[\"C\"]",".staticTexts[\"C\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         tablesQuery.cells.containing(.staticText, identifier:"C").staticTexts["Source: PRC Symbols"].tap()
+//        popoversQuery.navigationBars["New Page"].buttons["Save"].tap()
+    }
+    
+    func clearImageNewPage(){
+        let popoversQuery = app.popovers
+        
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Clear Image"].tap()
         popoversQuery.navigationBars["New Page"].buttons["Save"].tap()
     }
     
@@ -459,6 +470,20 @@ class Pages {
         app.buttons["Okay"].tap()
         
         XCUIApplication().navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+    }
+    
+    func addHomePageType(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.scrollViews.otherElements.buttons["Normal Page"].tap()
+        popoversQuery.tables.cells.containing(.staticText, identifier:"Home Page").children(matching: .other).element(boundBy: 1).tap()
+        popoversQuery.navigationBars["Page Type"].buttons["Done"].tap()
+    }
+    
+    func addTemplatePage(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.scrollViews.otherElements/*@START_MENU_TOKEN@*/.staticTexts["Normal Page"]/*[[".buttons[\"Normal Page\"].staticTexts[\"Normal Page\"]",".staticTexts[\"Normal Page\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        popoversQuery.tables.cells.containing(.staticText, identifier:"Template").children(matching: .other).element(boundBy: 0).tap()
+        popoversQuery.navigationBars["Page Type"].buttons["Done"].tap()
     }
     
     func resetPersistentStorage() {
@@ -606,7 +631,6 @@ class Pages {
     }
     
     func reachMenuPageIfOnVocabPage() {
-        sleep(3)
         
         if mainPage.menuButton.exists {
             if vocabPage.vocabButton.exists {

@@ -55,6 +55,9 @@ final class DeleteThePageTests: XCTestCase {
         //add background color and select image
         pages.addBackgroundColorAndImage()
         
+        //clear image
+        pages.clearImageNewPage()
+        
         //delete the page
         pages.deleteThePage()
         
