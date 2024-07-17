@@ -136,10 +136,16 @@ class MainPage {
     func copy4BasicSS(vocabName: String, vocabDescription: String) {
         copyVocab(vocabType: _4BasicSS, vocabName: vocabName, vocabDescription: vocabDescription)
     }
+    
+    func copySpellingVocab(vocabName: String, vocabDescription: String){
+        copyVocab(vocabType: vocabSpellingSS, vocabName: vocabName, vocabDescription: vocabDescription)
+    }
     // To add more vocabs
     
     func deleteVocabFromMainPage(vocabDesc:String) {
+        sleep(5)
         editButton.tap()
+        sleep(5)
         deleteVocabButtonCircle.tap()
         deleteVocabButtonSquare.tap()
         app.alerts["Delete Vocabulary"].scrollViews.otherElements.buttons["Continue"].tap()
@@ -156,6 +162,7 @@ class MainPage {
 
     if vocabToOpen.exists && vocabToOpen.isHittable {
             vocabToOpen.tap()
+            sleep(3)
         } else {
             print("The vocabulary you're trying to open does not exist or is not hittable")
         }
