@@ -45,38 +45,12 @@ final class addNewPageFromTemplatePageTests: XCTestCase {
         //open the Edit Page tab
         pages.editPage()
         
-        //add a new blank page
+        //add a template page
         pages.addNewPage()
+        pages.addNewTemplatePage()
         
-        let popoversQuery = app.popovers
-        let scrollViewsQuery = popoversQuery.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        let newPageTemplate = elementsQuery.buttons["New Page from Template"]
-        let existsNewBlankPage = newPageTemplate.waitForExistence(timeout: 5)
-        
-        newPageTemplate.tap()
-        
-        app.textFields.element(boundBy: 0).tap()
-        app.textFields.element(boundBy: 0).typeText("Test by e2e Template")
-        
-        app.popovers.navigationBars["New Page Name"].buttons["Save"].tap()
-        app.navigationBars["Test by e2e Template"].buttons["Done"].tap()
-        
-//        pages.addNewBlankPage()
-//        
-//        //add rows and columns
-//        pages.addRowsColumnsBlankPage()
-//        
-//        //select page type
-//        pages.addTemplatePage()
-//        
-//        //add background color and select image
-//        pages.addBackgroundColorAndImage()
-//        
-//        //clear image
-//        pages.clearImageNewPage()
-//                
-//        XCUIApplication().navigationBars["Page by e2e"].buttons["Done"].tap()
+        //set a name for the template page and save it
+        pages.setANameForTemplatePage()
         
         pages.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)

@@ -414,6 +414,24 @@ class Pages {
         newBlankPage.tap()
     }
     
+    func addNewTemplatePage(){
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let newPageTemplate = elementsQuery.buttons["New Page from Template"]
+        let existsNewTemplatePage = newPageTemplate.waitForExistence(timeout: 5)
+        
+        newPageTemplate.tap()
+    }
+    
+    func setANameForTemplatePage(){
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("Test by e2e Template")
+        
+        app.popovers.navigationBars["New Page Name"].buttons["Save"].tap()
+        app.navigationBars["Test by e2e Template"].buttons["Done"].tap()
+    }
+    
     func addRowsColumnsBlankPage(){
         let popoversQuery = app.popovers
         let scrollViewsQuery = popoversQuery.scrollViews
