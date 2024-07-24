@@ -107,7 +107,7 @@ class Pages {
         app.navigationBars.buttons["Vocab"].tap()
         app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
         
-//        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
+        //        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
     }
     
     func editPage() {
@@ -131,7 +131,7 @@ class Pages {
         
         let tablesQuery = popoversQuery.tables
         
-
+        
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Navigate Back"]/*[[".cells.staticTexts[\"Navigate Back\"]",".staticTexts[\"Navigate Back\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Repeat Last Spoken"]/*[[".cells.staticTexts[\"Repeat Last Spoken\"]",".staticTexts[\"Repeat Last Spoken\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
         sleep(3)
@@ -464,7 +464,7 @@ class Pages {
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["PRC Symbols"]/*[[".cells.staticTexts[\"PRC Symbols\"]",".staticTexts[\"PRC Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["C"]/*[[".cells.staticTexts[\"C\"]",".staticTexts[\"C\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         tablesQuery.cells.containing(.staticText, identifier:"C").staticTexts["Source: PRC Symbols"].tap()
-//        popoversQuery.navigationBars["New Page"].buttons["Save"].tap()
+        //        popoversQuery.navigationBars["New Page"].buttons["Save"].tap()
     }
     
     func clearImageNewPage(){
@@ -502,6 +502,85 @@ class Pages {
         popoversQuery.scrollViews.otherElements/*@START_MENU_TOKEN@*/.staticTexts["Normal Page"]/*[[".buttons[\"Normal Page\"].staticTexts[\"Normal Page\"]",".staticTexts[\"Normal Page\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         popoversQuery.tables.cells.containing(.staticText, identifier:"Template").children(matching: .other).element(boundBy: 0).tap()
         popoversQuery.navigationBars["Page Type"].buttons["Done"].tap()
+    }
+    
+    func hideAButton(){
+        app.navigationBars.buttons["Menu"].tap()
+        
+        let elementsQuery = app.popovers.scrollViews.otherElements
+        elementsQuery.buttons["Hide Mode"].tap()
+
+        app.buttons["z"].tap()
+        XCUIApplication().navigationBars["* Hide Mode *"].buttons["Done"].tap()
+        XCTAssertFalse(app.buttons["z"].exists, "The element should no exist")
+    }
+    
+    func hideAllButtons(){
+        app.navigationBars.buttons["Menu"].tap()
+        
+        let elementsQuery = app.popovers.scrollViews.otherElements
+        elementsQuery.buttons["Edit Page"].tap()
+        sleep(2)
+        app.navigationBars["SPKBD-QWERTY"].buttons["Menu"].tap()
+        elementsQuery.buttons["Hide Mode"].tap()
+        
+        let hideModeNavigationBar = app.navigationBars["* Hide Mode *"]
+        hideModeNavigationBar.buttons["Menu"].tap()
+        elementsQuery.buttons["* Hide All *"].tap()
+        hideModeNavigationBar.buttons["Done"].tap()
+        
+        let button1 = app.buttons["TEXTING"]
+        let button2 = app.buttons["PHRASES"]
+        let button3 = app.buttons["SHIFT"]
+        let button4 = app.buttons["SPACE"]
+        let button5 = app.buttons["CLEAR "]
+        
+        let buttonsDoNotExists = !button1.exists && !button2.exists && !button3.exists && !button4.exists && !button5.exists
+        
+        XCTAssertTrue(buttonsDoNotExists, "One or more specified buttons exist when they should not")
+    }
+    
+    func showAllButtons(){
+        app.navigationBars.buttons["Menu"].tap()
+        
+        let elementsQuery = app.popovers.scrollViews.otherElements
+        elementsQuery.buttons["Edit Page"].tap()
+        app.navigationBars["SPKBD-QWERTY"].buttons["Menu"].tap()
+        elementsQuery.buttons["Hide Mode"].tap()
+        
+        let hideModeNavigationBar = app.navigationBars["* Hide Mode *"]
+        hideModeNavigationBar.buttons["Menu"].tap()
+        elementsQuery.buttons["* Show All *"].tap()
+        hideModeNavigationBar.buttons["Done"].tap()
+        
+        let button1 = app.buttons["TEXTING"]
+        let button2 = app.buttons["PHRASES"]
+        let button3 = app.buttons["SHIFT"]
+        let button4 = app.buttons["SPACE"]
+        let button5 = app.buttons["CLEAR "]
+        
+        let buttonVocabExists = button1.exists && button2.exists && button3.exists && button4.exists && button5.exists
+        
+        XCTAssertTrue(buttonVocabExists, "One or more specified buttons don't exist")
+    }
+    
+    func normalModeButtons(){
+        app.navigationBars.buttons["Menu"].tap()
+        
+        let elementsQuery = app.popovers.scrollViews.otherElements
+        elementsQuery.buttons["Edit Page"].tap()
+        
+        let spkbdQwertyNavigationBar = app.navigationBars["SPKBD-QWERTY"]
+        spkbdQwertyNavigationBar.buttons["Menu"].tap()
+        elementsQuery.buttons["Hide Mode"].tap()
+        app.navigationBars["* Hide Mode *"].buttons["Menu"].tap()
+        elementsQuery.buttons["* Normal Mode *"].tap()
+        app.buttons["d"].tap()
+        
+        XCTAssertTrue(app.buttons["Edit This Button"].exists, "The button doesn't exist")
+        
+        app/*@START_MENU_TOKEN@*/.otherElements["PopoverDismissRegion"]/*[[".otherElements[\"dismiss popup\"]",".otherElements[\"PopoverDismissRegion\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        spkbdQwertyNavigationBar.buttons["Done"].tap()
     }
     
     func resetPersistentStorage() {
