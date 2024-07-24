@@ -569,6 +569,7 @@ class Pages {
         
         let elementsQuery = app.popovers.scrollViews.otherElements
         elementsQuery.buttons["Edit Page"].tap()
+        sleep(3)
         
         let spkbdQwertyNavigationBar = app.navigationBars["SPKBD-QWERTY"]
         spkbdQwertyNavigationBar.buttons["Menu"].tap()
