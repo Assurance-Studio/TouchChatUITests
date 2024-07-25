@@ -584,6 +584,54 @@ class Pages {
         spkbdQwertyNavigationBar.buttons["Done"].tap()
     }
     
+    func openPageStyleOverride(){
+        sleep(3)
+        app.navigationBars["SPKBD-QWERTY"].buttons["Menu"].tap()
+        app.popovers.scrollViews.otherElements.buttons["Page Style Override"].tap()
+    }
+    
+    func checkTheToggleandSwitchIt(){
+        let toggle = app.switches["0"]
+        XCTAssertTrue(toggle.waitForExistence(timeout: 5), "The toggle does not exist")
+        
+        let initialState = toggle.value as! String
+        print("Initial State: \(initialState)")
+        
+        if initialState == "0" {
+            toggle.tap()
+        }
+        
+        sleep(3)
+        
+        let toggleON = app.switches["1"]
+        
+        let newState = toggleON.value as! String
+        print("New state: \(newState)")
+        
+        XCTAssertEqual(newState, "1", "The toggle is not ON as expected")
+    }
+    
+    func chooseAColorandChecktheOptions(){
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Black"].tap()
+        
+        let blackColor = app.staticTexts["Black"]
+        let limeColor = app.staticTexts["Lime"]
+        let seaGreenColor = app.staticTexts["Sea green"]
+        let whiteColor = app.staticTexts["White"]
+        let lavenderColor = app.staticTexts["Lavender"]
+        
+        let colorsExists = blackColor.exists && limeColor.exists && seaGreenColor.exists && whiteColor.exists && lavenderColor.exists
+        
+        XCTAssertTrue(colorsExists, "One or more specified colors don't exist")
+                
+        
+        let app = XCUIApplication()
+        let popoversQuery = app.popovers
+        popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Orange"]/*[[".cells.staticTexts[\"Orange\"]",".staticTexts[\"Orange\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        popoversQuery.navigationBars["Vocab Override"].buttons["Save"].tap()
+        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+    }
+    
     func resetPersistentStorage() {
         // Reset Core Data
         //        if let persistentStoreCoordinator = (UIApplication.shared.delegate as? AppDelegate)?.persistentStoreCoordinator {

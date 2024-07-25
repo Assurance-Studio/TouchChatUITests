@@ -1,42 +1,70 @@
-//
-//  pageStyleOverrideTests.swift
 //  TouchChatUITests
-//
-//  Created by Alin Voinescu on 24.07.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
 final class pageStyleOverrideTests: XCTestCase {
+    
+    
+     var app = XCUIApplication()
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+     override func setUpWithError() throws {
+         try super.setUpWithError()
+         continueAfterFailure = false
+         
+         let pages = Pages(app: app)
+         
+         app = XCUIApplication()
+         app.launchArguments.append("--reset")
+         app.launch()
+         pages.clearAppCache()
+         pages.resetPersistentStorage()
+         pages.reachMenuPageIfOnVocabPage()
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.terminate()
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    func testPageStyleOverrideTests() throws {
+        
+        let pages = Pages(app: app)
+        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
+        let vocabularyName = "copied vocabulary page style override"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        
+        //copy a new vocab
+        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary page style override"], vocab: vocabularyName)
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //open the Page Style Override tab
+        pages.openPageStyleOverride()
+        
+        //check the initial state/new state of the switch and tick it
+        pages.checkTheToggleandSwitchIt()
+        
+        //choose a color and check if multiple colors exist
+        pages.chooseAColorandChecktheOptions()
+        
+        pages.backToVocab()
+        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+        
+        print("Page Style Override Test Finished with success!")
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+    
 }
+
+
+
+
+
+
+
