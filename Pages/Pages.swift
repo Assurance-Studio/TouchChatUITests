@@ -632,6 +632,194 @@ class Pages {
         app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
     }
     
+    func editThisButton(){
+        sleep(2)
+        app.buttons.element(boundBy: 12).tap()
+        app.buttons["Edit This Button"].tap()
+        
+        let buttonLabel = app.textFields.element(boundBy: 0)
+        let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsButtonLabel, "The button label is not visible")
+        
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("Edit Button by e2e")
+        
+        app.textFields.element(boundBy: 2).tap()
+        app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
+    }
+    
+    func selectImageButton(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.scrollViews.otherElements.buttons["Select Image"].tap()
+        sleep(2)
+        
+        let tablesQuery = popoversQuery.tables
+        app.staticTexts["PRC Symbols"].tap()
+                
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["E"]/*[[".cells.staticTexts[\"E\"]",".staticTexts[\"E\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.cells.containing(.staticText, identifier:"Edge").staticTexts["Source: PRC Symbols"].tap()
+    }
+    
+    func checkSwitchesEditButton(){
+        let labelOnTop = app.switches.element(boundBy: 0)
+        XCTAssertTrue(labelOnTop.waitForExistence(timeout: 5), "The toggle does not exist")
+        
+        let initialState = labelOnTop.value as! String
+        print("Initial State: \(initialState)")
+        
+        if initialState == "1" {
+            labelOnTop.tap()
+        }
+        
+        let boldText = app.switches.element(boundBy: 1)
+        XCTAssertTrue(boldText.waitForExistence(timeout: 5), "The toggle does not exist")
+        
+        let italicsText = app.switches.element(boundBy: 2)
+        XCTAssertTrue(italicsText.waitForExistence(timeout: 5), "The toggle does not exist")
+    
+        let transparentOption = app.switches.element(boundBy: 3)
+        XCTAssertTrue(transparentOption.waitForExistence(timeout: 5), "The toggle does not exist")
+        
+        let visibleOption = app.switches.element(boundBy: 4)
+        XCTAssertTrue(visibleOption.waitForExistence(timeout: 5), "The toggle does not exist")
+    }
+    
+    func checkTheFontOptions(){
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Ubuntu"].tap()
+        
+        let font1 = app.staticTexts["Amaranth"]
+        let font2 = app.staticTexts["Caudex"]
+        let font3 = app.staticTexts["Gentium Basic"]
+        let font4 = app.staticTexts["Istok Web"]
+        let font5 = app.staticTexts["Josefin Sans"]
+        let font6 = app.staticTexts["Puritan"]
+        let font7 = app.staticTexts["Ubuntu"]
+        let font8 = app.staticTexts["Arial"]
+        let font9 = app.staticTexts["Courier New"]
+        let font10 = app.staticTexts["Georgia"]
+        let font11 = app.staticTexts["Times New Roman"]
+        let font12 = app.staticTexts["Trebuchet MS"]
+        let font13 = app.staticTexts["Verdana"]
+        
+        let fontsExist = font1.exists && font2.exists && font3.exists && font4.exists && font5.exists && font6.exists && font7.exists && font8.exists && font9.exists && font10.exists && font11.exists && font12.exists && font13.exists
+        
+        XCTAssertTrue(fontsExist, "One or more specified fonts don't exist")
+    }
+    
+    func checkPointOptions(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.navigationBars["SelectListView"].buttons["Cancel"].tap()
+        popoversQuery.scrollViews.otherElements.buttons["12 Point"].tap()
+        app.staticTexts["7 Point"].tap()
+        
+        let checkFontSize = app.staticTexts["7 Point"].waitForExistence(timeout: 5)
+        XCTAssertTrue(checkFontSize, "The Font Size is not correct")
+        
+        let scrollViewsQuery = XCUIApplication().popovers.scrollViews
+        scrollViewsQuery.otherElements.containing(.staticText, identifier:"Button Label").element.swipeUp()
+        scrollViewsQuery.otherElements.staticTexts["Visible"].swipeUp()
+    }
+    
+    func checkTextColorOptions(){
+        let popoversQuery = XCUIApplication().popovers
+        XCUIApplication().popovers.scrollViews.otherElements.containing(.staticText, identifier:"Button Label").children(matching: .button).matching(identifier: "Black").element(boundBy: 0).tap()
+        
+        let redTextColor = app.staticTexts["Red"]
+        let brownTextColor = app.staticTexts["Brown"]
+        let limeTextColor = app.staticTexts["Lime"]
+        let skyBlueTextColor = app.staticTexts["Skyblue"]
+        let lavenderTextColor = app.staticTexts["Lavender"]
+        
+        let existsTextColor = redTextColor.exists && brownTextColor.exists && limeTextColor.exists && skyBlueTextColor.exists && lavenderTextColor.exists
+        
+        XCTAssertTrue(existsTextColor, "One or more specified text colors don't exist")
+        
+        popoversQuery.navigationBars["Select Color"].buttons["Cancel"].tap()
+    }
+    
+    func checkBodyColorOptions(){
+        let popoversQuery = XCUIApplication().popovers
+        
+        popoversQuery.scrollViews.otherElements.buttons["#ffff99"].tap()
+        let redBodyColor = app.staticTexts["Red"]
+        let brownBodyColor = app.staticTexts["Brown"]
+        let limeBodyColor = app.staticTexts["Lime"]
+        let skyBlueBodyColor = app.staticTexts["Skyblue"]
+        let lavenderBodyColor = app.staticTexts["Lavender"]
+        
+        let existsBodyColor = redBodyColor.exists && brownBodyColor.exists && limeBodyColor.exists && skyBlueBodyColor.exists && lavenderBodyColor.exists
+        
+        XCTAssertTrue(existsBodyColor, "One or more specified body colors don't exist")
+        
+        popoversQuery.navigationBars["Select Color"].buttons["Cancel"].tap()
+    }
+    
+    func checkBorderColorOptions(){
+        XCUIApplication().popovers.scrollViews.otherElements.containing(.staticText, identifier:"Button Label").children(matching: .button).matching(identifier: "Black").element(boundBy: 1).tap()
+        
+        let redBorderColor = app.staticTexts["Red"]
+        let brownBorderColor = app.staticTexts["Brown"]
+        let limeBorderColor = app.staticTexts["Lime"]
+        let skyBlueBorderColor = app.staticTexts["Skyblue"]
+        let lavenderBorderColor = app.staticTexts["Lavender"]
+        
+        let existsBorderColor = redBorderColor.exists && brownBorderColor.exists && limeBorderColor.exists && skyBlueBorderColor.exists && lavenderBorderColor.exists
+        
+        XCTAssertTrue(existsBorderColor, "One or more specified border colors don't exist")
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.navigationBars["Select Color"].buttons["Cancel"].tap()
+    }
+    
+    func checkBorderWidthOptions(){
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["1 Point"].tap()
+        
+        let onePointWidth = app.staticTexts["1 Point"]
+        let fifteenthPointWidth = app.staticTexts["15 Point"]
+        let twentyPointWidth = app.staticTexts["20 Point"]
+        
+        let existsPointWidth = onePointWidth.exists && fifteenthPointWidth.exists && twentyPointWidth.exists
+        
+        XCTAssertTrue(existsPointWidth, "One or more specified points don't exist")
+        twentyPointWidth.tap()
+    }
+    
+    func addActionButton(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.scrollViews.otherElements.buttons["Add"].tap()
+        popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Add Message to Display"]/*[[".cells.staticTexts[\"Add Message to Display\"]",".staticTexts[\"Add Message to Display\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
+        app.buttons["Done"].tap()
+        
+        let editButton = app.buttons["Edit Button by e2e"]
+        XCTAssertTrue(editButton.exists, "The edit button is not visible")
+        
+        editButton.tap()
+    }
+    
+    func changeButtonSize(){
+        let app = XCUIApplication()
+        app.navigationBars.buttons["Menu"].tap()
+        
+        let popoversQuery = app.popovers
+        let elementsQuery = popoversQuery.scrollViews.otherElements
+        elementsQuery.buttons["Edit Page"].tap()
+        app.buttons["Edit Button by e2e"].tap()
+        elementsQuery.buttons["Change Button Size"].tap()
+        sleep(2)
+        app.staticTexts["1 Column"].tap()
+        app.staticTexts["2 Columns"].tap()
+        
+        popoversQuery.navigationBars["Edit Size"].buttons["Save"].tap()
+    }
+    
+    func removeTheButton(){
+        app.buttons["Edit Button by e2e"].tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
+        XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
+        app.buttons["Okay"].tap()
+        app.buttons["Done"].tap()
+    }
+    
     func resetPersistentStorage() {
         // Reset Core Data
         //        if let persistentStoreCoordinator = (UIApplication.shared.delegate as? AppDelegate)?.persistentStoreCoordinator {

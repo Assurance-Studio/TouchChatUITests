@@ -40,6 +40,7 @@ class MainPage {
     // Copy a Vocab Elements
     let vocabSpellingSS: XCUIElement
     let _4BasicSS: XCUIElement
+    let vocabPCSS: XCUIElement
     let copiedVocab: XCUIElement
     let deleteVocabButtonCircle: XCUIElement
     let deleteVocabButtonSquare: XCUIElement
@@ -75,6 +76,7 @@ class MainPage {
         // Copy a Vocab Elements
         vocabSpellingSS = app.staticTexts["Spelling SS"]
         _4BasicSS = app.staticTexts["4 Basic SS"]
+        vocabPCSS = app.staticTexts["VocabPC SS"]
         copiedVocab = app.staticTexts["copied vocabulary"]
         deleteVocabButtonCircle = app.tables/*@START_MENU_TOKEN@*/.images["minus.circle.fill"]/*[[".cells",".buttons[\"Remove Spelling SS Copy  Modified 30 May 2024 at 14:51, Copy of Spelling SS, ✓\"]",".images[\"remove\"]",".images[\"minus.circle.fill\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/
         deleteVocabButtonSquare = app.tables.buttons["Delete"]
@@ -139,6 +141,10 @@ class MainPage {
     
     func copySpellingVocab(vocabName: String, vocabDescription: String){
         copyVocab(vocabType: vocabSpellingSS, vocabName: vocabName, vocabDescription: vocabDescription)
+    }
+    
+    func copyVocabPC(vocabName: String, vocabDescription:String){
+        copyVocab(vocabType: vocabPCSS, vocabName: vocabName, vocabDescription: vocabDescription)
     }
     // To add more vocabs
     
