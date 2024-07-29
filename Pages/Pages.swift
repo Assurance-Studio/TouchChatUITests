@@ -684,8 +684,8 @@ class Pages {
         XCTAssertTrue(visibleOption.waitForExistence(timeout: 5), "The toggle does not exist")
     }
     
-    func checkTheFontOptions(){
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Ubuntu"].tap()
+    func checkTheFontOptions(fontName: String){
+        XCUIApplication().popovers.scrollViews.otherElements.buttons[fontName].tap()
         
         let font1 = app.staticTexts["Amaranth"]
         let font2 = app.staticTexts["Caudex"]
@@ -706,10 +706,10 @@ class Pages {
         XCTAssertTrue(fontsExist, "One or more specified fonts don't exist")
     }
     
-    func checkPointOptions(){
+    func checkPointOptions(pointField: String){
         let popoversQuery = XCUIApplication().popovers
         popoversQuery.navigationBars["SelectListView"].buttons["Cancel"].tap()
-        popoversQuery.scrollViews.otherElements.buttons["12 Point"].tap()
+        popoversQuery.scrollViews.otherElements.buttons[pointField].tap()
         app.staticTexts["7 Point"].tap()
         
         let checkFontSize = app.staticTexts["7 Point"].waitForExistence(timeout: 5)
@@ -737,10 +737,10 @@ class Pages {
         popoversQuery.navigationBars["Select Color"].buttons["Cancel"].tap()
     }
     
-    func checkBodyColorOptions(){
+    func checkBodyColorOptions(bodyColor: String){
         let popoversQuery = XCUIApplication().popovers
         
-        popoversQuery.scrollViews.otherElements.buttons["#ffff99"].tap()
+        popoversQuery.scrollViews.otherElements.buttons[bodyColor].tap()
         let redBodyColor = app.staticTexts["Red"]
         let brownBodyColor = app.staticTexts["Brown"]
         let limeBodyColor = app.staticTexts["Lime"]
@@ -770,8 +770,8 @@ class Pages {
         popoversQuery.navigationBars["Select Color"].buttons["Cancel"].tap()
     }
     
-    func checkBorderWidthOptions(){
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["1 Point"].tap()
+    func checkBorderWidthOptions(borderPoint: String){
+        XCUIApplication().popovers.scrollViews.otherElements.buttons[borderPoint].tap()
         
         let onePointWidth = app.staticTexts["1 Point"]
         let fifteenthPointWidth = app.staticTexts["15 Point"]
@@ -783,27 +783,27 @@ class Pages {
         twentyPointWidth.tap()
     }
     
-    func addActionButton(){
+    func addActionButton(buttonName: String){
         let popoversQuery = XCUIApplication().popovers
         popoversQuery.scrollViews.otherElements.buttons["Add"].tap()
         popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Add Message to Display"]/*[[".cells.staticTexts[\"Add Message to Display\"]",".staticTexts[\"Add Message to Display\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
         app.buttons["Done"].tap()
         
-        let editButton = app.buttons["Edit Button by e2e"]
+        let editButton = app.buttons[buttonName]
         XCTAssertTrue(editButton.exists, "The edit button is not visible")
         
         editButton.tap()
     }
     
-    func changeButtonSize(){
+    func changeButtonSize(buttonName: String){
         let app = XCUIApplication()
         app.navigationBars.buttons["Menu"].tap()
         
         let popoversQuery = app.popovers
         let elementsQuery = popoversQuery.scrollViews.otherElements
         elementsQuery.buttons["Edit Page"].tap()
-        app.buttons["Edit Button by e2e"].tap()
+        app.buttons[buttonName].tap()
         elementsQuery.buttons["Change Button Size"].tap()
         sleep(2)
         app.staticTexts["1 Column"].tap()
@@ -812,8 +812,8 @@ class Pages {
         popoversQuery.navigationBars["Edit Size"].buttons["Save"].tap()
     }
     
-    func removeTheButton(){
-        app.buttons["Edit Button by e2e"].tap()
+    func removeTheButton(buttonName: String){
+        app.buttons[buttonName].tap()
         XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
         XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
         app.buttons["Okay"].tap()

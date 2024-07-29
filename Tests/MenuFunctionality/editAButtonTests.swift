@@ -3,7 +3,7 @@
 
 import XCTest
 
-final class buttonFunctionalitiesTests: XCTestCase {
+final class editAButtonTests: XCTestCase {
     
     
      var app = XCUIApplication()
@@ -27,7 +27,7 @@ final class buttonFunctionalitiesTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testButtonFunctionalitiesTests() throws {
+    func testeditAButtonTests() throws {
         
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
@@ -55,34 +55,34 @@ final class buttonFunctionalitiesTests: XCTestCase {
         pages.checkSwitchesEditButton()
         
         //check the font options
-        pages.checkTheFontOptions()
+        pages.checkTheFontOptions(fontName: "Ubuntu")
         
         //check the point options
-        pages.checkPointOptions()
+        pages.checkPointOptions(pointField: "12 Point")
          
         //check the text color options
         pages.checkTextColorOptions()
         
         //check the Body color options
-        pages.checkBodyColorOptions()
+        pages.checkBodyColorOptions(bodyColor: "#ffff99")
         
         //check the border color options
         pages.checkBorderColorOptions()
         
         //check the Border Width options
-        pages.checkBorderWidthOptions()
+        pages.checkBorderWidthOptions(borderPoint: "1 Point")
         
         //add an action for a button and check if it works
-        pages.addActionButton()
+        pages.addActionButton(buttonName: "Edit Button by e2e")
         
         //check the Speech Display Bar
         pages.checkSdbText(sdbText: "Edit Button by e2e ")
         
         //change button size
-        pages.changeButtonSize()
+        pages.changeButtonSize(buttonName: "Edit Button by e2e")
         
         //remove the new button
-        pages.removeTheButton()
+        pages.removeTheButton(buttonName: "Edit Button by e2e")
         
         pages.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)

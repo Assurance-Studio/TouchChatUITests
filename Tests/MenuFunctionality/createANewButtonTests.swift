@@ -1,42 +1,120 @@
-//
-//  createANewButtonTests.swift
 //  TouchChatUITests
-//
-//  Created by Alin Voinescu on 29.07.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
 final class createANewButtonTests: XCTestCase {
+    
+    
+     var app = XCUIApplication()
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+     override func setUpWithError() throws {
+         try super.setUpWithError()
+         continueAfterFailure = false
+         
+         let pages = Pages(app: app)
+         
+         app = XCUIApplication()
+         app.launchArguments.append("--reset")
+         app.launch()
+         pages.clearAppCache()
+         pages.resetPersistentStorage()
+         pages.reachMenuPageIfOnVocabPage()
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.terminate()
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    func testcreateANewButtonTests() throws {
+        
+        let pages = Pages(app: app)
+        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
+        let vocabularyName = "copied vocabulary create button"
+        let vocabularyDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        
+        //copy a new vocab
+        mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary create button"], vocab: vocabularyName)
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //remove an existing button
+        app.buttons.element(boundBy: 12).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
+        XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
+        app.buttons["Okay"].tap()
+        
+        //create a new button
+        app.buttons.element(boundBy: 12).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        
+        let buttonLabel = app.textFields.element(boundBy: 0)
+        let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsButtonLabel, "The button label is not visible")
+        
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("Create Button by e2e")
+        
+        app.textFields.element(boundBy: 2).tap()
+        app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
+        //select image
+        pages.selectImageButton()
+                
+        //check all the switches
+        pages.checkSwitchesEditButton()
+        
+        //check the font options
+        pages.checkTheFontOptions(fontName: "Istok Web")
+    
+        
+        //check the point options
+        pages.checkPointOptions(pointField: "16 Point")
+        
+         
+        //check the text color options
+        pages.checkTextColorOptions()
+        
+        //check the Body color options
+        pages.checkBodyColorOptions(bodyColor: "Light Yellow")
+        
+        //check the border color options
+        pages.checkBorderColorOptions()
+        
+        //check the Border Width options
+        pages.checkBorderWidthOptions(borderPoint: "2 Point")
+        
+        //add an action for a button and check if it works
+        pages.addActionButton(buttonName: "Create Button by e2e")
+        
+        //check the Speech Display Bar
+        pages.checkSdbText(sdbText: "Create Button by e2e Create Button by e2e ")
+        
+        //change button size
+        pages.changeButtonSize(buttonName: "Create Button by e2e")
+        
+        //remove the new button
+        pages.removeTheButton(buttonName: "Create Button by e2e")
+        
+        pages.backToVocab()
+        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+        
+        print("Create Button Test Finished with success!")
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+    
 }
+
+
+
+
+
+
+
+
+
