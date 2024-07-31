@@ -509,7 +509,7 @@ class Pages {
         
         let elementsQuery = app.popovers.scrollViews.otherElements
         elementsQuery.buttons["Hide Mode"].tap()
-
+        
         app.buttons["z"].tap()
         XCUIApplication().navigationBars["* Hide Mode *"].buttons["Done"].tap()
         XCTAssertFalse(app.buttons["z"].exists, "The element should no exist")
@@ -623,7 +623,7 @@ class Pages {
         let colorsExists = blackColor.exists && limeColor.exists && seaGreenColor.exists && whiteColor.exists && lavenderColor.exists
         
         XCTAssertTrue(colorsExists, "One or more specified colors don't exist")
-                
+        
         
         let app = XCUIApplication()
         let popoversQuery = app.popovers
@@ -655,7 +655,7 @@ class Pages {
         
         let tablesQuery = popoversQuery.tables
         app.staticTexts["PRC Symbols"].tap()
-                
+        
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["E"]/*[[".cells.staticTexts[\"E\"]",".staticTexts[\"E\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         tablesQuery.cells.containing(.staticText, identifier:"Edge").staticTexts["Source: PRC Symbols"].tap()
     }
@@ -676,7 +676,7 @@ class Pages {
         
         let italicsText = app.switches.element(boundBy: 2)
         XCTAssertTrue(italicsText.waitForExistence(timeout: 5), "The toggle does not exist")
-    
+        
         let transparentOption = app.switches.element(boundBy: 3)
         XCTAssertTrue(transparentOption.waitForExistence(timeout: 5), "The toggle does not exist")
         
@@ -818,6 +818,32 @@ class Pages {
         XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
         app.buttons["Okay"].tap()
         app.buttons["Done"].tap()
+    }
+    
+    func copyAButton(buttonName: String){
+        app.buttons[buttonName].tap()
+        
+        let app = XCUIApplication()
+        app.popovers.scrollViews.otherElements.buttons["Copy Button"].tap()
+    }
+    
+    func pasteTheButton(){
+        app.buttons.element(boundBy: 14).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Paste Button"].tap()
+        app.navigationBars["Main"].buttons["Done"].tap()
+        app.buttons.element(boundBy: 14).tap()
+        app.buttons["drink"].tap()
+    }
+    
+    func useTheSameButton(){
+        app.buttons.element(boundBy: 13).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Use Same Button"].tap()
+        app.buttons.element(boundBy: 12).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Use Same Button"].tap()
+        
+        app.navigationBars["Main"].buttons["Done"].tap()
+        app.buttons.element(boundBy: 13).tap()
+        app.buttons["snack"].tap()
     }
     
     func resetPersistentStorage() {
