@@ -106,6 +106,7 @@ class Pages {
         sleep(3)
         app.navigationBars.buttons["Vocab"].tap()
         app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
+        sleep(3)
         
         //        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
     }
@@ -844,6 +845,21 @@ class Pages {
         app.navigationBars["Main"].buttons["Done"].tap()
         app.buttons.element(boundBy: 13).tap()
         app.buttons["snack"].tap()
+    }
+    
+    func createANewButton(){
+        app.buttons.element(boundBy: 12).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        
+        let buttonLabel = app.textFields.element(boundBy: 0)
+        let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsButtonLabel, "The button label is not visible")
+        
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("Create Button by e2e")
+        
+        app.textFields.element(boundBy: 2).tap()
+        app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
     }
     
     func resetPersistentStorage() {

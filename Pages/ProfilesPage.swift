@@ -7,3 +7,87 @@
 //
 
 import Foundation
+import XCTest
+
+class ProfilesPage {
+    
+    let app: XCUIApplication
+    init(app: XCUIApplication) {
+        self.app = app
+    }
+    
+    
+    func addAProfile(){
+        let app = XCUIApplication()
+        app.navigationBars.buttons["Menu"].tap()
+        
+        let popoversQuery = app.popovers
+        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Save Profile"]/*[[".cells.staticTexts[\"Save Profile\"]",".staticTexts[\"Save Profile\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let profileName = app.textFields.element(boundBy: 2)
+        profileName.tap()
+        profileName.typeText("Profile name by e2e")
+        popoversQuery.navigationBars["Save Profile"].buttons["Save"].tap()
+    }
+    
+    func checkTheOverrideMessage(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Save Profile"]/*[[".cells.staticTexts[\"Save Profile\"]",".staticTexts[\"Save Profile\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let profileName = app.textFields.element(boundBy: 2)
+        profileName.tap()
+        profileName.typeText("Profile name by e2e")
+        popoversQuery.navigationBars["Save Profile"].buttons["Save"].tap()
+        
+        XCTAssertTrue(app.staticTexts["This filename already exists, do you want to overwrite this file?"].exists, "The filename already eists modal doens't appear")
+        app.buttons["No"].tap()
+        popoversQuery.navigationBars["Save Profile"].buttons["Cancel"].tap()
+        app.buttons["Done"].tap()
+        
+        app.buttons["Back"].tap()
+    }
+    
+    func loadTheNewProfile(){
+        app.navigationBars.buttons["Menu"].tap()
+        
+        let popoversQuery = app.popovers
+        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        popoversQuery.tables.staticTexts["Load Profile"].tap()
+        
+        app.staticTexts["Profile name by e2e"].tap()
+        app.buttons["Done"].tap()
+        XCTAssertTrue(app.buttons["I want"].exists, "The profile is not correct")
+        
+        app.navigationBars.buttons["Menu"].tap()
+        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        popoversQuery.tables.staticTexts["Load Profile"].tap()
+    }
+    
+    func renameTheNewProfile(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.navigationBars["Load Profile"].buttons["Edit"].tap()
+        
+        let tablesQuery = popoversQuery.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Remove Profile name by e2e"]/*[[".cells.buttons[\"Remove Profile name by e2e\"]",".buttons[\"Remove Profile name by e2e\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Rename"]/*[[".cells.buttons[\"Rename\"]",".buttons[\"Rename\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.textFields.element(boundBy: 2).doubleTap()
+        app.textFields.element(boundBy: 2).typeText("e2e rename")
+        popoversQuery.navigationBars["Rename"].buttons["Save"].tap()
+        XCTAssertTrue(app.staticTexts["Profile name by e2e rename"].exists, "The profile name is not correct")
+    }
+    
+    func removeTheNewProfile(){
+        let popoversQuery = XCUIApplication().popovers
+        let loadProfileNavigationBar = popoversQuery.navigationBars["Load Profile"]
+        loadProfileNavigationBar.buttons["Edit"].tap()
+        
+        let tablesQuery = popoversQuery.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Remove Profile name by e2e rename"]/*[[".cells.buttons[\"Remove Profile name by e2e rename\"]",".buttons[\"Remove Profile name by e2e rename\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        XCTAssertFalse(app.staticTexts["Profile name by e2e rename"].exists, "The profile still exists")
+        loadProfileNavigationBar.buttons["Done"].tap()
+        loadProfileNavigationBar.buttons["Cancel"].tap()
+        popoversQuery.navigationBars["Settings"].buttons["Done"].tap()
+    }
+}
