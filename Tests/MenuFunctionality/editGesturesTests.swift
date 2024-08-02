@@ -1,16 +1,11 @@
-//
-//  EditPage.swift
 //  TouchChatUITests
 //
-//  Created by Marius N on 06.06.2024.
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
-
 
 import XCTest
 
 final class EditGesturesTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -56,6 +51,4 @@ final class EditGesturesTests: XCTestCase {
         
         print("Edit Gestures Test Finished with success!")
     }
-    
 }
-

@@ -1,6 +1,7 @@
-//  Created by Alin Voinescu on 24.04.2024.
-//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+//  TouchChatUITests
 //
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
@@ -33,8 +34,6 @@ final class WordPower108SSTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-       
-    
     func testLaunchWordPower108SS() throws {
         
         let pages = Pages(app: app)
@@ -49,7 +48,6 @@ final class WordPower108SSTests: XCTestCase {
         app.buttons["BODY"].tap()
         app.buttons["hair"].tap()
         
-        
         pages.checkSdbText(sdbText: "Hair ")
         pages.backButton.tap()
         pages.backButton.tap()
@@ -59,18 +57,6 @@ final class WordPower108SSTests: XCTestCase {
         print("WordPower 108 SS Test Finished with success!")
         
         app.terminate()
+        
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

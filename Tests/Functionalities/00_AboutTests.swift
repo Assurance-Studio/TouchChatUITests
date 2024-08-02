@@ -1,5 +1,8 @@
-//  Created by Marius N on 07.06.2024.
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
+//  This test should test the "about" functionality
 
 import XCTest
 
@@ -30,7 +33,5 @@ final class aboutTests: XCTestCase {
         
         app.launch()
         pages.reachAboutScreen()
-        
-
     }
 }

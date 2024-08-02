@@ -1,10 +1,7 @@
+//  TouchChatUITests
 //
-//  basicTest.swift
-//  TouchChatTests
-//
-//  Created by Alin Voinescu on 24.04.2024.
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
@@ -37,7 +34,6 @@ final class WordPower48SSTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    
     func testLaunchWordPower48SS() throws {
         
         let pages = Pages(app: app)
@@ -61,23 +57,6 @@ final class WordPower48SSTests: XCTestCase {
         print("WordPower 48 SS Test Finished with success!")
         
         app.terminate()
+        
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

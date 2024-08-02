@@ -1,4 +1,6 @@
-//  Created by Alin Voinescu on 24.04.2024.
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
@@ -32,7 +34,7 @@ final class Adult8SSTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testLaunchadult8SS() throws {
+    func testLaunchAdult8SS() throws {
         
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
@@ -56,16 +58,3 @@ final class Adult8SSTests: XCTestCase {
        
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

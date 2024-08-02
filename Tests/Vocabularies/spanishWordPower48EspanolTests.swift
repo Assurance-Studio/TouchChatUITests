@@ -1,11 +1,12 @@
-//  Created by Alin Voinescu on 24.04.2024.
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class WordPower48EspanolTests: XCTestCase {
     
-   
     var app = XCUIApplication()
 
     override func setUpWithError() throws {
@@ -33,7 +34,6 @@ final class WordPower48EspanolTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    
     func testLaunchWordPower48EspanolSS() throws {
         
         let pages = Pages(app: app)
@@ -42,7 +42,6 @@ final class WordPower48EspanolTests: XCTestCase {
         pages.wordPowerEspanol48.tap()
         
         pages.verifyTheVocab(lastElement: "porque", vocabWord: "comer", vocabElement: 4, nameElement: "GENTE")
-        
         
         XCTAssertTrue(app.buttons["que"].exists)
         app.buttons["que"].tap()
@@ -58,34 +57,3 @@ final class WordPower48EspanolTests: XCTestCase {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

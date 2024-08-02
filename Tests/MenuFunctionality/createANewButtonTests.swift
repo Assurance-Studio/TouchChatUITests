@@ -1,10 +1,11 @@
 //  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class createANewButtonTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -62,11 +63,9 @@ final class createANewButtonTests: XCTestCase {
         //check the font options
         pages.checkTheFontOptions(fontName: "Istok Web")
     
-        
         //check the point options
         pages.checkPointOptions(pointField: "16 Point")
         
-         
         //check the text color options
         pages.checkTextColorOptions()
         
@@ -96,14 +95,4 @@ final class createANewButtonTests: XCTestCase {
         
         print("Create Button Test Finished with success!")
     }
-    
 }
-
-
-
-
-
-
-
-
-

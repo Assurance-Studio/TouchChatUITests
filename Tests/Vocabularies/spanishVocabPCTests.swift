@@ -1,11 +1,12 @@
-//  Created by Alin Voinescu on 24.04.2024.
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class VocabPCSpanishTests: XCTestCase {
     
-   
     var app = XCUIApplication()
 
     override func setUpWithError() throws {
@@ -33,7 +34,6 @@ final class VocabPCSpanishTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    
     func testLaunchVocabPcSpanishSS() throws {
         
         let pages = Pages(app: app)
@@ -58,33 +58,3 @@ final class VocabPCSpanishTests: XCTestCase {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

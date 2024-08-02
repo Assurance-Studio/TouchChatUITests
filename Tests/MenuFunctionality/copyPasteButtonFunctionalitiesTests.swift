@@ -1,10 +1,11 @@
 //  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class copyPasteButtonFunctionalitieTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -69,14 +70,4 @@ final class copyPasteButtonFunctionalitieTests: XCTestCase {
         
         print("Copy & Paste Button Test Finished with success!")
     }
-    
 }
-
-
-
-
-
-
-
-
-

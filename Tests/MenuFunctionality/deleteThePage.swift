@@ -1,10 +1,11 @@
 //  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class DeleteThePageTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -66,8 +67,4 @@ final class DeleteThePageTests: XCTestCase {
         
         print("Add & Delete Page Test Finished with success!")
     }
-    
 }
-
-
-

@@ -1,10 +1,8 @@
-//
-//  01_CopyVocabulary.swift
 //  TouchChatUITests
 //
 //  Created by Marius N on 06.06.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//  This test will create a new vocabulary
+//  This test should test the copy a vocabulary functionality.
 
 import XCTest
 

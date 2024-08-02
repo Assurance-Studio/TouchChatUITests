@@ -1,11 +1,12 @@
-//  Created by Alin Voinescu on 24.04.2024.
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class WordPower60EspanolBasicoTests: XCTestCase {
     
-   
     var app = XCUIApplication()
 
     override func setUpWithError() throws {
@@ -33,7 +34,6 @@ final class WordPower60EspanolBasicoTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    
     func testLaunchWordPower60EspanolBasico() throws {
         
         let pages = Pages(app: app)
@@ -58,36 +58,3 @@ final class WordPower60EspanolBasicoTests: XCTestCase {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

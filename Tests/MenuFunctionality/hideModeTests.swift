@@ -1,21 +1,7 @@
 //  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//import UIKit
-//
-//extension UIButton{
-//    var testBackgroundColor: UIColor? {
-//        return self.backgroundColor
-//    }
-//}
-//
-//class YourViewController: UIViewController{
-//    
-//    @IBOutlet weak var yourButton: UIButton!
-//    
-//    func getButtonBackgroundColor() -> UIColor? {
-//        return yourButton.backgroundColor
-//    }
-//}
 
 
 import XCTest
@@ -27,7 +13,6 @@ extension XCUIElement {
 }
 
 final class hideModeTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -50,7 +35,6 @@ final class hideModeTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    
     func testhideModeTests() throws {
         
         let pages = Pages(app: app)

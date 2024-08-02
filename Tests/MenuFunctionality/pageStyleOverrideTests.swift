@@ -1,10 +1,11 @@
 //  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class pageStyleOverrideTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -58,13 +59,5 @@ final class pageStyleOverrideTests: XCTestCase {
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Page Style Override Test Finished with success!")
-    }
-    
+    }    
 }
-
-
-
-
-
-
-

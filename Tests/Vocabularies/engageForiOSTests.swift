@@ -1,6 +1,7 @@
-//  Created by Alin Voinescu on 24.04.2024.
-//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+//  TouchChatUITests
 //
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
@@ -54,15 +55,6 @@ final class EngageiOSSSTests: XCTestCase {
         print("Engage for iOS SS Test Finished with success!")
         
         app.terminate()
+        
     }
 }
-
-
-
-
-
-
-
-
-
-

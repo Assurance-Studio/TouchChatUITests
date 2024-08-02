@@ -1,10 +1,8 @@
-//
 //  Pages.swift
 //  TouchChatUITests
 //
 //  Created by Marius N on 06.06.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import Foundation
 import XCTest
@@ -480,7 +478,6 @@ class Pages {
         let scrollViewsQuery = popoversQuery.scrollViews
         let elementsQuery = scrollViewsQuery.otherElements
         let pageNameElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Page Name")
-        
         
         let testNavigationBar = app.navigationBars["Page by e2e"]
         testNavigationBar.buttons["Menu"].tap()
@@ -1038,4 +1035,3 @@ class Pages {
         }
     }
 }
-

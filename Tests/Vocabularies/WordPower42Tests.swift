@@ -1,5 +1,6 @@
-//  TouchChatTests
-//  Created by Alin Voinescu on 24.04.2024.
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
@@ -33,7 +34,6 @@ final class WordPower42SSTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    
     func testLaunchWordPower42SS() throws {
         
         let pages = Pages(app: app)
@@ -58,20 +58,3 @@ final class WordPower42SSTests: XCTestCase {
         app.terminate()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

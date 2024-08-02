@@ -1,10 +1,11 @@
 //  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class editAButtonTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -89,13 +90,4 @@ final class editAButtonTests: XCTestCase {
         
         print("Edit Button Test Finished with success!")
     }
-    
 }
-
-
-
-
-
-
-
-
