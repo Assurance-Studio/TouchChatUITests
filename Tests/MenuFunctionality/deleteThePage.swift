@@ -61,13 +61,9 @@ final class DeleteThePageTests: XCTestCase {
         //delete the page
         pages.deleteThePage()
         
-        pages.backToVocab()
+        pages.backToVocaxb()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Add & Delete Page Test Finished with success!")
     }
-    
 }
-
-
-

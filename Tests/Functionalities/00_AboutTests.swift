@@ -1,5 +1,8 @@
+//  TouchChatUITests
+//
 //  Created by Marius N on 07.06.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
+//  This test should test the "about" functionality.
 
 import XCTest
 
@@ -27,10 +30,8 @@ final class aboutTests: XCTestCase {
 
     func testAbout() throws {
         let pages = Pages(app: app)
-        
+
         app.launch()
         pages.reachAboutScreen()
-        
-
     }
 }

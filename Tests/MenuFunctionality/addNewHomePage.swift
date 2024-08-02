@@ -1,10 +1,11 @@
 //  TouchChatUITests
+//
+//  Created by Alin V
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class addNewHomePageTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -60,7 +61,7 @@ final class addNewHomePageTests: XCTestCase {
         
         //clear image
         pages.clearImageNewPage()
-                
+        
         XCUIApplication().navigationBars["Page by e2e"].buttons["Done"].tap()
         
         pages.backToVocab()
@@ -68,9 +69,4 @@ final class addNewHomePageTests: XCTestCase {
         
         print("Add Home Page Type Test Finished with success!")
     }
-    
 }
-
-
-
-

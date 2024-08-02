@@ -1,11 +1,12 @@
-//  Created by Alin Voinescu on 24.04.2024.
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class test4deBaseSS: XCTestCase {
     
-   
     var app = XCUIApplication()
 
     override func setUpWithError() throws {
@@ -33,7 +34,7 @@ final class test4deBaseSS: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchFrench4deBaseSS() throws {
         
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
@@ -57,37 +58,3 @@ final class test4deBaseSS: XCTestCase {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
