@@ -1,4 +1,4 @@
-//  ProfilesPage.swift
+//  ProfilesAndEditingPage.swift
 //  TouchChatUITests
 //
 //  Created by Alin Voinescu on 01.08.2024.
@@ -7,7 +7,7 @@
 import Foundation
 import XCTest
 
-class ProfilesPage {
+class ProfilesAndEditingPage {
     
     let app: XCUIApplication
     init(app: XCUIApplication) {
@@ -86,5 +86,43 @@ class ProfilesPage {
         loadProfileNavigationBar.buttons["Done"].tap()
         loadProfileNavigationBar.buttons["Cancel"].tap()
         popoversQuery.navigationBars["Settings"].buttons["Done"].tap()
+    }
+    
+    func openTheSettingsTab(){
+        app.navigationBars.buttons["Menu"].tap()
+        
+        let popoversQuery = app.popovers
+        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+    }
+    
+    func setAPassMenu(){
+        app.secureTextFields.element(boundBy: 0).tap()
+        app.secureTextFields.element(boundBy: 0).typeText("Testbye2e")
+        app.switches.element(boundBy: 7).tap()
+    }
+    
+    func checkIfThePassWorks(){
+        let app = XCUIApplication()
+        let popoversQuery = app.popovers
+        app.popovers.navigationBars["Settings"].buttons["Done"].tap()
+        
+        let navigationBarsQuery = app.navigationBars
+        navigationBarsQuery.buttons["Menu"].tap()
+        
+        let passwordField = app.secureTextFields.element(boundBy: 0)
+        XCTAssertTrue(passwordField.exists, "The password field doesn't appear")
+        passwordField.typeText("Testbye2e")
+    }
+    
+    func removeThePass(){
+        let popoversQuery = app.popovers
+        let passwordField = app.secureTextFields.element(boundBy: 0)
+        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        app.secureTextFields.element(boundBy: 0).tap()
+        app.buttons["Clear text"].tap()
+        app.switches.element(boundBy: 7).tap()
+        app.popovers.navigationBars["Settings"].buttons["Done"].tap()
+        app.buttons["Back"].tap()
+        XCTAssertFalse(passwordField.exists, "The password field doesn't appear")
     }
 }

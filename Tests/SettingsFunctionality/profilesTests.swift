@@ -35,7 +35,7 @@ final class profilesTests: XCTestCase {
     func testprofilesTests() throws {
         
         let pages = Pages(app: app)
-        let profilesPage = ProfilesPage(app: app)
+        let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         
         pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
         pages.basic4SS.tap()
@@ -43,22 +43,22 @@ final class profilesTests: XCTestCase {
         pages.verifyTheVocab(lastElement: "ALL ABOUT ME", vocabWord: "I want", vocabElement: 3, nameElement: "I want")
         
         //add a new profile
-        profilesPage.addAProfile()
+        profilesAndEditingPage.addAProfile()
         
         //check the new profile and check the override message
-        profilesPage.checkTheOverrideMessage()
+        profilesAndEditingPage.checkTheOverrideMessage()
         
         pages.backToVocab();
         
         //open a new vocab and load the new profile
         pages.engageForiOS.tap()
-        profilesPage.loadTheNewProfile()
+        profilesAndEditingPage.loadTheNewProfile()
         
         //rename the new profile
-        profilesPage.renameTheNewProfile()
+        profilesAndEditingPage.renameTheNewProfile()
         
         //Remove the new profile and check if it was removed
-        profilesPage.removeTheNewProfile()
+        profilesAndEditingPage.removeTheNewProfile()
         
         pages.backToVocab()
                 
@@ -67,13 +67,3 @@ final class profilesTests: XCTestCase {
         app.terminate()
     }
 }
-
-
-
-
-
-
-
-
-
-
