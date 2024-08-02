@@ -480,7 +480,6 @@ class Pages {
         let elementsQuery = scrollViewsQuery.otherElements
         let pageNameElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Page Name")
         
-        
         let testNavigationBar = app.navigationBars["Page by e2e"]
         testNavigationBar.buttons["Menu"].tap()
         elementsQuery.buttons["Delete This Page"].tap()

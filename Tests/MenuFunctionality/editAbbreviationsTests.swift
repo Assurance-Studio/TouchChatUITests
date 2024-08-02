@@ -1,3 +1,5 @@
+//  TouchChatUITests
+//
 //  Created by Alin Voinescu on 24.04.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
@@ -5,7 +7,6 @@ import XCTest
 
 final class editAbbreviationsTests: XCTestCase {
     
-   
     var app = XCUIApplication()
     
     override func setUpWithError() throws {
@@ -33,7 +34,7 @@ final class editAbbreviationsTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchEditAbbreviations() throws {
+    func testAbbreviationsFunctionality() throws {
         
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
@@ -57,6 +58,7 @@ final class editAbbreviationsTests: XCTestCase {
         //restoreToDefaults
         pages.restoreToDefaultsAbbreviation()
         
+        //ToDo: if possible add assertions
         pages.backToVocab();
         
         print("Edit Abbreviations Test Finished with success!")
@@ -65,38 +67,3 @@ final class editAbbreviationsTests: XCTestCase {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

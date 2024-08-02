@@ -1,10 +1,11 @@
 //  TouchChatUITests
+//
+//  Created by Alin V
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
 final class addNewTemplatePageTests: XCTestCase {
-    
     
      var app = XCUIApplication()
 
@@ -60,7 +61,7 @@ final class addNewTemplatePageTests: XCTestCase {
         
         //clear image
         pages.clearImageNewPage()
-                
+        
         XCUIApplication().navigationBars["Page by e2e"].buttons["Done"].tap()
         
         pages.backToVocab()
@@ -68,10 +69,4 @@ final class addNewTemplatePageTests: XCTestCase {
         
         print("Add Template Page Type Test Finished with success!")
     }
-    
 }
-
-
-
-
-
