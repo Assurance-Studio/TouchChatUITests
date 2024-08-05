@@ -117,6 +117,7 @@ class ProfilesAndEditingPage {
     func removeThePass(){
         let popoversQuery = app.popovers
         let passwordField = app.secureTextFields.element(boundBy: 0)
+        sleep(2)
         popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
         app.secureTextFields.element(boundBy: 0).tap()
         app.buttons["Clear text"].tap()

@@ -132,6 +132,7 @@ class Pages {
         
         
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Navigate Back"]/*[[".cells.staticTexts[\"Navigate Back\"]",".staticTexts[\"Navigate Back\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        sleep(2)
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Repeat Last Spoken"]/*[[".cells.staticTexts[\"Repeat Last Spoken\"]",".staticTexts[\"Repeat Last Spoken\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
         sleep(3)
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Speech Message"]/*[[".cells.staticTexts[\"Speech Message\"]",".staticTexts[\"Speech Message\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
@@ -797,10 +798,12 @@ class Pages {
     func changeButtonSize(buttonName: String){
         let app = XCUIApplication()
         app.navigationBars.buttons["Menu"].tap()
+        sleep(2)
         
         let popoversQuery = app.popovers
         let elementsQuery = popoversQuery.scrollViews.otherElements
         elementsQuery.buttons["Edit Page"].tap()
+        sleep(2)
         app.buttons[buttonName].tap()
         elementsQuery.buttons["Change Button Size"].tap()
         sleep(2)
