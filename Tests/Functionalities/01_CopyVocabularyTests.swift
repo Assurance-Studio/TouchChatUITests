@@ -26,7 +26,7 @@ final class copyVocabularyTests: XCTestCase {
         pages.clearAppCache()
         pages.resetPersistentStorage()
         pages.reachMenuPageIfOnVocabPage()
-        pages.deleteVocabFromVocabPageIfExisting(textVerified: vocabylaryDesc, maxScrolls: 3, timeout: 5)
+        pages.deleteVocabFromVocabPageIfExisting(deleteCircle: vocabylaryDesc, maxScrolls: 3, timeout: 5)
         pages.scrollUpUntilElementIsVisible(element: mainPage.cancelSearchButton)
     }
     

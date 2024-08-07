@@ -863,6 +863,13 @@ class Pages {
         app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
     }
     
+    func removeAnExistingButton(){
+        app.buttons.element(boundBy: 12).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
+        XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
+        app.buttons["Okay"].tap()
+    }
+    
     func resetPersistentStorage() {
         // Reset Core Data
         //        if let persistentStoreCoordinator = (UIApplication.shared.delegate as? AppDelegate)?.persistentStoreCoordinator {
@@ -914,31 +921,30 @@ class Pages {
         sleep(10)
     }
     
-    func deleteVocabFromVocabPageIfExisting(textVerified: String, maxScrolls: Int = 5, timeout: TimeInterval = 5) {
+    func deleteVocabFromVocabPageIfExisting(deleteCircle: String, maxScrolls: Int = 5, timeout: TimeInterval = 5) {
         var scrollAttempts = 0
         var textFound = false
         
+        mainPage.editButton.tap()
+        
         while scrollAttempts < maxScrolls {
-            let staticText = app.staticTexts[textVerified]
+            let circleDelete = app.tables/*@START_MENU_TOKEN@*/.images["minus.circle.fill"]/*[[".cells",".buttons[\"Remove Spelling SS Copy  Modified 30 May 2024 at 14:51, Copy of Spelling SS, ✓\"]",".images[\"remove\"]",".images[\"minus.circle.fill\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/
             
-            // Check if the text exists
-            if staticText.exists {
+            // Check if there exists a copied vocab
+            if circleDelete.exists {
                 textFound = true
                 
                 let mainPage = MainPage(app: app, vocabName: "vocab")
                 let vocabPage = VocabPage(app: app, vocabName: "vocab")
-                app.tables.staticTexts[textVerified].tap()
-                sleep(5)
-                vocabPage.vocabButton.tap()
-                vocabPage.chooseNewVocab.tap()
-                mainPage.editButton.tap()
-                mainPage.deleteVocabButtonCircle.tap()
+                app.tables.images[deleteCircle].tap()
+                let deleteButton = app.tables.buttons["Delete"]
+                let deleteButtonExists = deleteButton.waitForExistence(timeout: 5)
+               
                 mainPage.deleteVocabButtonSquare.tap()
                 app.alerts["Delete Vocabulary"].scrollViews.otherElements.buttons["Continue"].tap()
-                mainPage.verifyTextDoesNotExistScroll(textVerified: textVerified, maxScrolls: 10)
-                mainPage.doneButton.tap()
+                mainPage.verifyTextDoesNotExistScroll(textVerified: deleteCircle, maxScrolls: 3)
                 // Wait for the text to disappear
-                let textNotExistExpectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: staticText)
+                let textNotExistExpectation = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: circleDelete)
                 let result = XCTWaiter.wait(for: [textNotExistExpectation], timeout: timeout)
                 
                 if result == .completed {
@@ -953,9 +959,11 @@ class Pages {
             // Scroll up to continue searching
             app.swipeUp()
             scrollAttempts += 1
+            app.swipeDown()
         }
         
-        XCTAssertFalse(textFound, "The text '\(textVerified)' was found on the screen after \(scrollAttempts) scroll attempts.")
+        mainPage.doneButton.tap()
+        XCTAssertFalse(textFound, "The text '\(deleteCircle)' was found on the screen after \(scrollAttempts) scroll attempts.")
     }
     
     func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {

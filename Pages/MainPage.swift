@@ -155,7 +155,7 @@ class MainPage {
         deleteVocabButtonCircle.tap()
         deleteVocabButtonSquare.tap()
         app.alerts["Delete Vocabulary"].scrollViews.otherElements.buttons["Continue"].tap()
-        verifyTextDoesNotExistScroll(textVerified: vocabDesc, maxScrolls: 10)
+        verifyTextDoesNotExistScroll(textVerified: vocabDesc, maxScrolls: 3)
     }
     
     func concatenateStringWithQQ(_ input: String) -> String {

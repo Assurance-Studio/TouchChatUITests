@@ -21,6 +21,7 @@ final class createANewButtonTests: XCTestCase {
          pages.clearAppCache()
          pages.resetPersistentStorage()
          pages.reachMenuPageIfOnVocabPage()
+         pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
     }
     
     override func tearDownWithError() throws {
@@ -47,10 +48,7 @@ final class createANewButtonTests: XCTestCase {
         pages.editPage()
         
         //remove an existing button
-        app.buttons.element(boundBy: 12).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
-        XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
-        app.buttons["Okay"].tap()
+        pages.removeAnExistingButton()
         
         //create a new button
         pages.createANewButton()
