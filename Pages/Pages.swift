@@ -122,6 +122,7 @@ class Pages {
         app.buttons["Edit Gestures"].tap()
         let addGestureButton = app.buttons["Add"]
         let addGestureButtonExists = addGestureButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(addGestureButtonExists, "The Add button is visible")
         addGestureButton.tap()
         
         let firstTextField = app.textFields.element(boundBy: 0)
