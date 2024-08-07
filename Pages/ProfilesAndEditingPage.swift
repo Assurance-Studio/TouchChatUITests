@@ -126,4 +126,42 @@ class ProfilesAndEditingPage {
         app.buttons["Back"].tap()
         XCTAssertFalse(passwordField.exists, "The password field doesn't appear")
     }
+    
+    func unCheckStatusBar(){
+        let imageSizeStatusBar = app.images.element(boundBy: 20)
+        let imageSizeSBarBefore = imageSizeStatusBar.frame.size
+        let statusBar = app.switches.element(boundBy: 5)
+        statusBar.tap()
+        
+        let doneButton = app.buttons["Done"]
+        let doneButtonExists = doneButton.waitForExistence(timeout: 5)
+        doneButton.tap()
+        
+        let imageSizeSBarAfter = imageSizeStatusBar.frame.size
+        
+        XCTAssert(imageSizeSBarAfter.height > imageSizeSBarBefore.height, "The image size did not increase as expected")
+    }
+    
+    func checkKeyguardInset(){
+        let imageSizeKeyguard = app.images.element(boundBy: 20)
+        let imageSizeKeyguardBefore = imageSizeKeyguard.frame.size
+        let keyguardInset = app.switches.element(boundBy: 6)
+        keyguardInset.tap()
+        
+        app.buttons["Done"].tap()
+        
+        let imageSizeKeyguardAfter = imageSizeKeyguard.frame.size
+        
+        XCTAssert(imageSizeKeyguardAfter.height < imageSizeKeyguardBefore.height, "The image size has not changed")
+    }
+    
+    func returnToInitialSettingsPageSize(){
+        let statusBar = app.switches.element(boundBy: 5)
+        let keyguardInset = app.switches.element(boundBy: 6)
+        statusBar.tap()
+        keyguardInset.tap()
+        app.buttons["Done"].tap()
+        
+        app.buttons["Back"].tap()
+    }
 }

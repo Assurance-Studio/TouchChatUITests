@@ -101,10 +101,12 @@ class Pages {
     }
     //new functions
     func backToVocab(){
-        sleep(3)
-        app.navigationBars.buttons["Vocab"].tap()
+        let vocabButton = app.navigationBars.buttons["Vocab"]
+        let vocabButtonExists = vocabButton.waitForExistence(timeout: 5)
+        vocabButton.tap()
         app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
-        sleep(3)
+        let editButtonPage = app.buttons["Edit"]
+        let editButtonExists = editButtonPage.waitForExistence(timeout: 5)
         
         //        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
     }
@@ -118,8 +120,9 @@ class Pages {
     func addNewGesture() {
         app.navigationBars.buttons["Menu"].tap()
         app.buttons["Edit Gestures"].tap()
-        sleep(3)
-        app.buttons["Add"].tap()
+        let addGestureButton = app.buttons["Add"]
+        let addGestureButtonExists = addGestureButton.waitForExistence(timeout: 5)
+        addGestureButton.tap()
         
         let firstTextField = app.textFields.element(boundBy: 0)
         firstTextField.tap()
@@ -129,7 +132,6 @@ class Pages {
         popoversQuery.scrollViews.otherElements.buttons["Add"].tap()
         
         let tablesQuery = popoversQuery.tables
-        
         
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Navigate Back"]/*[[".cells.staticTexts[\"Navigate Back\"]",".staticTexts[\"Navigate Back\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
         sleep(2)
@@ -427,7 +429,6 @@ class Pages {
     func setANameForTemplatePage(){
         app.textFields.element(boundBy: 0).tap()
         app.textFields.element(boundBy: 0).typeText("Test by e2e Template")
-        
         app.popovers.navigationBars["New Page Name"].buttons["Save"].tap()
         app.navigationBars["Test by e2e Template"].buttons["Done"].tap()
     }
