@@ -32,7 +32,6 @@ final class aboutTests: XCTestCase {
     func testAbout() throws {
         let pages = Pages(app: app)
         
-        app.launch()
         pages.reachAboutScreen()
     }
 }
