@@ -39,6 +39,7 @@ final class speechDisplayBarTests: XCTestCase {
         }()
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
+        let speechDisplayBarPage = SpeechDisplayBarPage(app: app)
         
         pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
         //copy a new vocab
@@ -48,9 +49,78 @@ final class speechDisplayBarTests: XCTestCase {
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()
         
-        XCUIApplication().popovers.tables.staticTexts["Speech"].swipeUp()
+        //check the hide speech display bar and check if it works
+        speechDisplayBarPage.checkTheHideDisplayBar()
         
-        app.buttons["Done"].tap()
+        //uncheck the allowCopyPaste switch
+//        let allowCopyPaste = app.switches.element(boundBy: 10)
+//        allowCopyPaste.tap()
+//        app.buttons["Done"].tap()
+//        
+//        app.buttons["t"].tap()
+//        app.buttons["e"].tap()
+//        app.buttons["s"].tap()
+//        app.buttons["t"].tap()
+//        
+//        let sdbTestWord = app.textFields["Test"]
+//        sdbTestWord.press(forDuration: 2.0)
+        
+        //uncheck Auto Capitalization and check if it works
+        speechDisplayBarPage.checkAutoCapitalization()
+        
+        pages.checkSdbText(sdbText: "test")
+        
+        profilesAndEditingPage.openTheSettingsTab()
+        let autoCapitalization = app.switches.element(boundBy: 11)
+        autoCapitalization.tap()
+    
+        //check show icons and check if it works
+//        let showIcons = app.switches.element(boundBy: 12)
+//        showIcons.tap()
+//        
+//        let imageSizeShowIcons = app.images.element(boundBy: 10)
+//        let imageSizeShowIconsBefore = imageSizeShowIcons.frame.size
+//        
+//        let doneButton = app.buttons["Done"]
+//        let doneButtonExists = doneButton.waitForExistence(timeout: 5)
+//        XCTAssertTrue(doneButtonExists, "The done button is not visible")
+//        doneButton.tap()
+//        
+//        let imageSizeShowIconsAfter = imageSizeShowIcons.frame.size
+//        
+//        XCTAssert(imageSizeShowIconsAfter.width < imageSizeShowIconsBefore.width, "The image size did not increase as expected")
+        
+        //hide delete button
+        speechDisplayBarPage.checkHideDeleteButton()
+        
+        //check the fonts
+        //ToDo: check if changing the font has a result
+        speechDisplayBarPage.checkFontsType()
+        
+        //check the font size
+        //toDo: check if changing the font suze has a result
+        speechDisplayBarPage.checkFontSize()
+        
+        //check the font color
+        speechDisplayBarPage.checkFontColor()
+        
+        //check the background color
+        speechDisplayBarPage.checkBackgroundColor()
+        
+        //check the number of lines
+        speechDisplayBarPage.checkNumberOfLines()
+        
+        //visible Cursor
+        speechDisplayBarPage.checkTheCursor()
+//        let textField = app.textFields["test"]
+//        textField.tap()
+//        let isFocused = textField.hasFocus
+        
+        //check the highlight Spoken Word options
+        speechDisplayBarPage.checkTheHighlightSpoken()
+        
+        //check the highlight color phone/facetime
+        speechDisplayBarPage.checkHighlightColorPhone()
         
         pages.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
