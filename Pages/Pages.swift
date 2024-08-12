@@ -138,7 +138,10 @@ class Pages {
         sleep(2)
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Repeat Last Spoken"]/*[[".cells.staticTexts[\"Repeat Last Spoken\"]",".staticTexts[\"Repeat Last Spoken\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
         sleep(3)
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Speech Message"]/*[[".cells.staticTexts[\"Speech Message\"]",".staticTexts[\"Speech Message\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        let speechMessageOption = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Speech Message"]/*[[".cells.staticTexts[\"Speech Message\"]",".staticTexts[\"Speech Message\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let speechMessageOptionExists = speechMessageOption.waitForExistence(timeout: 5)
+        XCTAssertTrue(speechMessageOptionExists, "The Speech Message option is not visible.")
+        speechMessageOption.tap()
         
         app.buttons["Save"].tap()
         app.popovers.navigationBars["Select Gesture"].buttons["Done"].tap()
@@ -404,6 +407,8 @@ class Pages {
     func addNewPage(){
         app.navigationBars.buttons["Menu"].tap()
         let addNewPage = app.buttons["Add New Page"]
+        let addNewPageExists = addNewPage.waitForExistence(timeout: 5)
+        XCTAssertTrue(addNewPageExists, "The Add New Page button is not visible")
         addNewPage.tap()
     }
     
