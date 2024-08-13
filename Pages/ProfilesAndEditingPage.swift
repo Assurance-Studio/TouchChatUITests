@@ -20,7 +20,10 @@ class ProfilesAndEditingPage {
         
         let popoversQuery = app.popovers
         popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
-        popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Save Profile"]/*[[".cells.staticTexts[\"Save Profile\"]",".staticTexts[\"Save Profile\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        let saveProfileButton = popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Save Profile"]/*[[".cells.staticTexts[\"Save Profile\"]",".staticTexts[\"Save Profile\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let saveProfileButtonExists = saveProfileButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(saveProfileButtonExists, "The Save Profile Button is not visible.")
+        saveProfileButton.tap()
         
         let profileName = app.textFields.element(boundBy: 2)
         profileName.tap()
@@ -30,7 +33,10 @@ class ProfilesAndEditingPage {
     
     func checkTheOverrideMessage(){
         let popoversQuery = XCUIApplication().popovers
-        popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Save Profile"]/*[[".cells.staticTexts[\"Save Profile\"]",".staticTexts[\"Save Profile\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        let saveProfileButton = popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Save Profile"]/*[[".cells.staticTexts[\"Save Profile\"]",".staticTexts[\"Save Profile\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let saveProfileButtonExists = saveProfileButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(saveProfileButtonExists, "The Save Profile Button is not visible.")
+        saveProfileButton.tap()
         
         let profileName = app.textFields.element(boundBy: 2)
         profileName.tap()
