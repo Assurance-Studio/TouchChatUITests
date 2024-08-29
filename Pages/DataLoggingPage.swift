@@ -62,4 +62,32 @@ class DataLoggingPage {
         popoversQuery.tables/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".cells",".secureTextFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
         popoversQuery.navigationBars["Settings"].buttons["Done"].tap()
     }
+    
+    func changeDwellReleaseTime(){
+        XCUIApplication().popovers.tables.cells.containing(.staticText, identifier:"Dwell Time").staticTexts["None"].tap()
+        app.staticTexts["4.0 Seconds"].tap()
+        //change the release time
+        XCUIApplication().popovers.tables.cells.containing(.staticText, identifier:"Release Time").staticTexts["None"].tap()
+        app.staticTexts["1.5 Seconds"].tap()
+        app.buttons["Done"].tap()
+    }
+    
+    func checkIfTheDwellReleaseTimeWork(){
+        let buttonGoodMorning = app.buttons["Good Morning"]
+        buttonGoodMorning.press(forDuration: 3.5)
+        let sdbElement = app.textFields["Good morning, how are you? "]
+        XCTAssertFalse(sdbElement.exists, "Searched text was found")
+        buttonGoodMorning.press(forDuration: 4)
+        XCTAssertTrue(sdbElement.exists, "Searched text is not correct")
+        app.buttons["CLEAR "].press(forDuration: 4)
+        XCTAssertTrue(sdbElement.exists, "Searched text is not correct")
+    }
+    
+    func resetDwellReleaseTime(){
+        XCUIApplication().popovers.tables.cells.containing(.staticText, identifier:"Dwell Time").staticTexts["4.0 Seconds"].tap()
+        app.staticTexts["None"].tap()
+        XCUIApplication().popovers.tables.cells.containing(.staticText, identifier:"Release Time").staticTexts["1.5 Seconds"].tap()
+        app.staticTexts["None"].tap()
+        app.buttons["Done"].tap()
+    }
 }
