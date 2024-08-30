@@ -10,33 +10,62 @@ import XCTest
 
 final class buttonsSettingsTests: XCTestCase {
 
+    var app = XCUIApplication()
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        try super.setUpWithError()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset")
         app.launch()
+        pages.clearAppCache()
+        pages.resetPersistentStorage()
+        pages.reachMenuPageIfOnVocabPage()
+        pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
+   }
+   
+   override func tearDownWithError() throws {
+       app.terminate()
+       try super.tearDownWithError()
+   }
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+   func testButtonSettings() throws {
+       
+       let pages = Pages(app: app)
+       let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
+       let buttonsSettingsPage = ButtonsSettingsPage(app: app)
+       pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
+       let vocabularyName = "copied vocabulary buttons settings"
+       let vocabylaryDesc = "vocabulary description e2e"
+       var vocabName = "vocabulary"
+       lazy var mainPage: MainPage = {
+           return MainPage(app: XCUIApplication(), vocabName: vocabName)
+       }()
+       
+       //copy a new vocab
+       mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary buttons settings"], vocab: vocabularyName)
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+       pages.editPage()
+       //edit the font size for a button
+       buttonsSettingsPage.editFontSizeButton()
+       
+       //hide a button
+       pages.hideAButton()
+       
+       //check if the force font size works
+       profilesAndEditingPage.openTheSettingsTab()
+       buttonsSettingsPage.checkTheForceFontSize()
+       
+       //check if the hide button appears
+       buttonsSettingsPage.checkHideButtons()
+       
+       pages.backToVocab()
+       mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+       
+       print("Button Settings Test Finished with success!")
+   }
 }
