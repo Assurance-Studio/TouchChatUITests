@@ -33,9 +33,6 @@ class PredictionsSettingsPage {
         popoversQuery.navigationBars["SelectListView"].buttons["Cancel"].tap()
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Learned Words"]/*[[".cells.staticTexts[\"Learned Words\"]",".staticTexts[\"Learned Words\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         popoversQuery.toolbars["Toolbar"].buttons["Edit"].tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["eyes"]/*[[".cells.staticTexts[\"eyes\"]",".staticTexts[\"eyes\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
-        tablesQuery.staticTexts["happy"].swipeUp()
-        tablesQuery.staticTexts["juice"].swipeUp()
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Remove toto"]/*[[".cells.buttons[\"Remove toto\"]",".buttons[\"Remove toto\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         app.buttons["Delete"].tap()
         popoversQuery.navigationBars["Learned Words"].buttons["Done"].tap()
@@ -62,6 +59,22 @@ class PredictionsSettingsPage {
         popoversQuery.toolbars["Toolbar"].buttons["Edit"].tap()
         tablesQuery.buttons["Remove renamenewpredictionbye2e"].tap()
         app.buttons["Delete"].tap()
+        app.buttons["Done"].firstMatch.tap()
+        XCUIApplication().popovers.navigationBars["Settings"].buttons["Done"].tap()
+    }
+    
+    func clearAllPredictions(){
+        let popoversQuery = XCUIApplication().popovers
+        let tablesQuery = popoversQuery.tables
+        tablesQuery.staticTexts["Learned Words"].tap()
+        XCUIApplication().popovers.navigationBars["Learned Words"].buttons["Add"].tap()
+        app.textFields.element(boundBy: 2).tap()
+        app.textFields.element(boundBy: 2).typeText("NewPredictionbye2e")
+        app.buttons["Save"].tap()
+        app.buttons["Clear List"].tap()
+        XCTAssertTrue(app.staticTexts["Delete Learned Words"].exists, "The Delete Learned Words is not visible")
+        app.buttons["Okay"].tap()
+        XCTAssertFalse(app.staticTexts["NewPredictionbye2e"].exists, "The prediction still exists")
         app.buttons["Done"].firstMatch.tap()
         XCUIApplication().popovers.navigationBars["Settings"].buttons["Done"].tap()
     }
