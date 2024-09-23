@@ -20,10 +20,9 @@ final class AphasiaSpanishSSTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     

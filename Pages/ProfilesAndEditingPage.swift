@@ -111,7 +111,7 @@ class ProfilesAndEditingPage {
         let app = XCUIApplication()
         let popoversQuery = app.popovers
         app.popovers.navigationBars["Settings"].buttons["Done"].tap()
-        
+        sleep(3)
         let navigationBarsQuery = app.navigationBars
         navigationBarsQuery.buttons["Menu"].tap()
         
@@ -141,6 +141,7 @@ class ProfilesAndEditingPage {
         
         let doneButton = app.buttons["Done"]
         let doneButtonExists = doneButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(doneButtonExists, "Done button is not visible")
         doneButton.tap()
         
         let imageSizeSBarAfter = imageSizeStatusBar.frame.size

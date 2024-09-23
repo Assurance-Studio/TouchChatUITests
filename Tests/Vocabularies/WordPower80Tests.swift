@@ -22,10 +22,9 @@ final class WordPower80SSTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -39,10 +38,10 @@ final class WordPower80SSTests: XCTestCase {
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
-        pages.wordPower60Position.tap()
-        pages.wordPower60SS.tap()
+        pages.wordPower80Position.tap()
+        pages.wordPower80SS.tap()
         
-        pages.verifyTheVocab(lastElement: "with", vocabWord: "is", vocabElement: 3, nameElement: "ABC 123")
+        pages.verifyTheVocab(lastElement: "with", vocabWord: "is", vocabElement: 9, nameElement: "PLACES")
         
         XCTAssertTrue(app.buttons["eating"].exists)
         app.buttons["eating"].tap()

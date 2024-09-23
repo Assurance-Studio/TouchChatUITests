@@ -22,12 +22,10 @@ final class editAbbreviationsTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
-        pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
     }
     
     override func tearDownWithError() throws {
@@ -38,7 +36,6 @@ final class editAbbreviationsTests: XCTestCase {
     func testLaunchEditAbbreviations() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
         
         pages.spellingSS.tap()
         

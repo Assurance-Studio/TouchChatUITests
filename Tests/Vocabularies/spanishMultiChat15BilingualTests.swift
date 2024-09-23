@@ -22,10 +22,9 @@ final class multiChat15BilingualSSTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -43,7 +42,6 @@ final class multiChat15BilingualSSTests: XCTestCase {
         pages.multiChat15Bilingual.tap()
         
         pages.verifyTheVocab(lastElement: "Mis escenas - My Scenes", vocabWord: "Yo quiero - I want", vocabElement: 3, nameElement: "Preguntas - Questions")
-        
         
         XCTAssertTrue(app.buttons["comer - to eat"].exists)
         app.buttons["comer - to eat"].tap()

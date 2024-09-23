@@ -16,12 +16,10 @@ final class createANewButtonTests: XCTestCase {
          let pages = Pages(app: app)
          
          app = XCUIApplication()
-         app.launchArguments.append("--reset")
+         app.launchArguments.append("--reset-app-state")
          app.launch()
-         pages.clearAppCache()
-         pages.resetPersistentStorage()
+         pages.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
-         pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
     }
     
     override func tearDownWithError() throws {
@@ -32,7 +30,6 @@ final class createANewButtonTests: XCTestCase {
     func testcreateANewButtonTests() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
         let vocabularyName = "copied vocabulary create button"
         let vocabularyDesc = "vocabulary description e2e"
         var vocabName = "vocabulary"

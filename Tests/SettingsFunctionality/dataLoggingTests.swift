@@ -15,14 +15,11 @@ final class dataLoggingTests: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
-        
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
-        pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
     }
     
     override func tearDownWithError() throws {
@@ -41,9 +38,9 @@ final class dataLoggingTests: XCTestCase {
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let dataLoginPage = DataLoggingPage(app: app)
         
-        pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+        sleep(3)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary data logging"], vocab: vocabularyName)
         
         //open The Settings Menu

@@ -17,12 +17,10 @@ final class speechDisplayBarTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
-        pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
     }
     
     override func tearDownWithError() throws {
@@ -41,7 +39,6 @@ final class speechDisplayBarTests: XCTestCase {
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let speechDisplayBarPage = SpeechDisplayBarPage(app: app)
         
-        pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary speech display bar"], vocab: vocabularyName)

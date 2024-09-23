@@ -94,11 +94,26 @@ class Pages {
         backButton = app.buttons["Back"]
     }
     
+    func clickWelcomeX() {
+        sleep(5)
+        let welcomeModal = app.staticTexts["Welcome"]
+        let screenWidth = UIScreen.main.bounds.size.width
+        let screenHeight = UIScreen.main.bounds.size.height
+        let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.3, dy: 0.3))
+        // Adjust this based on the actual element type
+
+                if welcomeModal.exists {
+                    centerScreenCoordinate.tap()
+                        sleep(1) // Adds a second pause
+                }
+        }
+    
     func clearAppCache() {
         let appDomain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
         UserDefaults.standard.synchronize()
     }
+    
     //new functions
     func backToVocab(){
         let vocabButton = app.navigationBars.buttons["Vocab"]
@@ -228,6 +243,7 @@ class Pages {
     }
     
     func verifyTheVocab(lastElement: String, vocabWord: String, vocabElement: NSInteger, nameElement: String){
+        sleep(2)
         let lastElementVocab = app.buttons[lastElement]
         let existsTheElement = lastElementVocab.waitForExistence(timeout: 5)
         XCTAssertTrue(existsTheElement, "The last element of the vocabulary is not visible")
@@ -319,6 +335,12 @@ class Pages {
         app.alerts["Clear"].scrollViews.otherElements.buttons["Yes"].tap()
     }
     
+    func clearAllPronunciations(){
+        app.buttons["Clear"].tap()
+        XCTAssertTrue(app.staticTexts["Are you sure you want to erase all?"].exists, "The clear modal doesn't appear")
+        app.buttons["Yes"].tap()
+    }
+    
     func reachEditPronunciations(){
         app.navigationBars.buttons["Menu"].tap()
         let popoversQuery = app.popovers
@@ -380,6 +402,13 @@ class Pages {
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         toolbar.buttons["Done"].tap()
         popoversQuery.navigationBars["Pronunciations"].buttons["Cancel"].tap()
+    }
+    
+    func restoreToDefaultsPronunciations(){
+        app.buttons["Restore Defaults"].tap()
+        XCTAssertTrue(app.staticTexts["Are you sure you want to restore all default values?"].exists, "The Restore Defaults modal doesn't appear")
+        app.buttons["Yes"].tap()
+        app.buttons["Done"].tap()
     }
     
     func openStoreTextBtn(){
@@ -657,7 +686,7 @@ class Pages {
     func selectImageButton(){
         let popoversQuery = XCUIApplication().popovers
         popoversQuery.scrollViews.otherElements.buttons["Select Image"].tap()
-        sleep(2)
+        sleep(4)
         
         let tablesQuery = popoversQuery.tables
         app.staticTexts["PRC Symbols"].tap()

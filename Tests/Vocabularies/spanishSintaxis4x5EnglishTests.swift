@@ -22,10 +22,9 @@ final class Sintaxis4x5EnglishSSTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -34,8 +33,6 @@ final class Sintaxis4x5EnglishSSTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-       
-    
     func testLaunchSintaxis4x5EnglishSS() throws {
       
         let pages = Pages(app: app)
@@ -44,7 +41,6 @@ final class Sintaxis4x5EnglishSSTests: XCTestCase {
         pages.sintaxis4x5English.tap()
         
         pages.verifyTheVocab(lastElement: "Transportation", vocabWord: "Toys", vocabElement: 3, nameElement: "People")
-        
         
         XCTAssertTrue(app.buttons["Buy me"].exists)
         app.buttons["Buy me"].tap()

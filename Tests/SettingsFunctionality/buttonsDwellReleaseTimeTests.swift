@@ -23,10 +23,9 @@ final class buttonsDwellReleaseTimeTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -41,8 +40,8 @@ final class buttonsDwellReleaseTimeTests: XCTestCase {
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let dataLoginPage = DataLoggingPage(app: app)
         
-        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
         pages.spellingSS.tap()
+        sleep(3)
         
         pages.verifyTheVocab(lastElement: "BACKSPACE", vocabWord: "PHRASES", vocabElement: 5, nameElement: "TEXTING")
         

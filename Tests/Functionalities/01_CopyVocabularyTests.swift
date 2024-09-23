@@ -23,11 +23,8 @@ final class copyVocabularyTests: XCTestCase {
         try super.setUpWithError()
         continueAfterFailure = false
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
-        pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
-        pages.scrollUpUntilElementIsVisible(element: mainPage.cancelSearchButton)
     }
     
     override func tearDownWithError() throws {

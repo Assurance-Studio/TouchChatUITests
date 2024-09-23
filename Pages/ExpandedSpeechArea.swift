@@ -18,7 +18,7 @@ class ExpandedSpeechDisplayArea {
         let popoversQuery = XCUIApplication().popovers
         let tablesQuery = popoversQuery.tables
         tablesQuery.staticTexts["Speech"].swipeUp()
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Arial"]/*[[".cells.staticTexts[\"Arial\"]",".staticTexts[\"Arial\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 34).staticTexts["Arial"].tap()
          
         let font1 = app.staticTexts["Amaranth"]
         let font2 = app.staticTexts["Caudex"]

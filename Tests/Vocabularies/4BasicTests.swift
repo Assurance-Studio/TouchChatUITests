@@ -22,10 +22,9 @@ final class test4BasicSS: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -37,7 +36,6 @@ final class test4BasicSS: XCTestCase {
     func testLaunch4BasicSS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
         pages.basic4SS.tap()
         
         pages.verifyTheVocab(lastElement: "ALL ABOUT ME", vocabWord: "I want", vocabElement: 3, nameElement: "I want")

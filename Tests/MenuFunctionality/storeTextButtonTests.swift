@@ -16,12 +16,10 @@ final class storeTextButtonTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
-        pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
     }
     
     override func tearDownWithError() throws {
@@ -38,7 +36,6 @@ final class storeTextButtonTests: XCTestCase {
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
-        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
         
         //copy a Spelling Vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)

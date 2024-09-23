@@ -18,7 +18,7 @@ final class EditPage: XCTestCase {
         continueAfterFailure = false
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
 
         clearAppCache()

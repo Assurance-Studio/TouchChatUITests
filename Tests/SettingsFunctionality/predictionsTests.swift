@@ -17,12 +17,10 @@ final class predictionsTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
-        pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
    }
    
    override func tearDownWithError() throws {
@@ -35,7 +33,6 @@ final class predictionsTests: XCTestCase {
        let pages = Pages(app: app)
        let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
        let predictionsSettingsPage = PredictionsSettingsPage(app: app)
-       pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
        let vocabularyName = "copied vocabulary predictions settings"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
@@ -62,8 +59,6 @@ final class predictionsTests: XCTestCase {
        predictionsSettingsPage.addANewPrediction()
        //remove the renamed prediction
        predictionsSettingsPage.deleteTheRenamedPredictions()
-       
-       
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)

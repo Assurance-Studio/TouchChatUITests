@@ -16,12 +16,10 @@ final class EditPageLayoutTests: XCTestCase {
          let pages = Pages(app: app)
          
          app = XCUIApplication()
-         app.launchArguments.append("--reset")
+         app.launchArguments.append("--reset-app-state")
          app.launch()
-         pages.clearAppCache()
-         pages.resetPersistentStorage()
+         pages.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
-         pages.deleteVocabFromVocabPageIfExisting(deleteCircle: "minus.circle.fill", maxScrolls: 3, timeout: 5)
     }
     
     override func tearDownWithError() throws {
@@ -32,7 +30,6 @@ final class EditPageLayoutTests: XCTestCase {
     func testEditPageLayoutPage() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
         let vocabularyName = "copied vocabulary pagelayout"
         let vocabylaryDesc = "vocabulary description e2e"
         var vocabName = "vocabulary"
@@ -53,6 +50,16 @@ final class EditPageLayoutTests: XCTestCase {
         
         //change the rows and columns
         pages.changeRowsAndColumns()
+        
+        //import image from library
+        
+//        let app = XCUIApplication()
+//        let elementsQuery = app.popovers.scrollViews.otherElements
+//        elementsQuery.buttons["Import Image"].tap()
+//        elementsQuery.buttons["Image Library"].tap()
+//        //app/*@START_MENU_TOKEN@*/.scrollViews.otherElements.images["Photo, 02 September, 15:30"]/*[[".otherElements[\"Photos\"].scrollViews.otherElements",".otherElements[\"Photo, 03 September, 16:42, Photo, 03 September, 16:39, Photo, 03 September, 14:07, Photo, 03 September, 12:58, Photo, 03 September, 12:43, Photo, 03 September, 12:29, Photo, 03 September, 12:28, Photo, 03 September, 12:21, Photo, 03 September, 12:15, Photo, 03 September, 12:14, Photo, 03 September, 09:58, Photo, 02 September, 16:54, Photo, 02 September, 16:47, Photo, 02 September, 16:36, Photo, 02 September, 16:34, Photo, 02 September, 16:32, Photo, 02 September, 16:22, Photo, 02 September, 16:18, Photo, 02 September, 16:16, Photo, 02 September, 15:37, Photo, 02 September, 15:30\"].images[\"Photo, 02 September, 15:30\"]",".images[\"Photo, 02 September, 15:30\"]",".scrollViews.otherElements"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.tap()
+//        app.scrollViews.otherElements.images["Photo, 02 September, 16:47"].tap()
+//        app.buttons["Use"].tap()
         
         //select image
         pages.selectImageLayout()

@@ -22,10 +22,9 @@ final class afasiaEspanolSSTests: XCTestCase {
         let pages = Pages(app: app)
         
         app = XCUIApplication()
-        app.launchArguments.append("--reset")
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.clearAppCache()
-        pages.resetPersistentStorage()
+        pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -34,7 +33,6 @@ final class afasiaEspanolSSTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    
     func testLaunchafasiaEspanolSS() throws {
         
         let pages = Pages(app: app)
@@ -43,7 +41,6 @@ final class afasiaEspanolSSTests: XCTestCase {
         pages.afasiaEspanol.tap()
         
         pages.verifyTheVocab(lastElement: "Escalas", vocabWord: "Mis Actividades", vocabElement: 3, nameElement: "Cosas")
-        
         
         XCTAssertTrue(app.buttons["Terapia"].exists)
         app.buttons["Terapia"].tap()
