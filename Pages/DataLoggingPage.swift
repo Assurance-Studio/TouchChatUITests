@@ -64,6 +64,11 @@ class DataLoggingPage {
     }
     
     func changeDwellReleaseTime(){
+        let tablesQuery = XCUIApplication().popovers.tables
+        tablesQuery.staticTexts["Speech"].swipeUp()
+        tablesQuery.staticTexts["Speech Display Bar"].swipeUp()
+        tablesQuery.staticTexts["Expanded Speech Area"].swipeUp()
+        tablesQuery.staticTexts["Data Logging"].swipeUp()
         XCUIApplication().popovers.tables.cells.containing(.staticText, identifier:"Dwell Time").staticTexts["None"].tap()
         app.staticTexts["4.0 Seconds"].tap()
         //change the release time
@@ -73,6 +78,7 @@ class DataLoggingPage {
     }
     
     func checkIfTheDwellReleaseTimeWork(){
+        app.buttons["PHRASES"].press(forDuration: 4)
         let buttonGoodMorning = app.buttons["Good Morning"]
         buttonGoodMorning.press(forDuration: 3.5)
         let sdbElement = app.textFields["Good morning, how are you? "]
@@ -84,6 +90,11 @@ class DataLoggingPage {
     }
     
     func resetDwellReleaseTime(){
+//        let tablesQuery = XCUIApplication().popovers.tables
+//        tablesQuery.staticTexts["Speech"].swipeUp()
+//        tablesQuery.staticTexts["Speech Display Bar"].swipeUp()
+//        tablesQuery.staticTexts["Expanded Speech Area"].swipeUp()
+//        tablesQuery.staticTexts["Data Logging"].swipeUp()
         XCUIApplication().popovers.tables.cells.containing(.staticText, identifier:"Dwell Time").staticTexts["4.0 Seconds"].tap()
         app.staticTexts["None"].tap()
         XCUIApplication().popovers.tables.cells.containing(.staticText, identifier:"Release Time").staticTexts["1.5 Seconds"].tap()

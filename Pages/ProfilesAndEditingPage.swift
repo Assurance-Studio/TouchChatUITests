@@ -138,6 +138,7 @@ class ProfilesAndEditingPage {
         let imageSizeSBarBefore = imageSizeStatusBar.frame.size
         let statusBar = app.switches.element(boundBy: 5)
         statusBar.tap()
+        sleep(3)
         
         let doneButton = app.buttons["Done"]
         let doneButtonExists = doneButton.waitForExistence(timeout: 5)
@@ -169,6 +170,5 @@ class ProfilesAndEditingPage {
         keyguardInset.tap()
         app.buttons["Done"].tap()
         
-        app.buttons["Back"].tap()
     }
 }

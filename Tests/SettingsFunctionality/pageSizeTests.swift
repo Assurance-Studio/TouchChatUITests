@@ -19,9 +19,7 @@ final class pageSizeTests: XCTestCase {
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
-        
         let pages = Pages(app: app)
-        
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
@@ -35,13 +33,17 @@ final class pageSizeTests: XCTestCase {
     }
     
     func testPageSizeTests() throws {
-        
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        let vocabularyName = "copied vocabulary Page Size"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         
-        pages.myCoreSS.tap()
-        sleep(3)
-        pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
+        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary Page Size"], vocab: vocabularyName)
         
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()
@@ -58,7 +60,8 @@ final class pageSizeTests: XCTestCase {
         profilesAndEditingPage.returnToInitialSettingsPageSize()
         
         pages.backToVocab()
-                
+        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+        
         print("Page Size Tests Test Finished with success!")
         
         app.terminate()

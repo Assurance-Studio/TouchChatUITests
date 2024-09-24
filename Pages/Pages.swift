@@ -127,7 +127,7 @@ class Pages {
     }
     
     func editPage() {
-        sleep(3)
+        sleep(5)
         app.navigationBars.buttons["Menu"].tap()
         app.buttons["Edit Page"].tap()
     }
@@ -243,9 +243,9 @@ class Pages {
     }
     
     func verifyTheVocab(lastElement: String, vocabWord: String, vocabElement: NSInteger, nameElement: String){
-        sleep(2)
+        sleep(3)
         let lastElementVocab = app.buttons[lastElement]
-        let existsTheElement = lastElementVocab.waitForExistence(timeout: 5)
+        let existsTheElement = lastElementVocab.waitForExistence(timeout: 15)
         XCTAssertTrue(existsTheElement, "The last element of the vocabulary is not visible")
         
         let elements = app.buttons.allElementsBoundByIndex
@@ -257,7 +257,7 @@ class Pages {
         XCTAssertEqual(vocabElementNumber.label, nameElement, "The title is not correct")
         XCTAssertTrue(vocabWordVocab.exists);
         
-        vocabWordVocab.tap()
+        vocabWordVocab.press(forDuration: 2)
     }
     
     func reachAddAbbreviation(){
@@ -903,6 +903,22 @@ class Pages {
         XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
         XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
         app.buttons["Okay"].tap()
+    }
+    
+    func renameACopiedVocab(){
+        app.navigationBars.buttons["Edit"].tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.images["minus.circle.fill"]/*[[".cells",".buttons[\"Remove copied vocabulary edit\/rename  Modified 23 September 2024 at 13:49, vocabulary description e2e, ✓\"]",".images[\"remove\"]",".images[\"minus.circle.fill\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Rename"]/*[[".cells.buttons[\"Rename\"]",".buttons[\"Rename\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.textFields.element(boundBy: 0).tap()
+        XCUIApplication().popovers.scrollViews.otherElements/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.textFields.element(boundBy: 0).typeText("Renamed by e2e")
+        app.textViews.element(boundBy: 0).tap()
+        app.textViews.element(boundBy: 0).doubleTap()
+        app.textViews.element(boundBy: 0).typeText("Renamed")
+        app.buttons["Save"].tap()
+        app.buttons["Done"].tap()
     }
     
     func resetPersistentStorage() {
