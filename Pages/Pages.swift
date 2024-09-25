@@ -130,6 +130,7 @@ class Pages {
         sleep(5)
         app.navigationBars.buttons["Menu"].tap()
         app.buttons["Edit Page"].tap()
+        sleep(2)
     }
     
     func addNewGesture() {
