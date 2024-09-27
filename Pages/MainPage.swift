@@ -167,7 +167,7 @@ class MainPage {
         let vocabToOpen = app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", vocab)).firstMatch
 
     if vocabToOpen.exists && vocabToOpen.isHittable {
-            vocabToOpen.tap()
+            vocabToOpen.press(forDuration: 1)
             sleep(3)
         } else {
             print("The vocabulary you're trying to open does not exist or is not hittable")
