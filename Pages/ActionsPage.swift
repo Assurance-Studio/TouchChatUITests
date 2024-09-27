@@ -43,7 +43,6 @@ class ActionaPageClass {
     func addANewAction(actionName: String){
         let popoversQuery = app.popovers
         let elementsQuery = popoversQuery.scrollViews.otherElements
-        let tablesQuery = popoversQuery.tables
         elementsQuery.buttons["Add"].tap()
         app.staticTexts[actionName].tap()
     }
@@ -83,6 +82,12 @@ class ActionaPageClass {
         app.buttons["Backspace Key"].doubleTap()
         let sdbNewText = app.textFields["Good morning, how are you"]
         XCTAssertTrue(sdbNewText.exists, "The backspace key button doesn't work as expected")
+    }
+    
+    func checkTheBatteryStatus(){
+        app.buttons["Battery Sts"].tap()
+        let batteryStsField = app.textFields["Device battery is -100% charged. "]
+        XCTAssertTrue(batteryStsField.exists, "The battery status is not visible")
     }
     
 }
