@@ -90,4 +90,25 @@ class ActionaPageClass {
         XCTAssertTrue(batteryStsField.exists, "The battery status is not visible")
     }
     
+    func checkTheCalculatorAction(){
+        app.buttons["Calculator"].tap()
+        let calcBtn1 = app.buttons["AC"]
+        let calcBtn2 = app.buttons["%"]
+        let calcBtn3 = app.buttons["±"]
+        
+        let existsCalcBtn = calcBtn1.exists && calcBtn2.exists && calcBtn3.exists
+        XCTAssertTrue(existsCalcBtn, "The Calculator is not visible")
+        
+        app.buttons["7"].tap()
+        app.buttons["+"].tap()
+        app.buttons["3"].tap()
+        app.buttons["="].tap()
+        
+        let calcResult = app.buttons["10"]
+        let calcResultsExists = calcResult.waitForExistence(timeout: 5)
+        XCTAssertTrue(calcResultsExists, "The calculator works as expected.")
+        
+        app.buttons["Done"].tap()
+    }
+    
 }
