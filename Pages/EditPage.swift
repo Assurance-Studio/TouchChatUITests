@@ -6,29 +6,11 @@
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 //
 
-
 import XCTest
 
-final class EditPage: XCTestCase {
+class EditPage {
     
     var app: XCUIApplication!
-    
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        continueAfterFailure = false
-        
-        app = XCUIApplication()
-        app.launchArguments.append("--reset-app-state")
-        app.launch()
-
-        clearAppCache()
-        resetPersistentStorage()
-    }
-    
-    override func tearDownWithError() throws {
-        app.terminate()
-        try super.tearDownWithError()
-    }
     
     func clearAppCache() {
         let appDomain = Bundle.main.bundleIdentifier!
