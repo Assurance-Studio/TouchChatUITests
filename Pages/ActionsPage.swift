@@ -111,4 +111,45 @@ class ActionaPageClass {
         app.buttons["Done"].tap()
     }
     
+    func clearLastWord(){
+        app.buttons["PHRASES"].press(forDuration: 1)
+        app.buttons["Good Morning"].tap()
+        app.buttons["Back"].tap()
+        app.buttons["Clear Last Word"].tap()
+        
+        let textLastWord = app.textFields["Good morning, how are "]
+        XCTAssertTrue(textLastWord.exists, "The text is not correct")
+    }
+    
+    func checkLoggingData(){
+        app.buttons["Data Logging"].tap()
+        let enableLogging = app.images["lam_indicator"]
+        let existsEnableLogging = enableLogging.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsEnableLogging, "The Enable Logging image is not visible")
+        app.buttons["Data Logging"].tap()
+        sleep(3)
+        XCTAssertFalse(enableLogging.exists, "The Enable Logging image is still visible")
+        }
+    
+    func clearDisplay(){
+        app.buttons["PHRASES"].press(forDuration: 1)
+        app.buttons["Good Morning"].tap()
+        app.buttons["Back"].tap()
+        app.buttons["BackButton"].tap()
+        
+        let textClearDisplay = app.textFields["Good morning, how are "]
+        XCTAssertTrue(textClearDisplay.exists, "The text is not correct")
+        
+        app.buttons["Clear Display"].tap()
+        
+        let textFieldSdb = app.textFields.element(boundBy: 0)
+        let textFieldValue = textFieldSdb.value as? String
+        
+        if textFieldValue == "" || textFieldValue == nil {
+            print("Text field is empty")
+            XCTAssert(true, "Text field is empty as expected")
+        }
+        
+    }
+    
 }

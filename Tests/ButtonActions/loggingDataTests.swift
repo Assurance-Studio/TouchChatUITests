@@ -52,17 +52,17 @@ final class loggingDataOnOffTests: XCTestCase {
        actionsPage.removeSpeechMessageAction()
        
        //add time/date action
-       actionsPage.addANewAction(actionName: "Data Logging")
+       actionsPage.addANewAction(actionName: "Data Logging On/Off")
        
        //save the action
        actionsPage.saveTheAction()
       
        //check if the action works
-       actionsPage.clearDisplay()
+       actionsPage.checkLoggingData()
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
-       print("Clear Display Action Test Finished with success!")
+       print("Logging Data Action Test Finished with success!")
     }
 }
