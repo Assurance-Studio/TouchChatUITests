@@ -154,4 +154,30 @@ class GrammarActionaPageClass {
         let grammarActions = app.textFields["Broke broken breaker quickest breaking quickly breaks "]
         XCTAssertTrue(grammarActions.exists, "The grammar actions don't work as expected")
     }
+    
+    func addJumpAction(button: Int, jumpDirection: String, directionType: String){
+        app.buttons.element(boundBy: button).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(jumpDirection)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: "Jump To Page")
+        app.staticTexts[".Template"].tap()
+        app.staticTexts[directionType].tap()
+        app.buttons["Save"].tap()
+    }
+    
+    func addNavigateAction(button: Int, navigateDirection: String, directionType: String){
+        app.buttons.element(boundBy: button).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(navigateDirection)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: "Navigate")
+        app.staticTexts[".Template"].tap()
+        app.staticTexts[directionType].tap()
+        app.buttons["Save"].tap()
+    }
 }

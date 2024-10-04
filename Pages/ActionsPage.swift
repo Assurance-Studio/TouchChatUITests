@@ -56,11 +56,21 @@ class ActionaPageClass {
         app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
     }
     
+    func checkAddMessageDisplay(){
+        let popoversQuery = app.popovers
+        popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
+        sleep(2)
+        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+        app.buttons["Add Message To Display"].tap()
+        let messageText = app.textFields["Add Message To Display "]
+        XCTAssertTrue(messageText.exists, "The message is not displayed")
+    }
+    
     func checkIfTheDateisDisplayed(){
         app.buttons["Add Action Time/Date"].tap()
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyyy"
+        dateFormatter.dateFormat = "d MMMM yyyy"
         let expectedDate = dateFormatter.string(from: Date())
         
         let expectedText = app.textFields["The current date is \(expectedDate) "]
@@ -130,6 +140,70 @@ class ActionaPageClass {
         sleep(3)
         XCTAssertFalse(enableLogging.exists, "The Enable Logging image is still visible")
         }
+    
+    func checkTheJumpActions(){
+        //open the No Anim Page
+        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+        app.buttons["Jump To Page No Anim"].tap()
+        let emptyButton = app.buttons.element(boundBy: 15)
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+        
+        //open the Page Up
+        app.buttons["Jump To Page Up"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+        
+        //open the Page Down
+        app.buttons["Jump To Page Down"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+        
+        //open the Page Right
+        app.buttons["Jump To Page Right"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+        
+        //open the Page Left
+        app.buttons["Jump To Page Left"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+    }
+    
+    func checkNavigateActions(){
+        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+        app.buttons["Navigate to Page No Anim"].tap()
+        let emptyButton = app.buttons.element(boundBy: 15)
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+        
+        //open the Page Up
+        app.buttons["Navigate to Page Up"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+        
+        //open the Page Down
+        app.buttons["Navigate to Page Down"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+        
+        //open the Page Right
+        app.buttons["Navigate to Page Right"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+        
+        //open the Page Left
+        app.buttons["Navigate to Page Left"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["Back"].tap()
+    }
+    
+    func addNoAnimAction(){
+        app.staticTexts[".Template"].tap()
+        app.staticTexts["  No Animation"].tap()
+        app.buttons["Save"].tap()
+    }
+    
     
     func clearDisplay(){
         app.buttons["PHRASES"].press(forDuration: 1)
