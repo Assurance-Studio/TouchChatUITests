@@ -198,6 +198,40 @@ class ActionaPageClass {
         app.buttons["Back"].tap()
     }
     
+    func checkVisitAction(){
+        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+        let jumpToPageBtn = app.buttons["Visit to Page No Anim"]
+        jumpToPageBtn.tap()
+        let emptyButton = app.buttons.element(boundBy: 15)
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["CLEAR "].tap()
+        XCTAssertTrue(jumpToPageBtn.exists, "The page has not changed")
+        
+        //check the Visit Page Up
+        app.buttons["Visit to Page Up"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["CLEAR "].tap()
+        XCTAssertTrue(jumpToPageBtn.exists, "The page has not changed")
+        
+        //check the Visit Page Down
+        app.buttons["Visit to Page Down"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["CLEAR "].tap()
+        XCTAssertTrue(jumpToPageBtn.exists, "The page has not changed")
+        
+        //check the Visit Page Right
+        app.buttons["Visit to Page Right"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["CLEAR "].tap()
+        XCTAssertTrue(jumpToPageBtn.exists, "The page has not changed")
+        
+        //check the Visit Page Left
+        app.buttons["Visit to Page Left"].tap()
+        XCTAssertTrue(emptyButton.label.isEmpty, "The button is not empty")
+        app.buttons["CLEAR "].tap()
+        XCTAssertTrue(jumpToPageBtn.exists, "The page has not changed")
+    }
+    
     func addNoAnimAction(){
         app.staticTexts[".Template"].tap()
         app.staticTexts["  No Animation"].tap()

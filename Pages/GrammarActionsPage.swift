@@ -180,4 +180,17 @@ class GrammarActionaPageClass {
         app.staticTexts[directionType].tap()
         app.buttons["Save"].tap()
     }
+    
+    func addVisitAction(button: Int, jumpDirection: String, directionType: String){
+        app.buttons.element(boundBy: button).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(jumpDirection)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: "Visit")
+        app.staticTexts[".Template"].tap()
+        app.staticTexts[directionType].tap()
+        app.buttons["Save"].tap()
+    }
 }
