@@ -922,6 +922,68 @@ class Pages {
         app.buttons["Done"].tap()
     }
     
+    func editAButtonForButtonStyle(){
+        app.switches.element(boundBy: 0).tap()
+        app.switches.element(boundBy: 1).tap()
+        //turn on italics switch
+        app.switches.element(boundBy: 2).tap()
+        
+        //select the font options
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Ubuntu"].tap()
+        app.staticTexts["Verdana"].tap()
+        
+        //check the point options
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.scrollViews.otherElements.buttons["12 Point"].tap()
+        app.staticTexts["27 Point"].tap()
+         
+        //check the text color options
+        XCUIApplication().popovers.scrollViews.otherElements.containing(.staticText, identifier:"Button Label").children(matching: .button).matching(identifier: "Black").element(boundBy: 0).tap()
+        app.staticTexts["Green"].tap()
+        app.buttons["Save"].tap()
+    }
+    
+    func copyPasteButtonStyle(){
+        //copy the button
+        app.buttons.element(boundBy: 12).tap()
+        app.buttons["Copy Button"].tap()
+        
+        //paste the button style
+        app.buttons.element(boundBy: 11).tap()
+        app.buttons["Paste Button Style"].tap()
+    }
+    
+    func checkIfTheButtonStyleWasCopied(){
+        app.buttons.element(boundBy: 11).tap()
+        app.buttons["Edit This Button"].tap()
+        
+        let labelOnTopToggle = app.switches.element(boundBy: 0)
+        let labelOnTopValue = labelOnTopToggle.value as! String
+        
+        if labelOnTopValue == "1"{
+            print("Label on Top Toggle is ON")
+        } else{
+            print("Label on Top Toggle is OFF")
+        }
+        XCTAssertEqual(labelOnTopValue, "0", "The label on top toggle should be off")
+        
+        let boldTextToggle = app.switches.element(boundBy: 1)
+        let boldTextValue = boldTextToggle.value as! String
+        
+        if boldTextValue == "1"{
+            print("Bold Text Toggle is ON")
+        } else{
+            print("Bold Text Toggle is OFF")
+        }
+        XCTAssertEqual(boldTextValue, "0", "The bold text toggle should be off")
+        //check the Body color options
+        XCTAssertTrue(app.buttons["Verdana"].exists, "The font color is different")
+        XCTAssertTrue(app.buttons["27 Point"].exists, "The font size is different")
+        XCTAssertTrue(app.buttons["Green"].exists, "The text color is different")
+        app.buttons["Save"].tap()
+        XCUIApplication().navigationBars["Main"].buttons["Done"].tap()
+    }
+    
     func resetPersistentStorage() {
         // Reset Core Data
         //        if let persistentStoreCoordinator = (UIApplication.shared.delegate as? AppDelegate)?.persistentStoreCoordinator {

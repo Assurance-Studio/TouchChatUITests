@@ -163,6 +163,14 @@ class ProfilesAndEditingPage {
         XCTAssert(imageSizeKeyguardAfter.height < imageSizeKeyguardBefore.height, "The image size has not changed")
     }
     
+    func navigationsIcons(){
+        app.switches.element(boundBy: 4).tap()
+        XCTAssertFalse(app.images["foward_large.png"].exists, "The image is still visible")
+        app.switches.element(boundBy: 4).tap()
+        app.buttons["Done"].tap()
+        app.buttons["Back"].tap()
+    }
+    
     func returnToInitialSettingsPageSize(){
         let statusBar = app.switches.element(boundBy: 5)
         let keyguardInset = app.switches.element(boundBy: 6)
