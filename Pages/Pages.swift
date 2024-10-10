@@ -1114,6 +1114,26 @@ class Pages {
         return result == .completed
     }
     
+    func checkIfTheSearchBarExists(){
+        app.swipeDown()
+        let searchBarVocab = app.searchFields.element(boundBy: 0)
+        let searchBarExists = searchBarVocab.waitForExistence(timeout: 5)
+        XCTAssertTrue(searchBarExists, "The search bar is not visible")
+    }
+    
+    func checkHowTheSearchBarWorks(){
+        let searchBarVocab = app.searchFields.element(boundBy: 0)
+        searchBarVocab.doubleTap()
+        searchBarVocab.typeText("MultiChat15")
+        
+        let multiChatSpanish = app.staticTexts["MultiChat15 Spanish SS  "]
+        let multiChatFrancais = app.staticTexts["MultiChat15 français SS  "]
+        
+        let existsTheMultiChatVocabs = multiChatSpanish.exists && multiChatFrancais.exists
+        
+        XCTAssertTrue(existsTheMultiChatVocabs, "The searched vocabs are not visible")
+    }
+    
     func tapFirstLockedImage() {
         // Access the first image with the identifier 'locked'
         let lockedImages = app.images.matching(identifier: "locked")
