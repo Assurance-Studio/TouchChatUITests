@@ -57,6 +57,9 @@ final class addNewTemplatePageTests: XCTestCase {
         //add background color and select image
         pages.addBackgroundColorAndImage()
         
+        //check if the iOS Gallery is opening
+        pages.checkTheiOSGallery()
+        
         //clear image
         pages.clearImageNewPage()
                 

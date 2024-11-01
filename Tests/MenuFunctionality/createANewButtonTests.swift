@@ -49,6 +49,10 @@ final class createANewButtonTests: XCTestCase {
         
         //create a new button
         pages.createANewButton()
+        
+        //check if the iOS Gallery is opening
+        pages.checkTheiOSGallery()
+        
         //select image
         pages.selectImageButton()
                 

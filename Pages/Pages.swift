@@ -405,6 +405,17 @@ class Pages {
         popoversQuery.navigationBars["Pronunciations"].buttons["Cancel"].tap()
     }
     
+    func checkTheiOSGallery(){
+        let elementsQuery = XCUIApplication().popovers.scrollViews.otherElements
+        elementsQuery.buttons["Import Image"].tap()
+        elementsQuery.buttons["Image Library"].tap()
+        let myAlbumsBtn = app.staticTexts["My Albums"]
+        let myAlbumsExists = myAlbumsBtn.waitForExistence(timeout: 5)
+        XCTAssertTrue(myAlbumsExists, "The ios gallery is not opening")
+        let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.2))
+        centerScreenCoordinate.tap()
+    }
+    
     func restoreToDefaultsPronunciations(){
         app.buttons["Restore Defaults"].tap()
         XCTAssertTrue(app.staticTexts["Are you sure you want to restore all default values?"].exists, "The Restore Defaults modal doesn't appear")
@@ -1033,6 +1044,17 @@ class Pages {
         vocabPage.menuButton.tap()
         mainPage.aboutMButton.tap()
         sleep(10)
+    }
+    
+    func reachIShareService(){
+        vocabPage.menuButton.tap()
+        mainPage.iShareServiceMButton.tap()
+        sleep(5)
+    }
+    
+    func randomString(length: Int) -> String{
+        let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0123456789"
+        return String((0..<length).map{ _ in characters.randomElement()! })
     }
     
     func deleteVocabFromVocabPageIfExisting(deleteCircle: String, maxScrolls: Int = 5, timeout: TimeInterval = 5) {

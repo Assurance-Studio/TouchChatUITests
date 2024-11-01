@@ -47,6 +47,9 @@ final class editAButtonTests: XCTestCase {
         //open the Edit This button tab and fill in the button label&pronunciation
         pages.editThisButton()
         
+        //check if the iOS Gallery is opening
+        pages.checkTheiOSGallery()
+        
         //select image
         pages.selectImageButton()
                 

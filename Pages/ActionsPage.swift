@@ -47,11 +47,11 @@ class ActionaPageClass {
         app.staticTexts[actionName].tap()
     }
     
-    func addActionDateOnly(){
+    func addActionForTimeDate(actionType: String){
         let popoversQuery = app.popovers
         let elementsQuery = popoversQuery.scrollViews.otherElements
         let tablesQuery = popoversQuery.tables
-        app.staticTexts["Date Only"].tap()
+        app.staticTexts[actionType].tap()
         popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
         app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
     }
@@ -67,7 +67,7 @@ class ActionaPageClass {
     }
     
     func checkIfTheDateisDisplayed(){
-        app.buttons["Add Action Time/Date"].tap()
+        app.buttons["Add Action Date"].tap()
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMMM yyyy"
@@ -75,6 +75,27 @@ class ActionaPageClass {
         
         let expectedText = app.textFields["The current date is \(expectedDate) "]
         XCTAssertTrue(expectedText.exists, "Displayed date is incorrect")
+    }
+    
+    func checkIfTheTimeisDisplayed(){
+        app.buttons["Add Action Time"].tap()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let expectedTime = dateFormatter.string(from: Date())
+        
+        let expectedText = app.textFields["The current time is \(expectedTime) "]
+        XCTAssertTrue(expectedText.exists, "Displayed time is incorrect")
+    }
+    
+    func checkIfTheDateTimeAreDisplayed(){
+        app.buttons["Add Action Time/Date"].tap()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM yyyy 'at' HH:mm"
+        let expectedDateTime = dateFormatter.string(from: Date())
+        
+        let expectedText = app.textFields["The current date and time are \(expectedDateTime) "]
+        XCTAssertTrue(expectedText.exists, "Displayed date and time are incorrect")
     }
     
     func saveTheAction(){

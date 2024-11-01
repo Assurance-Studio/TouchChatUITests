@@ -45,7 +45,7 @@ final class addTimeTests: XCTestCase {
 
        pages.editPage()
        //add an action
-       actionsPage.editButtonForAction(nameButton: "Add Action Time/Date")
+       actionsPage.editButtonForAction(nameButton: "Add Action Time")
        
        //remove the speech message action
        actionsPage.removeSpeechMessageAction()
