@@ -1,14 +1,9 @@
-//
-//  00CheckVocab.swift
-//  TouchChatUITests
-//
 //  Created by Marius N on 06.06.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
-final class _0CheckVocab: XCTestCase {
+final class CheckVocabTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
