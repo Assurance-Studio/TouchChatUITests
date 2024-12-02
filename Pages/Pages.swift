@@ -103,10 +103,117 @@ class Pages {
     }
     //new functions
     func backToVocab(){
+        sleep(3)
         app.navigationBars.buttons["Vocab"].tap()
         app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
         
-        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
+//        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
+    }
+    
+    func editPage() {
+        sleep(3)
+        app.navigationBars.buttons["Menu"].tap()
+        app.buttons["Edit Page"].tap()
+    }
+    
+    func addNewGesture() {
+        app.navigationBars.buttons["Menu"].tap()
+        app.buttons["Edit Gestures"].tap()
+        sleep(3)
+        app.buttons["Add"].tap()
+        
+        let firstTextField = app.textFields.element(boundBy: 0)
+        firstTextField.tap()
+        firstTextField.typeText("Gesture by e2e")
+        
+        let popoversQuery = app.popovers
+        popoversQuery.scrollViews.otherElements.buttons["Add"].tap()
+        
+        let tablesQuery = popoversQuery.tables
+        
+
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Navigate Back"]/*[[".cells.staticTexts[\"Navigate Back\"]",".staticTexts[\"Navigate Back\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Repeat Last Spoken"]/*[[".cells.staticTexts[\"Repeat Last Spoken\"]",".staticTexts[\"Repeat Last Spoken\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        sleep(3)
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Speech Message"]/*[[".cells.staticTexts[\"Speech Message\"]",".staticTexts[\"Speech Message\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        app.buttons["Save"].tap()
+        app.popovers.navigationBars["Select Gesture"].buttons["Done"].tap()
+        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+    }
+    
+    func addPageLayout() {
+        sleep(5)
+        app.navigationBars.buttons["Menu"].tap()
+        app.buttons["Edit Page Layout"].tap()
+    }
+    
+    func changeThePageName(){
+        let textFieldLayout = app.textFields["SPKBD-QWERTY"]
+        textFieldLayout.tap()
+        textFieldLayout.doubleTap()
+        textFieldLayout.typeText("Test")
+        app.textFields["SPKBD-Test"].doubleTap()
+        app.textFields["SPKBD-Test"].typeText("Test by e2e")
+    }
+    
+    func changeRowsAndColumns(){
+        let popoversQuery = app.popovers
+        let elementsQuery = popoversQuery.scrollViews.otherElements
+        elementsQuery.buttons["10 Rows"].tap()
+        
+        let tablesQuery = popoversQuery.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["15 Rows"]/*[[".cells.staticTexts[\"15 Rows\"]",".staticTexts[\"15 Rows\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        elementsQuery/*@START_MENU_TOKEN@*/.staticTexts["10 Columns"]/*[[".buttons[\"10 Columns\"].staticTexts[\"10 Columns\"]",".staticTexts[\"10 Columns\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["15 Columns"]/*[[".cells.staticTexts[\"15 Columns\"]",".staticTexts[\"15 Columns\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+    }
+    
+    func selectImageLayout() {
+        let popoversQuery = app.popovers
+        let elementsQuery = popoversQuery.scrollViews.otherElements
+        
+        let tablesQuery = popoversQuery.tables
+        elementsQuery.buttons["Black"].tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Red"]/*[[".cells.staticTexts[\"Red\"]",".staticTexts[\"Red\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        elementsQuery.buttons["Select Image"].tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["PRC Symbols"]/*[[".cells.staticTexts[\"PRC Symbols\"]",".staticTexts[\"PRC Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Numbers & Symbols"]/*[[".cells.staticTexts[\"Numbers & Symbols\"]",".staticTexts[\"Numbers & Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.cells.containing(.staticText, identifier:"123").staticTexts["Source: PRC Symbols"].tap()
+        
+        let saveButton = popoversQuery.navigationBars["Edit Page"].buttons["Save"]
+        saveButton.tap()
+    }
+    
+    func clearImageLayout(){
+        let popoversQuery = app.popovers
+        let elementsQuery = popoversQuery.scrollViews.otherElements
+        
+        let tablesQuery = popoversQuery.tables
+        let testByE2eNavigationBar = app.navigationBars["Test by e2e"]
+        testByE2eNavigationBar.buttons["Menu"].tap()
+        elementsQuery.buttons["Edit Page Layout"].tap()
+        elementsQuery.buttons["Clear Image"].tap()
+        let saveButton = popoversQuery.navigationBars["Edit Page"].buttons["Save"]
+        saveButton.tap()
+        testByE2eNavigationBar.buttons["Done"].tap()
+    }
+    
+    func verifyGestureExists() {
+        let scrollViewToolbar = app.buttons["t"]
+        XCTAssertTrue(scrollViewToolbar.exists, "Toolbar doesn't exist.")
+        
+        let elementPosition = scrollViewToolbar.frame.origin
+        let elementSize = scrollViewToolbar.frame.size
+        let centerX = elementPosition.x + elementSize.width / 2
+        let centerY = elementPosition.y + elementSize.height / 2
+        
+        let startCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: centerY / UIScreen.main.bounds.height))
+        let endCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: (centerY - 100) / UIScreen.main.bounds.height))
+        
+        startCoordinate.press(forDuration: 0.1, thenDragTo: endCoordinate)
+        
+        let sdbElement = app.textFields["Gesture by e2e "]
+        XCTAssertTrue(sdbElement.exists, "Searched text not found")
     }
     
     func checkSdbText(sdbText: String){
@@ -169,6 +276,17 @@ class Pages {
         app.buttons["BackButton"].tap()
     }
     
+    func writeTestBy(){
+        let tbutton = app.buttons["t"]
+        let waitForTButton = tbutton.waitForExistence(timeout: 5)
+        app.buttons["t"].tap()
+        app.buttons["e"].tap()
+        app.buttons["s"].tap()
+        app.buttons["t"].tap()
+        app.buttons["b"].tap()
+        app.buttons["y"].tap()
+    }
+    
     func reachToEditAbbreviation(){
         app.navigationBars.buttons["Menu"].tap()
         let popoversQuery = app.popovers
@@ -195,12 +313,195 @@ class Pages {
         app.alerts["Clear"].scrollViews.otherElements.buttons["Yes"].tap()
     }
     
+    func reachEditPronunciations(){
+        app.navigationBars.buttons["Menu"].tap()
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        elementsQuery.buttons["Edit Pronunciations"].tap()
+        let pronunciationsNavigationBar = popoversQuery.navigationBars["Pronunciations"]
+        let existsPronunciationsNavigationBar = pronunciationsNavigationBar.waitForExistence(timeout: 5)
+        pronunciationsNavigationBar.buttons["Add"].tap()
+    }
+    
     func restoreToDefaultsAbbreviation(){
         let popoversQuery = app.popovers
         popoversQuery.toolbars["Toolbar"].buttons["Restore Defaults"].tap()
         XCTAssertTrue(app.staticTexts["Are you sure you want to restore all default values?"].exists, "The restore modal doesn't appear")
         app.alerts["Restore Defaults"].scrollViews.otherElements.buttons["Yes"].tap()
         popoversQuery.navigationBars["Abbreviations"].buttons["Done"].tap()
+    }
+    
+    func addPronunciations(){
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let pronunciationsNavigationBar = popoversQuery.navigationBars["Pronunciations"]
+        app.textFields.element(boundBy: 2).tap()
+        app.textFields.element(boundBy: 2).typeText("test")
+        app.textFields.element(boundBy: 3).tap()
+        app.textFields.element(boundBy: 3).typeText("Test by e2e")
+        pronunciationsNavigationBar.buttons["Save"].tap()
+    }
+    
+    func scrollForSearchPronunciations(){
+        let scrollViewToolbar = app.staticTexts["⛄"]
+        XCTAssertTrue(scrollViewToolbar.exists, "Toolbar doesn't exist.")
+        
+        let elementPosition = scrollViewToolbar.frame.origin
+        let elementSize = scrollViewToolbar.frame.size
+        let centerX = elementPosition.x + elementSize.width / 2
+        let centerY = elementPosition.y + elementSize.height / 2
+        
+        let startCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: centerY / UIScreen.main.bounds.height))
+        let endCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: (centerY + 100) / UIScreen.main.bounds.height))
+        
+        startCoordinate.press(forDuration: 0.1, thenDragTo: endCoordinate)
+    }
+    
+    func searchPronunciations(){
+        app.searchFields["Search"].tap()
+        app.searchFields["Search"].typeText("test")
+    }
+    
+    func deletePronunciations(){
+        let popoversQuery = XCUIApplication().popovers
+        let toolbar = popoversQuery.toolbars["Toolbar"]
+        toolbar.buttons["Edit"].tap()
+        
+        let tablesQuery = popoversQuery.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Remove test, Test by e2e"]/*[[".cells.buttons[\"Remove test, Test by e2e\"]",".buttons[\"Remove test, Test by e2e\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        toolbar.buttons["Done"].tap()
+        popoversQuery.navigationBars["Pronunciations"].buttons["Cancel"].tap()
+    }
+    
+    func openStoreTextBtn(){
+        app.navigationBars.buttons["Menu"].tap()
+        app.popovers.scrollViews.otherElements.buttons["Store Text to Button"].tap()
+        XCTAssertTrue(app.staticTexts["Select the button where you want to store your composed message"].exists, "The Store Text modal doesn't appear")
+        app.alerts["Store Text to Button?"].scrollViews.otherElements.buttons["Continue"].tap()
+    }
+    
+    func checkIfTheStoreButtonWorks(){
+        app.buttons["SPACE"].tap()
+        XCTAssertTrue(app.buttons["Testby"].exists, "The StoreTextButton is not visible")
+        app.buttons["Testby"].tap()
+    }
+    
+    func vocabDesc(){
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+    }
+    
+    func addNewPage(){
+        app.navigationBars.buttons["Menu"].tap()
+        let addNewPage = app.buttons["Add New Page"]
+        addNewPage.tap()
+    }
+    
+    func addNewBlankPage(){
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let newBlankPage = elementsQuery.buttons["New Blank Page"]
+        let existsNewBlankPage = newBlankPage.waitForExistence(timeout: 5)
+        
+        newBlankPage.tap()
+    }
+    
+    func addNewTemplatePage(){
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let newPageTemplate = elementsQuery.buttons["New Page from Template"]
+        let existsNewTemplatePage = newPageTemplate.waitForExistence(timeout: 5)
+        
+        newPageTemplate.tap()
+    }
+    
+    func setANameForTemplatePage(){
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("Test by e2e Template")
+        
+        app.popovers.navigationBars["New Page Name"].buttons["Save"].tap()
+        app.navigationBars["Test by e2e Template"].buttons["Done"].tap()
+    }
+    
+    func addRowsColumnsBlankPage(){
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        
+        let pageNameElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Page Name")
+        sleep(3)
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("Page by e2e")
+        
+        elementsQuery.buttons["10 Rows"].tap()
+        
+        let tablesQuery = popoversQuery.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["15 Rows"]/*[[".cells.staticTexts[\"15 Rows\"]",".staticTexts[\"15 Rows\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        elementsQuery.buttons["10 Columns"].tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["17 Columns"]/*[[".cells.staticTexts[\"17 Columns\"]",".staticTexts[\"17 Columns\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+    }
+    
+    func addBackgroundColorAndImage(){
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let pageNameElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Page Name")
+        
+        let tablesQuery = popoversQuery.tables
+        
+        pageNameElementsQuery.children(matching: .button).element(boundBy: 3).tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Orange"]/*[[".cells.staticTexts[\"Orange\"]",".staticTexts[\"Orange\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        elementsQuery.buttons["Select Image"].tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["PRC Symbols"]/*[[".cells.staticTexts[\"PRC Symbols\"]",".staticTexts[\"PRC Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["C"]/*[[".cells.staticTexts[\"C\"]",".staticTexts[\"C\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.cells.containing(.staticText, identifier:"C").staticTexts["Source: PRC Symbols"].tap()
+//        popoversQuery.navigationBars["New Page"].buttons["Save"].tap()
+    }
+    
+    func clearImageNewPage(){
+        let popoversQuery = app.popovers
+        
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Clear Image"].tap()
+        popoversQuery.navigationBars["New Page"].buttons["Save"].tap()
+    }
+    
+    func deleteThePage(){
+        let popoversQuery = app.popovers
+        let scrollViewsQuery = popoversQuery.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let pageNameElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Page Name")
+        
+        
+        let testNavigationBar = app.navigationBars["Page by e2e"]
+        testNavigationBar.buttons["Menu"].tap()
+        elementsQuery.buttons["Delete This Page"].tap()
+        XCTAssertTrue(app.staticTexts["Confirm Page Deletion"].exists, "The deletion modal doesn't appear")
+        app.buttons["Okay"].tap()
+        
+        XCUIApplication().navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+    }
+    
+    func addHomePageType(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.scrollViews.otherElements.buttons["Normal Page"].tap()
+        popoversQuery.tables.cells.containing(.staticText, identifier:"Home Page").children(matching: .other).element(boundBy: 1).tap()
+        popoversQuery.navigationBars["Page Type"].buttons["Done"].tap()
+    }
+    
+    func addTemplatePage(){
+        let popoversQuery = XCUIApplication().popovers
+        popoversQuery.scrollViews.otherElements/*@START_MENU_TOKEN@*/.staticTexts["Normal Page"]/*[[".buttons[\"Normal Page\"].staticTexts[\"Normal Page\"]",".staticTexts[\"Normal Page\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        popoversQuery.tables.cells.containing(.staticText, identifier:"Template").children(matching: .other).element(boundBy: 0).tap()
+        popoversQuery.navigationBars["Page Type"].buttons["Done"].tap()
     }
     
     func resetPersistentStorage() {
@@ -254,18 +555,6 @@ class Pages {
         sleep(10)
     }
     
-    func reachMenuPageIfOnVocabPage() {
-        sleep(3)
-        if mainPage.menuButton.exists {
-            if vocabPage.vocabButton.exists{
-                vocabPage.vocabButton.tap()
-                vocabPage.chooseNewVocab.tap()
-                XCTAssert(mainPage.editButton.exists)}
-        } else {
-            print("We already are on the vocabulary list screen.")
-        }
-    }
-    
     func deleteVocabFromVocabPageIfExisting(textVerified: String, maxScrolls: Int = 5, timeout: TimeInterval = 5) {
         var scrollAttempts = 0
         var textFound = false
@@ -310,6 +599,19 @@ class Pages {
         XCTAssertFalse(textFound, "The text '\(textVerified)' was found on the screen after \(scrollAttempts) scroll attempts.")
     }
     
+    func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {
+        let startTime = Date()
+        var scrollAttempts = 0
+        
+        while !element.exists || !element.isHittable {
+            if scrollAttempts >= maxScrolls || Date().timeIntervalSince(startTime) >= timeout {
+            }
+            app.swipeUp()
+            scrollAttempts += 1
+            sleep(1)
+        }
+    }
+    
     func scrollUpUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {
         let startTime = Date()
         var scrollAttempts = 0
@@ -322,4 +624,60 @@ class Pages {
             sleep(1)
         }
     }
+    
+    func assertElementExists(element: XCUIElement, timeout: TimeInterval = 5) -> Bool {
+        let existsPredicate = NSPredicate(format: "exists == true")
+        let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: element)
+        
+        let result = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        return result == .completed
+    }
+    
+    func tapFirstLockedImage() {
+        // Access the first image with the identifier 'locked'
+        let lockedImages = app.images.matching(identifier: "locked")
+        if lockedImages.count > 0 {
+            let firstLockedImage = lockedImages.element(boundBy: 0)
+            if firstLockedImage.exists {
+                firstLockedImage.tap()
+            } else {
+                print("The first 'locked' image does not exist.")
+            }
+        } else {
+            print("No images with the identifier 'locked' were found.")
+        }
+    }
+    
+    func reachMenuPageIfOnVocabPage() {
+        
+        if mainPage.menuButton.exists {
+            if vocabPage.vocabButton.exists {
+                vocabPage.vocabButton.tap()
+                vocabPage.chooseNewVocab.tap()
+                XCTAssert(mainPage.editButton.exists)}
+            print("********* We reached the Vocab list page")
+            
+            // Access the element by its identifier
+            let expandIndicator = app.images["expandIndicator"]
+            
+            // Check if the element exists
+            let existsExpandIndicator = assertElementExists(element: expandIndicator, timeout: 5)
+            
+            if existsExpandIndicator {
+                scrollUpUntilElementIsVisible(element: mainPage.cancelSearchButton)
+                tapFirstLockedImage()
+                print("********* We opened the first vocabulary")
+                
+                if vocabPage.vocabButton.exists{
+                    vocabPage.vocabButton.tap()
+                    vocabPage.chooseNewVocab.tap()
+                    XCTAssert(mainPage.editButton.exists)}
+                else {
+                    print("********* The 'Vocabulary failed to open in reach menu if on vocab page func.")
+                }
+            }
+            print("********* We already are on the vocabulary list screen.")
+        }
+    }
 }
+
