@@ -40,6 +40,18 @@ class ActionaPageClass {
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
     }
     
+    func editButtonForNavigateAction(nameButton: String){
+        app.buttons.element(boundBy: 7).tap()
+        app.buttons["Edit This Button"].tap()
+        
+        let buttonLabel = app.textFields.element(boundBy: 0)
+        let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsButtonLabel, "The button label is not visible")
+        
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(nameButton)
+    }
+    
     func addANewAction(actionName: String){
         let popoversQuery = app.popovers
         let elementsQuery = popoversQuery.scrollViews.otherElements

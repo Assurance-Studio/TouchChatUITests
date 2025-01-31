@@ -1046,6 +1046,10 @@ class Pages {
         sleep(10)
     }
     
+    func importAVocab(){
+        vocabPage.menuButton.tap()
+    }
+    
     func reachIShareService(){
         vocabPage.menuButton.tap()
         mainPage.iShareServiceMButton.tap()
@@ -1134,6 +1138,80 @@ class Pages {
         
         let result = XCTWaiter.wait(for: [expectation], timeout: timeout)
         return result == .completed
+    }
+    
+    func testFnRow1() {
+        for i in 1...35 {
+            let buttonID = "Fn\(i)"
+            let labelText = "Function \(i)"
+            
+            // Press the button
+            let button = app.buttons[buttonID]
+            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
+            button.tap()
+            
+            
+            let labelID = "Function \(i)"
+            let label = app.buttons[labelID]
+            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
+            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
+        }
+    }
+    
+    func testFnRow2() {
+        for i in 36...100 {
+            let buttonID = "Fn\(i)"
+            let labelText = "FN \(i)"
+            
+            // Press the button
+            let button = app.buttons[buttonID]
+            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
+            button.tap()
+            
+            
+            let labelID = "FN \(i)"
+            let label = app.buttons[labelID]
+            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
+            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
+        }
+    }
+    
+    func testFirstRowLock() {
+        let letters = "ABCDEFGHIJ"
+        for letter in letters {
+            let buttonID = "Fn Lock \(letter)"
+            let labelText = "Function Lock \(letter)"
+            
+            // Press the button
+            let button = app.buttons[buttonID]
+            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
+            button.tap()
+            
+            
+            let labelID = "Function Lock \(letter)"
+            let label = app.buttons[labelID]
+            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
+            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
+        }
+    }
+    
+    func testSecondRowLock() {
+        let letters = "KLMNOPQRST"
+        for letter in letters {
+            let buttonID = "Fn Lock \(letter)"
+            let labelText = "FN Lock \(letter)"
+            
+            // Press the button
+            let button = app.buttons[buttonID]
+            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
+            button.tap()
+            
+            
+            let labelID = "FN Lock \(letter)"
+            let label = app.buttons[labelID]
+            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
+            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
+        }
     }
     
     func tapFirstLockedImage() {

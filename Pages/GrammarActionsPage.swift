@@ -11,10 +11,11 @@ import XCTest
 
 class GrammarActionaPageClass {
     
-    
+    let doneBtn: XCUIElement
     let app: XCUIApplication
     init(app: XCUIApplication) {
         self.app = app
+        doneBtn = app.buttons["Done"]
     }
     let actionsPage = ActionaPageClass(app: XCUIApplication())
     
@@ -181,6 +182,83 @@ class GrammarActionaPageClass {
         app.buttons["Save"].tap()
     }
     
+    func addNavigateActionsHomeBack(button: Int, navigateDirection: String, actionType: String, directionType: String){
+        app.buttons.element(boundBy: button).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(navigateDirection)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: actionType)
+        app.staticTexts[directionType].tap()
+        sleep(3)
+        app.buttons["Save"].tap()
+    }
+    
+    func checkNotesApp(){
+        app.buttons["Done"].tap()
+        app.buttons["Open Apple Apps - Notes"].tap()
+        let errorText = app.staticTexts["Error"]
+        XCTAssertTrue(errorText.exists, "The error is not visible")
+        app.buttons["Okay"].tap()
+    }
+    
+    func checkGoogleApp(){
+        app.buttons["Done"].tap()
+        app.buttons["Open Google Apps - Google"].tap()
+        let errorText = app.staticTexts["Error"]
+        XCTAssertTrue(errorText.exists, "The error is not visible")
+        app.buttons["Okay"].tap()
+    }
+    
+    func checkFacebookApp(){
+        app.buttons["Done"].tap()
+        app.buttons["Open Facebook Apps - Facebook"].tap()
+        let errorText = app.staticTexts["Error"]
+        XCTAssertTrue(errorText.exists, "The error is not visible")
+        app.buttons["Okay"].tap()
+    }
+    
+    func checkAppType(appType: String){
+        app.buttons[appType].tap()
+        let errorText = app.staticTexts["Error"]
+        XCTAssertTrue(errorText.exists, "The error is not visible")
+        app.buttons["Okay"].tap()
+    }
+    
+    func addOpenAppsAction(button: Int, navigateDirection: String, actionType: String, directionType: String, appType: String){
+        app.buttons.element(boundBy: button).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(navigateDirection)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: actionType)
+        sleep(2)
+        app.staticTexts[directionType].tap()
+        app.staticTexts[appType].tap()
+        sleep(3)
+        app.buttons["Save"].tap()
+    }
+    
+    func checkNavigateHomeBackActions(){
+        app.buttons["Done"].tap()
+        app.buttons["Navigate Back Animate Up"].tap()
+        app.buttons.element(boundBy: 27).tap()
+        app.buttons["Navigate To Home Animate Up"].tap()
+    }
+    
+    func addNoAnimNavigateHomeBack(){
+        app.staticTexts["  No Animation"].tap()
+        sleep(3)
+        app.buttons["Save"].tap()
+    }
+    
+    func openSecondPage(){
+        app.buttons["PHRASES"].tap()
+        app.buttons.element(boundBy: 27).tap()
+    }
+    
     func addVisitAction(button: Int, jumpDirection: String, directionType: String){
         app.buttons.element(boundBy: button).tap()
         app.buttons["Edit This Button"].tap()
@@ -192,5 +270,82 @@ class GrammarActionaPageClass {
         app.staticTexts[".Template"].tap()
         app.staticTexts[directionType].tap()
         app.buttons["Save"].tap()
+    }
+    
+    func addSubAction(ActionName: String, buttonPosition: Int, buttonName:String, subActionName:String){
+        app.buttons.element(boundBy: buttonPosition).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(buttonName)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: ActionName)
+        app.staticTexts[subActionName].tap()
+        app.buttons["Save"].tap()
+    }
+    
+    func addSubActionGrammarProperty(ActionName: String, buttonPosition: Int, buttonName:String, subActionName:String){
+        app.buttons.element(boundBy: buttonPosition).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(buttonName)
+        actionsPage.addANewAction(actionName: ActionName)
+        app.staticTexts[subActionName].tap()
+        app.buttons["Save"].tap()
+    }
+    
+    func setOnDynamicLabels(){
+        let tablesQuery = XCUIApplication().popovers.tables
+        tablesQuery.staticTexts["Speech"].swipeUp()
+        tablesQuery.staticTexts["Speech Display Bar"].swipeUp()
+        tablesQuery.staticTexts["Expanded Speech Area"].swipeUp()
+        tablesQuery.staticTexts["Data Logging"].swipeUp()
+        tablesQuery.staticTexts["Buttons"].swipeUp()
+        sleep(3)
+    }
+    
+    func checkIfTheActionsWorkAsExpected(){
+        sleep(2)
+        app.buttons["Done"].tap()
+        
+        app.buttons["Grammar State -ed"].tap()
+        XCTAssertTrue(app.buttons["opened"].exists, "The word doesn't exists")
+        app.buttons["Grammar State -er"].tap()
+        XCTAssertTrue(app.buttons["sweeter"].exists, "The word doesn't exists")
+        app.buttons["Grammar State -est"].tap()
+        XCTAssertTrue(app.buttons["sweetest"].exists, "The word doesn't exists")
+        app.buttons["Grammar State -ing"].tap()
+        XCTAssertTrue(app.buttons["opening"].exists, "The word doesn't exists")
+        app.buttons["Grammar State -ly"].tap()
+        XCTAssertTrue(app.buttons["sweetly"].exists, "The word doesn't exists")
+        app.buttons["Grammar State -s"].tap()
+        XCTAssertTrue(app.buttons["players"].exists, "The word doesn't exists")
+    }
+    
+    func checkAppState(){
+        switch UIApplication.shared.applicationState {
+        case .active:
+            print("App is in the foreground")
+        case .background:
+            print("App is in the background")
+        case .inactive:
+            print("App is inactive (transitioning)")
+        @unknown default:
+            print("Unknown app state")
+        }
+    }
+    
+    func checkTheDynamicLabelsToggle(){
+        let enableDynamicGrammarLabels = app.switches.element(boundBy: 29)
+        //enableDynamicGrammarLabels.tap()
+        if enableDynamicGrammarLabels.value as? String == "1" {
+                // If the switch is already ON, do nothing.
+                print("Switch is already ON.")
+            } else {
+                // If the switch is OFF, tap to turn it ON.
+                enableDynamicGrammarLabels.tap()
+                print("Switch has been turned ON.")
+            }
     }
 }

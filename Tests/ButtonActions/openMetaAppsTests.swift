@@ -1,7 +1,5 @@
-//
 //  openMetaAppsTests.swift
 //  TouchChatUITests
-//
 //  Created by Alin V on 23.01.2025.
 //  Copyright © 2025 PRC-Saltillo. All rights reserved.
 //
@@ -10,33 +8,72 @@ import XCTest
 
 final class openMetaAppsTests: XCTestCase {
 
+    var app = XCUIApplication()
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        try super.setUpWithError()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset-app-state")
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        pages.clickWelcomeX()
+        pages.reachMenuPageIfOnVocabPage()
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
+    }
+    
+    
+    func testOpenMetaApps() throws {
+        
+        let pages = Pages(app: app)
+        let actionsPage = ActionaPageClass(app: app)
+        let grammarActionsPage = GrammarActionaPageClass(app: app)
+        let vocabularyName = "copied vocabulary open meta apps"
+        let vocabylaryDesc = "vocabulary description e2e"
+        var vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        
+        //copy a new vocab
+        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary open meta apps"], vocab: vocabularyName)
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Open Facebook Apps - Facebook")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Open App")
+        app.staticTexts["Facebook"].tap()
+        app.staticTexts["Facebook"].tap()
+        app.buttons["Save"].tap()
+        
+        grammarActionsPage.addOpenAppsAction(button: 26, navigateDirection: "Open Facebook Apps - Facebook Messenger", actionType: "Open App", directionType: "Facebook", appType: "Facebook Messenger")
+        
+        grammarActionsPage.addOpenAppsAction(button: 27, navigateDirection: "Open Instagram App", actionType: "Open App", directionType: "Instagram", appType: "Instagram")
+        
+        //check Facebook app
+        grammarActionsPage.checkFacebookApp()
+        
+        //check Messenger App
+        grammarActionsPage.checkAppType(appType: "Open Facebook Apps - Facebook Messenger")
+        
+        //check Instagram App
+        grammarActionsPage.checkAppType(appType: "Open Instagram App")
+       
+        pages.backToVocab()
+        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+            
+        print("Open Meta Apps Test Finished with success!")
     }
 }
