@@ -108,6 +108,24 @@ class Pages {
                 }
         }
     
+    func checkStartModal(){
+        let startModal = app.staticTexts["Select your language and voice"]
+        if startModal.exists{
+            app.buttons["Continue"].tap()
+            sleep(1)
+        }
+    }
+    
+    func checkLicenseModal(){
+        let licenseAgreement = app.staticTexts["License Agreement"]
+        let continueBtn = app.buttons["Continue"]
+        
+        if licenseAgreement.exists{
+            app.switches.element(boundBy: 0).tap()
+            continueBtn.tap()
+        }
+    }
+    
     func clearAppCache() {
         let appDomain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)

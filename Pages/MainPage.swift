@@ -74,7 +74,7 @@ class MainPage {
         saveMButton = app.buttons["Save"]
         
         // Copy a Vocab Elements
-        vocabSpellingSS = app.staticTexts["Spelling SS"]
+        vocabSpellingSS = XCUIApplication().popovers.tables/*@START_MENU_TOKEN@*/.staticTexts["QWERTY Keyboard layout with Word Prediction"]/*[[".cells.staticTexts[\"QWERTY Keyboard layout with Word Prediction\"]",".staticTexts[\"QWERTY Keyboard layout with Word Prediction\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         _4BasicSS = app.staticTexts["4 Basic SS"]
         vocabPCSS = app.staticTexts["VocabPC SS"]
         copiedVocab = app.staticTexts["copied vocabulary"]
@@ -123,6 +123,7 @@ class MainPage {
     func copyVocab(vocabType: XCUIElement, vocabName: String, vocabDescription: String) {
         menuButton.tap()
         copyVocabMButton.tap()
+        sleep(3)
         vocabType.tap()
         _1stTextField.tap()
         _1stTextField.typeText(vocabName)
