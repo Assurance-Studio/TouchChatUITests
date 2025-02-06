@@ -5,7 +5,7 @@
 
 import XCTest
 
-final class Sintaxis4x5EnglishSSTests: XCTestCase {
+final class SinSintaxis4x4EnglishSSTests: XCTestCase {
     
     var app = XCUIApplication()
 
@@ -24,6 +24,8 @@ final class Sintaxis4x5EnglishSSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -32,33 +34,31 @@ final class Sintaxis4x5EnglishSSTests: XCTestCase {
         app.terminate()
         try super.tearDownWithError()
     }
-
-    func testLaunchSintaxis4x5EnglishSS() throws {
-      
+    
+    func testLaunchSinSintaxis4x4EnglishSS() throws {
+        
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
-        pages.SpanishVocab.tap()
-        pages.sintaxis4x5English.tap()
+        pages.sintaxis4x4English.tap()
+        pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "Transportation", vocabWord: "Toys", vocabElement: 3, nameElement: "People")
+        pages.verifyTheVocab(lastElement: "Places", vocabWord: "Body Parts", vocabElement: 3, nameElement: "Food/Drink")
         
-        XCTAssertTrue(app.buttons["Buy me"].exists)
-        app.buttons["Buy me"].tap()
+        XCTAssertTrue(app.buttons["eyes"].exists)
+        app.buttons["eyes"].tap()
+        app.buttons["nose"].tap()
         
-        pages.checkSdbText(sdbText: "Buy me ")
+        pages.checkSdbText(sdbText: "Eyes nose ")
         
         pages.backButton.tap()
         
         pages.backToVocab();
         
-        print("SinSintaxis 4x5 English Test Finished with success!")
+        print("SinSintaxis 4x4 English Test Finished with success!")
         
         app.terminate()
         
     }
 }
-
-
 
 
 
