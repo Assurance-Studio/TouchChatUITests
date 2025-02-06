@@ -19,6 +19,8 @@ final class expandedSpeechAreaTests: XCTestCase {
             app = XCUIApplication()
             app.launchArguments.append("--reset-app-state")
             app.launch()
+            pages.checkLicenseModal()
+            pages.checkStartModal()
             pages.clickWelcomeX()
             pages.reachMenuPageIfOnVocabPage()
         }
@@ -42,7 +44,7 @@ final class expandedSpeechAreaTests: XCTestCase {
             //copy a new vocab
             mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
             mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary speech display bar"], vocab: vocabularyName)
-            
+                        
             //open The Settings Menu
             profilesAndEditingPage.openTheSettingsTab()
             
@@ -51,7 +53,7 @@ final class expandedSpeechAreaTests: XCTestCase {
             
             //check the font size
             expandedSpeechArea.checkTheFontSize()
-            
+                        
             //check the font color
             expandedSpeechArea.checkTheFontColors()
             

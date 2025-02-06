@@ -24,6 +24,8 @@ final class WordPower60SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class WordPower60SSTests: XCTestCase {
         pages.wordPowerVocab.tap()
         pages.wordPower60Position.tap()
         pages.wordPower60SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "out", vocabWord: "finish", vocabElement: 7, nameElement: "ACTIONS")
         

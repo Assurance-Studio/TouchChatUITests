@@ -16,70 +16,70 @@ class Pages {
     let backButton: XCUIElement
     var vocabName = "vocabulary"
     //Vocabs
-    let SpanishVocab = XCUIApplication().tables.staticTexts["Spanish  "]
-    let sintaxis4x4English = XCUIApplication().tables.staticTexts["sin sintaxis 4 x 4 English SS  "]
-    let sintaxis4x4Spanish = XCUIApplication().tables.staticTexts["sin sintaxis 4 x 4 Spanish SS  "]
-    let sintaxis4x5English = XCUIApplication().tables.staticTexts["sintaxis 4 x 5 English SS  "]
-    let sintaxis4x5Spanish = XCUIApplication().tables.staticTexts["sintaxis 4 x 5 Spanish SS  "]
-    let afasiaEspanol = XCUIApplication().tables.staticTexts["Afasia Español SS  "]
-    let multiChat15Bilingual = XCUIApplication().tables.staticTexts["MultiChat 15 Spanish Bilingual SS  "]
-    let multiChat15Spanish  = XCUIApplication().tables.staticTexts["MultiChat15 Spanish SS  "]
-    let wordPowerVocab = XCUIApplication().tables.staticTexts["WordPower  "]
-    let wordPower25Position = XCUIApplication().tables.staticTexts["25 Position  "]
-    let wordPower25TouchScan = XCUIApplication().tables.staticTexts["WordPower25 Touch & Scan SS  "]
-    let wordPower42Position = XCUIApplication().tables.staticTexts["42 Position  "]
-    let wordPower42SS = XCUIApplication().tables.staticTexts["WordPower42 SS  "]
-    let wordPower48Position = XCUIApplication().tables.staticTexts["48 Position  "]
-    let wordPower48SS = XCUIApplication().tables.staticTexts["WordPower48 SS  "]
-    let wordPower60Position = XCUIApplication().tables.staticTexts["60 Position  "]
-    let wordPower60SS = XCUIApplication().tables.staticTexts["WordPower60 SS  "]
-    let wordPower80Position = XCUIApplication().tables.staticTexts["80 Position  "]
-    let wordPower80SS = XCUIApplication().tables.staticTexts["WordPower80 SS  "]
-    let wordPower108Position = XCUIApplication().tables.staticTexts["108 Position  "]
-    let wordPower108SS = XCUIApplication().tables.staticTexts["WordPower108 SS  "]
-    let wordPower60BasicSS = XCUIApplication().tables.staticTexts["WordPower60 Basic SS  "]
-    let wordPower42BasicSS = XCUIApplication().tables.staticTexts["WordPower42 Basic SS  "]
-    let wordPower20Position = XCUIApplication().tables.staticTexts["20 Position  "]
-    let wordPower20SimplySS = XCUIApplication().tables.staticTexts["WordPower20 Simply SS  "]
-    let wordPower140Position = XCUIApplication().tables.staticTexts["140 Position  "]
-    let wordPower140SS = XCUIApplication().tables.staticTexts["WordPower140 SS  "]
-    let wordPower108SSKeyboard = XCUIApplication().tables.staticTexts["WordPower108 with Keyboard SS  "]
-    let myQuickChatVocab = XCUIApplication().tables.staticTexts["My QuickChat  "]
-    let childQuickChatVocab = XCUIApplication().tables.staticTexts["Child  "]
-    let quickChatChild4SS = XCUIApplication().tables.staticTexts["My QuickChat Child 4 SS  "]
-    let quickChatChild8SS = XCUIApplication().tables.staticTexts["My QuickChat Child 8 SS  "]
-    let quickChatChild12SS = XCUIApplication().tables.staticTexts["My QuickChat Child 12 SS  "]
-    let adultQuickChatVocab = XCUIApplication().tables.staticTexts["Adult  "]
-    let quickChatAdult8SS = XCUIApplication().tables.staticTexts["My QuickChat Adult 8 SS  "]
-    let quickChatAdult12SS = XCUIApplication().tables.staticTexts["My QuickChat Adult 12 SS  "]
-    let multiChat15Vocab = XCUIApplication().tables.staticTexts["MultiChat 15  "]
-    let multiChatAdolescentSS = XCUIApplication().tables.staticTexts["MultiChat 15 Adolescent SS  "]
-    let multiChatAdultSS = XCUIApplication().tables.staticTexts["MultiChat 15 Adult SS  "]
-    let multiChatStudentSS = XCUIApplication().tables.staticTexts["MultiChat 15 Student SS  "]
-    let aphasiaVocab = XCUIApplication().tables.staticTexts["Aphasia  "]
-    let aphasiaSpanishSS = XCUIApplication().tables.staticTexts["Aphasia Spanish SS  "]
-    let aphasiaUKSS = XCUIApplication().tables.staticTexts["Aphasia UK SS  "]
-    let aphasiaUSSS = XCUIApplication().tables.staticTexts["Aphasia US SS  "]
-    let basic4SS = XCUIApplication().tables.staticTexts["4 Basic SS  "]
-    let engageForiOS = XCUIApplication().tables.staticTexts["Engage for iOS SS  "]
-    let myCoreSS = XCUIApplication().tables.staticTexts["MyCore SS  "]
-    let spellingSS = XCUIApplication().tables.staticTexts["Spelling SS  "]
-    let vocabPCSS = XCUIApplication().tables.staticTexts["VocabPC SS  "]
-    let tecladoSS = XCUIApplication().tables.staticTexts["Teclado SS  "]
-    let vocabPCSpanishSS = XCUIApplication().tables.staticTexts["Vocab PC Spanish SS  "]
-    let wordPowerEspanol48 = XCUIApplication().tables.staticTexts["WordPower 48 Español SS  "]
-    let wordPowerEspanol25 = XCUIApplication().tables.staticTexts["WordPower25 Español SS  "]
-    let wordPowerBasico48 = XCUIApplication().tables.staticTexts["WordPower48 Español Básico SS  "]
-    let wordPowerBasico60 = XCUIApplication().tables.staticTexts["WordPower60 Español Básico SS  "]
-    let frenchVocab = XCUIApplication().tables.staticTexts["French  "]
-    let base4FrenchSS = XCUIApplication().tables.staticTexts["4 de base français SS  "]
-    let communicationFrancaisSS = XCUIApplication().tables.staticTexts["Communication Journey Aphasie français SS  "]
-    let multiChat15FrancaisSS = XCUIApplication().tables.staticTexts["MultiChat15 français SS  "]
-    let vocabPCFrancaisSS = XCUIApplication().tables.staticTexts["VocabPC français SS  "]
-    let epelerFrancaisSS = XCUIApplication().tables.staticTexts["Épeler français SS  "]
-    let wordPower120Azerty = XCUIApplication().tables.staticTexts["WordPower120 français AZERTY SS  "]
-    let wordPower120FrancaisSS = XCUIApplication().tables.staticTexts["WordPower120 français SS  "]
-    let wordPower60FrancaisSS = XCUIApplication().tables.staticTexts["WordPower60 français SS  "]
+    let SpanishVocab = XCUIApplication().tables.staticTexts["Spanish"]
+    let sintaxis4x4English = XCUIApplication().tables.staticTexts["sin sintaxis 4 x 4 English SS"]
+    let sintaxis4x4Spanish = XCUIApplication().tables.staticTexts["sin sintaxis 4 x 4 Spanish SS"]
+    let sintaxis4x5English = XCUIApplication().tables.staticTexts["sintaxis 4 x 5 English SS"]
+    let sintaxis4x5Spanish = XCUIApplication().tables.staticTexts["sintaxis 4 x 5 Spanish SS"]
+    let afasiaEspanol = XCUIApplication().tables.staticTexts["Afasia Español SS"]
+    let multiChat15Bilingual = XCUIApplication().tables.staticTexts["MultiChat 15 Spanish Bilingual SS"]
+    let multiChat15Spanish  = XCUIApplication().tables.staticTexts["MultiChat15 Spanish SS"]
+    let wordPowerVocab = XCUIApplication().tables.staticTexts["WordPower"]
+    let wordPower25Position = XCUIApplication().tables.staticTexts["25 Position"]
+    let wordPower25TouchScan = XCUIApplication().tables.staticTexts["WordPower25 Touch & Scan SS"]
+    let wordPower42Position = XCUIApplication().tables.staticTexts["42 Position"]
+    let wordPower42SS = XCUIApplication().tables.staticTexts["WordPower42 SS"]
+    let wordPower48Position = XCUIApplication().tables.staticTexts["48 Position"]
+    let wordPower48SS = XCUIApplication().tables.staticTexts["WordPower48 SS"]
+    let wordPower60Position = XCUIApplication().tables.staticTexts["60 Position"]
+    let wordPower60SS = XCUIApplication().tables.staticTexts["WordPower60 SS"]
+    let wordPower80Position = XCUIApplication().tables.staticTexts["80 Position"]
+    let wordPower80SS = XCUIApplication().tables.staticTexts["WordPower80 SS"]
+    let wordPower108Position = XCUIApplication().tables.staticTexts["108 Position"]
+    let wordPower108SS = XCUIApplication().tables.staticTexts["WordPower108 SS"]
+    let wordPower60BasicSS = XCUIApplication().tables.staticTexts["WordPower60 Basic SS"]
+    let wordPower42BasicSS = XCUIApplication().tables.staticTexts["WordPower42 Basic SS"]
+    let wordPower20Position = XCUIApplication().tables.staticTexts["20 Position"]
+    let wordPower20SimplySS = XCUIApplication().tables.staticTexts["WordPower20 Simply SS"]
+    let wordPower140Position = XCUIApplication().tables.staticTexts["140 Position"]
+    let wordPower140SS = XCUIApplication().tables.staticTexts["WordPower140 SS"]
+    let wordPower108SSKeyboard = XCUIApplication().tables.staticTexts["WordPower108 with Keyboard SS"]
+    let myQuickChatVocab = XCUIApplication().tables.staticTexts["My QuickChat"]
+    let childQuickChatVocab = XCUIApplication().tables.staticTexts["Child"]
+    let quickChatChild4SS = XCUIApplication().tables.staticTexts["My QuickChat Child 4 SS"]
+    let quickChatChild8SS = XCUIApplication().tables.staticTexts["My QuickChat Child 8 SS"]
+    let quickChatChild12SS = XCUIApplication().tables.staticTexts["My QuickChat Child 12 SS"]
+    let adultQuickChatVocab = XCUIApplication().tables.staticTexts["Adult"]
+    let quickChatAdult8SS = XCUIApplication().tables.staticTexts["My QuickChat Adult 8 SS"]
+    let quickChatAdult12SS = XCUIApplication().tables.staticTexts["My QuickChat Adult 12 SS"]
+    let multiChat15Vocab = XCUIApplication().tables.staticTexts["MultiChat 15"]
+    let multiChatAdolescentSS = XCUIApplication().tables.staticTexts["MultiChat 15 Adolescent SS"]
+    let multiChatAdultSS = XCUIApplication().tables.staticTexts["MultiChat 15 Adult SS"]
+    let multiChatStudentSS = XCUIApplication().tables.staticTexts["MultiChat 15 Student SS"]
+    let aphasiaVocab = XCUIApplication().tables.staticTexts["Aphasia"]
+    let aphasiaSpanishSS = XCUIApplication().tables.staticTexts["Afasia Español SS"]
+    let aphasiaUKSS = XCUIApplication().tables.staticTexts["Aphasia UK SS"]
+    let aphasiaUSSS = XCUIApplication().tables.staticTexts["Aphasia US SS"]
+    let basic4SS = XCUIApplication().tables.staticTexts["Simple 4-Basic SS"]
+    let engageForiOS = XCUIApplication().tables.staticTexts["Engage for iOS SS"]
+    let myCoreSS = XCUIApplication().tables.staticTexts["MyCore SS"]
+    let spellingSS = XCUIApplication().tables.staticTexts["Spelling SS"]
+    let vocabPCSS = XCUIApplication().tables.staticTexts["VocabPC SS"]
+    let tecladoSS = XCUIApplication().tables.staticTexts["Teclado SS"]
+    let vocabPCSpanishSS = XCUIApplication().tables.staticTexts["Vocab PC Spanish SS"]
+    let wordPowerEspanol48 = XCUIApplication().tables.staticTexts["WordPower 48 Español SS"]
+    let wordPowerEspanol25 = XCUIApplication().tables.staticTexts["WordPower25 Español SS"]
+    let wordPowerBasico48 = XCUIApplication().tables.staticTexts["WordPower48 Español Básico SS"]
+    let wordPowerBasico60 = XCUIApplication().tables.staticTexts["WordPower60 Español Básico SS"]
+    let frenchVocab = XCUIApplication().tables.staticTexts["French"]
+    let base4FrenchSS = XCUIApplication().tables.staticTexts["4 de base français SS"]
+    let communicationFrancaisSS = XCUIApplication().tables.staticTexts["Communication Journey Aphasie français SS"]
+    let multiChat15FrancaisSS = XCUIApplication().tables.staticTexts["MultiChat15 français SS"]
+    let vocabPCFrancaisSS = XCUIApplication().tables.staticTexts["VocabPC français SS"]
+    let epelerFrancaisSS = XCUIApplication().tables.staticTexts["Épeler français SS"]
+    let wordPower120Azerty = XCUIApplication().tables.staticTexts["WordPower120 français AZERTY SS"]
+    let wordPower120FrancaisSS = XCUIApplication().tables.staticTexts["WordPower120 français SS"]
+    let wordPower60FrancaisSS = XCUIApplication().tables.staticTexts["WordPower60 français SS"]
     
     lazy var mainPage: MainPage = {
         return MainPage(app: XCUIApplication(), vocabName: vocabName)
@@ -126,6 +126,12 @@ class Pages {
         }
     }
     
+    func openAVocab(){
+        let openAVocabModal = app.staticTexts["What would you like to do with this vocabulary?"]
+        XCTAssertTrue(openAVocabModal.exists, "The open vocab modal is not visible.")
+        app.buttons["Open"].tap()
+    }
+    
     func clearAppCache() {
         let appDomain = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
@@ -168,7 +174,9 @@ class Pages {
         
         let tablesQuery = popoversQuery.tables
         
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Navigate Back"]/*[[".cells.staticTexts[\"Navigate Back\"]",".staticTexts[\"Navigate Back\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
+        tablesQuery.staticTexts["Grammar Action"].swipeUp()
+        sleep(2)
+        tablesQuery.staticTexts["Open Website"].swipeUp()
         sleep(2)
         tablesQuery.staticTexts["Play Video"].swipeUp()
         sleep(3)
@@ -424,14 +432,15 @@ class Pages {
     }
     
     func checkTheiOSGallery(){
+        sleep(2)
         let elementsQuery = XCUIApplication().popovers.scrollViews.otherElements
-        elementsQuery.buttons["Import Image"].tap()
-        elementsQuery.buttons["Image Library"].tap()
-        let myAlbumsBtn = app.staticTexts["My Albums"]
-        let myAlbumsExists = myAlbumsBtn.waitForExistence(timeout: 5)
-        XCTAssertTrue(myAlbumsExists, "The ios gallery is not opening")
+        elementsQuery.buttons["Import Photo"].tap()
+        let photosBtn = app.staticTexts["Photos"]
+        let photosBtnExists = photosBtn.waitForExistence(timeout: 5)
+        XCTAssertTrue(photosBtnExists, "The ios gallery is not opening")
         let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.2))
         centerScreenCoordinate.tap()
+        sleep(3)
     }
     
     func restoreToDefaultsPronunciations(){
@@ -1011,6 +1020,17 @@ class Pages {
         XCTAssertTrue(app.buttons["Green"].exists, "The text color is different")
         app.buttons["Save"].tap()
         XCUIApplication().navigationBars["Main"].buttons["Done"].tap()
+    }
+    
+    func openDifferentLanguagePage(languageVocab: String){
+        app.buttons["Menu"].tap()
+        app.buttons["Language & Region"].tap()
+        sleep(2)
+        XCUIApplication().popovers.navigationBars["Language & Region"].buttons["Add"].tap()
+        
+        //French (Canada)
+        app.staticTexts[languageVocab].tap()
+        app.buttons["Done"].tap()
     }
     
     func resetPersistentStorage() {

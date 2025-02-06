@@ -24,6 +24,8 @@ final class WordPower25SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class WordPower25SSTests: XCTestCase {
         pages.wordPowerVocab.tap()
         pages.wordPower25Position.tap()
         pages.wordPower25TouchScan.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "stop", vocabWord: "I want", vocabElement: 4, nameElement: "clear")
         

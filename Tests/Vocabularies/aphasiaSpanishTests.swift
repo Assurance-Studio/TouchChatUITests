@@ -22,6 +22,8 @@ final class AphasiaSpanishSSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -34,9 +36,11 @@ final class AphasiaSpanishSSTests: XCTestCase {
     func testLaunchaphasiaSpanishSS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.aphasiaVocab)
-        pages.aphasiaVocab.tap()
+        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
+        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
+        pages.SpanishVocab.tap()
         pages.aphasiaSpanishSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Escalas", vocabWord: "Despejar", vocabElement: 7, nameElement: "Social")
         

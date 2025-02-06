@@ -24,6 +24,8 @@ final class editPronunciationsTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -37,6 +39,7 @@ final class editPronunciationsTests: XCTestCase {
         
         let pages = Pages(app: app)
         pages.spellingSS.tap()
+        pages.openAVocab()
         
         //add pronunciations
         pages.reachEditPronunciations()

@@ -24,6 +24,8 @@ final class MyCoreSSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -38,6 +40,7 @@ final class MyCoreSSTests: XCTestCase {
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.myCoreSS)
         pages.myCoreSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
         

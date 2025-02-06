@@ -23,6 +23,8 @@ final class pageSizeTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -51,10 +53,10 @@ final class pageSizeTests: XCTestCase {
         //turn on the status bar and check if it works
         profilesAndEditingPage.unCheckStatusBar()
         
-        //turn off the keyguard inset and check if it works
+        //swith to Generic the keyguard inset and check if it works
         profilesAndEditingPage.openTheSettingsTab()
         profilesAndEditingPage.checkKeyguardInset()
-        
+                
         //return to initial settings for Page Size Tab
         profilesAndEditingPage.openTheSettingsTab()
         profilesAndEditingPage.returnToInitialSettingsPageSize()

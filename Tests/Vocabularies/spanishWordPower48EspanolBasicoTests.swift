@@ -24,6 +24,8 @@ final class WordPower48EspanolBasicoTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -36,9 +38,11 @@ final class WordPower48EspanolBasicoTests: XCTestCase {
     func testLaunchWordPower48EspanolBasico() throws {
         
         let pages = Pages(app: app)
+        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.wordPowerBasico48.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "ven", vocabWord: "me", vocabElement: 4, nameElement: "GENTE")
         

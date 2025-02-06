@@ -23,6 +23,8 @@ final class AphasiaUKSSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -38,6 +40,7 @@ final class AphasiaUKSSTests: XCTestCase {
         pages.scrollDownUntilElementIsVisible(element: pages.aphasiaVocab)
         pages.aphasiaVocab.tap()
         pages.aphasiaUKSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Scales", vocabWord: "Places", vocabElement: 7, nameElement: "Social")
         

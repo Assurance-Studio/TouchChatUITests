@@ -24,6 +24,8 @@ final class VocabPCSpanishTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -36,9 +38,11 @@ final class VocabPCSpanishTests: XCTestCase {
     func testLaunchVocabPcSpanishSS() throws {
         
         let pages = Pages(app: app)
+        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.vocabPCSpanishSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "tiempo", vocabWord: "quiero", vocabElement: 3, nameElement: "yo quiero")
         

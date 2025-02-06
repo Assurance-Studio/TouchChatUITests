@@ -25,6 +25,8 @@ final class navigationButtonIcons: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class navigationButtonIcons: XCTestCase {
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         
         pages.myCoreSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
         

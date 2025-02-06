@@ -24,6 +24,8 @@ final class EngageiOSSSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -38,6 +40,7 @@ final class EngageiOSSSTests: XCTestCase {
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.engageForiOS)
         pages.engageForiOS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "i", vocabWord: "2 BUTTONS", vocabElement: 3, nameElement: "PRACTICE")
         

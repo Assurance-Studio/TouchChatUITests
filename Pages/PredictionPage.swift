@@ -46,11 +46,13 @@ class PredictionsSettingsPage {
         app.textFields.element(boundBy: 2).tap()
         app.textFields.element(boundBy: 2).typeText("NewPredictionbye2e")
         app.buttons["Save"].tap()
+        sleep(2)
         //edit the new prediction
         app.staticTexts["newpredictionbye2e"].tap()
         app.textFields.element(boundBy: 2).doubleTap()
         app.textFields.element(boundBy: 2).typeText("renamenewpredictionbye2e")
         app.buttons["Save"].tap()
+        sleep(2)
     }
     
     func deleteTheRenamedPredictions(){
@@ -71,6 +73,7 @@ class PredictionsSettingsPage {
         app.textFields.element(boundBy: 2).tap()
         app.textFields.element(boundBy: 2).typeText("NewPredictionbye2e")
         app.buttons["Save"].tap()
+        sleep(2)
         app.buttons["Clear List"].tap()
         XCTAssertTrue(app.staticTexts["Delete Learned Words"].exists, "The Delete Learned Words is not visible")
         app.buttons["Okay"].tap()

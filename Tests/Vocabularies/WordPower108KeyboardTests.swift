@@ -24,6 +24,8 @@ final class WordPower108SSKeyboardTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class WordPower108SSKeyboardTests: XCTestCase {
         pages.wordPowerVocab.tap()
         pages.wordPower108Position.tap()
         pages.wordPower108SSKeyboard.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "clear", vocabWord: "PEOPLE ", vocabElement: 3, nameElement: "PEOPLE ")
         

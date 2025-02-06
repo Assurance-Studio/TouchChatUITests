@@ -24,6 +24,8 @@ final class MultiChatAdultTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -39,6 +41,7 @@ final class MultiChatAdultTests: XCTestCase {
         pages.scrollDownUntilElementIsVisible(element: pages.multiChat15Vocab)
         pages.multiChat15Vocab.tap()
         pages.multiChatAdultSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Shopping", vocabWord: "I want", vocabElement: 10, nameElement: "I don't want")
         

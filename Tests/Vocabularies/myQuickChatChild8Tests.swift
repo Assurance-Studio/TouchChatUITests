@@ -24,6 +24,8 @@ final class Child8SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class Child8SSTests: XCTestCase {
         pages.myQuickChatVocab.tap()
         pages.childQuickChatVocab.tap()
         pages.quickChatChild8SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Playing", vocabWord: "Greetings/Closings", vocabElement: 18, nameElement: "Greetings/Closings")
         

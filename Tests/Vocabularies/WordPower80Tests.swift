@@ -24,6 +24,8 @@ final class WordPower80SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class WordPower80SSTests: XCTestCase {
         pages.wordPowerVocab.tap()
         pages.wordPower80Position.tap()
         pages.wordPower80SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "with", vocabWord: "is", vocabElement: 9, nameElement: "PLACES")
         

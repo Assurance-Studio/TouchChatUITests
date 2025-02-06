@@ -24,6 +24,8 @@ final class WordPower140SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class WordPower140SSTests: XCTestCase {
         pages.wordPowerVocab.tap()
         pages.wordPower140Position.tap()
         pages.wordPower140SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "under", vocabWord: "I...", vocabElement: 4, nameElement: "I...")
         

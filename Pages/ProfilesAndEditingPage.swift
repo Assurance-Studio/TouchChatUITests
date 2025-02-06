@@ -104,7 +104,7 @@ class ProfilesAndEditingPage {
     func setAPassMenu(){
         app.secureTextFields.element(boundBy: 0).tap()
         app.secureTextFields.element(boundBy: 0).typeText("Testbye2e")
-        app.switches.element(boundBy: 7).tap()
+        app.switches.element(boundBy: 6).tap()
     }
     
     func checkIfThePassWorks(){
@@ -127,7 +127,7 @@ class ProfilesAndEditingPage {
         popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
         app.secureTextFields.element(boundBy: 0).tap()
         app.buttons["Clear text"].tap()
-        app.switches.element(boundBy: 7).tap()
+        app.switches.element(boundBy: 6).tap()
         app.popovers.navigationBars["Settings"].buttons["Done"].tap()
         app.buttons["Back"].tap()
         XCTAssertFalse(passwordField.exists, "The password field doesn't appear")
@@ -153,8 +153,9 @@ class ProfilesAndEditingPage {
     func checkKeyguardInset(){
         let imageSizeKeyguard = app.images.element(boundBy: 20)
         let imageSizeKeyguardBefore = imageSizeKeyguard.frame.size
-        let keyguardInset = app.switches.element(boundBy: 6)
-        keyguardInset.tap()
+        let tablesQuery = XCUIApplication().popovers.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Keyguard Inset"]/*[[".cells.staticTexts[\"Keyguard Inset\"]",".staticTexts[\"Keyguard Inset\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Generic"]/*[[".cells.staticTexts[\"Generic\"]",".staticTexts[\"Generic\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
         app.buttons["Done"].tap()
         
@@ -173,9 +174,10 @@ class ProfilesAndEditingPage {
     
     func returnToInitialSettingsPageSize(){
         let statusBar = app.switches.element(boundBy: 5)
-        let keyguardInset = app.switches.element(boundBy: 6)
+        let tablesQuery = XCUIApplication().popovers.tables
+        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Keyguard Inset"]/*[[".cells.staticTexts[\"Keyguard Inset\"]",".staticTexts[\"Keyguard Inset\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery.staticTexts["Off"].tap()
         statusBar.tap()
-        keyguardInset.tap()
         app.buttons["Done"].tap()
         
     }

@@ -24,6 +24,8 @@ final class test4BasicSS: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -37,6 +39,7 @@ final class test4BasicSS: XCTestCase {
         
         let pages = Pages(app: app)
         pages.basic4SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "ALL ABOUT ME", vocabWord: "I want", vocabElement: 3, nameElement: "I want")
         

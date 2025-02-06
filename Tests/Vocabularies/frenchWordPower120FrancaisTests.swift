@@ -24,6 +24,8 @@ final class WordPower120FrancaisTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -36,9 +38,11 @@ final class WordPower120FrancaisTests: XCTestCase {
     func testLaunchwordPower120FrancaisSS() throws {
         
         let pages = Pages(app: app)
+        pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.wordPower120FrancaisSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "efface tout", vocabWord: "tu", vocabElement: 4, nameElement: "QUESTNS")
         
@@ -55,42 +59,3 @@ final class WordPower120FrancaisTests: XCTestCase {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -24,6 +24,8 @@ final class WordPower42SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class WordPower42SSTests: XCTestCase {
         pages.wordPowerVocab.tap()
         pages.wordPower42Position.tap()
         pages.wordPower42SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "with", vocabWord: "go", vocabElement: 9, nameElement: "DESCRIBE")
         

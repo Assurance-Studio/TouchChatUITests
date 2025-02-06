@@ -24,6 +24,8 @@ final class vocabPCSSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -38,6 +40,7 @@ final class vocabPCSSTests: XCTestCase {
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.vocabPCSS)
         pages.vocabPCSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "time", vocabWord: "I feel", vocabElement: 3, nameElement: "I want")
         

@@ -20,6 +20,8 @@ final class iShareTests: XCTestCase {
         app.launchArguments.append("--reset-app-state")
         app.launchArguments += ["-AppleLocale", "en_US"]
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }

@@ -24,6 +24,8 @@ final class communicationJourneyFrancaisTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -36,9 +38,11 @@ final class communicationJourneyFrancaisTests: XCTestCase {
     func testLaunchCommunityJourneyFrancaisSS() throws {
         
         let pages = Pages(app: app)
+        pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.communicationFrancaisSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Échelles", vocabWord: "Social", vocabElement: 3, nameElement: "Objets")
         
@@ -56,38 +60,3 @@ final class communicationJourneyFrancaisTests: XCTestCase {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

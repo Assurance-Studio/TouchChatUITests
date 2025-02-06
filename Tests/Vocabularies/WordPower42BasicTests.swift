@@ -24,6 +24,8 @@ final class WordPower42BasicSSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class WordPower42BasicSSTests: XCTestCase {
         pages.wordPowerVocab.tap()
         pages.wordPower42Position.tap()
         pages.wordPower42BasicSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "clear", vocabWord: "PLACES", vocabElement: 7, nameElement: "TIME")
         

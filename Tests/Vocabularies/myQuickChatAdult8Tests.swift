@@ -24,6 +24,8 @@ final class Adult8SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class Adult8SSTests: XCTestCase {
         pages.myQuickChatVocab.tap()
         pages.adultQuickChatVocab.tap()
         pages.quickChatAdult8SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Interact", vocabWord: "Emotions", vocabElement: 8, nameElement: "Break")
         

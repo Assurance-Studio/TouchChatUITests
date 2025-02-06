@@ -24,6 +24,8 @@ final class test4deBaseSS: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -33,12 +35,14 @@ final class test4deBaseSS: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchSintaxis4x5SpanishSS() throws {
+    func testLaunchFrench4Base4SS() throws {
         
         let pages = Pages(app: app)
+        pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.base4FrenchSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "TOUT SUR MOI", vocabWord: "Je veux", vocabElement: 3, nameElement: "Je veux")
         
@@ -54,40 +58,5 @@ final class test4deBaseSS: XCTestCase {
         print("4 de base francais Test Finished with success!")
         
         app.terminate()
-        
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -24,6 +24,8 @@ final class MultiChatStudentTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class MultiChatStudentTests: XCTestCase {
         pages.scrollDownUntilElementIsVisible(element: pages.multiChat15Vocab)
         pages.multiChat15Vocab.tap()
         pages.multiChatStudentSS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "My Scenes", vocabWord: "I don't want", vocabElement: 11, nameElement: "I need")
         

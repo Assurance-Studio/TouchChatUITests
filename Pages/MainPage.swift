@@ -75,8 +75,8 @@ class MainPage {
         
         // Copy a Vocab Elements
         vocabSpellingSS = XCUIApplication().popovers.tables/*@START_MENU_TOKEN@*/.staticTexts["QWERTY Keyboard layout with Word Prediction"]/*[[".cells.staticTexts[\"QWERTY Keyboard layout with Word Prediction\"]",".staticTexts[\"QWERTY Keyboard layout with Word Prediction\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        _4BasicSS = app.staticTexts["4 Basic SS"]
-        vocabPCSS = app.staticTexts["VocabPC SS"]
+        _4BasicSS = XCUIApplication().popovers.tables.staticTexts["Simple 4-Basic SS"]
+        vocabPCSS = XCUIApplication().popovers.tables/*@START_MENU_TOKEN@*/.staticTexts["VocabPC SS"]/*[[".cells.staticTexts[\"VocabPC SS\"]",".staticTexts[\"VocabPC SS\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         copiedVocab = app.staticTexts["copied vocabulary"]
         deleteVocabButtonCircle = app.tables/*@START_MENU_TOKEN@*/.images["minus.circle.fill"]/*[[".cells",".buttons[\"Remove Spelling SS Copy  Modified 30 May 2024 at 14:51, Copy of Spelling SS, ✓\"]",".images[\"remove\"]",".images[\"minus.circle.fill\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/
         deleteVocabButtonSquare = app.tables.buttons["Delete"]

@@ -24,6 +24,8 @@ final class WordPower108SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class WordPower108SSTests: XCTestCase {
         pages.wordPowerVocab.tap()
         pages.wordPower108Position.tap()
         pages.wordPower108SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "clear", vocabWord: "GROUPS", vocabElement: 24, nameElement: "GROUPS")
         

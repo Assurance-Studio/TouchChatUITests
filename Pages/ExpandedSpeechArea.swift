@@ -18,7 +18,10 @@ class ExpandedSpeechDisplayArea {
         let popoversQuery = XCUIApplication().popovers
         let tablesQuery = popoversQuery.tables
         tablesQuery.staticTexts["Speech"].swipeUp()
-        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 34).staticTexts["Arial"].tap()
+        tablesQuery.staticTexts["Speech Display Bar"].swipeUp()
+        tablesQuery.staticTexts["Expanded Speech Area"].swipeUp()
+        XCUIApplication().popovers/*@START_MENU_TOKEN@*/.tables.containing(.other, identifier:"Vertical scroll bar, 4 pages")/*[[".tables.containing(.other, identifier:\"Buttons\")",".tables.containing(.other, identifier:\"Data Logging\")",".tables.containing(.other, identifier:\"Speak\")",".tables.containing(.other, identifier:\"Expanded Speech Area\")",".tables.containing(.other, identifier:\"Speech Display Bar\")",".tables.containing(.other, identifier:\"Vertical scroll bar, 4 pages\")"],[[[-1,5],[-1,4],[-1,3],[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.children(matching: .cell).element(boundBy: 30).staticTexts["Font"].tap()
+        
          
         let font1 = app.staticTexts["Amaranth"]
         let font2 = app.staticTexts["Caudex"]
@@ -45,7 +48,7 @@ class ExpandedSpeechDisplayArea {
     func checkBackgroundColors(){
         let popoversQuery = XCUIApplication().popovers
         let tablesQuery = popoversQuery.tables
-        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 37).staticTexts["Background Color"].tap()
+        popoversQuery.tables.children(matching: .cell).element(boundBy: 33).staticTexts["Background Color"].tap()
         
         let redBackgroundColor = app.staticTexts["Red"]
         let brownBackgroundColor = app.staticTexts["Brown"]
@@ -64,7 +67,7 @@ class ExpandedSpeechDisplayArea {
     
     func checkTheFontColors(){
         let popoversQuery = XCUIApplication().popovers
-        popoversQuery.tables.children(matching: .cell).element(boundBy: 36).staticTexts["Font Color"].tap()
+        popoversQuery/*@START_MENU_TOKEN@*/.tables.containing(.other, identifier:"Vertical scroll bar, 4 pages")/*[[".tables.containing(.other, identifier:\"Buttons\")",".tables.containing(.other, identifier:\"Data Logging\")",".tables.containing(.other, identifier:\"Speak\")",".tables.containing(.other, identifier:\"Expanded Speech Area\")",".tables.containing(.other, identifier:\"Speech Display Bar\")",".tables.containing(.other, identifier:\"Vertical scroll bar, 4 pages\")"],[[[-1,5],[-1,4],[-1,3],[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.children(matching: .cell).element(boundBy: 32).staticTexts["Font Color"].tap()
         let redBackgroundColor = app.staticTexts["Red"]
         let brownBackgroundColor = app.staticTexts["Brown"]
         let blueBackgroundColor = app.staticTexts["Blue"]

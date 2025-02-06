@@ -19,6 +19,8 @@ final class speechDisplayBarTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -68,7 +70,7 @@ final class speechDisplayBarTests: XCTestCase {
         pages.checkSdbText(sdbText: "test")
         
         profilesAndEditingPage.openTheSettingsTab()
-        let autoCapitalization = app.switches.element(boundBy: 11)
+        let autoCapitalization = app.switches.element(boundBy: 10)
         autoCapitalization.tap()
     
         //check show icons and check if it works
@@ -93,7 +95,7 @@ final class speechDisplayBarTests: XCTestCase {
         //check the fonts
         //ToDo: check if changing the font has a result
         speechDisplayBarPage.checkFontsType()
-        
+                
         //check the font size
         //toDo: check if changing the font suze has a result
         speechDisplayBarPage.checkFontSize()

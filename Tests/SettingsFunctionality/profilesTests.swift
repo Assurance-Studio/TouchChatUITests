@@ -22,6 +22,8 @@ final class profilesTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
         }
@@ -38,6 +40,7 @@ final class profilesTests: XCTestCase {
         
         pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
         pages.basic4SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "ALL ABOUT ME", vocabWord: "I want", vocabElement: 3, nameElement: "I want")
         
@@ -51,6 +54,7 @@ final class profilesTests: XCTestCase {
         
         //open a new vocab and load the new profile
         pages.engageForiOS.tap()
+        pages.openAVocab()
         profilesAndEditingPage.loadTheNewProfile()
         
         //rename the new profile

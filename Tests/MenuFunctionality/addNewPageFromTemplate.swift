@@ -18,6 +18,8 @@ final class addNewPageFromTemplatePageTests: XCTestCase {
          app = XCUIApplication()
          app.launchArguments.append("--reset-app-state")
          app.launch()
+         pages.checkLicenseModal()
+         pages.checkStartModal()
          pages.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
     }

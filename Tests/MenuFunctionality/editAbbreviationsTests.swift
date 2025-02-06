@@ -24,6 +24,8 @@ final class editAbbreviationsTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -38,6 +40,7 @@ final class editAbbreviationsTests: XCTestCase {
         let pages = Pages(app: app)
         
         pages.spellingSS.tap()
+        pages.openAVocab()
         
         //add abbreviation
         pages.reachAddAbbreviation()

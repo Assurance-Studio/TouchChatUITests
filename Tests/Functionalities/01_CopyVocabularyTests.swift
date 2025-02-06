@@ -23,6 +23,8 @@ final class copyVocabularyTests: XCTestCase {
         try super.setUpWithError()
         continueAfterFailure = false
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }

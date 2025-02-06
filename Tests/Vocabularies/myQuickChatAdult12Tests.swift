@@ -24,6 +24,8 @@ final class Adult12SSTests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
@@ -40,6 +42,7 @@ final class Adult12SSTests: XCTestCase {
         pages.myQuickChatVocab.tap()
         pages.adultQuickChatVocab.tap()
         pages.quickChatAdult12SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Interact", vocabWord: "People", vocabElement: 11, nameElement: "Clothes")
         
