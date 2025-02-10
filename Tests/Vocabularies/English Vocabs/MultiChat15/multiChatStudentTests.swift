@@ -5,7 +5,7 @@
 
 import XCTest
 
-final class multiChat15BilingualSSTests: XCTestCase {
+final class MultiChatStudentTests: XCTestCase {
     
     var app = XCUIApplication()
 
@@ -36,55 +36,30 @@ final class multiChat15BilingualSSTests: XCTestCase {
     }
 
     
-    func testLaunchmultiChat15BilingualSS() throws {
+    func testLaunchMultiChatStudent() throws {
         
         let pages = Pages(app: app)
-        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
-        pages.SpanishVocab.tap()
-        pages.multiChat15Bilingual.tap()
+        pages.scrollDownUntilElementIsVisible(element: pages.multiChat15Vocab)
+        pages.multiChat15Vocab.tap()
+        pages.multiChatStudentSS.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "Mis escenas - My Scenes", vocabWord: "Yo quiero - I want", vocabElement: 3, nameElement: "Preguntas - Questions")
+        pages.verifyTheVocab(lastElement: "My Scenes", vocabWord: "I don't want", vocabElement: 11, nameElement: "I need")
         
-        XCTAssertTrue(app.buttons["comer - to eat"].exists)
-        app.buttons["comer - to eat"].tap()
-        app.buttons["FRUTA - FRUIT"].tap()
-        app.buttons["uvas - grapes"].tap()
+        XCTAssertTrue(app.buttons["to wear"].exists)
+        app.buttons["to wear"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Yo quiero comer uvas ")
-        
+        pages.checkSdbText(sdbText: "I don't want ")
         pages.backButton.tap()
         pages.backButton.tap()
-        pages.backButton.tap()
-        
+    
         pages.backToVocab();
         
-        print("MutiChat 15 Bilingual Test Finished with success!")
+        print("multiChatStudent15 SS Test Finished with success!")
         
         app.terminate()
+        
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
