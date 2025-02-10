@@ -5,7 +5,7 @@
 
 import XCTest
 
-final class WordPower25EspanolTests: XCTestCase {
+final class test4BasicSS: XCTestCase {
     
     var app = XCUIApplication()
 
@@ -34,27 +34,25 @@ final class WordPower25EspanolTests: XCTestCase {
         app.terminate()
         try super.tearDownWithError()
     }
-
-    func testLaunchWordPower25EspanolSS() throws {
+    
+    func testLaunch4BasicSS() throws {
         
         let pages = Pages(app: app)
-        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
-        pages.SpanishVocab.tap()
-        pages.wordPowerEspanol25.tap()
+        pages.basic4SS.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "jugar", vocabWord: "toma", vocabElement: 4, nameElement: "borrar")
+        pages.verifyTheVocab(lastElement: "ALL ABOUT ME", vocabWord: "I want", vocabElement: 3, nameElement: "I want")
         
-        XCTAssertTrue(app.buttons["una foto"].exists)
-        app.buttons["una foto"].tap()
+        XCTAssertTrue(app.buttons["to eat"].exists)
+        app.buttons["to eat"].tap()
+        app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Toma una ")
-        
+        pages.checkSdbText(sdbText: "I want ")
+    
         pages.backToVocab();
         
-        print("Word Power 25 Espanol SS Test Finished with success!")
+        print("4 Basic SS Test Finished with success!")
         
         app.terminate()
         

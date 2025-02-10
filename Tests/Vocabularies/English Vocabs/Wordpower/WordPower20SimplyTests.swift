@@ -1,15 +1,12 @@
+//  TouchChatUITests
 //
-//  spniashWordPower96Espanol.swift
-//  TouchChatAppUITests
-//
-//  Created by Alin Voinescu on 06.02.2025.
-//  Copyright © 2025 PRC-Saltillo. All rights reserved.
-//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
-final class spniashWordPower96Espanol: XCTestCase {
-
+final class WordPower20SimplySSTests: XCTestCase {
+    
     var app = XCUIApplication()
 
     override func setUpWithError() throws {
@@ -37,29 +34,32 @@ final class spniashWordPower96Espanol: XCTestCase {
         app.terminate()
         try super.tearDownWithError()
     }
-
-    func testLaunchWordPower96EspanolLiteTech() throws {
+    
+    func testLaunchWordPower20SimplySS() throws {
         
         let pages = Pages(app: app)
-        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
-        pages.SpanishVocab.tap()
-        pages.wordPowerLiteTech96.tap()
+        pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
+        pages.wordPowerVocab.tap()
+        pages.wordPower20Position.tap()
+        pages.wordPower20SimplySS.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "ya", vocabWord: "yo mi", vocabElement: 8, nameElement: "ACCIONES")
+        pages.verifyTheVocab(lastElement: "GROUPS", vocabWord: "I like", vocabElement: 4, nameElement: "QUESTIONS")
         
-        XCTAssertTrue(app.buttons["comer"].exists)
-        app.buttons["comer"].tap()
-        app.buttons["la"].tap()
-        app.buttons["BackButton"].tap()
+        XCTAssertTrue(app.buttons["to drink"].exists)
+        app.buttons["to drink"].tap()
+        app.buttons["juice"].tap()
         
-        pages.checkSdbText(sdbText: "Yo comer ")
+        pages.checkSdbText(sdbText: "I like to drink juice ")
+        
+        pages.backButton.tap()
+        pages.backButton.tap()
         
         pages.backToVocab();
         
-        print("Word Power 96 Espanol Lite-Tech SS Test Finished with success!")
+        print("WordPower 20 Simply SS Test Finished with success!")
         
         app.terminate()
+   
     }
 }

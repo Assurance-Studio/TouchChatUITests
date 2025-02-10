@@ -1,15 +1,12 @@
+//  TouchChatUITests
 //
-//  spniashWordPower96Espanol.swift
-//  TouchChatAppUITests
-//
-//  Created by Alin Voinescu on 06.02.2025.
-//  Copyright © 2025 PRC-Saltillo. All rights reserved.
-//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
-final class spniashWordPower96Espanol: XCTestCase {
-
+final class SpellingSSTests: XCTestCase {
+    
     var app = XCUIApplication()
 
     override func setUpWithError() throws {
@@ -37,29 +34,27 @@ final class spniashWordPower96Espanol: XCTestCase {
         app.terminate()
         try super.tearDownWithError()
     }
-
-    func testLaunchWordPower96EspanolLiteTech() throws {
+    
+    func testLaunchSpellingSS() throws {
         
         let pages = Pages(app: app)
-        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
-        pages.SpanishVocab.tap()
-        pages.wordPowerLiteTech96.tap()
+        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
+        pages.spellingSS.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "ya", vocabWord: "yo mi", vocabElement: 8, nameElement: "ACCIONES")
+        pages.verifyTheVocab(lastElement: "BACKSPACE", vocabWord: "PHRASES", vocabElement: 5, nameElement: "TEXTING")
         
-        XCTAssertTrue(app.buttons["comer"].exists)
-        app.buttons["comer"].tap()
-        app.buttons["la"].tap()
-        app.buttons["BackButton"].tap()
+        XCTAssertTrue(app.buttons["Good Morning"].exists)
+        app.buttons["Good Morning"].tap()
         
-        pages.checkSdbText(sdbText: "Yo comer ")
-        
+        pages.checkSdbText(sdbText: "Good morning, how are you? ")
+        pages.backButton.tap()
+    
         pages.backToVocab();
         
-        print("Word Power 96 Espanol Lite-Tech SS Test Finished with success!")
+        print("Spelling SS Test Finished with success!")
         
         app.terminate()
+        
     }
 }

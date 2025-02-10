@@ -1,15 +1,12 @@
+//  TouchChatUITests
 //
-//  spniashWordPower96Espanol.swift
-//  TouchChatAppUITests
-//
-//  Created by Alin Voinescu on 06.02.2025.
-//  Copyright © 2025 PRC-Saltillo. All rights reserved.
-//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
-final class spniashWordPower96Espanol: XCTestCase {
-
+final class afasiaEspanolSSTests: XCTestCase {
+    
     var app = XCUIApplication()
 
     override func setUpWithError() throws {
@@ -38,28 +35,54 @@ final class spniashWordPower96Espanol: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchWordPower96EspanolLiteTech() throws {
+    func testLaunchafasiaEspanolSS() throws {
         
         let pages = Pages(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
-        pages.wordPowerLiteTech96.tap()
+        pages.aphasiaSpanishSS.tap()
         pages.openAVocab()
+        pages.verifyTheVocab(lastElement: "Escalas", vocabWord: "Mis Actividades", vocabElement: 3, nameElement: "Cosas")
         
-        pages.verifyTheVocab(lastElement: "ya", vocabWord: "yo mi", vocabElement: 8, nameElement: "ACCIONES")
+        XCTAssertTrue(app.buttons["Terapia"].exists)
+        app.buttons["Terapia"].tap()
+        app.buttons["muy difícil"].tap()
         
-        XCTAssertTrue(app.buttons["comer"].exists)
-        app.buttons["comer"].tap()
-        app.buttons["la"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Yo comer ")
+        pages.checkSdbText(sdbText: "Esto es muy ")
+        
+        pages.backButton.tap()
+        pages.backButton.tap()
         
         pages.backToVocab();
         
-        print("Word Power 96 Espanol Lite-Tech SS Test Finished with success!")
+        print("Afasia Espanol Test Finished with success!")
         
         app.terminate()
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

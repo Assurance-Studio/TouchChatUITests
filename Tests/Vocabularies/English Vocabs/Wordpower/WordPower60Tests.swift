@@ -5,7 +5,7 @@
 
 import XCTest
 
-final class WordPower42SSTests: XCTestCase {
+final class WordPower60SSTests: XCTestCase {
     
     var app = XCUIApplication()
 
@@ -34,29 +34,31 @@ final class WordPower42SSTests: XCTestCase {
         app.terminate()
         try super.tearDownWithError()
     }
-
-    func testLaunchWordPower42SS() throws {
+    
+    func testLaunchWordPower60SS() throws {
         
         let pages = Pages(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
-        pages.wordPower42Position.tap()
-        pages.wordPower42SS.tap()
+        pages.wordPower60Position.tap()
+        pages.wordPower60SS.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "with", vocabWord: "go", vocabElement: 9, nameElement: "DESCRIBE")
+        pages.verifyTheVocab(lastElement: "out", vocabWord: "finish", vocabElement: 7, nameElement: "ACTIONS")
         
-        XCTAssertTrue(app.buttons["for a walk"].exists)
-        app.buttons["for a walk"].tap()
-        app.buttons["me"].tap()
+        XCTAssertTrue(app.buttons["the"].exists)
+        app.buttons["the"].tap()
+        app.buttons["and"].tap()
+        app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Go for a walk ")
+        pages.checkSdbText(sdbText: "Finish ")
         
         pages.backToVocab();
         
-        print("WordPower 42 SS Test Finished with success!")
+        print("WordPower 60 SS Test Finished with success!")
         
         app.terminate()
+        
     }
 }

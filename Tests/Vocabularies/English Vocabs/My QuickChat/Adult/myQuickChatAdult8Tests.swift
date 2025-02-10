@@ -5,7 +5,7 @@
 
 import XCTest
 
-final class WordPower25SSTests: XCTestCase {
+final class Adult8SSTests: XCTestCase {
     
     var app = XCUIApplication()
 
@@ -35,29 +35,28 @@ final class WordPower25SSTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testLaunchWordPower25SS() throws {
+    func testLaunchAdult8SS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
-        pages.wordPowerVocab.tap()
-        pages.wordPower25Position.tap()
-        pages.wordPower25TouchScan.tap()
+        pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
+        pages.myQuickChatVocab.tap()
+        pages.adultQuickChatVocab.tap()
+        pages.quickChatAdult8SS.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "stop", vocabWord: "I want", vocabElement: 4, nameElement: "clear")
+        pages.verifyTheVocab(lastElement: "Interact", vocabWord: "Emotions", vocabElement: 8, nameElement: "Break")
         
-        XCTAssertTrue(app.buttons["to eat"].exists)
-        app.buttons["to eat"].tap()
-        app.buttons["cookies"].tap()
+        XCTAssertTrue(app.buttons["Happy"].exists)
+        app.buttons["Happy"].tap()
         
-        pages.checkSdbText(sdbText: "I want to eat cookies ")
-        
+        pages.checkSdbText(sdbText: "I'm happy. ")
         pages.backButton.tap()
+    
         pages.backToVocab();
         
-        print("WordPower 25 SS Test Finished with success!")
+        print("myQuickChat Adult 8SS Test Finished with success!")
         
         app.terminate()
-        
+       
     }
 }

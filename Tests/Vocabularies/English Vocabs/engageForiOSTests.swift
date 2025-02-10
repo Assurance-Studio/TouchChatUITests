@@ -5,7 +5,7 @@
 
 import XCTest
 
-final class SinSintaxis4x4SpanishSSTests: XCTestCase {
+final class EngageiOSSSTests: XCTestCase {
     
     var app = XCUIApplication()
 
@@ -34,59 +34,29 @@ final class SinSintaxis4x4SpanishSSTests: XCTestCase {
         app.terminate()
         try super.tearDownWithError()
     }
-
     
-    func testLaunchSinSintaxis4x4SpanishSS() throws {
+    func testLaunchEngageForiOS() throws {
         
         let pages = Pages(app: app)
-        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
-        pages.SpanishVocab.tap()
-        pages.sintaxis4x4Spanish.tap()
+        pages.scrollDownUntilElementIsVisible(element: pages.engageForiOS)
+        pages.engageForiOS.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "lugares", vocabWord: "casa", vocabElement: 3, nameElement: "comida")
+        pages.verifyTheVocab(lastElement: "i", vocabWord: "2 BUTTONS", vocabElement: 3, nameElement: "PRACTICE")
         
-        XCTAssertTrue(app.buttons["cochera"].exists)
-        app.buttons["cochera"].tap()
-        app.buttons["sala"].tap()
+        XCTAssertTrue(app.buttons["Feelings"].exists)
+        app.buttons["Feelings"].tap()
+        app.buttons["happy"].tap()
         
-        pages.checkSdbText(sdbText: "Cochera sala ")
-        
-        
+        pages.checkSdbText(sdbText: "Happy ")
         pages.backButton.tap()
+        pages.backButton.tap()
+    
+        pages.backToVocab();
         
-        pages.backToVocab()
-        
-        print("SinSintaxis 4x4 Spanish Test Finished with success!")
+        print("Engage for iOS SS Test Finished with success!")
         
         app.terminate()
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

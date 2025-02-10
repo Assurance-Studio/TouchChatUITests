@@ -337,7 +337,7 @@ class GrammarActionaPageClass {
     }
     
     func checkTheDynamicLabelsToggle(){
-        let enableDynamicGrammarLabels = app.switches.element(boundBy: 29)
+        let enableDynamicGrammarLabels = app.switches.element(boundBy: 28)
         //enableDynamicGrammarLabels.tap()
         if enableDynamicGrammarLabels.value as? String == "1" {
                 // If the switch is already ON, do nothing.

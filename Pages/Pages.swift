@@ -71,6 +71,7 @@ class Pages {
     let wordPowerEspanol25 = XCUIApplication().tables.staticTexts["WordPower25 Español SS"]
     let wordPowerBasico48 = XCUIApplication().tables.staticTexts["WordPower48 Español Básico SS"]
     let wordPowerBasico60 = XCUIApplication().tables.staticTexts["WordPower60 Español Básico SS"]
+    let wordPowerLiteTech96 = XCUIApplication().tables.staticTexts["WordPower96 Español Lite-Tech SS"]
     let frenchVocab = XCUIApplication().tables.staticTexts["French"]
     let base4FrenchSS = XCUIApplication().tables.staticTexts["4 de base français SS"]
     let communicationFrancaisSS = XCUIApplication().tables.staticTexts["Communication Journey Aphasie français SS"]

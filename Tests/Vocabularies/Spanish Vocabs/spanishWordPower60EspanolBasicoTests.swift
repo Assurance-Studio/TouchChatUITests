@@ -55,7 +55,7 @@ final class WordPower60EspanolBasicoTests: XCTestCase {
         
         pages.backToVocab();
         
-        print("Word Power 48 Espanol Basico SS Test Finished with success!")
+        print("Word Power 60 Espanol Basico SS Test Finished with success!")
         
         app.terminate()
         

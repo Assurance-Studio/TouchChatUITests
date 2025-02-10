@@ -1,15 +1,12 @@
+//  TouchChatUITests
 //
-//  spniashWordPower96Espanol.swift
-//  TouchChatAppUITests
-//
-//  Created by Alin Voinescu on 06.02.2025.
-//  Copyright © 2025 PRC-Saltillo. All rights reserved.
-//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
 
 import XCTest
 
-final class spniashWordPower96Espanol: XCTestCase {
-
+final class test4deBaseSS: XCTestCase {
+    
     var app = XCUIApplication()
 
     override func setUpWithError() throws {
@@ -38,27 +35,27 @@ final class spniashWordPower96Espanol: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testLaunchWordPower96EspanolLiteTech() throws {
+    func testLaunchFrench4Base4SS() throws {
         
         let pages = Pages(app: app)
-        pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
-        pages.SpanishVocab.tap()
-        pages.wordPowerLiteTech96.tap()
+        pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
+        pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
+        pages.frenchVocab.tap()
+        pages.base4FrenchSS.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "ya", vocabWord: "yo mi", vocabElement: 8, nameElement: "ACCIONES")
+        pages.verifyTheVocab(lastElement: "TOUT SUR MOI", vocabWord: "Je veux", vocabElement: 3, nameElement: "Je veux")
         
-        XCTAssertTrue(app.buttons["comer"].exists)
-        app.buttons["comer"].tap()
-        app.buttons["la"].tap()
+        XCTAssertTrue(app.buttons["boire"].exists)
+        app.buttons["boire"].tap()
+        app.buttons["lait"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Yo comer ")
+        pages.checkSdbText(sdbText: "Je veux boire du ")
         
         pages.backToVocab();
         
-        print("Word Power 96 Espanol Lite-Tech SS Test Finished with success!")
+        print("4 de base francais Test Finished with success!")
         
         app.terminate()
     }

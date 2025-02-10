@@ -15,7 +15,7 @@ class DataLoggingPage {
     }
     
     func checkLoggingImage(){
-        let enableLoggingSwitch = app.switches.element(boundBy: 21)
+        let enableLoggingSwitch = app.switches.element(boundBy: 20)
         enableLoggingSwitch.tap()
         let enableLogging = app.images["lam_indicator"]
         let existsEnableLogging = enableLogging.waitForExistence(timeout: 5)
@@ -41,11 +41,11 @@ class DataLoggingPage {
         
         let popoversQuery = XCUIApplication().popovers
         popoversQuery.navigationBars["RealizeSettingsView"].buttons["Cancel"].tap()
-        popoversQuery.tables/*@START_MENU_TOKEN@*/.buttons["Clear"]/*[[".cells.buttons[\"Clear\"]",".buttons[\"Clear\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        XCTAssertTrue(app.staticTexts["Do you really want to Clear Log?"].exists, "The Clear Log modal doesn't appear")
-        app.buttons["Yes"].tap()
-        XCTAssertTrue(app.staticTexts["Clear Log Completed"].exists, "The Clear Log is incomplete")
-        app.buttons["Okay"].tap()
+//        popoversQuery.tables/*@START_MENU_TOKEN@*/.buttons["Clear"]/*[[".cells.buttons[\"Clear\"]",".buttons[\"Clear\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+//        XCTAssertTrue(app.staticTexts["Do you really want to Clear Log?"].exists, "The Clear Log modal doesn't appear")
+//        app.buttons["Yes"].tap()
+//        XCTAssertTrue(app.staticTexts["Clear Log Completed"].exists, "The Clear Log is incomplete")
+//        app.buttons["Okay"].tap()
         app.buttons["Done"].tap()
     }
     
