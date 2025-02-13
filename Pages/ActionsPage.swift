@@ -271,6 +271,74 @@ class ActionaPageClass {
         app.buttons["Save"].tap()
     }
     
+    func addWebsiteToggleOn(){
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("google.com")
+        XCUIApplication().popovers.navigationBars["WebsiteURLView"].buttons["Done"].tap()
+        sleep(2)
+        app.buttons["Save"].tap()
+    }
+    
+    
+    func checkTheWebsiteToggleOn(){
+        app.buttons["Google Website Toggle On"].tap()
+        let googleSearchBtn = app.buttons["Google Search"]
+        let googleSearchBtnExists = googleSearchBtn.waitForExistence(timeout: 5)
+        XCTAssertTrue(googleSearchBtnExists, "The Google Search button is not visible")
+        
+        let signInLink = app.links["Sign in"]
+        XCTAssertTrue(signInLink.exists, "The sign in link is not visible")
+        signInLink.tap()
+        XCTAssertTrue(googleSearchBtnExists, "The Google Search button is not visible")
+        app.buttons["Done"].tap()
+    }
+    
+    func checkTheWebsiteToggleOff(){
+        app.buttons["Google Website Toggle Off"].tap()
+        let googleSearchBtn = app.buttons["Google Search"]
+        let googleSearchBtnExists = googleSearchBtn.waitForExistence(timeout: 5)
+        XCTAssertTrue(googleSearchBtnExists, "The Google Search button is not visible")
+        
+        let signInLink = app.links["Sign in"]
+        signInLink.tap()
+        let emailPhoneField = app.staticTexts["Email or phone"]
+        let emailPhoneFieldExists = emailPhoneField.waitForExistence(timeout: 5)
+        XCTAssertTrue(emailPhoneFieldExists, "The email/phone field is not visible")
+        app.buttons["Done"].tap()
+    }
+    
+    func editTextPasteBtn(){
+        app.buttons["Save"].tap()
+        app.buttons.element(boundBy: 27).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText("Text Paste Button")
+    }
+    
+    func checkTextPasteCopyFunctions(){
+        app.buttons["e"].tap()
+        app.buttons["n"].tap()
+        app.buttons["d"].tap()
+        app.buttons["t"].tap()
+        app.buttons["o"].tap()
+        app.buttons["e"].tap()
+        app.buttons["n"].tap()
+        app.buttons["d"].tap()
+        
+        app.buttons["Text Copy Button"].tap()
+        app.buttons["BackButton"].tap()
+        
+        app.buttons["Text Paste Button"].tap()
+    }
+    
+    func checkIfTheTextingConversationsWorks(){
+        app.buttons["Navigate to Conversations"].tap()
+        let iMessageAlert = app.staticTexts["iMessage Not Enabled"]
+        XCTAssertTrue(iMessageAlert.exists, "The iMessage Alert is not visible.")
+        app.buttons["Okay"].tap()
+    }
+    
     
     func clearDisplay(){
         app.buttons["PHRASES"].press(forDuration: 1)
@@ -290,6 +358,7 @@ class ActionaPageClass {
             print("Text field is empty")
             XCTAssert(true, "Text field is empty as expected")
         }
+        
         
     }
     

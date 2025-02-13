@@ -121,6 +121,7 @@ class MainPage {
     }
     
     func copyVocab(vocabType: XCUIElement, vocabName: String, vocabDescription: String) {
+        sleep(2)
         menuButton.tap()
         copyVocabMButton.tap()
         sleep(3)
@@ -164,7 +165,7 @@ class MainPage {
     }
     
     func openVocab(vocabToOpen: XCUIElement, vocab: String) {
-        
+        sleep(2)
         let vocabToOpen = app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", vocab)).firstMatch
 
     if vocabToOpen.exists && vocabToOpen.isHittable {

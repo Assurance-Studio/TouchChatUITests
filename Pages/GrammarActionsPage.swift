@@ -305,6 +305,23 @@ class GrammarActionaPageClass {
         sleep(3)
     }
     
+    func addWebsiteRestrictedToggleOff(){
+        app.buttons.element(boundBy: 27).tap()
+        app.buttons["Edit This Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText("Google Website Toggle Off")
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: "Open Website")
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("google.com")
+        app.switches.element(boundBy: 0).tap()
+        XCUIApplication().popovers.navigationBars["WebsiteURLView"].buttons["Done"].tap()
+        sleep(2)
+        app.buttons["Save"].tap()
+        XCUIApplication().navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+    }
+    
     func checkIfTheActionsWorkAsExpected(){
         sleep(2)
         app.buttons["Done"].tap()
