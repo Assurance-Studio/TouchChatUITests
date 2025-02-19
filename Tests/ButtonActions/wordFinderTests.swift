@@ -10,33 +10,60 @@ import XCTest
 
 final class wordFinderTests: XCTestCase {
 
+    var app = XCUIApplication()
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        try super.setUpWithError()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
+        pages.clickWelcomeX()
+        pages.reachMenuPageIfOnVocabPage()
+   }
+   
+   override func tearDownWithError() throws {
+       app.terminate()
+       try super.tearDownWithError()
+   }
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+   func testWordFinder() throws {
+       
+       let pages = Pages(app: app)
+       let actionsPage = ActionaPageClass(app: app)
+       let vocabularyName = "copied vocabulary wordfinder"
+       let vocabylaryDesc = "vocabulary description e2e"
+       var vocabName = "vocabulary"
+       lazy var mainPage: MainPage = {
+           return MainPage(app: XCUIApplication(), vocabName: vocabName)
+       }()
+       
+       //copy a new vocab
+       mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+       sleep(2)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary wordfinder"], vocab: vocabularyName)
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+       pages.editPage()
+       //add an action
+       actionsPage.editButtonForAction(nameButton: "Word Finder Btn")
+       
+       //remove the speech message action
+       actionsPage.removeSpeechMessageAction()
+       
+       //add a new action "Text Copy"
+       actionsPage.addANewAction(actionName: "Word Finder")
+       actionsPage.saveTheAction()
+       //check the Word Finder action
+       actionsPage.checkWordFinderAction()
+       
+       pages.backToVocab()
+       mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+       
+       print("Word Finder Test Finished with success!")
     }
 }
