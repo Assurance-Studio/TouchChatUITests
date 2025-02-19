@@ -339,6 +339,24 @@ class ActionaPageClass {
         app.buttons["Okay"].tap()
     }
     
+    func checkWordFinderAction(){
+        app.buttons["Word Finder Btn"].tap()
+        let searchBarFindWord = app.textFields.element(boundBy: 3)
+        let searchBarFinDWordExists = searchBarFindWord.waitForExistence(timeout: 5)
+        XCTAssertTrue(searchBarFinDWordExists, "The search bar is not visible.")
+        searchBarFindWord.tap()
+        searchBarFindWord.typeText("Back")
+        app.buttons["Find"].tap()
+        app.buttons["Cancel"].tap()
+    }
+    
+    func checkWordPredictionsAction(){
+        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+        app.buttons["g"].tap()
+        
+        let existsPredictions = app.buttons["Guess "].exists && app.buttons["Getting "].exists && app.buttons["Great "].exists && app.buttons["Get "].exists && app.buttons["Got "].exists && app.buttons["Good "].exists && app.buttons["Going "].exists && app.buttons["Give "].exists && app.buttons["Gonna "].exists && app.buttons["Goes "].exists
+        XCTAssertTrue(existsPredictions, "The predictions are not visible")
+    }
     
     func clearDisplay(){
         app.buttons["PHRASES"].press(forDuration: 1)
