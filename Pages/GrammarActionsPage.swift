@@ -220,6 +220,7 @@ class GrammarActionaPageClass {
     }
     
     func checkAppType(appType: String){
+        sleep(2)
         app.buttons[appType].tap()
         let errorText = app.staticTexts["Error"]
         XCTAssertTrue(errorText.exists, "The error is not visible")
@@ -236,6 +237,7 @@ class GrammarActionaPageClass {
         actionsPage.addANewAction(actionName: actionType)
         sleep(2)
         app.staticTexts[directionType].tap()
+        sleep(3)
         app.staticTexts[appType].tap()
         sleep(3)
         app.buttons["Save"].tap()

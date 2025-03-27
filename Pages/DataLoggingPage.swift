@@ -53,6 +53,7 @@ class DataLoggingPage {
         let privacyPass = app.secureTextFields.element(boundBy: 1)
         XCUIApplication().popovers.tables.staticTexts["Speech"].swipeUp()
         XCUIApplication().popovers.tables.staticTexts["Speech Display Bar"].swipeUp()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 20).staticTexts["Font"].swipeUp()
         XCUIApplication().popovers.tables.staticTexts["Expanded Speech Area"].swipeUp()
         privacyPass.tap()
         app.secureTextFields.element(boundBy: 2).typeText("Test")

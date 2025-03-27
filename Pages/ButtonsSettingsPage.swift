@@ -32,13 +32,14 @@ class ButtonsSettingsPage {
         popoversQuery.scrollViews.otherElements.buttons["35 Point"].tap()
         
         let tablesQuery = popoversQuery.tables
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["27 Point"]/*[[".cells.staticTexts[\"27 Point\"]",".staticTexts[\"27 Point\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.swipeUp()
-        tablesQuery.staticTexts["34 Point"].swipeUp()
-        tablesQuery.staticTexts["45 Point"].swipeUp()
-        tablesQuery.staticTexts["55 Point"].swipeUp()
-        tablesQuery.staticTexts["65 Point"].swipeUp()
-        tablesQuery.staticTexts["75 Point"].swipeUp()
-        tablesQuery.staticTexts["85 Point"].swipeUp()
+        tablesQuery.staticTexts["22 Point"].swipeUp()
+        tablesQuery.staticTexts["30 Point"].swipeUp()
+        tablesQuery.staticTexts["40 Point"].swipeUp()
+        tablesQuery.staticTexts["50 Point"].swipeUp()
+        tablesQuery.staticTexts["60 Point"].swipeUp()
+        tablesQuery.staticTexts["70 Point"].swipeUp()
+        tablesQuery.staticTexts["80 Point"].swipeUp()
+        tablesQuery.staticTexts["90 Point"].swipeUp()
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["95 Point"]/*[[".cells.staticTexts[\"95 Point\"]",".staticTexts[\"95 Point\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
     }

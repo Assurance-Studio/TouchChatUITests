@@ -20,7 +20,7 @@ class ExpandedSpeechDisplayArea {
         tablesQuery.staticTexts["Speech"].swipeUp()
         tablesQuery.staticTexts["Speech Display Bar"].swipeUp()
         tablesQuery.staticTexts["Expanded Speech Area"].swipeUp()
-        XCUIApplication().popovers/*@START_MENU_TOKEN@*/.tables.containing(.other, identifier:"Vertical scroll bar, 4 pages")/*[[".tables.containing(.other, identifier:\"Buttons\")",".tables.containing(.other, identifier:\"Data Logging\")",".tables.containing(.other, identifier:\"Speak\")",".tables.containing(.other, identifier:\"Expanded Speech Area\")",".tables.containing(.other, identifier:\"Speech Display Bar\")",".tables.containing(.other, identifier:\"Vertical scroll bar, 4 pages\")"],[[[-1,5],[-1,4],[-1,3],[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.children(matching: .cell).element(boundBy: 30).staticTexts["Font"].tap()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 30).staticTexts["Font"].tap()
         
          
         let font1 = app.staticTexts["Amaranth"]
@@ -67,7 +67,7 @@ class ExpandedSpeechDisplayArea {
     
     func checkTheFontColors(){
         let popoversQuery = XCUIApplication().popovers
-        popoversQuery/*@START_MENU_TOKEN@*/.tables.containing(.other, identifier:"Vertical scroll bar, 4 pages")/*[[".tables.containing(.other, identifier:\"Buttons\")",".tables.containing(.other, identifier:\"Data Logging\")",".tables.containing(.other, identifier:\"Speak\")",".tables.containing(.other, identifier:\"Expanded Speech Area\")",".tables.containing(.other, identifier:\"Speech Display Bar\")",".tables.containing(.other, identifier:\"Vertical scroll bar, 4 pages\")"],[[[-1,5],[-1,4],[-1,3],[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.children(matching: .cell).element(boundBy: 32).staticTexts["Font Color"].tap()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 32).staticTexts["Font Color"].tap()
         let redBackgroundColor = app.staticTexts["Red"]
         let brownBackgroundColor = app.staticTexts["Brown"]
         let blueBackgroundColor = app.staticTexts["Blue"]

@@ -175,11 +175,13 @@ class Pages {
         
         let tablesQuery = popoversQuery.tables
         
-        tablesQuery.staticTexts["Grammar Action"].swipeUp()
+        tablesQuery.staticTexts["Clear Display"].swipeUp()
         sleep(2)
-        tablesQuery.staticTexts["Open Website"].swipeUp()
+        tablesQuery.staticTexts["Help Signal"].swipeUp()
         sleep(2)
-        tablesQuery.staticTexts["Play Video"].swipeUp()
+        tablesQuery.staticTexts["Navigate To Home"].swipeUp()
+        sleep(2)
+        tablesQuery.staticTexts["Speak"].swipeUp()
         sleep(3)
         let speechMessageOption = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Speech Message"]/*[[".cells.staticTexts[\"Speech Message\"]",".staticTexts[\"Speech Message\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         let speechMessageOptionExists = speechMessageOption.waitForExistence(timeout: 5)
@@ -187,7 +189,9 @@ class Pages {
         speechMessageOption.tap()
         
         app.buttons["Save"].tap()
+        sleep(3)
         app.popovers.navigationBars["Select Gesture"].buttons["Done"].tap()
+        sleep(3)
         app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
     }
     
@@ -790,9 +794,10 @@ class Pages {
         let checkFontSize = app.staticTexts["7 Point"].waitForExistence(timeout: 5)
         XCTAssertTrue(checkFontSize, "The Font Size is not correct")
         
-        let scrollViewsQuery = XCUIApplication().popovers.scrollViews
-        scrollViewsQuery.otherElements.containing(.staticText, identifier:"Button Label").element.swipeUp()
-        scrollViewsQuery.otherElements.staticTexts["Visible"].swipeUp()
+//        let scrollViewsQuery = XCUIApplication().popovers.scrollViews
+//        scrollViewsQuery.otherElements.containing(.staticText, identifier:"Button Label").element.swipeUp()
+//        scrollViewsQuery.otherElements.staticTexts["Bold Text"].swipeUp()
+//        scrollViewsQuery.otherElements.staticTexts["Visible"].swipeUp()
     }
     
     func checkTextColorOptions(){
@@ -957,6 +962,7 @@ class Pages {
         app.textViews.element(boundBy: 0).tap()
         app.textViews.element(boundBy: 0).doubleTap()
         app.textViews.element(boundBy: 0).typeText("Renamed")
+        sleep(3)
         app.buttons["Save"].tap()
         app.buttons["Done"].tap()
     }

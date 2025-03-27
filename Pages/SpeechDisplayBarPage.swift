@@ -44,7 +44,7 @@ class SpeechDisplayBarPage {
     
     func checkFontsType(){
         let popoversQuery = XCUIApplication().popovers
-        popoversQuery/*@START_MENU_TOKEN@*/.tables.containing(.other, identifier:"Vertical scroll bar, 4 pages")/*[[".tables.containing(.other, identifier:\"Speak\")",".tables.containing(.other, identifier:\"Expanded Speech Area\")",".tables.containing(.other, identifier:\"Speech Display Bar\")",".tables.containing(.other, identifier:\"Vertical scroll bar, 4 pages\")"],[[[-1,3],[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.children(matching: .cell).element(boundBy: 20).staticTexts["Font"].tap()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 20).staticTexts["Font"].tap()
         
         let font1 = app.staticTexts["Amaranth"]
         let font2 = app.staticTexts["Caudex"]

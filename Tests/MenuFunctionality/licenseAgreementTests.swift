@@ -10,33 +10,33 @@ import XCTest
 
 final class licenseAgreementTests: XCTestCase {
 
+    var app = XCUIApplication()
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        try super.setUpWithError()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        app = XCUIApplication()
+        app.launchArguments.append("--reset-app-state")
         app.launch()
+   }
+   
+   override func tearDownWithError() throws {
+       app.terminate()
+       try super.tearDownWithError()
+   }
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+   func testLicenseAgreementTests() throws {
+       
+       let licensePage = LicenseLanguagePage(app: app)
+       //check the License Reader Page
+       licensePage.checkLicenseReaderPage()
+       
+       //check the continue button
+       licensePage.checkContinueToggleLicenseModal()
+       
+       //check Selected Voice Language Modal
+       licensePage.checkSelectVoiceModal()
+       
+       print("License Agreement Test Finished with success!")
     }
 }

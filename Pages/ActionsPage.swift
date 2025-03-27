@@ -308,6 +308,7 @@ class ActionaPageClass {
     }
     
     func editTextPasteBtn(){
+        sleep(3)
         app.buttons["Save"].tap()
         app.buttons.element(boundBy: 27).tap()
         app.buttons["Edit This Button"].tap()
@@ -356,6 +357,47 @@ class ActionaPageClass {
         
         let existsPredictions = app.buttons["Guess "].exists && app.buttons["Getting "].exists && app.buttons["Great "].exists && app.buttons["Get "].exists && app.buttons["Got "].exists && app.buttons["Good "].exists && app.buttons["Going "].exists && app.buttons["Give "].exists && app.buttons["Gonna "].exists && app.buttons["Goes "].exists
         XCTAssertTrue(existsPredictions, "The predictions are not visible")
+    }
+    
+    func checkLibraryVideoTab(){
+        let videoTypeTitle = app.staticTexts["Video Type"]
+        let videoTypeTitleExists = videoTypeTitle.waitForExistence(timeout: 5)
+        XCTAssertTrue(videoTypeTitleExists, "The Video Type Title does not exist.")
+        
+        let libraryVideo = app.staticTexts["Library Video"]
+        libraryVideo.tap()
+        let videosTitle = app.staticTexts["Videos"]
+        let videosTitleExists = videosTitle.waitForExistence(timeout: 7)
+        XCTAssertTrue(videosTitleExists, "The Videos Title does not exist.")
+        app.buttons["Cancel"].tap()
+    }
+    
+    func checkYoutubeVideoTab(){
+        let youtubeVideo = app.staticTexts["YouTube Video"]
+        let youtubeVideoExists = youtubeVideo.waitForExistence(timeout: 5)
+        XCTAssertTrue(youtubeVideoExists, "The Youtube Video does not exist.")
+        youtubeVideo.tap()
+        
+        //insert the video link
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText("https://www.youtube.com/watch?v=d-diB65scQU")
+        
+        let app = XCUIApplication()
+        let popoversQuery = app.popovers
+        popoversQuery.navigationBars["EnterYouTubeView"].buttons["Done"].tap()
+        sleep(3)
+        popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
+        sleep(4)
+        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+    }
+    
+    func checkYoutubeVideoBtn(){
+        app.buttons["Play YouTube Video"].tap()
+        let youtubeSong = app.staticTexts["Bobby McFerrin - Don't Worry Be Happy (Official Music Video)"]
+        let youtubeSongExists = youtubeSong.waitForExistence(timeout: 7)
+        XCTAssertTrue(youtubeSongExists, "The Youtube song is not playing.")
+        
+        app.buttons["Done"].tap()
     }
     
     func clearDisplay(){

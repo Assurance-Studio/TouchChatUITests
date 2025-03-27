@@ -1,42 +1,76 @@
-//
 //  checkAcapaleVoicesTests.swift
 //  TouchChatAppUITests
 //
 //  Created by Alin Voinescu on 11.03.2025.
 //  Copyright © 2025 PRC-Saltillo. All rights reserved.
-//
 
 import XCTest
 
 final class checkAcapaleVoicesTests: XCTestCase {
 
+    var app = XCUIApplication()
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        try super.setUpWithError()
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset-app-state")
         app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
+        pages.clickWelcomeX()
+        pages.reachMenuPageIfOnVocabPage()
+   }
+   
+   override func tearDownWithError() throws {
+       app.terminate()
+       try super.tearDownWithError()
+   }
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+   func testAcapelaVoices() throws {
+       
+       let pages = Pages(app: app)
+       let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
+       let languagesPage = LanguagesRegionPage(app: app)
+       let vocabularyName = "copied vocabulary acapela voices"
+       let vocabylaryDesc = "vocabulary description e2e"
+       var vocabName = "vocabulary"
+       lazy var mainPage: MainPage = {
+           return MainPage(app: XCUIApplication(), vocabName: vocabName)
+       }()
+       
+       //add languages&region
+       languagesPage.openLanguagesRegionSection()
+       //add arabic language
+       languagesPage.addLanguage(language: "Arabic")
+       //add chinese language
+       languagesPage.addLanguage(language: "Chinese")
+       //add french (canada) language
+       languagesPage.addLanguage(language: "French (Canada)")
+       app.buttons["Done"].tap()
+       
+       //copy a new vocab
+       mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary acapela voices"], vocab: vocabularyName)
+       
+       //check if the force font size works
+       profilesAndEditingPage.openTheSettingsTab()
+       
+       //change the voice for English Voice
+       languagesPage.changeEnglishVoice()
+       
+       //change the voice for Arabic Voice
+       languagesPage.checkArabicVoice()
+       
+       //try to select another Acapela Voice
+       languagesPage.trySelectAcapelaVoice()
+              
+       pages.backToVocab()
+       mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+       
+       print("Acapela Voices Test Finished with success!")
     }
 }

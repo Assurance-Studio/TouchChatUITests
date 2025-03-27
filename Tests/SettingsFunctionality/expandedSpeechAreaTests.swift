@@ -50,7 +50,7 @@ final class expandedSpeechAreaTests: XCTestCase {
             
             //check the fonts for expanded speech area
             expandedSpeechArea.checkTheFontOptions()
-            
+                                    
             //check the font size
             expandedSpeechArea.checkTheFontSize()
                         
