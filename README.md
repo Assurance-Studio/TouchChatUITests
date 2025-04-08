@@ -51,3 +51,8 @@ If the message: "The scheme "TouchChatUITests" is not configured for running. Ed
 ### Select "Build" from the left side of the newly opened modal
 ### Tick "Analyse, Run, Profile, Archive"
 ### Press "Close"
+
+
+-----
+
+run the testst manually a couple of times to accept all the permissions
