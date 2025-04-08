@@ -1,14 +1,14 @@
 //
-//  addMessageDisplayTests.swift
+//  batteryStatusTests.swift
 //  TouchChatUITests
 //
-//  Created by Alin Voinescu on 04.10.2024.
+//  Created by Alin Voinescu on 27.09.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 //
 
 import XCTest
 
-final class addMessageDisplayTests: XCTestCase {
+final class batteryStatusTests: XCTestCase {
 
     var app = XCUIApplication()
 
@@ -32,11 +32,11 @@ final class addMessageDisplayTests: XCTestCase {
        try super.tearDownWithError()
    }
 
-   func testAddMessageDisplayTests() throws {
+   func testBatteryStatus() throws {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
-       let vocabularyName = "copied vocabulary add message"
+       let vocabularyName = "copied vocabulary battery status"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
@@ -45,24 +45,28 @@ final class addMessageDisplayTests: XCTestCase {
        
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary add message"], vocab: vocabularyName)
+       sleep(2)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary battery status"], vocab: vocabularyName)
 
        pages.editPage()
        //add an action
-       actionsPage.editButtonForAction(nameButton: "Add Message To Display")
+       actionsPage.editButtonForAction(nameButton: "Battery Sts")
        
        //remove the speech message action
        actionsPage.removeSpeechMessageAction()
        
-       //add message to display
-       actionsPage.addANewAction(actionName: "Add Message to Display")
+       //add time/date action
+       actionsPage.addANewAction(actionName: "Battery Status")
        
+       //save the action
+       actionsPage.saveTheAction()
+      
        //check if the action works
-       actionsPage.checkAddMessageDisplay()
+       actionsPage.checkTheBatteryStatus()
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
-       print("Add Message to Display Test Finished with success!")
+       print("Battery Status Action Test Finished with success!")
     }
 }

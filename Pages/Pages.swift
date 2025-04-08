@@ -943,10 +943,44 @@ class Pages {
         app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
     }
     
+    func createButtonForActions(button: Int, nameButton:String){
+        app.buttons.element(boundBy: button).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        
+        let buttonLabel = app.textFields.element(boundBy: 0)
+        let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsButtonLabel, "The button label is not visible")
+        
+        app.textFields.element(boundBy: 0).tap()
+        app.textFields.element(boundBy: 0).typeText(nameButton)
+        
+        app.textFields.element(boundBy: 2).tap()
+        app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
+    }
+    
     func removeAnExistingButton(){
         app.buttons.element(boundBy: 12).tap()
         XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
         XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
+        app.buttons["Okay"].tap()
+    }
+    
+    func removeAButton(button: Int){
+//        sleep(5)
+        let buttonEmpty = app.buttons.element(boundBy: button)
+        let buttonEmptyExists = buttonEmpty.waitForExistence(timeout: 10)
+        XCTAssertTrue(buttonEmptyExists, "The Button empty doesn't exist.")
+        buttonEmpty.tap()
+    
+        sleep(3)
+        let removeButtonSet = XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove ButtonSet From Page"]
+        let removeButtonSetExists = removeButtonSet.waitForExistence(timeout: 10)
+        XCTAssertTrue(removeButtonSetExists)
+        removeButtonSet.tap()
+        //XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove ButtonSet From Page"].tap()
+        let confirmDeleteBtn = app.staticTexts["Confirm Button Deletion"]
+        let confirmDeleteBtnExists = confirmDeleteBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(confirmDeleteBtnExists, "The delete modal doesn't appear")
         app.buttons["Okay"].tap()
     }
     
@@ -1213,7 +1247,6 @@ class Pages {
             XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
             button.tap()
             
-            
             let labelID = "FN \(i)"
             let label = app.buttons[labelID]
             XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
@@ -1232,7 +1265,6 @@ class Pages {
             XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
             button.tap()
             
-            
             let labelID = "Function Lock \(letter)"
             let label = app.buttons[labelID]
             XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
@@ -1250,7 +1282,6 @@ class Pages {
             let button = app.buttons[buttonID]
             XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
             button.tap()
-            
             
             let labelID = "FN Lock \(letter)"
             let label = app.buttons[labelID]

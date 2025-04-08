@@ -1,12 +1,14 @@
-//  TouchChatUITests
 //
-//  Created by Alin V on 01.11.2024.
-//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+//  textCopyPasteTests.swift
+//  TouchChatAppUITests
+//
+//  Created by Alin Voinescu on 12.02.2025.
+//  Copyright © 2025 PRC-Saltillo. All rights reserved.
 //
 
 import XCTest
 
-final class addTimeTests: XCTestCase {
+final class textCopyPasteTests: XCTestCase {
 
     var app = XCUIApplication()
 
@@ -30,11 +32,11 @@ final class addTimeTests: XCTestCase {
        try super.tearDownWithError()
    }
 
-   func testAddTimeTests() throws {
+   func testTextCopyPaste() throws {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
-       let vocabularyName = "copied vocabulary time action"
+       let vocabularyName = "copied vocabulary copy paste text"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
@@ -43,26 +45,38 @@ final class addTimeTests: XCTestCase {
        
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary time action"], vocab: vocabularyName)
+       sleep(2)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary copy paste text"], vocab: vocabularyName)
 
        pages.editPage()
        //add an action
-       actionsPage.editButtonForAction(nameButton: "Add Action Time")
+       actionsPage.editButtonForAction(nameButton: "Text Copy Button")
        
        //remove the speech message action
        actionsPage.removeSpeechMessageAction()
        
-       //add time action
-       actionsPage.addANewAction(actionName: "Add Time/Date")
+       //add a new action "Text Copy"
+       actionsPage.addANewAction(actionName: "Text Copy")
        
-       actionsPage.addActionForTimeDate(actionType: "Time Only")
+       //save the action
+       actionsPage.editTextPasteBtn()
+       actionsPage.removeSpeechMessageAction()
+       actionsPage.addANewAction(actionName: "Text Paste")
+       actionsPage.saveTheAction()
        
-       //check if the action works
-       actionsPage.checkIfTheTimeisDisplayed()
+       //check if the actions work as expected
+       actionsPage.checkTextPasteCopyFunctions()
+       
+       pages.checkSdbText(sdbText: "Endtoend ")
+      
+       //Paste function for sdb
+//       let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1))
+//
+//       centerScreenCoordinate.tap()
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
-       print("Time Action Test Finished with success!")
+       print("Copy Paste Text Test Finished with success!")
     }
 }

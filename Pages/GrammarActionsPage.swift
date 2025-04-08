@@ -21,7 +21,25 @@ class GrammarActionaPageClass {
     
     func addActionED(){
         app.staticTexts["add -ed"].tap()
-        app.buttons["Save"].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
+    }
+    
+    func createBtnGrammar(buttonName: String, actionType: String, buttonNumber: Int){
+        app.buttons.element(boundBy: buttonNumber).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(buttonName)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: "Grammar Action")
+        app.staticTexts[actionType].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
     }
     
     func addActionEN(){
@@ -195,6 +213,23 @@ class GrammarActionaPageClass {
         app.buttons["Save"].tap()
     }
     
+    func createButtonWordPrediction(button: Int, navigateDirection: String, actionType: String, directionType: String){
+        app.buttons.element(boundBy: button).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        
+        let buttonLabel = app.textFields.element(boundBy: 0)
+        let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsButtonLabel, "The button label is not visible")
+        
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(navigateDirection)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: actionType)
+        app.staticTexts[directionType].tap()
+        sleep(3)
+        app.buttons["Save"].tap()
+    }
+    
     func checkNotesApp(){
         app.buttons["Done"].tap()
         app.buttons["Open Apple Apps - Notes"].tap()
@@ -243,6 +278,27 @@ class GrammarActionaPageClass {
         app.buttons["Save"].tap()
     }
     
+    func createButtonOpenAppsAction(button: Int, navigateDirection: String, actionType: String, directionType: String, appType: String){
+        app.buttons.element(boundBy: button).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        
+        let buttonLabel = app.textFields.element(boundBy: 0)
+        let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsButtonLabel, "The button label is not visible")
+        
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(navigateDirection)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: actionType)
+        sleep(2)
+        app.staticTexts[directionType].tap()
+        sleep(3)
+        app.staticTexts[appType].tap()
+        sleep(3)
+        app.buttons["Save"].tap()
+        
+    }
+    
     func checkNavigateHomeBackActions(){
         app.buttons["Done"].tap()
         app.buttons["Navigate Back Animate Up"].tap()
@@ -265,6 +321,23 @@ class GrammarActionaPageClass {
         app.buttons.element(boundBy: button).tap()
         app.buttons["Edit This Button"].tap()
         sleep(2)
+        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).typeText(jumpDirection)
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: "Visit")
+        app.staticTexts[".Template"].tap()
+        app.staticTexts[directionType].tap()
+        app.buttons["Save"].tap()
+    }
+    
+    func addVisitCreateButtonAction(button: Int, jumpDirection: String, directionType: String){
+        app.buttons.element(boundBy: button).tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        
+        let buttonLabel = app.textFields.element(boundBy: 0)
+        let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
+        XCTAssertTrue(existsButtonLabel, "The button label is not visible")
+    
         app.textFields.element(boundBy: 0).doubleTap()
         app.textFields.element(boundBy: 0).typeText(jumpDirection)
         actionsPage.removeSpeechMessageAction()

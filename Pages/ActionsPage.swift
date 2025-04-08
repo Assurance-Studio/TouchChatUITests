@@ -60,18 +60,21 @@ class ActionaPageClass {
     }
     
     func addActionForTimeDate(actionType: String){
+        sleep(5)
         let popoversQuery = app.popovers
         let elementsQuery = popoversQuery.scrollViews.otherElements
         let tablesQuery = popoversQuery.tables
         app.staticTexts[actionType].tap()
+        sleep(5)
         popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
         app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
     }
     
     func checkAddMessageDisplay(){
+        sleep(2)
         let popoversQuery = app.popovers
         popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
-        sleep(2)
+        sleep(3)
         app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
         app.buttons["Add Message To Display"].tap()
         let messageText = app.textFields["Add Message To Display "]
@@ -108,6 +111,7 @@ class ActionaPageClass {
         
         let expectedText = app.textFields["The current date and time are \(expectedDateTime) "]
         XCTAssertTrue(expectedText.exists, "Displayed date and time are incorrect")
+        sleep(5)
     }
     
     func saveTheAction(){
@@ -310,7 +314,7 @@ class ActionaPageClass {
     func editTextPasteBtn(){
         sleep(3)
         app.buttons["Save"].tap()
-        app.buttons.element(boundBy: 27).tap()
+        app.buttons.element(boundBy: 43).tap()
         app.buttons["Edit This Button"].tap()
         sleep(2)
         app.textFields.element(boundBy: 0).doubleTap()
@@ -349,6 +353,24 @@ class ActionaPageClass {
         searchBarFindWord.typeText("Back")
         app.buttons["Find"].tap()
         app.buttons["Cancel"].tap()
+    }
+    
+    func checkSystemKeyboardAction(){
+        
+        let systemKeyboardBtn = app.buttons["System Keyboard"]
+        systemKeyboardBtn.tap()
+        
+        let tabButton = app.buttons["tab"]
+        
+        if tabButton.exists{
+            print("Tab Button exists")
+        } else {
+            app.buttons["Keyboard"].tap()
+            XCTAssertTrue(app.buttons["Show Keyboard"].exists)
+            app.buttons["Show Keyboard"].tap()
+            XCTAssertTrue(app.buttons["tab"].exists, "The tab button does not exist.")
+        }
+        
     }
     
     func checkWordPredictionsAction(){

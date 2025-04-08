@@ -1,5 +1,3 @@
-//
-//  clearDisplayTests.swift
 //  TouchChatUITests
 //
 //  Created by Alin Voinescu on 01.10.2024.
@@ -8,7 +6,7 @@
 
 import XCTest
 
-final class clearDisplayTests: XCTestCase {
+final class loggingDataOnOffTests: XCTestCase {
 
     var app = XCUIApplication()
 
@@ -32,11 +30,11 @@ final class clearDisplayTests: XCTestCase {
        try super.tearDownWithError()
    }
 
-   func testClearDisplay() throws {
+   func testLoggingData() throws {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
-       let vocabularyName = "copied vocabulary clear display"
+       let vocabularyName = "copied vocabulary data logging"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
@@ -46,27 +44,27 @@ final class clearDisplayTests: XCTestCase {
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        sleep(2)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary clear display"], vocab: vocabularyName)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary data logging"], vocab: vocabularyName)
 
        pages.editPage()
        //add an action
-       actionsPage.editButtonForAction(nameButton: "Clear Display")
+       actionsPage.editButtonForAction(nameButton: "Data Logging")
        
        //remove the speech message action
        actionsPage.removeSpeechMessageAction()
        
        //add time/date action
-       actionsPage.addANewAction(actionName: "Clear Display")
+       actionsPage.addANewAction(actionName: "Data Logging On/Off")
        
        //save the action
        actionsPage.saveTheAction()
       
        //check if the action works
-       actionsPage.clearDisplay()
+       actionsPage.checkLoggingData()
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
-       print("Clear Display Action Test Finished with success!")
+       print("Logging Data Action Test Finished with success!")
     }
 }

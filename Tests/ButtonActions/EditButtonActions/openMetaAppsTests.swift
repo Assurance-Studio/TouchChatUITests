@@ -1,12 +1,12 @@
-//  playVideoTests.swift
-//  TouchChatAppUITests
-//  Created by Alin V on 25.03.2025.
+//  openMetaAppsTests.swift
+//  TouchChatUITests
+//  Created by Alin V on 23.01.2025.
 //  Copyright © 2025 PRC-Saltillo. All rights reserved.
 //
 
 import XCTest
 
-final class playVideoTests: XCTestCase {
+final class openMetaAppsTests: XCTestCase {
 
     var app = XCUIApplication()
     
@@ -31,12 +31,12 @@ final class playVideoTests: XCTestCase {
     }
     
     
-    func testPlayVideo() throws {
+    func testOpenMetaApps() throws {
         
         let pages = Pages(app: app)
         let actionsPage = ActionaPageClass(app: app)
         let grammarActionsPage = GrammarActionaPageClass(app: app)
-        let vocabularyName = "copied vocabulary play video"
+        let vocabularyName = "copied vocabulary open meta apps"
         let vocabylaryDesc = "vocabulary description e2e"
         var vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
@@ -45,30 +45,37 @@ final class playVideoTests: XCTestCase {
         
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary play video"], vocab: vocabularyName)
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary open meta apps"], vocab: vocabularyName)
         
         pages.editPage()
         //add an action
-        actionsPage.editButtonForAction(nameButton: "Play YouTube Video")
+        actionsPage.editButtonForAction(nameButton: "Open Facebook Apps - Facebook")
         
         //remove the speech message action
         actionsPage.removeSpeechMessageAction()
         
         //add no animation action
-        actionsPage.addANewAction(actionName: "Play Video")
+        actionsPage.addANewAction(actionName: "Open App")
+        app.staticTexts["Facebook"].tap()
+        app.staticTexts["Facebook"].tap()
+        app.buttons["Save"].tap()
         
-        //check Library Video tab
-        actionsPage.checkLibraryVideoTab()
+        grammarActionsPage.addOpenAppsAction(button: 26, navigateDirection: "Open Facebook Apps - Facebook Messenger", actionType: "Open App", directionType: "Facebook", appType: "Facebook Messenger")
         
-        //check youtube video tab and insert a video
-        actionsPage.checkYoutubeVideoTab()
+        grammarActionsPage.addOpenAppsAction(button: 27, navigateDirection: "Open Instagram App", actionType: "Open App", directionType: "Instagram", appType: "Instagram")
         
-        //check if the action works as expected
-        actionsPage.checkYoutubeVideoBtn()
+        //check Facebook app
+        grammarActionsPage.checkFacebookApp()
         
+        //check Messenger App
+        grammarActionsPage.checkAppType(appType: "Open Facebook Apps - Facebook Messenger")
+        
+        //check Instagram App
+        grammarActionsPage.checkAppType(appType: "Open Instagram App")
+       
         pages.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
             
-        print("Open Youtube Video Test Finished with success!")
+        print("Open Meta Apps Test Finished with success!")
     }
 }
