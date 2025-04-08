@@ -1,3 +1,5 @@
+//
+//  clearDisplayTests.swift
 //  TouchChatUITests
 //
 //  Created by Alin Voinescu on 01.10.2024.
@@ -6,7 +8,7 @@
 
 import XCTest
 
-final class loggingDataOnOffTests: XCTestCase {
+final class clearDisplayTests: XCTestCase {
 
     var app = XCUIApplication()
 
@@ -30,11 +32,11 @@ final class loggingDataOnOffTests: XCTestCase {
        try super.tearDownWithError()
    }
 
-   func testLoggingData() throws {
+   func testClearDisplay() throws {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
-       let vocabularyName = "copied vocabulary data logging"
+       let vocabularyName = "copied vocabulary clear display"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
@@ -44,27 +46,27 @@ final class loggingDataOnOffTests: XCTestCase {
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        sleep(2)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary data logging"], vocab: vocabularyName)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary clear display"], vocab: vocabularyName)
 
        pages.editPage()
        //add an action
-       actionsPage.editButtonForAction(nameButton: "Data Logging")
+       actionsPage.editButtonForAction(nameButton: "Clear Display")
        
        //remove the speech message action
        actionsPage.removeSpeechMessageAction()
        
        //add time/date action
-       actionsPage.addANewAction(actionName: "Data Logging On/Off")
+       actionsPage.addANewAction(actionName: "Clear Display")
        
        //save the action
        actionsPage.saveTheAction()
       
        //check if the action works
-       actionsPage.checkLoggingData()
+       actionsPage.clearDisplay()
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
-       print("Logging Data Action Test Finished with success!")
+       print("Clear Display Action Test Finished with success!")
     }
 }

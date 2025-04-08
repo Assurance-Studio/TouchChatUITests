@@ -1,12 +1,12 @@
 //  TouchChatUITests
 //
-//  Created by Alin Voinescu on 30.09.2024.
+//  Created by Alin Voinescu on 02.10.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 //
 
 import XCTest
 
-final class calculatorTests: XCTestCase {
+final class grammarActionTests: XCTestCase {
 
     var app = XCUIApplication()
 
@@ -30,11 +30,12 @@ final class calculatorTests: XCTestCase {
        try super.tearDownWithError()
    }
 
-   func testCalculator() throws {
+   func testGrammarAction() throws {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
-       let vocabularyName = "copied vocabulary calculator"
+       let grammarActionsPage = GrammarActionaPageClass(app: app)
+       let vocabularyName = "copied vocabulary grammar action"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
@@ -44,27 +45,49 @@ final class calculatorTests: XCTestCase {
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        sleep(2)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary calculator"], vocab: vocabularyName)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary grammar action"], vocab: vocabularyName)
 
        pages.editPage()
        //add an action
-       actionsPage.editButtonForAction(nameButton: "Calculator")
+       actionsPage.editButtonForAction(nameButton: "Grammar Action -ed")
        
        //remove the speech message action
        actionsPage.removeSpeechMessageAction()
        
-       //add time/date action
-       actionsPage.addANewAction(actionName: "Calculator")
+       //add grammar action -ed
+       actionsPage.addANewAction(actionName: "Grammar Action")
+       grammarActionsPage.addActionED()
        
-       //save the action
-       actionsPage.saveTheAction()
-      
-       //check if the action works
-       actionsPage.checkTheCalculatorAction()
+       //add grammar action -en
+       grammarActionsPage.addActionEN()
+       
+       //add grammar action -er
+       grammarActionsPage.addActionER()
+       
+       //add grammar action -est
+       grammarActionsPage.addActionEST()
+       
+       //add grammar action -ing
+       grammarActionsPage.addActionING()
+       
+       //add grammar action -ly
+       grammarActionsPage.addActionLY()
+       
+       //add grammar -s
+       grammarActionsPage.addActionS()
+       
+       //create a new button
+       grammarActionsPage.createAVerb()
+       
+       //app.buttons["z"].tap()
+       grammarActionsPage.createAnAdjective()
+       
+       //check if the grammar action works as expected
+       grammarActionsPage.checkGrammarAction()
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
-       print("Calculator Action Test Finished with success!")
+       print("Grammar Action Test Finished with success!")
     }
 }

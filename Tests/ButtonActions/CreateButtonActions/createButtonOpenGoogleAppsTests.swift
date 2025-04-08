@@ -1,14 +1,12 @@
-//
-//  openGoogleAppsTests.swift
-//  TouchChatUITests
-//
-//  Created by Alin V on 23.01.2025.
+//  createButtonOpenGoogleAppsTests.swift
+//  TouchChatAppUITests
+//  Created by Alin V on 07.04.2025.
 //  Copyright © 2025 PRC-Saltillo. All rights reserved.
 //
 
 import XCTest
 
-final class openGoogleAppsTests: XCTestCase {
+final class createButtonOpenGoogleAppsTests: XCTestCase {
 
     var app = XCUIApplication()
     
@@ -33,7 +31,7 @@ final class openGoogleAppsTests: XCTestCase {
     }
     
     
-    func testOpenGoogleApps() throws {
+    func testOpenGoogleApplications() throws {
         
         let pages = Pages(app: app)
         let actionsPage = ActionaPageClass(app: app)
@@ -51,7 +49,8 @@ final class openGoogleAppsTests: XCTestCase {
         
         pages.editPage()
         //add an action
-        actionsPage.editButtonForAction(nameButton: "Open Google Apps - GMail")
+        pages.removeAButton(button: 25)
+        pages.createButtonForActions(button: 25, nameButton: "Open Google Apps - GMail")
         
         //remove the speech message action
         actionsPage.removeSpeechMessageAction()
@@ -62,15 +61,25 @@ final class openGoogleAppsTests: XCTestCase {
         app.staticTexts["GMail"].tap()
         app.buttons["Save"].tap()
         
-        grammarActionsPage.addOpenAppsAction(button: 26, navigateDirection: "Open Google Apps - Google", actionType: "Open App", directionType: "Google", appType: "Google")
+        //create Google button
+        pages.removeAButton(button: 26)
+        grammarActionsPage.createButtonOpenAppsAction(button: 26, navigateDirection: "Open Google Apps - Google", actionType: "Open App", directionType: "Google", appType: "Google")
         
-        grammarActionsPage.addOpenAppsAction(button: 27, navigateDirection: "Open Google Apps - Google Docs", actionType: "Open App", directionType: "Google", appType: "Google Docs")
+        //create Google Docs button
+        pages.removeAButton(button: 27)
+        grammarActionsPage.createButtonOpenAppsAction(button: 27, navigateDirection: "Open Google Apps - Google Docs", actionType: "Open App", directionType: "Google", appType: "Google Docs")
         
-        grammarActionsPage.addOpenAppsAction(button: 28, navigateDirection: "Open Google Apps - Google Drive", actionType: "Open App", directionType: "Google", appType: "Google Drive")
+        //create Google Drive button
+        pages.removeAButton(button: 28)
+        grammarActionsPage.createButtonOpenAppsAction(button: 28, navigateDirection: "Open Google Apps - Google Drive", actionType: "Open App", directionType: "Google", appType: "Google Drive")
         
-        grammarActionsPage.addOpenAppsAction(button: 29, navigateDirection: "Open Google Apps - Google Maps", actionType: "Open App", directionType: "Google", appType: "Google Maps")
+        //create Google Maps button
+        pages.removeAButton(button: 29)
+        grammarActionsPage.createButtonOpenAppsAction(button: 29, navigateDirection: "Open Google Apps - Google Maps", actionType: "Open App", directionType: "Google", appType: "Google Maps")
         
-        grammarActionsPage.addOpenAppsAction(button: 30, navigateDirection: "Open Google Apps - Google Slides", actionType: "Open App", directionType: "Google", appType: "Google Slides")
+        //create Google Slides button
+        pages.removeAButton(button: 30)
+        grammarActionsPage.createButtonOpenAppsAction(button: 30, navigateDirection: "Open Google Apps - Google Slides", actionType: "Open App", directionType: "Google", appType: "Google Slides")
         
         //check Google app
         grammarActionsPage.checkGoogleApp()

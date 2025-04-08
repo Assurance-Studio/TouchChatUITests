@@ -1,14 +1,12 @@
-//
-//  navigateToTests.swift
 //  TouchChatUITests
 //
-//  Created by Alin Voinescu on 04.10.2024.
+//  Created by Alin V on 01.11.2024.
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.
 //
 
 import XCTest
 
-final class navigateToTests: XCTestCase {
+final class addDateAndTimeTests: XCTestCase {
 
     var app = XCUIApplication()
 
@@ -23,6 +21,7 @@ final class navigateToTests: XCTestCase {
         app.launch()
         pages.checkLicenseModal()
         pages.checkStartModal()
+        
         pages.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
    }
@@ -32,12 +31,11 @@ final class navigateToTests: XCTestCase {
        try super.tearDownWithError()
    }
 
-   func testAddMessageDisplayTests() throws {
+   func testAddDateTimeTests() throws {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
-       let grammarActionsPage = GrammarActionaPageClass(app: app)
-       let vocabularyName = "copied vocabulary navigate to"
+       let vocabularyName = "copied vocabulary date and time action"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
@@ -46,37 +44,26 @@ final class navigateToTests: XCTestCase {
        
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary navigate to"], vocab: vocabularyName)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary date and time action"], vocab: vocabularyName)
 
        pages.editPage()
        //add an action
-       actionsPage.editButtonForAction(nameButton: "Navigate to Page No Anim")
+       actionsPage.editButtonForAction(nameButton: "Add Action Time/Date")
        
        //remove the speech message action
        actionsPage.removeSpeechMessageAction()
        
-       //add no animation action
-       actionsPage.addANewAction(actionName: "Navigate")
-       actionsPage.addNoAnimAction()
+       //add time action
+       actionsPage.addANewAction(actionName: "Add Time/Date")
        
-       //add navigation - up
-       grammarActionsPage.addNavigateAction(button: 26, navigateDirection: "Navigate to Page Up", directionType: "  Animate Up")
-       
-       //add navigation - down
-       grammarActionsPage.addNavigateAction(button: 27, navigateDirection: "Navigate to Page Down", directionType: "  Animate Down")
-       
-       //add navigation - right
-       grammarActionsPage.addNavigateAction(button: 28, navigateDirection: "Navigate to Page Right", directionType: "  Animate Right")
-       
-       //add navigation - left
-       grammarActionsPage.addNavigateAction(button: 29, navigateDirection: "Navigate to Page Left", directionType: "  Animate Left")
+       actionsPage.addActionForTimeDate(actionType: "Date and Time")
        
        //check if the action works
-       actionsPage.checkNavigateActions()
+       actionsPage.checkIfTheDateTimeAreDisplayed()
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
-       print("Navigate to Page Test Finished with success!")
+       print("Date & Time Action Test Finished with success!")
     }
 }
