@@ -226,14 +226,39 @@ class Pages {
         let elementsQuery = popoversQuery.scrollViews.otherElements
         
         let tablesQuery = popoversQuery.tables
-        elementsQuery.buttons["Black"].tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Red"]/*[[".cells.staticTexts[\"Red\"]",".staticTexts[\"Red\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        elementsQuery.buttons["Select Image"].tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["PRC Symbols"]/*[[".cells.staticTexts[\"PRC Symbols\"]",".staticTexts[\"PRC Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Numbers & Symbols"]/*[[".cells.staticTexts[\"Numbers & Symbols\"]",".staticTexts[\"Numbers & Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        tablesQuery.cells.containing(.staticText, identifier:"123").staticTexts["Source: PRC Symbols"].tap()
+        let blackButton = elementsQuery.buttons["Black"]
+        let BlackButtonExists = blackButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(BlackButtonExists)
+        blackButton.tap()
+        
+        let redButton = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Red"]/*[[".cells.staticTexts[\"Red\"]",".staticTexts[\"Red\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let redButtonExists = redButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(redButtonExists)
+        redButton.tap()
+        
+        let selectImageButton = elementsQuery.buttons["Select Image"]
+        let selectImageButtonExists = selectImageButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(selectImageButtonExists)
+        selectImageButton.tap()
+        
+        let prcSymbolsButton = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["PRC Symbols"]/*[[".cells.staticTexts[\"PRC Symbols\"]",".staticTexts[\"PRC Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let prcSymbolsButtonExists = prcSymbolsButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(prcSymbolsButtonExists)
+        prcSymbolsButton.tap()
+        
+        let numbersSymbolsButton = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Numbers & Symbols"]/*[[".cells.staticTexts[\"Numbers & Symbols\"]",".staticTexts[\"Numbers & Symbols\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let numbersSymbolsButtonExists = numbersSymbolsButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(numbersSymbolsButtonExists)
+        numbersSymbolsButton.tap()
+        
+        let prcSymbols = tablesQuery.cells.containing(.staticText, identifier:"123").staticTexts["Source: PRC Symbols"]
+        let prcSymbolsExist = prcSymbols.waitForExistence(timeout: 5)
+        XCTAssertTrue(prcSymbolsExist)
+        prcSymbols.tap()
         
         let saveButton = popoversQuery.navigationBars["Edit Page"].buttons["Save"]
+        let saveButtonExists = saveButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(saveButtonExists)
         saveButton.tap()
     }
     
@@ -244,9 +269,17 @@ class Pages {
         let tablesQuery = popoversQuery.tables
         let testByE2eNavigationBar = app.navigationBars["Test by e2e"]
         testByE2eNavigationBar.buttons["Menu"].tap()
+        sleep(3)
         elementsQuery.buttons["Edit Page Layout"].tap()
-        elementsQuery.buttons["Clear Image"].tap()
+        
+        let clearImageLayout = elementsQuery.buttons["Clear Image"]
+        let clearImageLayoutExists = clearImageLayout.waitForExistence(timeout: 5)
+        XCTAssertTrue(clearImageLayoutExists)
+        clearImageLayout.tap()
+        
         let saveButton = popoversQuery.navigationBars["Edit Page"].buttons["Save"]
+        let saveButtonExists = saveButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(saveButtonExists)
         saveButton.tap()
         testByE2eNavigationBar.buttons["Done"].tap()
     }
@@ -441,7 +474,7 @@ class Pages {
         let elementsQuery = XCUIApplication().popovers.scrollViews.otherElements
         elementsQuery.buttons["Import Photo"].tap()
         let photosBtn = app.staticTexts["Photos"]
-        let photosBtnExists = photosBtn.waitForExistence(timeout: 5)
+        let photosBtnExists = photosBtn.waitForExistence(timeout: 8)
         XCTAssertTrue(photosBtnExists, "The ios gallery is not opening")
         let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.2))
         centerScreenCoordinate.tap()
@@ -550,7 +583,11 @@ class Pages {
     func clearImageNewPage(){
         let popoversQuery = app.popovers
         
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Clear Image"].tap()
+        let clearImage = XCUIApplication().popovers.scrollViews.otherElements.buttons["Clear Image"]
+        let clearImageExists = clearImage.waitForExistence(timeout: 10)
+        XCTAssertTrue(clearImageExists)
+        clearImage.tap()
+        
         popoversQuery.navigationBars["New Page"].buttons["Save"].tap()
     }
     
@@ -562,8 +599,14 @@ class Pages {
         
         let testNavigationBar = app.navigationBars["Page by e2e"]
         testNavigationBar.buttons["Menu"].tap()
-        elementsQuery.buttons["Delete This Page"].tap()
-        XCTAssertTrue(app.staticTexts["Confirm Page Deletion"].exists, "The deletion modal doesn't appear")
+        let deleteThisPageBtn = elementsQuery.buttons["Delete This Page"]
+        let deleteThisPageBtnExists = deleteThisPageBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(deleteThisPageBtnExists)
+        deleteThisPageBtn.tap()
+       
+        let confirmPageDeletion = app.staticTexts["Confirm Page Deletion"]
+        let confirmPageDeletionExists = confirmPageDeletion.waitForExistence(timeout: 10)
+        XCTAssertTrue(confirmPageDeletionExists, "The deletion modal doesn't appear")
         app.buttons["Okay"].tap()
         
         XCUIApplication().navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
@@ -729,7 +772,10 @@ class Pages {
     
     func selectImageButton(){
         let popoversQuery = XCUIApplication().popovers
-        popoversQuery.scrollViews.otherElements.buttons["Select Image"].tap()
+        let selectImageBtn = popoversQuery.scrollViews.otherElements.buttons["Select Image"]
+        let selectImageBtnExists = selectImageBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(selectImageBtnExists)
+        selectImageBtn.tap()
         sleep(4)
         
         let tablesQuery = popoversQuery.tables
