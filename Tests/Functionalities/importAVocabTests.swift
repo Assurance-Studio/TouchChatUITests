@@ -35,8 +35,66 @@ final class importAVocabTests: XCTestCase {
         let modifiers = ModifiersPageClass(app: app)
         
         pages.importAVocab()
+        app.buttons["Import/Export Vocab"].tap()
         
-        modifiers.importVocab()
+        let dropBoxBtn = app.buttons["DropBox"]
+        let dropBoxBtnExists = dropBoxBtn.waitForExistence(timeout: 5)
+        XCTAssert(dropBoxBtnExists)
+        dropBoxBtn.tap()
+        
+        let importFromDropBox = app.buttons["Import from DropBox"]
+        let importFromDropBoxExists = importFromDropBox.waitForExistence(timeout: 5)
+        XCTAssertTrue(importFromDropBoxExists)
+        importFromDropBox.tap()
+//
+//        if let data = pages.loadFile() {
+//            pages.saveFileToDocuments(data: data, fileName: "modifiers", fileExtension: "ce")
+//        }
+        
+        //login to DropBox
+        sleep(7)
+        
+        let declineCookies = app.buttons["Decline"]
+        if declineCookies.exists{
+            declineCookies.tap()
+        }
+        let emailFieldDropBox = app.textFields["Email"]
+        if emailFieldDropBox.exists{
+            let emailFieldDropBoxExists = emailFieldDropBox.waitForExistence(timeout: 10)
+            XCTAssertTrue(emailFieldDropBoxExists)
+            emailFieldDropBox.tap()
+            emailFieldDropBox.typeText("e2e.empower@gmail.com")
+            app.buttons["Continue"].tap()
+            
+            app.secureTextFields.element(boundBy: 0).tap()
+            app.secureTextFields.element(boundBy: 0).typeText("Testtableta01@")
+            app.buttons["Log in"].tap()
+            sleep(3)
+            let savePass = app.buttons["Save Password"]
+            let savePassExists = savePass.waitForExistence(timeout: 10)
+            XCTAssertTrue(savePassExists)
+            savePass.tap()
+            app.buttons["Set up later"].tap()
+            let allowBtn = app.buttons["Allow"]
+            let allowBtnExists = allowBtn.waitForExistence(timeout: 10)
+            XCTAssertTrue(allowBtnExists)
+            allowBtn.press(forDuration: 2)
+        }
+       
+        app.staticTexts["000_newvmodifiers.ce"].tap()
+        
+        let importFileName = app.staticTexts["Import File Name"]
+        let importFileNameExists = importFileName.waitForExistence(timeout: 10)
+        XCTAssertTrue(importFileNameExists)
+        
+        let descriptionVocab = app.textFields.element(boundBy: 1)
+        let descriptionVocabExists = descriptionVocab.waitForExistence(timeout: 10)
+        XCTAssertTrue(descriptionVocabExists)
+        descriptionVocab.tap()
+        descriptionVocab.typeText("gotomodif")
+        app.buttons["Save"].tap()
+        
+        
         
         //open the modifiers vocab
         modifiers.openModifiersVocab()
@@ -44,6 +102,7 @@ final class importAVocabTests: XCTestCase {
         //Test the FN modifiers
         pages.testFnRow1()
         pages.testFnRow2()
+        pages.testFnRow3()
         
         //Test the Lock Modifiers
         pages.testFirstRowLock()

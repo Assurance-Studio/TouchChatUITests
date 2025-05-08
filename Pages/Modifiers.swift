@@ -33,7 +33,7 @@ class ModifiersPageClass {
     }
     
     func openModifiersVocab(){
-        app.staticTexts["modifiers vocab"].tap()
+        app.staticTexts["000_modifiers"].tap()
        sleep(3)
         app.buttons["gotomodif"].tap()
     }

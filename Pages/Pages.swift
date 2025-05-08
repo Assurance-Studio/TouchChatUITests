@@ -143,10 +143,12 @@ class Pages {
     func backToVocab(){
         let vocabButton = app.navigationBars.buttons["Vocab"]
         let vocabButtonExists = vocabButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(vocabButtonExists)
         vocabButton.tap()
         app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
         let editButtonPage = app.buttons["Edit"]
         let editButtonExists = editButtonPage.waitForExistence(timeout: 5)
+        XCTAssertTrue(editButtonExists)
         
         //        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
     }
@@ -1030,6 +1032,29 @@ class Pages {
         app.buttons["Okay"].tap()
     }
     
+    func copyButtonSet(){
+        app.buttons.element(boundBy: 25).tap()
+        let copyBtnSet = app.buttons["Copy ButtonSet"]
+        let copyBtnSetExists = copyBtnSet.waitForExistence(timeout: 7)
+        XCTAssertTrue(copyBtnSetExists)
+        copyBtnSet.tap()
+    }
+    
+    func pasteButtonSet(){
+        app.buttons.element(boundBy: 22).tap()
+        let pasteBtnSet = app.buttons["Paste ButtonSet"]
+        let pasteBtnSetExists = pasteBtnSet.waitForExistence(timeout: 7)
+        XCTAssertTrue(pasteBtnSetExists)
+        pasteBtnSet.tap()
+        sleep(5)
+    }
+    
+    func checkHowCopyPasteButtonSetWorks(){
+        let buttons = app.buttons.matching(identifier: "r")
+        XCTAssertEqual(buttons.count, 2, "There should be 2 buttons with identifier 'r'")
+        XCUIApplication().navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
+    }
+    
     func renameACopiedVocab(){
         app.navigationBars.buttons["Edit"].tap()
         
@@ -1186,6 +1211,79 @@ class Pages {
         return String((0..<length).map{ _ in characters.randomElement()! })
     }
     
+    func loadFile(fileName: String = "modifiers", fileExtension: String = "ce") -> Data? {
+        let bundle = Bundle(for: type(of: self)) // for XCTest target
+        guard let url = bundle.url(forResource: fileName, withExtension: fileExtension) else {
+            XCTFail("Missing file: (fileName).(fileExtension)")
+            return nil
+        }
+
+        return try? Data(contentsOf: url)
+    }
+    
+    func importVocabulary(data: Data, fileName: String = "modifiers", fileExtension: String = "ce") {
+        let fileManager = FileManager.default
+
+        // 1. Get the app's Documents directory
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let destinationURL = documentsURL.appendingPathComponent("\(fileName).\(fileExtension)")
+
+        // 2. Remove existing file if it already exists
+        if fileManager.fileExists(atPath: destinationURL.path) {
+            try? fileManager.removeItem(at: destinationURL)
+        }
+
+        // 3. Write the data to the file
+        do {
+            try data.write(to: destinationURL)
+            print("File imported at: \(destinationURL.path)")
+        } catch {
+            print("Failed to write file: \(error)")
+        }
+    }
+    
+    func saveFileToDocuments(data: Data, fileName: String, fileExtension: String) {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        guard let documentsDirectory = urls.first else { return }
+        
+        let fileURL = documentsDirectory.appendingPathComponent("\(fileName).\(fileExtension)")
+        
+        do {
+            try data.write(to: fileURL)
+            print("File saved to: \(fileURL)")
+        } catch {
+            print("Failed to save file: \(error)")
+        }
+    }
+    
+    func importVocabularyFromDocuments() {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent("modifiers.ce")
+
+        guard FileManager.default.fileExists(atPath: fileURL.path) else {
+            print("modifiers.ce not found in Documents folder")
+            return
+        }
+
+        do {
+            let data = try Data(contentsOf: fileURL)
+
+            // Acum apelezi metoda existentă în aplicație care procesează fișierul
+            // Exemplu (tu pui funcția corectă aici):
+            // self.processImportedVocabulary(data: data)
+            
+            print("Successfully loaded modifiers.ce from Documents (size: \(data.count) bytes)")
+            
+            // Exemplu de apel:
+            self.importVocabulary(data: data)
+
+        } catch {
+            print("Failed to load file: \(error)")
+        }
+    }
+    
     func deleteVocabFromVocabPageIfExisting(deleteCircle: String, maxScrolls: Int = 5, timeout: TimeInterval = 5) {
         var scrollAttempts = 0
         var textFound = false
@@ -1284,7 +1382,24 @@ class Pages {
     }
     
     func testFnRow2() {
-        for i in 36...100 {
+        for i in 36...79 {
+            let buttonID = "Fn\(i)"
+            let labelText = "FN \(i)"
+            
+            // Press the button
+            let button = app.buttons[buttonID]
+            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
+            button.tap()
+            
+            let labelID = "FN \(i)"
+            let label = app.buttons[labelID]
+            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
+            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
+        }
+    }
+    
+    func testFnRow3() {
+        for i in 81...100 {
             let buttonID = "Fn\(i)"
             let labelText = "FN \(i)"
             

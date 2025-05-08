@@ -172,6 +172,57 @@ class ProfilesAndEditingPage {
         app.buttons["Back"].tap()
     }
     
+    func enableSpeakEnlargeAction(){
+        XCUIApplication().popovers.tables.staticTexts["Speech"].swipeUp()
+        XCUIApplication().popovers.tables/*@START_MENU_TOKEN@*/.staticTexts["Tap Action"]/*[[".cells.staticTexts[\"Tap Action\"]",".staticTexts[\"Tap Action\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let speakAction = app.staticTexts["Speak"]
+        let speakEnlarge = app.staticTexts["Speak and Enlarge Text"]
+        let noAction = app.staticTexts["No Action"]
+        
+        let actionsExist = speakAction.exists && speakEnlarge.exists && noAction.exists
+        XCTAssertTrue(actionsExist, "The actions are visible.")
+        
+        speakEnlarge.tap()
+        app.buttons["Done"].tap()
+        
+        app.buttons["t"].tap()
+        app.buttons["The "].tap()
+        sleep(3)
+        
+        let clickTopLeft = app.coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.02))
+        clickTopLeft.tap()
+        
+        let backgroundText = app.staticTexts["The "]
+        let backgroundTextExists = backgroundText.waitForExistence(timeout: 5)
+        XCTAssertTrue(backgroundTextExists)
+        
+        let centerBackground = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        centerBackground.tap()
+    }
+    
+    func enableNoActionTap(){
+        XCUIApplication().popovers.tables.staticTexts["Speech"].swipeUp()
+        XCUIApplication().popovers.tables/*@START_MENU_TOKEN@*/.staticTexts["Tap Action"]/*[[".cells.staticTexts[\"Tap Action\"]",".staticTexts[\"Tap Action\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let speakAction = app.staticTexts["Speak"]
+        let speakEnlarge = app.staticTexts["Speak and Enlarge Text"]
+        let noAction = app.staticTexts["No Action"]
+        
+        let actionsExist = speakAction.exists && speakEnlarge.exists && noAction.exists
+        XCTAssertTrue(actionsExist, "The actions are visible.")
+        
+        noAction.tap()
+        app.buttons["Done"].tap()
+        
+        let clickTopLeft = app.coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.02))
+        clickTopLeft.tap()
+        
+        let vocabButton = app.navigationBars.buttons["Vocab"]
+        let vocabButtonExists = vocabButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(vocabButtonExists)
+    }
+    
     func returnToInitialSettingsPageSize(){
         let statusBar = app.switches.element(boundBy: 5)
         let tablesQuery = XCUIApplication().popovers.tables
