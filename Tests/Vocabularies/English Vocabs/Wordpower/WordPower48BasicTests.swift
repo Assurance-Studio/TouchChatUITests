@@ -1,7 +1,5 @@
-//
 //  WordPower48BasicTests.swift
 //  TouchChatAppUITests
-//
 //  Created by Alin V on 07.05.2025.
 //  Copyright © 2025 PRC-Saltillo. All rights reserved.
 //
