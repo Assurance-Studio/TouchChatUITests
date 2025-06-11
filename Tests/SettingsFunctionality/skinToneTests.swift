@@ -59,13 +59,15 @@ final class skinToneTests: XCTestCase {
        pages.verifyTheVocab(lastElement: "Transportation", vocabWord: "Toys", vocabElement: 3, nameElement: "People")
        //clear all predictions
        
+       //enable rename vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
        app.buttons["Menu"].tap()
        let vocabSettingsButton = app.buttons["Vocabulary Settings"]
        let vocabSettingsButtonExists = vocabSettingsButton.waitForExistence(timeout: 7)
        XCTAssertTrue(vocabSettingsButtonExists)
        vocabSettingsButton.tap()
-       
-       
        
        //check if the prediction works
        predictionsSettingsPage.checkIfThePredictionsWorks()

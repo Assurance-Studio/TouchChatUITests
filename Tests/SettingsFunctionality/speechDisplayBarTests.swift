@@ -45,6 +45,10 @@ final class speechDisplayBarTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary speech display bar"], vocab: vocabularyName)
         
+        //enable rename vocab option
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.ensureAllowDeleteIsOn()
+        
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()
         
@@ -70,7 +74,7 @@ final class speechDisplayBarTests: XCTestCase {
         pages.checkSdbText(sdbText: "test")
         
         profilesAndEditingPage.openTheSettingsTab()
-        let autoCapitalization = app.switches.element(boundBy: 10)
+        let autoCapitalization = app.switches.element(boundBy: 11)
         autoCapitalization.tap()
     
         //check show icons and check if it works

@@ -46,6 +46,10 @@ final class predictionsTests: XCTestCase {
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary predictions settings"], vocab: vocabularyName)
        
+       //enable rename vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
        //clear all predictions
        profilesAndEditingPage.openTheSettingsTab()
        predictionsSettingsPage.clearAllPredictions()
