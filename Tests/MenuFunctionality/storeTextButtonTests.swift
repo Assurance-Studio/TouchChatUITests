@@ -32,9 +32,10 @@ final class storeTextButtonTests: XCTestCase {
     func testLaunchStoreTextButton() throws {
         
         let pages = Pages(app: app)
+        let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let vocabularyName = "copied vocabulary"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -42,6 +43,10 @@ final class storeTextButtonTests: XCTestCase {
         //copy a Spelling Vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary"], vocab: vocabularyName)
+        
+        //enable rename vocab option
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.ensureAllowDeleteIsOn()
         
         //storeTextToAButton
         pages.writeTestBy()

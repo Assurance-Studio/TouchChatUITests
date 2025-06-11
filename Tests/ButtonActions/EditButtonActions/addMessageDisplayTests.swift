@@ -36,6 +36,7 @@ final class addMessageDisplayTests: XCTestCase {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
+       let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
        let vocabularyName = "copied vocabulary add message"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
@@ -47,6 +48,10 @@ final class addMessageDisplayTests: XCTestCase {
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary add message"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForAction(nameButton: "Add Message To Display")

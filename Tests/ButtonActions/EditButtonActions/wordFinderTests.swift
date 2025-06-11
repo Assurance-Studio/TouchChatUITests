@@ -36,6 +36,7 @@ final class wordFinderTests: XCTestCase {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
+       let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
        let vocabularyName = "copied vocabulary wordfinder"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
@@ -48,6 +49,10 @@ final class wordFinderTests: XCTestCase {
        sleep(2)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary wordfinder"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForAction(nameButton: "Word Finder Btn")

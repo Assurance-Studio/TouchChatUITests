@@ -39,6 +39,7 @@ final class hideModeTests: XCTestCase {
     func testhideModeTests() throws {
         
         let pages = Pages(app: app)
+        let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let vocabularyName = "copied vocabulary hide mode"
         let vocabylaryDesc = "vocabulary description e2e"
         var vocabName = "vocabulary"
@@ -50,6 +51,10 @@ final class hideModeTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary hide mode"], vocab: vocabularyName)
 
+        //enable rename vocab option
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.ensureAllowDeleteIsOn()
+        
         //open the Edit Page tab
         pages.editPage()
         

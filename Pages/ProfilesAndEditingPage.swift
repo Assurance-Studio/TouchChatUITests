@@ -163,6 +163,15 @@ class ProfilesAndEditingPage {
         
         XCTAssert(imageSizeKeyguardAfter.height < imageSizeKeyguardBefore.height, "The image size has not changed")
     }
+
+        func ensureAllowDeleteIsOn() {
+            sleep(3)
+            let allowDeleteSwitch = app.switches.element(boundBy: 7)
+            if allowDeleteSwitch.value as? String == "0" {
+                allowDeleteSwitch.tap()
+            }
+            app.buttons["Done"].tap()
+        }
     
     func navigationsIcons(){
         app.switches.element(boundBy: 4).tap()

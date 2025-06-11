@@ -35,6 +35,7 @@ final class pasteButtonStyle: XCTestCase {
    func testPasteButtonStyleTests() throws {
        
        let pages = Pages(app: app)
+       let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
        let vocabularyName = "copied vocabulary paste button"
        let vocabularyDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
@@ -46,6 +47,10 @@ final class pasteButtonStyle: XCTestCase {
        mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary paste button"], vocab: vocabularyName)
 
+       //enable rename vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
        //open the Edit Page tab
        pages.editPage()
        

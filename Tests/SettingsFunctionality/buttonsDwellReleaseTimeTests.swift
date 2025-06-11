@@ -42,6 +42,10 @@ final class buttonsDwellReleaseTimeTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary button Dwell Time"], vocab: vocabularyName)
         
+        //enable rename vocab option
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.ensureAllowDeleteIsOn()
+        
         //open the settings menu
         profilesAndEditingPage.openTheSettingsTab()
         

@@ -48,6 +48,10 @@ final class buttonsSettingsTests: XCTestCase {
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary buttons settings"], vocab: vocabularyName)
 
+       //enable rename vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //edit the font size for a button
        buttonsSettingsPage.editFontSizeButton()

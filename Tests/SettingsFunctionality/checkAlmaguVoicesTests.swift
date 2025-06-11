@@ -58,6 +58,10 @@ final class checkAlmaguVoicesTests: XCTestCase {
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary almagu voices"], vocab: vocabularyName)
        
+       //enable rename vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
        //check if the force font size works
        profilesAndEditingPage.openTheSettingsTab()
        

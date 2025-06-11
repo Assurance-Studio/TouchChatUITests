@@ -37,6 +37,7 @@ final class navigateHomeBackTests: XCTestCase {
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
        let grammarActionsPage = GrammarActionaPageClass(app: app)
+       let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
        let vocabularyName = "copied vocabulary navigate to"
        let vocabylaryDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
@@ -50,6 +51,10 @@ final class navigateHomeBackTests: XCTestCase {
        
        grammarActionsPage.openSecondPage()
 
+       //enable delete vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForNavigateAction(nameButton: "Navigate Back No Anim")

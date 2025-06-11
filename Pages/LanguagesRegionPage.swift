@@ -32,13 +32,13 @@ class LanguagesRegionPage {
         app.staticTexts["Samantha"].tap()
         app.staticTexts["Liam (child)"].tap()
         // Check how many "DownloadButton" elements exist before starting the download
-        let initialDownloadButtonsCount = app.buttons.matching(identifier: "DownloadButton").count
+        let initialDownloadButtonsCount = app.buttons.matching(identifier: "arrow.down").count
         XCTAssertGreaterThan(initialDownloadButtonsCount, 0, "There should be at least one 'DownloadButton'")
         
         // Wait until the number of "DownloadButton" buttons decreases by 1
         let expectation = XCTNSPredicateExpectation(
                     predicate: NSPredicate(format: "count == %d", initialDownloadButtonsCount - 1),
-                    object: app.buttons.matching(identifier: "DownloadButton")
+                    object: app.buttons.matching(identifier: "arrow.down")
                 )
 
                 // Wait until the number of "DownloadButton" buttons decreases by 1
@@ -46,7 +46,7 @@ class LanguagesRegionPage {
 
                 // Check if the waiting succeeded
                 if result == .completed {
-                    XCTAssertEqual(app.buttons.matching(identifier: "DownloadButton").count, initialDownloadButtonsCount - 1, "One 'DownloadButton' should have disappeared after the download started")
+                    XCTAssertEqual(app.buttons.matching(identifier: "arrow.down").count, initialDownloadButtonsCount - 1, "One 'DownloadButton' should have disappeared after the download started")
                 } else {
                     XCTFail("The 'DownloadButton' did not disappear within the timeout period")
                 }
@@ -60,13 +60,13 @@ class LanguagesRegionPage {
         app.staticTexts["Majed"].tap()
         app.staticTexts["Jalal"].tap()
         // Check how many "DownloadButton" elements exist before starting the download
-        let initialDownloadButtonsCount = app.buttons.matching(identifier: "DownloadButton").count
+        let initialDownloadButtonsCount = app.buttons.matching(identifier: "arrow.down").count
         XCTAssertGreaterThan(initialDownloadButtonsCount, 0, "There should be at least one 'DownloadButton'")
         
         // Wait until the number of "DownloadButton" buttons decreases by 1
         let expectation = XCTNSPredicateExpectation(
                     predicate: NSPredicate(format: "count == %d", initialDownloadButtonsCount - 1),
-                    object: app.buttons.matching(identifier: "DownloadButton")
+                    object: app.buttons.matching(identifier: "arrow.down")
                 )
 
                 // Wait until the number of "DownloadButton" buttons decreases by 1
@@ -74,7 +74,7 @@ class LanguagesRegionPage {
 
                 // Check if the waiting succeeded
                 if result == .completed {
-                    XCTAssertEqual(app.buttons.matching(identifier: "DownloadButton").count, initialDownloadButtonsCount - 1, "One 'DownloadButton' should have disappeared after the download started")
+                    XCTAssertEqual(app.buttons.matching(identifier: "arrow.down").count, initialDownloadButtonsCount - 1, "One 'DownloadButton' should have disappeared after the download started")
                 } else {
                     XCTFail("The 'DownloadButton' did not disappear within the timeout period")
                 }
@@ -97,20 +97,20 @@ class LanguagesRegionPage {
         app.staticTexts["Samantha"].tap()
         app.staticTexts["William (teen)"].tap()
         // Check how many "DownloadButton" elements exist before starting the download
-        let initialDownloadButtonsCount = app.buttons.matching(identifier: "DownloadButton").count
+        let initialDownloadButtonsCount = app.buttons.matching(identifier: "arrow.down").count
         XCTAssertGreaterThan(initialDownloadButtonsCount, 0, "There should be at least one 'DownloadButton'")
         
         // Wait until the number of "DownloadButton" buttons decreases by 1
         let expectation = XCTNSPredicateExpectation(
                     predicate: NSPredicate(format: "count == %d", initialDownloadButtonsCount - 1),
-                    object: app.buttons.matching(identifier: "DownloadButton")
+                    object: app.buttons.matching(identifier: "arrow.down")
                 )
 
                 let result = XCTWaiter.wait(for: [expectation], timeout: 20)
 
                 // Check if the waiting succeeded
                 if result == .completed {
-                    XCTAssertEqual(app.buttons.matching(identifier: "DownloadButton").count, initialDownloadButtonsCount - 1, "One 'DownloadButton' should have disappeared after the download started")
+                    XCTAssertEqual(app.buttons.matching(identifier: "arrow.down").count, initialDownloadButtonsCount - 1, "One 'DownloadButton' should have disappeared after the download started")
                 } else {
                     XCTFail("The 'DownloadButton' did not disappear within the timeout period")
                 }

@@ -45,6 +45,10 @@ final class dataLoggingTests: XCTestCase {
         sleep(3)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary data logging"], vocab: vocabularyName)
         
+        //enable rename vocab option
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.ensureAllowDeleteIsOn()
+        
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()
         

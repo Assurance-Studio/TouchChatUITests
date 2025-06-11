@@ -32,6 +32,7 @@ final class editAButtonTests: XCTestCase {
     func testeditAButtonTests() throws {
         
         let pages = Pages(app: app)
+        let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let vocabularyName = "copied vocabulary edit button"
         let vocabularyDesc = "vocabulary description e2e"
         var vocabName = "vocabulary"
@@ -43,6 +44,10 @@ final class editAButtonTests: XCTestCase {
         mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary edit button"], vocab: vocabularyName)
 
+        //enable delete vocab option
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.ensureAllowDeleteIsOn()
+        
         //open the Edit Page tab
         pages.editPage()
         

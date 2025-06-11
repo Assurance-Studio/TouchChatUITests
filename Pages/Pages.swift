@@ -129,7 +129,8 @@ class Pages {
     
     func openAVocab(){
         let openAVocabModal = app.staticTexts["What would you like to do with this vocabulary?"]
-        XCTAssertTrue(openAVocabModal.exists, "The open vocab modal is not visible.")
+        let openAVocabModalExists = openAVocabModal.waitForExistence(timeout: 10)
+        XCTAssertTrue(openAVocabModalExists, "The open vocab modal is not visible.")
         app.buttons["Open"].tap()
     }
     
@@ -1329,25 +1330,30 @@ class Pages {
         XCTAssertFalse(textFound, "The text '\(deleteCircle)' was found on the screen after \(scrollAttempts) scroll attempts.")
     }
     
-    func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {
+    func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 5, timeout: TimeInterval = 10) {
         let startTime = Date()
         var scrollAttempts = 0
-        
+
         while !element.exists || !element.isHittable {
             if scrollAttempts >= maxScrolls || Date().timeIntervalSince(startTime) >= timeout {
+                print("Element not found after \(scrollAttempts) scrolls or \(timeout) seconds.")
+                return
             }
             app.swipeUp()
             scrollAttempts += 1
             sleep(1)
         }
     }
+
     
-    func scrollUpUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {
+    func scrollUpUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 5, timeout: TimeInterval = 10) {
         let startTime = Date()
         var scrollAttempts = 0
         
         while !element.exists || !element.isHittable {
             if scrollAttempts >= maxScrolls || Date().timeIntervalSince(startTime) >= timeout {
+                print("Element not found after \(scrollAttempts) scrolls or \(timeout) seconds.")
+                return
             }
             app.swipeDown()
             scrollAttempts += 1

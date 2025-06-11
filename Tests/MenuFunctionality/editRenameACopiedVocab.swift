@@ -35,6 +35,7 @@ final class editRenameACopiedVocab: XCTestCase {
    func testEditRenameACopiedVocab() throws {
        
        let pages = Pages(app: app)
+       let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
        let vocabularyName = "copied vocabulary edit/rename"
        let vocabularyDesc = "vocabulary description e2e"
        var vocabName = "vocabulary"
@@ -44,7 +45,13 @@ final class editRenameACopiedVocab: XCTestCase {
        
        //copy a new vocab
        mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
+       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary edit/rename"], vocab: vocabularyName)
        
+       //enable rename vocab option
+       profilesAndEditingPage.openTheSettingsTab()
+       profilesAndEditingPage.ensureAllowDeleteIsOn()
+       
+       pages.backToVocab()
        //rename the copied vocab
        pages.renameACopiedVocab()
        
