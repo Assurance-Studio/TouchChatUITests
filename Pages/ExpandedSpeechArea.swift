@@ -20,7 +20,7 @@ class ExpandedSpeechDisplayArea {
         tablesQuery.staticTexts["Speech"].swipeUp()
         tablesQuery.staticTexts["Speech Display Bar"].swipeUp()
         tablesQuery.staticTexts["Expanded Speech Area"].swipeUp()
-        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 32).staticTexts["Font"].tap()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 31).staticTexts["Font"].tap()
         
          
         let font1 = app.staticTexts["Amaranth"]

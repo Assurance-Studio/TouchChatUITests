@@ -47,6 +47,9 @@ final class pageSizeTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary Page Size"], vocab: vocabularyName)
         
+        //enable rename vocab option
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.ensureAllowDeleteIsOn()
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()
         
