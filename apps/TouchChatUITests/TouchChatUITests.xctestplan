@@ -1,0 +1,49 @@
+{
+  "configurations" : [
+    {
+      "id" : "05725821-FB74-4509-B9B0-FD22959F4A80",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "EditPage",
+        "_0CheckVocab",
+        "_0_About",
+        "_1_CopyVocabulary",
+        "_1_EditAbbreviations",
+        "e2e_TCHDWPLaunchSinSintaxis4x4EnglishSS",
+        "e2e_TCHDWPLaunchSinSintaxis4x4SpanishSS",
+        "e2e_TCHDWPLaunchSintaxis4x5EnglishSS",
+        "e2e_TCHDWPLaunchSintaxis4x5SpanishSS",
+        "e2e_TCHDWPLaunchadult12SS",
+        "e2e_TCHDWPLaunchadult8SS",
+        "e2e_TCHDWPLaunchafasiaEspanolSS",
+        "e2e_TCHDWPLaunchaphasiaSpanishSS",
+        "e2e_TCHDWPLaunchaphasiaUKSS",
+        "e2e_TCHDWPLaunchaphasiaUSSS",
+        "e2e_TCHDWPLaunchchild12SS",
+        "e2e_TCHDWPLaunchchild4SS",
+        "e2e_TCHDWPLaunchchild8SS",
+        "e2e_TCHDWPLaunchmultiChat15BilingualSS",
+        "e2e_TCHDWPLaunchmultiChat15SS",
+        "e2e_TCHDWPLaunchmultiChatAdolescent",
+        "e2e_TCHDWPLaunchmultiChatAdult",
+        "e2e_TCHDWPLaunchmultiChatStudent"
+      ],
+      "target" : {
+        "containerPath" : "container:TouchChat.xcodeproj",
+        "identifier" : "29F3A99F2C11B47D003C2845",
+        "name" : "TouchChatUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
