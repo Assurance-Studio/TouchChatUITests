@@ -38,7 +38,7 @@ final class WordPower25SSTests: XCTestCase {
     func testLaunchWordPower25SS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
+        pages.scrollDownUntilElementIsVisible(pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower25Position.tap()
         pages.wordPower25TouchScan.tap()

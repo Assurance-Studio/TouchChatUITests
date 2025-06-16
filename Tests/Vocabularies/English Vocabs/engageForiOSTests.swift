@@ -38,7 +38,7 @@ final class EngageiOSSSTests: XCTestCase {
     func testLaunchEngageForiOS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.engageForiOS)
+        pages.scrollDownUntilElementIsVisible(pages.engageForiOS)
         pages.engageForiOS.tap()
         pages.openAVocab()
         

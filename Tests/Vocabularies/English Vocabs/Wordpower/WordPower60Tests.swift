@@ -38,7 +38,7 @@ final class WordPower60SSTests: XCTestCase {
     func testLaunchWordPower60SS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
+        pages.scrollDownUntilElementIsVisible(pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower60Position.tap()
         pages.wordPower60SS.tap()

@@ -39,7 +39,7 @@ final class test4deBaseSS: XCTestCase {
         
         let pages = Pages(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
-        pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
+        pages.scrollDownUntilElementIsVisible(pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.base4FrenchSS.tap()
         pages.openAVocab()

@@ -38,7 +38,7 @@ final class Child12SSTests: XCTestCase {
     func testLaunchchild12SS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
+        pages.scrollDownUntilElementIsVisible(pages.myQuickChatVocab)
         pages.myQuickChatVocab.tap()
         pages.childQuickChatVocab.tap()
         pages.quickChatChild12SS.tap()

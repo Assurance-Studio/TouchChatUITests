@@ -13,7 +13,6 @@ final class createButtonActions1: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
-        
         let pages = Pages(app: app)
         
         app = XCUIApplication()

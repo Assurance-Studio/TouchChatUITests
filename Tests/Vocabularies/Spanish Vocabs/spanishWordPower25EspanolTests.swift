@@ -39,7 +39,7 @@ final class WordPower25EspanolTests: XCTestCase {
         
         let pages = Pages(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
+        pages.scrollDownUntilElementIsVisible(pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.wordPowerEspanol25.tap()
         pages.openAVocab()

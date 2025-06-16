@@ -42,7 +42,7 @@ final class spniashWordPower96Espanol: XCTestCase {
         
         let pages = Pages(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
+        pages.scrollDownUntilElementIsVisible(pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.wordPowerLiteTech96.tap()
         pages.openAVocab()

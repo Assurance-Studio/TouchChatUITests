@@ -37,7 +37,7 @@ final class AphasiaUKSSTests: XCTestCase {
     func testLaunchaphasiaUKSS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.aphasiaVocab)
+        pages.scrollDownUntilElementIsVisible(pages.aphasiaVocab)
         pages.aphasiaVocab.tap()
         pages.aphasiaUKSS.tap()
         pages.openAVocab()

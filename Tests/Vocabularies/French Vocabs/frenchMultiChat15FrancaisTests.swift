@@ -39,7 +39,7 @@ final class multiChat15FrancaisTests: XCTestCase {
         
         let pages = Pages(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
-        pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
+        pages.scrollDownUntilElementIsVisible(pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.multiChat15FrancaisSS.tap()
         pages.openAVocab()

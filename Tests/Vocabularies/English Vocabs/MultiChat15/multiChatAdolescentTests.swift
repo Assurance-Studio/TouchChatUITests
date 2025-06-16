@@ -38,7 +38,7 @@ final class MultiChatAdolescentTests: XCTestCase {
     func testLaunchMultiChatAdolescent() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.multiChat15Vocab)
+        pages.scrollDownUntilElementIsVisible(pages.multiChat15Vocab)
         pages.multiChat15Vocab.tap()
         pages.multiChatAdolescentSS.tap()
         pages.openAVocab()

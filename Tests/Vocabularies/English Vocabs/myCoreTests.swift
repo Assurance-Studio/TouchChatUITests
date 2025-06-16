@@ -38,7 +38,7 @@ final class MyCoreSSTests: XCTestCase {
     func testLaunchmyCoreSS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.myCoreSS)
+        pages.scrollDownUntilElementIsVisible(pages.myCoreSS)
         pages.myCoreSS.tap()
         pages.openAVocab()
         

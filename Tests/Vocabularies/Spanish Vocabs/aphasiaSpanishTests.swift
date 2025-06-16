@@ -37,7 +37,7 @@ final class AphasiaSpanishSSTests: XCTestCase {
         
         let pages = Pages(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
+        pages.scrollUntilVisible(app.tables.staticTexts, identifier: "Spanish")
         pages.SpanishVocab.tap()
         pages.aphasiaSpanishSS.tap()
         pages.openAVocab()

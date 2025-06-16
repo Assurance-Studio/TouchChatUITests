@@ -38,7 +38,7 @@ final class SpellingSSTests: XCTestCase {
     func testLaunchSpellingSS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
+        pages.scrollDownUntilElementIsVisible(pages.spellingSS)
         pages.spellingSS.tap()
         pages.openAVocab()
         

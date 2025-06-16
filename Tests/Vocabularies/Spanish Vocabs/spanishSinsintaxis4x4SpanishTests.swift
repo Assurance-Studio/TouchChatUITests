@@ -40,7 +40,7 @@ final class SinSintaxis4x4SpanishSSTests: XCTestCase {
         
         let pages = Pages(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
-        pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
+        pages.scrollDownUntilElementIsVisible(pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.sintaxis4x4Spanish.tap()
         pages.openAVocab()

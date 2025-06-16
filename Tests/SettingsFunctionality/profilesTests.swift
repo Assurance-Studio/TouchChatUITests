@@ -38,7 +38,7 @@ final class profilesTests: XCTestCase {
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         
-        pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
+        pages.scrollDownUntilElementIsVisible(pages.basic4SS)
         pages.basic4SS.tap()
         pages.openAVocab()
         

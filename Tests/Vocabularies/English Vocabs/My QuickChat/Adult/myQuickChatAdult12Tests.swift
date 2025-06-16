@@ -38,7 +38,7 @@ final class Adult12SSTests: XCTestCase {
     func testLaunchAdult12SS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
+        pages.scrollDownUntilElementIsVisible(pages.myQuickChatVocab)
         pages.myQuickChatVocab.tap()
         pages.adultQuickChatVocab.tap()
         pages.quickChatAdult12SS.tap()

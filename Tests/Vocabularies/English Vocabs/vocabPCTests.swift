@@ -38,7 +38,7 @@ final class vocabPCSSTests: XCTestCase {
     func testLaunchVocabPc() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.vocabPCSS)
+        pages.scrollDownUntilElementIsVisible(pages.vocabPCSS)
         pages.vocabPCSS.tap()
         pages.openAVocab()
         

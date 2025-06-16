@@ -1144,6 +1144,7 @@ class Pages {
         //French (Canada)
         app.staticTexts[languageVocab].tap()
         app.buttons["Done"].tap()
+        sleep(5)
     }
     
     func resetPersistentStorage() {
@@ -1330,22 +1331,54 @@ class Pages {
         XCTAssertFalse(textFound, "The text '\(deleteCircle)' was found on the screen after \(scrollAttempts) scroll attempts.")
     }
     
-    func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 5, timeout: TimeInterval = 10) {
-        let startTime = Date()
-        var scrollAttempts = 0
-
-        while !element.exists || !element.isHittable {
-            if scrollAttempts >= maxScrolls || Date().timeIntervalSince(startTime) >= timeout {
-                print("Element not found after \(scrollAttempts) scrolls or \(timeout) seconds.")
+//    func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 5, timeout: TimeInterval = 10) {
+//        let startTime = Date()
+//        var scrollAttempts = 0
+//
+//        while !element.exists || !element.isHittable {
+//            if scrollAttempts >= maxScrolls || Date().timeIntervalSince(startTime) >= timeout {
+//                print("Element not found after \(scrollAttempts) scrolls or \(timeout) seconds.")
+//                return
+//            }
+//            app.swipeUp()
+//            scrollAttempts += 1
+//            sleep(1)
+//        }
+//    }
+    
+    func scrollDownUntilElementIsVisible(_ element: XCUIElement, maxScrolls: Int = 5) {
+        for _ in 0..<maxScrolls {
+            if element.exists && element.isHittable {
                 return
             }
             app.swipeUp()
-            scrollAttempts += 1
             sleep(1)
         }
+
+        XCTFail("Element '\(element)' not found or not hittable after \(maxScrolls) scrolls.")
+    }
+    
+    func scrollUntilVisible(_ query: XCUIElementQuery, identifier: String, maxScrolls: Int = 5, timeoutPerScroll: TimeInterval = 1.0) {
+        var scrolls = 0
+    
+    while scrolls < maxScrolls {
+        let element = query[identifier]
+
+        if element.waitForExistence(timeout: timeoutPerScroll), element.isHittable {
+            return // Found and can interact with it
+        }
+
+        app.swipeUp()
+        scrolls += 1
     }
 
+    // Fail the test and close the app if element not found
+    XCTFail("Element '\(identifier)' not found or not hittable after \(maxScrolls) scrolls.")
+    app.terminate()
+    }
     
+    
+
     func scrollUpUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 5, timeout: TimeInterval = 10) {
         let startTime = Date()
         var scrollAttempts = 0

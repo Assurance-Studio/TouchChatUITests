@@ -38,7 +38,7 @@ final class Child4SSTests: XCTestCase {
     func testLaunchchild4SS() throws {
         
         let pages = Pages(app: app)
-        pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
+        pages.scrollDownUntilElementIsVisible(pages.myQuickChatVocab)
         pages.myQuickChatVocab.tap()
         pages.childQuickChatVocab.tap()
         pages.quickChatChild4SS.tap()
