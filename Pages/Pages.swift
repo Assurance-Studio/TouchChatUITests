@@ -327,6 +327,21 @@ class Pages {
         vocabWordVocab.press(forDuration: 2)
     }
     
+    func ensureAllowDeleteIsOn() {
+        sleep(3)
+        let allowDeleteSwitch = app.switches.element(boundBy: 7)
+        if allowDeleteSwitch.value as? String == "0" {
+                    allowDeleteSwitch.tap()
+                }
+                app.buttons["Done"].tap()
+            }
+    func openTheSettingsTab(){
+            app.navigationBars.buttons["Menu"].tap()
+            
+            let popoversQuery = app.popovers
+            popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        }
+    
     func reachAddAbbreviation(){
         app.navigationBars.buttons["Menu"].tap()
         let popoversQuery = app.popovers
@@ -1302,6 +1317,7 @@ class Pages {
                 app.tables.images[deleteCircle].tap()
                 let deleteButton = app.tables.buttons["Delete"]
                 let deleteButtonExists = deleteButton.waitForExistence(timeout: 5)
+                XCTAssertTrue(deleteButtonExists)
                
                 mainPage.deleteVocabButtonSquare.tap()
                 app.alerts["Delete Vocabulary"].scrollViews.otherElements.buttons["Continue"].tap()
@@ -1329,7 +1345,7 @@ class Pages {
         XCTAssertFalse(textFound, "The text '\(deleteCircle)' was found on the screen after \(scrollAttempts) scroll attempts.")
     }
     
-    func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {
+    func scrollDownUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 5, timeout: TimeInterval = 10) {
         let startTime = Date()
         var scrollAttempts = 0
         
@@ -1342,7 +1358,7 @@ class Pages {
         }
     }
     
-    func scrollUpUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 10, timeout: TimeInterval = 10) {
+    func scrollUpUntilElementIsVisible(element: XCUIElement, maxScrolls: Int = 5, timeout: TimeInterval = 10) {
         let startTime = Date()
         var scrollAttempts = 0
         

@@ -33,7 +33,7 @@ final class expandedSpeechAreaTests: XCTestCase {
         func testExpandedSpeechAreaTests() throws {
             let vocabularyName = "copied vocabulary speech display bar"
             let vocabylaryDesc = "vocabulary description e2e"
-            var vocabName = "vocabulary"
+            let vocabName = "vocabulary"
             lazy var mainPage: MainPage = {
                 return MainPage(app: XCUIApplication(), vocabName: vocabName)
             }()
@@ -44,7 +44,11 @@ final class expandedSpeechAreaTests: XCTestCase {
             //copy a new vocab
             mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
             mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary speech display bar"], vocab: vocabularyName)
-                        
+             
+            //enable rename vocab option
+            pages.openTheSettingsTab()
+            pages.ensureAllowDeleteIsOn()
+            
             //open The Settings Menu
             profilesAndEditingPage.openTheSettingsTab()
             

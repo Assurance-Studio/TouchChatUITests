@@ -37,22 +37,28 @@ final class editRenameACopiedVocab: XCTestCase {
        let pages = Pages(app: app)
        let vocabularyName = "copied vocabulary edit/rename"
        let vocabularyDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
        
        //copy a new vocab
-       mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-       
-       //rename the copied vocab
-       pages.renameACopiedVocab()
-       
-       //check if the vocab was renamed
-       
-       XCTAssertTrue(app.staticTexts["Renamed description e2e"].exists, "The renamed vocab is not visible")
-       
-       mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
-       print("Rename & Delete a Copied Vocab Test Finished with success!")
+        mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary edit/rename"], vocab: vocabularyName)
+              
+       //enable rename vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+              
+        pages.backToVocab()
+        //rename the copied vocab
+        pages.renameACopiedVocab()
+              
+        //check if the vocab was renamed
+              
+        XCTAssertTrue(app.staticTexts["Renamed description e2e"].exists, "The renamed vocab is not visible")
+              
+        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+        print("Rename & Delete a Copied Vocab Test Finished with success!")
     }
 }

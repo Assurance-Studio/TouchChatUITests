@@ -34,7 +34,7 @@ final class createANewButtonTests: XCTestCase {
         let pages = Pages(app: app)
         let vocabularyName = "copied vocabulary create button"
         let vocabularyDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -43,6 +43,10 @@ final class createANewButtonTests: XCTestCase {
         mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary create button"], vocab: vocabularyName)
 
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
         //open the Edit Page tab
         pages.editPage()
         

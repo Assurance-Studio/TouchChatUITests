@@ -34,13 +34,17 @@ final class buttonsDwellReleaseTimeTests: XCTestCase {
         }()
         let vocabularyName = "copied vocabulary button Dwell Time"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let dataLoginPage = DataLoggingPage(app: app)
        
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary button Dwell Time"], vocab: vocabularyName)
+        
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
         
         //open the settings menu
         profilesAndEditingPage.openTheSettingsTab()

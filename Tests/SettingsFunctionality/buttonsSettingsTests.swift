@@ -39,7 +39,7 @@ final class buttonsSettingsTests: XCTestCase {
        let buttonsSettingsPage = ButtonsSettingsPage(app: app)
        let vocabularyName = "copied vocabulary buttons settings"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -48,6 +48,10 @@ final class buttonsSettingsTests: XCTestCase {
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary buttons settings"], vocab: vocabularyName)
 
+       //enable rename vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //edit the font size for a button
        buttonsSettingsPage.editFontSizeButton()

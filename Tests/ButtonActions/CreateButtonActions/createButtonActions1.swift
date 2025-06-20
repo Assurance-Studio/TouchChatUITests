@@ -36,7 +36,7 @@ final class createButtonActions1: XCTestCase {
        let actionsPage = ActionaPageClass(app: app)
        let vocabularyName = "copied vocabulary create button actions1"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -45,6 +45,10 @@ final class createButtonActions1: XCTestCase {
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary create button actions1"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action - Add Time/Date
        pages.removeAButton(button: 22)

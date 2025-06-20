@@ -12,9 +12,7 @@ final class Child12SSTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
-        let vocabularyName = "copied vocabulary"
-        let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -42,6 +40,7 @@ final class Child12SSTests: XCTestCase {
         pages.myQuickChatVocab.tap()
         pages.childQuickChatVocab.tap()
         pages.quickChatChild12SS.tap()
+        pages.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Playing", vocabWord: "Drinks", vocabElement: 14, nameElement: "Places")
         

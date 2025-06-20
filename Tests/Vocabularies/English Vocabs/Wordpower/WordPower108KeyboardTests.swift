@@ -44,7 +44,7 @@ final class WordPower108SSKeyboardTests: XCTestCase {
         pages.wordPower108SSKeyboard.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "clear", vocabWord: "PEOPLE ", vocabElement: 3, nameElement: "PEOPLE ")
+        pages.verifyTheVocab(lastElement: "clear", vocabWord: "PEOPLE", vocabElement: 3, nameElement: "PEOPLE")
         
         XCTAssertTrue(app.buttons["mom"].exists)
         app.buttons["mom"].tap()

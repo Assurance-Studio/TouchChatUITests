@@ -41,7 +41,7 @@ final class hideModeTests: XCTestCase {
         let pages = Pages(app: app)
         let vocabularyName = "copied vocabulary hide mode"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -50,6 +50,10 @@ final class hideModeTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary hide mode"], vocab: vocabularyName)
 
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
         //open the Edit Page tab
         pages.editPage()
         

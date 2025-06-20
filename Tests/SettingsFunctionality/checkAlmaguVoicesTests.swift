@@ -39,7 +39,7 @@ final class checkAlmaguVoicesTests: XCTestCase {
        let languagesPage = LanguagesRegionPage(app: app)
        let vocabularyName = "copied vocabulary almagu voices"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -57,6 +57,10 @@ final class checkAlmaguVoicesTests: XCTestCase {
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary almagu voices"], vocab: vocabularyName)
+       
+       //enable rename vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
        
        //check if the force font size works
        profilesAndEditingPage.openTheSettingsTab()

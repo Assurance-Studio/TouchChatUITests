@@ -57,31 +57,29 @@ final class skinToneTests: XCTestCase {
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary skin tone settings"], vocab: vocabularyName)
        
        pages.verifyTheVocab(lastElement: "Transportation", vocabWord: "Toys", vocabElement: 3, nameElement: "People")
-       //clear all predictions
        
+       //enable rename vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
+       //clear all predictions
        app.buttons["Menu"].tap()
        let vocabSettingsButton = app.buttons["Vocabulary Settings"]
        let vocabSettingsButtonExists = vocabSettingsButton.waitForExistence(timeout: 7)
        XCTAssertTrue(vocabSettingsButtonExists)
        vocabSettingsButton.tap()
        
-       
-       
-       //check if the prediction works
-       predictionsSettingsPage.checkIfThePredictionsWorks()
-       
-       //delete the new prediction
-       profilesAndEditingPage.openTheSettingsTab()
-       predictionsSettingsPage.deleteTheNewPrediction()
-       
-       //add a new prediction
-       predictionsSettingsPage.addANewPrediction()
-       //remove the renamed prediction
-       predictionsSettingsPage.deleteTheRenamedPredictions()
+       app.staticTexts["SymbolStix Skin Tone"].tap()
+       let randomBtn = app.staticTexts["Random"]
+       let randomBtnExists = randomBtn.waitForExistence(timeout: 10)
+       XCTAssertTrue(randomBtnExists)
+       randomBtn.tap()
+       app.buttons["Done"].tap()
+       app.buttons["Back"].tap()
        
        pages.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
-       print("Predictions Settings Test Finished with success!")
+       print("Skin Tone Test Finished with success!")
     }
 }

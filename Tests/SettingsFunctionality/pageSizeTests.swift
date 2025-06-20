@@ -40,12 +40,16 @@ final class pageSizeTests: XCTestCase {
         }()
         let vocabularyName = "copied vocabulary Page Size"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary Page Size"], vocab: vocabularyName)
+        
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
         
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()

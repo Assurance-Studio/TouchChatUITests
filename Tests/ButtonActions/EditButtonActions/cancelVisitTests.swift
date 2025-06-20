@@ -35,10 +35,9 @@ final class cancelVisitTests: XCTestCase {
         
         let pages = Pages(app: app)
         let actionsPage = ActionaPageClass(app: app)
-        let grammarActionsPage = GrammarActionaPageClass(app: app)
         let vocabularyName = "copied vocabulary cancel visit"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -46,6 +45,10 @@ final class cancelVisitTests: XCTestCase {
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary cancel visit"], vocab: vocabularyName)
+        
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
         
         pages.editPage()
         //add an action

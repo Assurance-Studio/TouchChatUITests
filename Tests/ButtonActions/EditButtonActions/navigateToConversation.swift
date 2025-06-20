@@ -38,7 +38,7 @@ final class navigateToConversations: XCTestCase {
        let actionsPage = ActionaPageClass(app: app)
        let vocabularyName = "copied vocabulary navigate to conversations"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -48,6 +48,10 @@ final class navigateToConversations: XCTestCase {
        sleep(2)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary navigate to conversations"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        
        //edit a button

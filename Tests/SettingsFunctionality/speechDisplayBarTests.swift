@@ -45,6 +45,10 @@ final class speechDisplayBarTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary speech display bar"], vocab: vocabularyName)
         
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()
         

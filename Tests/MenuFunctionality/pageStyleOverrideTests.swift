@@ -34,7 +34,7 @@ final class pageStyleOverrideTests: XCTestCase {
         let pages = Pages(app: app)
         let vocabularyName = "copied vocabulary page style override"
         let vocabularyDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -43,6 +43,10 @@ final class pageStyleOverrideTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary page style override"], vocab: vocabularyName)
 
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
         //open the Edit Page tab
         pages.editPage()
         

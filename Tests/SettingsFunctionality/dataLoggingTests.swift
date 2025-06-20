@@ -32,7 +32,7 @@ final class dataLoggingTests: XCTestCase {
     func testDataLoggingTests() throws {
         let vocabularyName = "copied vocabulary data logging"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -44,6 +44,10 @@ final class dataLoggingTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         sleep(3)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary data logging"], vocab: vocabularyName)
+        
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
         
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()

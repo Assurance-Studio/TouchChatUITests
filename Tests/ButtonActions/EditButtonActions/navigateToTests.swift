@@ -39,7 +39,7 @@ final class navigateToTests: XCTestCase {
        let grammarActionsPage = GrammarActionaPageClass(app: app)
        let vocabularyName = "copied vocabulary navigate to"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -48,6 +48,10 @@ final class navigateToTests: XCTestCase {
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary navigate to"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForAction(nameButton: "Navigate to Page No Anim")

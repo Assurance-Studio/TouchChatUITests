@@ -37,7 +37,7 @@ final class grammarActionTests: XCTestCase {
        let grammarActionsPage = GrammarActionaPageClass(app: app)
        let vocabularyName = "copied vocabulary grammar action"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -47,6 +47,10 @@ final class grammarActionTests: XCTestCase {
        sleep(2)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary grammar action"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForAction(nameButton: "Grammar Action -ed")

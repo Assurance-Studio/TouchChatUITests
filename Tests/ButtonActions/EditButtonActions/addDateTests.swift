@@ -36,7 +36,7 @@ final class addTimeDateTests: XCTestCase {
        let actionsPage = ActionaPageClass(app: app)
        let vocabularyName = "copied vocabulary date action"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -45,6 +45,10 @@ final class addTimeDateTests: XCTestCase {
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary date action"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForAction(nameButton: "Add Action Date")

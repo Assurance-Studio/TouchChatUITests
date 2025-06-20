@@ -37,7 +37,7 @@ final class wordPredictionTests: XCTestCase {
        let grammarActionsPage = GrammarActionaPageClass(app: app)
        let vocabularyName = "copied vocabulary wordprediction"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -47,6 +47,10 @@ final class wordPredictionTests: XCTestCase {
        sleep(2)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary wordprediction"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForAction(nameButton: "Word Prediction Btn 1")

@@ -38,7 +38,7 @@ final class batteryStatusTests: XCTestCase {
        let actionsPage = ActionaPageClass(app: app)
        let vocabularyName = "copied vocabulary battery status"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -48,6 +48,10 @@ final class batteryStatusTests: XCTestCase {
        sleep(2)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary battery status"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForAction(nameButton: "Battery Sts")

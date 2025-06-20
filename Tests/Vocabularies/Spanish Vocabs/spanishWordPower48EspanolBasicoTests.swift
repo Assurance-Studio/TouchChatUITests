@@ -12,9 +12,7 @@ final class WordPower48EspanolBasicoTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
-        let vocabularyName = "copied vocabulary"
-        let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -44,7 +42,7 @@ final class WordPower48EspanolBasicoTests: XCTestCase {
         pages.wordPowerBasico48.tap()
         pages.openAVocab()
         
-        pages.verifyTheVocab(lastElement: "ven", vocabWord: "me", vocabElement: 4, nameElement: "GENTE")
+        pages.verifyTheVocab(lastElement: "ven", vocabWord: "me", vocabElement: 5, nameElement: "GENTE")
         
         XCTAssertTrue(app.buttons["gusta"].exists)
         app.buttons["gusta"].tap()

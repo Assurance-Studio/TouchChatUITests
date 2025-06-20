@@ -15,7 +15,7 @@ class DataLoggingPage {
     }
     
     func checkLoggingImage(){
-        let enableLoggingSwitch = app.switches.element(boundBy: 20)
+        let enableLoggingSwitch = app.switches.element(boundBy: 21)
         enableLoggingSwitch.tap()
         let enableLogging = app.images["lam_indicator"]
         let existsEnableLogging = enableLogging.waitForExistence(timeout: 5)

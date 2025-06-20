@@ -34,7 +34,7 @@ final class addNewTemplatePageTests: XCTestCase {
         let pages = Pages(app: app)
         let vocabularyName = "copied vocabulary template"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -43,6 +43,10 @@ final class addNewTemplatePageTests: XCTestCase {
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary template"], vocab: vocabularyName)
 
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
         //open the Edit Page tab
         pages.editPage()
         

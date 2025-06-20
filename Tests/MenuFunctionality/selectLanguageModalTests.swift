@@ -15,7 +15,6 @@ final class selectLanguageModalTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
-        let licensePage = LicenseLanguagePage(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")

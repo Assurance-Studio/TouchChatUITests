@@ -36,7 +36,7 @@ final class helpSignalTests: XCTestCase {
        let actionsPage = ActionaPageClass(app: app)
        let vocabularyName = "copied vocabulary help signal"
        let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -46,6 +46,10 @@ final class helpSignalTests: XCTestCase {
        sleep(2)
        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary help signal"], vocab: vocabularyName)
 
+       //enable delete vocab option
+       pages.openTheSettingsTab()
+       pages.ensureAllowDeleteIsOn()
+       
        pages.editPage()
        //add an action
        actionsPage.editButtonForAction(nameButton: "Help Signal")
