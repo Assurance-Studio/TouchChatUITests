@@ -1285,13 +1285,10 @@ class Pages {
         do {
             let data = try Data(contentsOf: fileURL)
 
-            // Acum apelezi metoda existentă în aplicație care procesează fișierul
-            // Exemplu (tu pui funcția corectă aici):
             // self.processImportedVocabulary(data: data)
             
             print("Successfully loaded modifiers.ce from Documents (size: \(data.count) bytes)")
             
-            // Exemplu de apel:
             self.importVocabulary(data: data)
 
         } catch {
