@@ -20,7 +20,7 @@ class ExpandedSpeechDisplayArea {
         tablesQuery.staticTexts["Speech"].swipeUp()
         tablesQuery.staticTexts["Speech Display Bar"].swipeUp()
         tablesQuery.staticTexts["Expanded Speech Area"].swipeUp()
-        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 31).staticTexts["Font"].tap()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 33).staticTexts["Font"].tap()
         
          
         let font1 = app.staticTexts["Amaranth"]
@@ -48,7 +48,7 @@ class ExpandedSpeechDisplayArea {
     func checkBackgroundColors(){
         let popoversQuery = XCUIApplication().popovers
         let tablesQuery = popoversQuery.tables
-        popoversQuery.tables.children(matching: .cell).element(boundBy: 34).staticTexts["Background Color"].tap()
+        popoversQuery.tables.children(matching: .cell).element(boundBy: 36).staticTexts["Background Color"].tap()
         
         let redBackgroundColor = app.staticTexts["Red"]
         let brownBackgroundColor = app.staticTexts["Brown"]
@@ -67,7 +67,7 @@ class ExpandedSpeechDisplayArea {
     
     func checkTheFontColors(){
         let popoversQuery = XCUIApplication().popovers
-        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 33).staticTexts["Font Color"].tap()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 35).staticTexts["Font Color"].tap()
         let redBackgroundColor = app.staticTexts["Red"]
         let brownBackgroundColor = app.staticTexts["Brown"]
         let blueBackgroundColor = app.staticTexts["Blue"]

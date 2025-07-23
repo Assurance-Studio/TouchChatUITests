@@ -15,7 +15,7 @@ class DataLoggingPage {
     }
     
     func checkLoggingImage(){
-        let enableLoggingSwitch = app.switches.element(boundBy: 21)
+        let enableLoggingSwitch = app.switches.element(boundBy: 20)
         enableLoggingSwitch.tap()
         let enableLogging = app.images["lam_indicator"]
         let existsEnableLogging = enableLogging.waitForExistence(timeout: 5)
@@ -53,8 +53,8 @@ class DataLoggingPage {
         let privacyPass = app.secureTextFields.element(boundBy: 1)
         XCUIApplication().popovers.tables.staticTexts["Speech"].swipeUp()
         XCUIApplication().popovers.tables.staticTexts["Speech Display Bar"].swipeUp()
-        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 20).staticTexts["Font"].swipeUp()
         XCUIApplication().popovers.tables.staticTexts["Expanded Speech Area"].swipeUp()
+        XCUIApplication().popovers.tables.staticTexts["Data Logging"].swipeUp()
         privacyPass.tap()
         app.secureTextFields.element(boundBy: 2).typeText("Test")
         app.buttons["Enter"].tap()

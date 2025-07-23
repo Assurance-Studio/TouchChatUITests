@@ -15,7 +15,7 @@ class ButtonsSettingsPage {
     }
     
     func editFontSizeButton(){
-        sleep(2)
+        sleep(4)
         app.buttons.element(boundBy: 25).tap()
         app.buttons["Edit This Button"].tap()
         
@@ -41,7 +41,9 @@ class ButtonsSettingsPage {
         tablesQuery.staticTexts["80 Point"].swipeUp()
         tablesQuery.staticTexts["90 Point"].swipeUp()
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["95 Point"]/*[[".cells.staticTexts[\"95 Point\"]",".staticTexts[\"95 Point\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        sleep(3)
         popoversQuery.navigationBars["Edit Button"].buttons["Save"].tap()
+        sleep(2)
     }
     
     func checkTheForceFontSize(){

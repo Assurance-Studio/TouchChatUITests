@@ -272,7 +272,10 @@ class ActionaPageClass {
     func addNoAnimAction(){
         app.staticTexts[".Template"].tap()
         app.staticTexts["  No Animation"].tap()
-        app.buttons["Save"].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
     }
     
     func addWebsiteToggleOn(){

@@ -940,7 +940,1912 @@ final class megaTests: XCTestCase {
                
         pages.backToVocab()
         
+        //check copied vocab - almagu voices
+//        mainPage.nameVocab(vocabName: "copied vocabulary almagu voices", vocabDescription: "vocabulary description e2e")
+//        
+//        //enable rename vocab option
+//        pages.openTheSettingsTab()
+//        pages.ensureAllowDeleteIsOn()
+//        
+//        //check if the force font size works
+//        profilesAndEditingPage.openTheSettingsTab()
+//        
+//        //change the voice for English Voice
+//        languagesPage.changeEnglishVoiceToAlmaguVoiceMegaTest()
+//        
+//        //try to select another Almagu Voice
+//        languagesPage.trySelectAlmaguVoice()
+//               
+//        pages.backToVocab()
+        
+        //check copied vocab - dataLogging
+        mainPage.nameVocab(vocabName: "copied vocabulary data logging", vocabDescription: "vocabulary description e2e")
+        
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open The Settings Menu
+        profilesAndEditingPage.openTheSettingsTab()
+        
+        //check if the enable Logging image appears
+        dataLoginPage.checkLoggingImage()
+        
+        //set privacy password and clear log
+        dataLoginPage.setPrivacyPass()
+        
+        //remove the privacy password
+        profilesAndEditingPage.openTheSettingsTab()
+        dataLoginPage.removePrivacyPass()
+                        
+        pages.backToVocab()
+        
+        //check copied vocab - editing
+        XCUIApplication().tables.children(matching: .cell).element(boundBy: 7).staticTexts["English"].tap()
+        
+        pages.myCoreSS.tap()
+        pages.openAVocab()
+        
+        pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
+        
+        //open The Settings Menu
+        profilesAndEditingPage.openTheSettingsTab()
+        
+        //set a menu password
+        profilesAndEditingPage.setAPassMenu()
+        
+        //check if the password works
+        profilesAndEditingPage.checkIfThePassWorks()
+        
+        //Remove the password and check if it was removed
+        profilesAndEditingPage.removeThePass()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - expandedSpeechArea
+        let expandedSpeechArea = ExpandedSpeechDisplayArea(app: app)
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary speech display bar", vocabDescription: "vocabulary description e2e")
+         
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open The Settings Menu
+        profilesAndEditingPage.openTheSettingsTab()
+        
+        //check the fonts for expanded speech area
+        expandedSpeechArea.checkTheFontOptions()
+                                
+        //check the font size
+        expandedSpeechArea.checkTheFontSize()
+                    
+        //check the font color
+        expandedSpeechArea.checkTheFontColors()
+        
+        //check the background color
+        expandedSpeechArea.checkBackgroundColors()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - navigationButtonsIcons
+        XCUIApplication().tables.children(matching: .cell).element(boundBy: 8).staticTexts["English"].tap()
+        pages.myCoreSS.tap()
+        pages.openAVocab()
+        
+        pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
+        
+        //open The Settings Menu
+        profilesAndEditingPage.openTheSettingsTab()
+        
+        //check the navigation button action works as expected
+        profilesAndEditingPage.navigationsIcons()
+       
+        pages.backToVocab()
+        
+        //check copied vocab - pageSize
+        mainPage.nameVocab(vocabName: "copied vocabulary Page Size", vocabDescription: "vocabulary description e2e")
+        
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open The Settings Menu
+        profilesAndEditingPage.openTheSettingsTab()
+        
+        //turn on the status bar and check if it works
+        profilesAndEditingPage.unCheckStatusBar()
+        
+        //swith to Generic the keyguard inset and check if it works
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.checkKeyguardInset()
+                
+        //return to initial settings for Page Size Tab
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.returnToInitialSettingsPageSize()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - predictions
+        let predictionsSettingsPage = PredictionsSettingsPage(app: app)
+        
+        mainPage.nameVocab(vocabName: "copied vocabulary predictions settings", vocabDescription: "vocabulary description e2e")
+        
+        //clear all predictions
+        profilesAndEditingPage.openTheSettingsTab()
+        predictionsSettingsPage.clearAllPredictions()
+        
+        //check if the prediction works
+        predictionsSettingsPage.checkIfThePredictionsWorks()
+        
+        //delete the new prediction
+        profilesAndEditingPage.openTheSettingsTab()
+        predictionsSettingsPage.deleteTheNewPrediction()
+        
+        //add a new prediction
+        predictionsSettingsPage.addANewPrediction()
+        //remove the renamed prediction
+        predictionsSettingsPage.deleteTheRenamedPredictions()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - profiles
+        XCUIApplication().tables.children(matching: .cell).element(boundBy: 10).staticTexts["English"].tap()
+        pages.basic4SS.tap()
+        pages.openAVocab()
+        
+        pages.verifyTheVocab(lastElement: "ALL ABOUT ME", vocabWord: "I want", vocabElement: 3, nameElement: "I want")
+        
+        //add a new profile
+        profilesAndEditingPage.addAProfile()
+        
+        //check the new profile and check the override message
+        profilesAndEditingPage.checkTheOverrideMessage()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        pages.backToVocab();
+        
+        //open a new vocab and load the new profile
+        pages.engageForiOS.tap()
+        pages.openAVocab()
+        profilesAndEditingPage.loadTheNewProfile()
+        
+        //rename the new profile
+        profilesAndEditingPage.renameTheNewProfile()
+        
+        //Remove the new profile and check if it was removed
+        profilesAndEditingPage.removeTheNewProfile()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - skinTone
+        pages.sintaxis4x5English.tap()
+        app.buttons["Customize"].tap()
+        let copyVocabTab = app.staticTexts["Copy Vocab"]
+        let copyVocabExists = copyVocabTab.waitForExistence(timeout: 10)
+        XCTAssertTrue(copyVocabExists)
+        app.textFields.element(boundBy: 0).tap()
+        app.buttons["Clear text"].tap()
+        app.textFields.element(boundBy: 0).typeText("copied vocabulary skin tone settings")
+        app.buttons["Save"].tap()
+        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary skin tone settings"], vocab: "copied vocabulary skin tone settings")
+        
+        pages.verifyTheVocab(lastElement: "Transportation", vocabWord: "Toys", vocabElement: 3, nameElement: "People")
+        
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //clear all predictions
+        app.buttons["Menu"].tap()
+        let vocabSettingsButton = app.buttons["Vocabulary Settings"]
+        let vocabSettingsButtonExists = vocabSettingsButton.waitForExistence(timeout: 7)
+        XCTAssertTrue(vocabSettingsButtonExists)
+        vocabSettingsButton.tap()
+        
+        app.staticTexts["SymbolStix Skin Tone"].tap()
+        let randomBtn = app.staticTexts["Random"]
+        let randomBtnExists = randomBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(randomBtnExists)
+        randomBtn.tap()
+        app.buttons["Done"].tap()
+        app.buttons["Back"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - speechDisplayBar
+        let speechDisplayBarPage = SpeechDisplayBarPage(app: app)
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary speech display bar1", vocabDescription: "vocabulary description e2e")
+        
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open The Settings Menu
+        profilesAndEditingPage.openTheSettingsTab()
+        
+        //check the hide speech display bar and check if it works
+        speechDisplayBarPage.checkTheHideDisplayBar()
+        
+        //uncheck Auto Capitalization and check if it works
+        speechDisplayBarPage.checkAutoCapitalization()
+        
+        pages.checkSdbText(sdbText: "test")
+        
+        profilesAndEditingPage.openTheSettingsTab()
+        let autoCapitalization = app.switches.element(boundBy: 10)
+        autoCapitalization.tap()
+        
+        //hide delete button
+        speechDisplayBarPage.checkHideDeleteButton()
+        
+        //check the fonts
+        //ToDo: check if changing the font has a result
+        speechDisplayBarPage.checkFontsType()
+                
+        //check the font size
+        //toDo: check if changing the font suze has a result
+        speechDisplayBarPage.checkFontSize()
+        
+        //check the font color
+        speechDisplayBarPage.checkFontColor()
+        
+        //check the background color
+        speechDisplayBarPage.checkBackgroundColor()
+        
+        //check the number of lines
+        speechDisplayBarPage.checkNumberOfLines()
+        
+        //visible Cursor
+        speechDisplayBarPage.checkTheCursor()
+        
+        //check the highlight Spoken Word options
+        speechDisplayBarPage.checkTheHighlightSpoken()
+        
+        //check the highlight color phone/facetime
+        speechDisplayBarPage.checkHighlightColorPhone()
+        app.buttons["BackButton"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - tapAction
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary tap action", vocabDescription: "vocabulary description e2e")
+        
+        //open The Settings Menu
+        profilesAndEditingPage.openTheSettingsTab()
+        
+        //enable the Speak and Enlarge Text action
+        profilesAndEditingPage.enableSpeakEnlargeAction()
+        
+        //enable No Action - Tap Action
+        profilesAndEditingPage.openTheSettingsTab()
+        profilesAndEditingPage.enableNoActionTap()
+        
+        pages.backToVocab()
+        
     }
     
+    func testMenuFunctionalities() throws{
+        
+        //check copied vocab - addNewHomePage
+        let pages = Pages(app: app)
+        let vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary homepage", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //add a new blank page
+        pages.addNewPage()
+        pages.addNewBlankPage()
+        
+        //add rows and columns
+        pages.addRowsColumnsBlankPage()
+        
+        //select page type
+        pages.addHomePageType()
+        
+        //add background color and select image
+        pages.addBackgroundColorAndImage()
+        
+        //clear image
+        pages.clearImageNewPage()
+                
+        XCUIApplication().navigationBars["Page by e2e"].buttons["Done"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - addNewPageTemplate
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary from template", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //add a template page
+        pages.addNewPage()
+        pages.addNewTemplatePage()
+        
+        //set a name for the template page and save it
+        pages.setANameForTemplatePage()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - addNewTemplatePage
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary template", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //add a new blank page
+        pages.addNewPage()
+        pages.addNewBlankPage()
+        
+        //add rows and columns
+        pages.addRowsColumnsBlankPage()
+        
+        //select page type
+        pages.addTemplatePage()
+        
+        //add background color and select image
+        pages.addBackgroundColorAndImage()
+        
+        //check if the iOS Gallery is opening
+        pages.checkTheiOSGallery()
+        
+        //clear image
+        pages.clearImageNewPage()
+                
+        XCUIApplication().navigationBars["Page by e2e"].buttons["Done"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - buttonSet
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary ButtonSet", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page Layout tab
+        pages.editPage()
+        
+        //remove a buttonSet
+        pages.removeAButton(button: 22)
+        
+        //copy buttonSet
+        pages.copyButtonSet()
+        
+        //paste buttonSet
+        pages.pasteButtonSet()
+        
+        //check if the action works as expected
+        pages.checkHowCopyPasteButtonSetWorks()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - copyPasteButtonFunctionalities
+        //copy a new vocab
+        mainPage.nameVocabPC(vocabName: "copied vocabulary edit button", vocabDescription: "vocabulary description e2e")
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //copy an existing butto
+        pages.copyAButton(buttonName: "I want")
+        
+        //paste the button
+        pages.pasteTheButton()
+        
+        pages.checkSdbText(sdbText: "I want a drink ")
+        
+        app.buttons["Back"].tap()
+        
+        pages.editPage()
+        
+        //use the same button
+        pages.useTheSameButton()
+        
+        pages.checkSdbText(sdbText: "I want a drink I want a snack ")
+        
+        app.buttons["Back"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - createANewButton
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary create button", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //remove an existing button
+        pages.removeAnExistingButton()
+        
+        //create a new button
+        pages.createANewButton()
+        
+        //check if the iOS Gallery is opening
+        pages.checkTheiOSGallery()
+        
+        //select image
+        pages.selectImageButton()
+                
+        //check all the switches
+        pages.checkSwitchesEditButton()
+        
+        //check the font options
+        pages.checkTheFontOptions(fontName: "Istok Web")
     
+        //check the point options
+        pages.checkPointOptions(pointField: "16 Point")
+        
+        //check the text color options
+        pages.checkTextColorOptions()
+        
+        //check the Body color options
+        pages.checkBodyColorOptions(bodyColor: "Light Yellow")
+        
+        //check the border color options
+        pages.checkBorderColorOptions()
+        
+        //check the Border Width options
+        pages.checkBorderWidthOptions(borderPoint: "2 Point")
+        
+        //add an action for a button and check if it works
+        pages.addActionButton(buttonName: "Create Button by e2e")
+        
+        //check the Speech Display Bar
+        pages.checkSdbText(sdbText: "Create Button by e2e Create Button by e2e ")
+        
+        //change button size
+        pages.changeButtonSize(buttonName: "Create Button by e2e")
+        
+        //remove the new button
+        pages.removeTheButton(buttonName: "Create Button by e2e")
+        app.buttons["CLEAR "].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - delete the Page
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //add a new blank page
+        pages.addNewPage()
+        pages.addNewBlankPage()
+        
+        //add rows and columns
+        pages.addRowsColumnsBlankPage()
+        
+        //add background color and select image
+        pages.addBackgroundColorAndImage()
+        
+        //clear image
+        pages.clearImageNewPage()
+        
+        //delete the page
+        pages.deleteThePage()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - edit Abbreviations
+        XCUIApplication().tables.cells.containing(.image, identifier:"collapsIndicator").staticTexts["English"].tap()
+        pages.spellingSS.tap()
+        pages.openAVocab()
+        
+        //add abbreviation
+        pages.reachAddAbbreviation()
+        pages.addAbbreviation()
+        pages.checkAddAbbreviation()
+        pages.checkSdbText(sdbText: "Test by e2e ")
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        
+        //edit&delete abbreviation
+        pages.reachToEditAbbreviation()
+        pages.removeTheAbbreviation()
+        
+        //clearAllAbbreviation
+        pages.reachToEditAbbreviation()
+        pages.clearAllAbbreviations()
+        
+        //restoreToDefaults
+        pages.restoreToDefaultsAbbreviation()
+        
+        pages.backToVocab();
+        
+        //check copied vocab - editAButton
+        //copy a new vocab
+        mainPage.nameVocabPC(vocabName: "copied vocabulary edit button1", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //open the Edit This button tab and fill in the button label&pronunciation
+        pages.editThisButton()
+        
+        //check if the iOS Gallery is opening
+        pages.checkTheiOSGallery()
+        
+        //select image
+        pages.selectImageButton()
+                
+        //check all the switches
+        pages.checkSwitchesEditButton()
+        
+        //check the font options
+        pages.checkTheFontOptions(fontName: "Ubuntu")
+        
+        //check the point options
+        pages.checkPointOptions(pointField: "12 Point")
+         
+        //check the text color options
+        pages.checkTextColorOptions()
+        
+        //check the Body color options
+        pages.checkBodyColorOptions(bodyColor: "#ffff99")
+        
+        //check the border color options
+        pages.checkBorderColorOptions()
+        
+        //check the Border Width options
+        pages.checkBorderWidthOptions(borderPoint: "1 Point")
+        
+        //add an action for a button and check if it works
+        pages.addActionButton(buttonName: "Edit Button by e2e")
+        
+        //check the Speech Display Bar
+        pages.checkSdbText(sdbText: "Edit Button by e2e ")
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        
+        //change button size
+        pages.changeButtonSize(buttonName: "Edit Button by e2e")
+        
+        //remove the new button
+        pages.removeTheButton(buttonName: "Edit Button by e2e")
+        
+        pages.backToVocab()
+        
+        //check copied vocab - editGestures
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary gestures", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //add a new gesture
+        pages.editPage()
+        pages.addNewGesture()
+        pages.verifyGestureExists()
+        app.buttons["CLEAR "].tap()
+        pages.backToVocab()
+        
+        //check copied vocab - edigtPageLayout
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary pagelayout", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page Layout tab
+        pages.editPage()
+        pages.addPageLayout()
+        
+        //change the page name
+        pages.changeThePageName()
+        
+        //change the rows and columns
+        pages.changeRowsAndColumns()
+        
+        //check if the iOS Gallery is opening
+        pages.checkTheiOSGallery()
+        
+        //select image
+        pages.selectImageLayout()
+        
+        //clear image and save the section
+        pages.clearImageLayout()
+        
+        pages.backToVocab()
+        
+//        //check copied vocab - editPronunciations
+//        XCUIApplication().tables.cells.containing(.image, identifier:"collapsIndicator").staticTexts["English"].tap()
+//        pages.spellingSS.tap()
+//        pages.openAVocab()
+//        
+//        //add pronunciations
+//        pages.reachEditPronunciations()
+//        pages.addPronunciations()
+//        
+//        //edit & delete pronunciations
+//        pages.scrollForSearchPronunciations()
+//        pages.searchPronunciations()
+//        pages.deletePronunciations()
+//        
+//        //clearAllPronunciations
+//        pages.clearAllPronunciations()
+//        
+//        //restoreToDefaults
+//        pages.restoreToDefaultsPronunciations()
+//        
+//        pages.backToVocab();
+//        
+        //check copied vocab - editRenameACopiedVocab
+        //copy a new vocab
+        mainPage.nameVocabPC(vocabName: "copied vocabulary edit/rename", vocabDescription: "vocabulary description e2e")
+               
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+               
+        pages.backToVocab()
+         //rename the copied vocab
+        pages.renameACopiedVocabMegaTest()
+               
+         //check if the vocab was renamed
+         XCTAssertTrue(app.staticTexts["Renamed description e2e"].exists, "The renamed vocab is not visible")
+        
+        //check copied vocab - hideMode
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary hide mode", vocabDescription: "vocabulary description e2e")
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //hide a button & check if it works
+        pages.hideAButton()
+        
+        //hide all buttons and check if it works
+        pages.hideAllButtons()
+        
+        //show all buttons
+        pages.showAllButtons()
+                
+        //normal mode
+        pages.normalModeButtons()
+                        
+        pages.backToVocab()
+        
+        //check copied vocab - pageStyleOverride
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary page style override", vocabDescription: "vocabulary description e2e")
+
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //open the Page Style Override tab
+        pages.openPageStyleOverride()
+        
+        //check the initial state/new state of the switch and tick it
+        pages.checkTheToggleandSwitchIt()
+        
+        //choose a color and check if multiple colors exist
+        pages.chooseAColorandChecktheOptions()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - pasteButton
+        //copy a new vocab
+        mainPage.nameVocabPC(vocabName: "copied vocabulary paste button", vocabDescription: "vocabulary description e2e")
+        
+        //open the Edit Page tab
+        pages.editPage()
+        
+        //open the Edit This button tab and fill in the button label&pronunciation
+        pages.editThisButton()
+        
+        //select image
+        pages.selectImageButton()
+        //turn off switches
+        pages.editAButtonForButtonStyle()
+        
+        //copy the button style
+        pages.copyPasteButtonStyle()
+        
+        //check if the paste button style works as expected
+        pages.checkIfTheButtonStyleWasCopied()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - storeTextButton
+        //copy a Spelling Vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary1", vocabDescription: "vocabulary description e2e")
+        
+        //storeTextToAButton
+        pages.writeTestBy()
+        pages.openStoreTextBtn()
+        
+        //check if the storeTextButton is displayed
+        pages.checkIfTheStoreButtonWorks()
+        
+        //check if the word appears
+        pages.checkSdbText(sdbText: "TestbyTestby ")
+        pages.backToVocab();
+    }
+    
+    func testEditButtonsActions() throws{
+        
+        //check copied vocab - addNewHomePage
+        let pages = Pages(app: app)
+        let actionsPage = ActionaPageClass(app: app)
+        let vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        
+        //check copied vocab - date and time
+        mainPage.nameVocab(vocabName: "copied vocabulary date and time action", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Add Action Time/Date")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time action
+        actionsPage.addANewAction(actionName: "Add Time/Date")
+        
+        actionsPage.addActionForTimeDate(actionType: "Date and Time")
+        
+        //check if the action works
+        actionsPage.checkIfTheDateTimeAreDisplayed()
+        app.buttons["CLEAR "].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - add date
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary date action", vocabDescription: "vocabulary description e2e")
+
+        //enable delete vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Add Action Date")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Add Time/Date")
+        actionsPage.addActionForTimeDate(actionType: "Date Only")
+        
+        //check if the action works
+        actionsPage.checkIfTheDateisDisplayed()
+        app.buttons["CLEAR "].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - add message display
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary add message", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Add Message To Display")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add message to display
+        actionsPage.addANewAction(actionName: "Add Message to Display")
+        
+        //check if the action works
+        actionsPage.checkAddMessageDisplay()
+        app.buttons["CLEAR "].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - add time
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary time action", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Add Action Time")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time action
+        actionsPage.addANewAction(actionName: "Add Time/Date")
+        
+        actionsPage.addActionForTimeDate(actionType: "Time Only")
+        
+        //check if the action works
+        actionsPage.checkIfTheTimeisDisplayed()
+        app.buttons["CLEAR "].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - applyGrammarState
+        let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
+        let grammarActionsPage = GrammarActionaPageClass(app: app)
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary grammar action", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        
+        //add Apply Grammar Property action - verb
+        grammarActionsPage.addSubActionGrammarProperty(ActionName: "Apply Grammar Property", buttonPosition: 24, buttonName: "open", subActionName: "verb")
+        
+        //add Apply Grammar Property action - adjective
+        grammarActionsPage.addSubActionGrammarProperty(ActionName: "Apply Grammar Property", buttonPosition: 23, buttonName: "sweet", subActionName: "adjective")
+        
+        //add Apply Grammar Property action - noun
+        grammarActionsPage.addSubActionGrammarProperty(ActionName: "Apply Grammar Property", buttonPosition: 22, buttonName: "player", subActionName: "noun")
+        
+        //add Apply Grammar State actions
+        actionsPage.editButtonForAction(nameButton: "Grammar State -ed")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add apply grammar action -ed
+        actionsPage.addANewAction(actionName: "Apply Grammar State")
+        grammarActionsPage.addActionED()
+        
+        //add apply grammar state action -en
+        grammarActionsPage.addSubAction(ActionName: "Apply Grammar State", buttonPosition: 26, buttonName: "Grammar State -en", subActionName: "add -en")
+        
+        //add apply grammar state action -er
+        grammarActionsPage.addSubAction(ActionName: "Apply Grammar State", buttonPosition: 27, buttonName: "Grammar State -er", subActionName: "add -er")
+        
+        //add grammar state action -est
+        grammarActionsPage.addSubAction(ActionName: "Apply Grammar State", buttonPosition: 28, buttonName: "Grammar State -est", subActionName: "add -est")
+        
+        //add grammar state action -ing
+        grammarActionsPage.addSubAction(ActionName: "Apply Grammar State", buttonPosition: 29, buttonName: "Grammar State -ing", subActionName: "add -ing")
+        
+        //add grammar state action -ly
+        grammarActionsPage.addSubAction(ActionName: "Apply Grammar State", buttonPosition: 30, buttonName: "Grammar State -ly", subActionName: "add -ly")
+        
+        //add grammar state action -s
+        grammarActionsPage.addSubAction(ActionName: "Apply Grammar State", buttonPosition: 31, buttonName: "Grammar State -s", subActionName: "add -s")
+        
+        grammarActionsPage.doneBtn.tap()
+        
+        //open The Settings Menu
+        profilesAndEditingPage.openTheSettingsTab()
+        
+        //set on the Dynamic Labels Toggle
+        grammarActionsPage.setOnDynamicLabels()
+        
+        grammarActionsPage.checkTheDynamicLabelsToggle()
+        
+        //Check if the actions work as expected
+        grammarActionsPage.checkIfTheActionsWorkAsExpected()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - backspaceKey
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary backspace key", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Backspace Key")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Backspace Key")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        actionsPage.checkIfTheActionsWorks()
+        app.buttons["CLEAR "].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - batteryStatus
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary battery status", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Battery Sts")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Battery Status")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        actionsPage.checkTheBatteryStatus()
+        app.buttons["CLEAR "].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - calculator
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary calculator", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Calculator")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Calculator")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        actionsPage.checkTheCalculatorAction()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - cancel Visit
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary cancel visit", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Cancel Visit Btn")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Cancel Visit")
+        
+        //save the action
+        actionsPage.saveTheAction()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - clear Display
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary clear display", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Clear Display")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Clear Display")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        actionsPage.clearDisplay()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - clear Last Word
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary clear last word", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Clear Last Word")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Clear Last Word")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        actionsPage.clearLastWord()
+        app.buttons["CLEAR "].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - grammar Actions
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary grammar action1", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Grammar Action -ed")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add grammar action -ed
+        actionsPage.addANewAction(actionName: "Grammar Action")
+        grammarActionsPage.addActionED()
+        
+        //add grammar action -en
+        grammarActionsPage.addActionEN()
+        
+        //add grammar action -er
+        grammarActionsPage.addActionER()
+        
+        //add grammar action -est
+        grammarActionsPage.addActionEST()
+        
+        //add grammar action -ing
+        grammarActionsPage.addActionING()
+        
+        //add grammar action -ly
+        grammarActionsPage.addActionLY()
+        
+        //add grammar -s
+        grammarActionsPage.addActionS()
+        
+        //create a new button
+        grammarActionsPage.createAVerb()
+        
+        //app.buttons["z"].tap()
+        grammarActionsPage.createAnAdjective()
+        
+        //check if the grammar action works as expected
+        grammarActionsPage.checkGrammarAction()
+        app.buttons["CLEAR "].tap()
+        pages.backToVocab()
+        
+        //check copied vocab - help Signal
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary help signal", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Help Signal")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Help Signal")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        app.buttons["Help Signal"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - jump to Page
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary jump to page", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Jump To Page No Anim")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add action Jump To Page
+        actionsPage.addANewAction(actionName: "Jump To Page")
+        actionsPage.addNoAnimAction()
+        
+        //add Jump to Page - Animate Up
+        grammarActionsPage.addJumpAction(button: 26, jumpDirection: "Jump To Page Up", directionType: "  Animate Up")
+        
+        //add Jump To Page - Animate Down
+        grammarActionsPage.addJumpAction(button: 27, jumpDirection: "Jump To Page Down", directionType: "  Animate Down")
+        
+        //add Jump To Page - Animate Right
+        grammarActionsPage.addJumpAction(button: 28, jumpDirection: "Jump To Page Right", directionType: "  Animate Right")
+        
+        //add Jump To Page - Animate Left
+        grammarActionsPage.addJumpAction(button: 29, jumpDirection: "Jump To Page Left", directionType: "  Animate Left")
+        
+        //check if the jump to page actions works as expected
+        actionsPage.checkTheJumpActions()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - logging Data
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "copied vocabulary data logging", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Data Logging")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Data Logging On/Off")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        actionsPage.checkLoggingData()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - navigate to HomeBack
+        //copy a new vocab
+        app.swipeUp()
+        mainPage.nameVocab(vocabName: "copied vocabulary navigate back", vocabDescription: "vocabulary description e2e")
+     
+        //open a second page
+        grammarActionsPage.openSecondPage()
+
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForNavigateAction(nameButton: "Navigate Back No Anim")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Navigate Back")
+        grammarActionsPage.addNoAnimNavigateHomeBack()
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 8, navigateDirection: "Navigate Back Animate Up", actionType: "Navigate Back", directionType: "  Animate Up")
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 9, navigateDirection: "Navigate Back Animate Down", actionType: "Navigate Back", directionType: "  Animate Down")
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 10, navigateDirection: "Navigate Back Animate Right", actionType: "Navigate Back", directionType: "  Animate Right")
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 11, navigateDirection: "Navigate Back Animate Left", actionType: "Navigate Back", directionType: "  Animate Left")
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 12, navigateDirection: "Navigate To Home No Anim", actionType: "Navigate To Home", directionType: "  No Animation")
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 13, navigateDirection: "Navigate To Home Animate Up", actionType: "Navigate To Home", directionType: "  Animate Up")
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 14, navigateDirection: "Navigate To Home Animate Down", actionType: "Navigate To Home", directionType: "  Animate Down")
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 15, navigateDirection: "Navigate To Home Animate Right", actionType: "Navigate To Home", directionType: "  Animate Right")
+        
+        grammarActionsPage.addNavigateActionsHomeBack(button: 16, navigateDirection: "Navigate To Home Animate Left", actionType: "Navigate To Home", directionType: "  Animate Left")
+        
+        
+        grammarActionsPage.checkNavigateHomeBackActions()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - navigate to Conversation
+        //copy a new vocab
+        app.swipeUp()
+        mainPage.nameVocab(vocabName: "copied vocabulary navigate to conversations", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        
+        //edit a button
+        actionsPage.editButtonForAction(nameButton: "Navigate to Conversations")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add the action
+        actionsPage.addANewAction(actionName: "Texting - Navigate to Conversations")
+        actionsPage.saveTheAction()
+        
+        //check if the action works as expected
+        actionsPage.checkIfTheTextingConversationsWorks()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - navigate to
+        //copy a new vocab
+        app.swipeUp()
+        mainPage.nameVocab(vocabName: "copied vocabulary navigate to", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Navigate to Page No Anim")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Navigate")
+        actionsPage.addNoAnimAction()
+        
+        //add navigation - up
+        grammarActionsPage.addNavigateAction(button: 26, navigateDirection: "Navigate to Page Up", directionType: "  Animate Up")
+        
+        //add navigation - down
+        grammarActionsPage.addNavigateAction(button: 27, navigateDirection: "Navigate to Page Down", directionType: "  Animate Down")
+        
+        //add navigation - right
+        grammarActionsPage.addNavigateAction(button: 28, navigateDirection: "Navigate to Page Right", directionType: "  Animate Right")
+        
+        //add navigation - left
+        grammarActionsPage.addNavigateAction(button: 29, navigateDirection: "Navigate to Page Left", directionType: "  Animate Left")
+        
+        //check if the action works
+        actionsPage.checkNavigateActions()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - open apple apps
+        //copy a new vocab
+        app.swipeUp()
+        mainPage.nameVocab(vocabName: "copied vocabulary open apple apps", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Open Apple Apps - Apple Maps")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Open App")
+        app.staticTexts["Apple"].tap()
+        app.staticTexts["Apple Maps"].tap()
+        app.buttons["Save"].tap()
+        
+        grammarActionsPage.addOpenAppsAction(button: 26, navigateDirection: "Open Apple Apps - Calendar", actionType: "Open App", directionType: "Apple", appType: "Calendar")
+        
+        grammarActionsPage.addOpenAppsAction(button: 27, navigateDirection: "Open Apple Apps - Notes", actionType: "Open App", directionType: "Apple", appType: "Notes")
+        
+        grammarActionsPage.addOpenAppsAction(button: 28, navigateDirection: "Open Apple Apps - Photos", actionType: "Open App", directionType: "Apple", appType: "Photos")
+        
+        grammarActionsPage.addOpenAppsAction(button: 29, navigateDirection: "Open Apple Apps - Safari", actionType: "Open App", directionType: "Apple", appType: "Safari")
+        
+        grammarActionsPage.addOpenAppsAction(button: 30, navigateDirection: "Open Apple Apps - iMessage", actionType: "Open App", directionType: "Apple", appType: "iMessage")
+        
+        
+        //check Notes App
+        grammarActionsPage.checkNotesApp()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - open different apps
+        //copy a new vocab
+        app.swipeUp()
+        mainPage.nameVocab(vocabName: "copied vocabulary open different apps", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Open Different Apps - ChoiceWorks")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Open App")
+        app.staticTexts["ChoiceWorks"].tap()
+        app.staticTexts["ChoiceWorks"].tap()
+        app.buttons["Save"].tap()
+        
+        grammarActionsPage.addOpenAppsAction(button: 26, navigateDirection: "Open Different Apps - ChoiceWorks Calendar", actionType: "Open App", directionType: "ChoiceWorks", appType: "Choiceworks Calendar")
+        
+        grammarActionsPage.addOpenAppsAction(button: 27, navigateDirection: "Open Different Apps - Disney", actionType: "Open App", directionType: "Disney", appType: "Disney+")
+        
+        grammarActionsPage.addOpenAppsAction(button: 28, navigateDirection: "Open Different Apps - Bose", actionType: "Open App", directionType: "Bose", appType: "Bose Connect")
+        
+        grammarActionsPage.addOpenAppsAction(button: 29, navigateDirection: "Open Different Apps - DoorDash", actionType: "Open App", directionType: "DoorDash", appType: "DoorDash")
+        
+        grammarActionsPage.addOpenAppsAction(button: 30, navigateDirection: "Open Different Apps - Fandango", actionType: "Open App", directionType: "Fandango", appType: "Fandango")
+        
+        grammarActionsPage.addOpenAppsAction(button: 31, navigateDirection: "Open Different Apps - FitBit", actionType: "Open App", directionType: "FitBit", appType: "FitBit")
+        
+        grammarActionsPage.addOpenAppsAction(button: 24, navigateDirection: "Open Different Apps - Flickr", actionType: "Open App", directionType: "Flickr", appType: "Flickr")
+        
+        grammarActionsPage.addOpenAppsAction(button: 43, navigateDirection: "Open Different Apps - Hulu", actionType: "Open App", directionType: "Hulu", appType: "Hulu")
+        
+        grammarActionsPage.addOpenAppsAction(button: 44, navigateDirection: "Open Different Apps - Microsoft", actionType: "Open App", directionType: "Microsoft", appType: "MS Word")
+        
+        grammarActionsPage.addOpenAppsAction(button: 45, navigateDirection: "Open Different Apps - Netflix", actionType: "Open App", directionType: "Netflix", appType: "Netflix")
+        
+        grammarActionsPage.addOpenAppsAction(button: 46, navigateDirection: "Open Different Apps - Pandora", actionType: "Open App", directionType: "Pandora", appType: "Pandora")
+        
+        grammarActionsPage.addOpenAppsAction(button: 47, navigateDirection: "Open Different Apps - Pair By Number", actionType: "Open App", directionType: "Pictello", appType: "Pictello")
+        
+        grammarActionsPage.addOpenAppsAction(button: 48, navigateDirection: "Open Different Apps - Pinterest", actionType: "Open App", directionType: "Pinterest", appType: "Pinterest")
+        
+//        grammarActionsPage.addOpenAppsAction(button: 49, navigateDirection: "Open Different Apps - Scribd", actionType: "Open App", directionType: "Scribd", appType: "Scribd")
+        
+        grammarActionsPage.addOpenAppsAction(button: 50, navigateDirection: "Open Different Apps - Sort By Kind", actionType: "Open App", directionType: "Step by Step", appType: "Sort By Kind - Sort visually related items")
+        
+        grammarActionsPage.addOpenAppsAction(button: 63, navigateDirection: "Open Different Apps - Skype", actionType: "Open App", directionType: "Skype", appType: "Skype")
+        
+        grammarActionsPage.addOpenAppsAction(button: 64, navigateDirection: "Open Different Apps - Snapchat", actionType: "Open App", directionType: "Snapchat", appType: "Snapchat")
+        
+        grammarActionsPage.addOpenAppsAction(button: 65, navigateDirection: "Open Different Apps - Spotify", actionType: "Open App", directionType: "Spotify", appType: "Spotify")
+        
+        grammarActionsPage.addOpenAppsAction(button: 67, navigateDirection: "Open Diffrent Apps - First Then Visual Schedule HD", actionType: "Open App", directionType: "First Then Visual Schedule HD", appType: "First Then Visual Schedule HD")
+        
+        grammarActionsPage.addOpenAppsAction(button: 68, navigateDirection: "Open Diffrent Apps - Time", actionType: "Open App", directionType: "Time", appType: "Visual Timer (discontinued)")
+        
+        grammarActionsPage.addOpenAppsAction(button: 69, navigateDirection: "Open Diffrent Apps - Twitter", actionType: "Open App", directionType: "Twitter", appType: "Twitter")
+        
+        grammarActionsPage.addOpenAppsAction(button: 70, navigateDirection: "Open Diffrent Apps - Waze", actionType: "Open App", directionType: "Waze", appType: "Waze")
+        
+        grammarActionsPage.addOpenAppsAction(button: 71, navigateDirection: "Open Diffrent Apps - WhatsApp", actionType: "Open App", directionType: "WhatsApp", appType: "WhatsApp")
+        
+        grammarActionsPage.addOpenAppsAction(button: 22, navigateDirection: "Open Diffrent Apps - WhatsApp Client iPad", actionType: "Open App", directionType: "WhatsApp", appType: "WhatsApp Web Client for iPad")
+        
+        grammarActionsPage.addOpenAppsAction(button: 23, navigateDirection: "Open Diffrent Apps - YouTube", actionType: "Open App", directionType: "YouTube", appType: "YouTube")
+        
+        grammarActionsPage.addOpenAppsAction(button: 42, navigateDirection: "Open Diffrent Apps - YouTube Kids", actionType: "Open App", directionType: "YouTube", appType: "YouTube Kids")
+        
+        //check Facebook app
+        app.buttons["Done"].tap()
+        app.buttons["Open Different Apps - ChoiceWorks"].tap()
+        let errorText = app.staticTexts["Error"]
+        XCTAssertTrue(errorText.exists, "The error is not visible")
+        app.buttons["Okay"].tap()
+        
+        //check ChoiceWorks Calendar App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - ChoiceWorks Calendar")
+        
+        //check Disney App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Disney")
+                                        
+        //check Bose App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Bose")
+        
+        //check DoorDash App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - DoorDash")
+        
+        //check Fandango App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Fandango")
+        
+        //check FitBit App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - FitBit")
+        
+        //check Flickr App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Flickr")
+        
+        //check Hulu App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Hulu")
+        
+        //check Microsoft App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Microsoft")
+        
+        //check Netflix App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Netflix")
+        
+        //check Pandora App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Pandora")
+        
+        //check Pair By Number App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Pair By Number")
+        
+        //check Pinterest App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Pinterest")
+        
+        //check Sort By Kind App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Sort By Kind")
+        
+        //check Skype App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Skype")
+        
+        //check Snapchat App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Snapchat")
+        
+        //check Spotify App
+        grammarActionsPage.checkAppType(appType: "Open Different Apps - Spotify")
+        
+        //check First Then Visual Schedule HD App
+        grammarActionsPage.checkAppType(appType: "Open Diffrent Apps - First Then Visual Schedule HD")
+        
+        //check Time App
+        grammarActionsPage.checkAppType(appType: "Open Diffrent Apps - Time")
+        
+        //check Twitter App
+        grammarActionsPage.checkAppType(appType: "Open Diffrent Apps - Twitter")
+        
+        //check Waze App
+        grammarActionsPage.checkAppType(appType: "Open Diffrent Apps - Waze")
+        
+        //check WhatsApp App
+        grammarActionsPage.checkAppType(appType: "Open Diffrent Apps - WhatsApp")
+        
+        //check YouTube App
+        grammarActionsPage.checkAppType(appType: "Open Diffrent Apps - YouTube")
+        
+        //check YouTube Kids App
+        grammarActionsPage.checkAppType(appType: "Open Diffrent Apps - YouTube Kids")
+       
+        pages.backToVocab()
+        
+        //check copied vocab - open Google apps
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "1copied vocabulary open google apps", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Open Google Apps - GMail")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Open App")
+        app.staticTexts["Google"].tap()
+        app.staticTexts["GMail"].tap()
+        app.buttons["Save"].tap()
+        
+        grammarActionsPage.addOpenAppsAction(button: 26, navigateDirection: "Open Google Apps - Google", actionType: "Open App", directionType: "Google", appType: "Google")
+        
+        grammarActionsPage.addOpenAppsAction(button: 27, navigateDirection: "Open Google Apps - Google Docs", actionType: "Open App", directionType: "Google", appType: "Google Docs")
+        
+        grammarActionsPage.addOpenAppsAction(button: 28, navigateDirection: "Open Google Apps - Google Drive", actionType: "Open App", directionType: "Google", appType: "Google Drive")
+        
+        grammarActionsPage.addOpenAppsAction(button: 29, navigateDirection: "Open Google Apps - Google Maps", actionType: "Open App", directionType: "Google", appType: "Google Maps")
+        
+        grammarActionsPage.addOpenAppsAction(button: 30, navigateDirection: "Open Google Apps - Google Slides", actionType: "Open App", directionType: "Google", appType: "Google Slides")
+        
+        //check Google app
+        grammarActionsPage.checkGoogleApp()
+        
+        //check Google Docs app
+        grammarActionsPage.checkAppType(appType: "Open Google Apps - Google Docs")
+        
+        //check Google Drive app
+        grammarActionsPage.checkAppType(appType: "Open Google Apps - Google Drive")
+        
+        //check Google Google Maps app
+        grammarActionsPage.checkAppType(appType: "Open Google Apps - Google Maps")
+        
+        //check Google Slides app
+        grammarActionsPage.checkAppType(appType: "Open Google Apps - Google Slides")
+        
+        //check Gmail app
+        grammarActionsPage.checkAppType(appType: "Open Google Apps - GMail")
+        
+        pages.backToVocab()
+        
+        //check copied vocab - open Meta Apps
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "2copied vocabulary open meta apps", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Open Facebook Apps - Facebook")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Open App")
+        app.staticTexts["Facebook"].tap()
+        app.staticTexts["Facebook"].tap()
+        app.buttons["Save"].tap()
+        
+        grammarActionsPage.addOpenAppsAction(button: 26, navigateDirection: "Open Facebook Apps - Facebook Messenger", actionType: "Open App", directionType: "Facebook", appType: "Facebook Messenger")
+        
+        grammarActionsPage.addOpenAppsAction(button: 27, navigateDirection: "Open Instagram App", actionType: "Open App", directionType: "Instagram", appType: "Instagram")
+        
+        //check Facebook app
+        grammarActionsPage.checkFacebookApp()
+        
+        //check Messenger App
+        grammarActionsPage.checkAppType(appType: "Open Facebook Apps - Facebook Messenger")
+        
+        //check Instagram App
+        grammarActionsPage.checkAppType(appType: "Open Instagram App")
+       
+        pages.backToVocab()
+        
+        //check copied vocab - open step by step
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "3copied vocabulary open step apps", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Open Step By Step Apps - Animal Jigsaw")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Open App")
+        app.staticTexts["Step by Step"].tap()
+        app.staticTexts["Animal Jigsaw - Assemble 4 pieces of a picture"].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
+        
+        grammarActionsPage.addOpenAppsAction(button: 26, navigateDirection: "Open Step By Step Apps - Animal Maze", actionType: "Open App", directionType: "Step by Step", appType: "Animal Maze - Find a route through the maze")
+        
+        grammarActionsPage.addOpenAppsAction(button: 27, navigateDirection: "Open Step By Step Apps - Baby Jigsaw", actionType: "Open App", directionType: "Step by Step", appType: "Baby Jigsaw - Assemble 3 pieces of a picture")
+        
+        grammarActionsPage.addOpenAppsAction(button: 28, navigateDirection: "Open Step By Step Apps - Create a Series", actionType: "Open App", directionType: "Step by Step", appType: "Create a Series - Arrange items in a sequence")
+        
+        grammarActionsPage.addOpenAppsAction(button: 29, navigateDirection: "Open Step By Step Apps - Differ By Kind", actionType: "Open App", directionType: "Step by Step", appType: "Differ By Kind - Find the visually odd one out")
+        
+        grammarActionsPage.addOpenAppsAction(button: 30, navigateDirection: "Open Step By Step Apps - Differ By Nature", actionType: "Open App", directionType: "Step by Step", appType: "Differ By Nature - Find the logically odd one out")
+        
+        grammarActionsPage.addOpenAppsAction(button: 31, navigateDirection: "Open Step By Step Apps - Fairytale Jigsaw", actionType: "Open App", directionType: "Step by Step", appType: "Fairytale Jigsaw - Assemble 9 pieces of a picture")
+        
+        grammarActionsPage.addOpenAppsAction(button: 24, navigateDirection: "Open Step By Step Apps - Fill the MAtrix", actionType: "Open App", directionType: "Step by Step", appType: "Fill the Matrix - Place items in the correct cells")
+        
+        grammarActionsPage.addOpenAppsAction(button: 43, navigateDirection: "Open Step By Step Apps - Monster Maze", actionType: "Open App", directionType: "Step by Step", appType: "Monster Maze - Find a route through the maze")
+        
+        grammarActionsPage.addOpenAppsAction(button: 44, navigateDirection: "Open Step By Step Apps - Mosaics", actionType: "Open App", directionType: "Step by Step", appType: "Mosaics - Arrange colorful pieces to form a mosaic")
+        
+        grammarActionsPage.addOpenAppsAction(button: 45, navigateDirection: "Open Step By Step Apps - Pair By Kind", actionType: "Open App", directionType: "Step by Step", appType: "Pair By Kind - Match visually related items")
+        
+        grammarActionsPage.addOpenAppsAction(button: 46, navigateDirection: "Open Step By Step Apps - Pair By Nature", actionType: "Open App", directionType: "Step by Step", appType: "Pair By Nature - Match logically related items")
+        
+        grammarActionsPage.addOpenAppsAction(button: 47, navigateDirection: "Open Step By Step Apps - Pair By Number", actionType: "Open App", directionType: "Step by Step", appType: "Pair By Number - Match quantities and numbers")
+        
+        grammarActionsPage.addOpenAppsAction(button: 48, navigateDirection: "Open Step By Step Apps - Place in Groups", actionType: "Open App", directionType: "Step by Step", appType: "Place in Groups - Create groups of related items")
+        
+        grammarActionsPage.addOpenAppsAction(button: 49, navigateDirection: "Open Step By Step Apps - Same Same", actionType: "Open App", directionType: "Step by Step", appType: "Same Same - Match identical items")
+        
+        grammarActionsPage.addOpenAppsAction(button: 50, navigateDirection: "Open Step By Step Apps - Sort By Kind", actionType: "Open App", directionType: "Step by Step", appType: "Sort By Kind - Sort visually related items")
+        
+        grammarActionsPage.addOpenAppsAction(button: 67, navigateDirection: "Open Step By Step Apps - Sort By Nature", actionType: "Open App", directionType: "Step by Step", appType: "Sort By Nature - Sort logically related items")
+        
+        grammarActionsPage.addOpenAppsAction(button: 68, navigateDirection: "Open Step By Step Apps - Stack up", actionType: "Open App", directionType: "Step by Step", appType: "Stack Up - Stack items bottom-up to build a tower")
+        
+        grammarActionsPage.addOpenAppsAction(button: 70, navigateDirection: "Open Step By Step Apps - Vehicle Jigsaw", actionType: "Open App", directionType: "Step by Step", appType: "Vehicle Jigsaw - Assemble 6 pieces of a picture")
+        
+        grammarActionsPage.addOpenAppsAction(button: 71, navigateDirection: "Open Step By Step Apps - Vehicle Maze", actionType: "Open App", directionType: "Step by Step", appType: "Vehicle Maze - Find a route through the maze")
+        
+        //check Facebook app
+        app.buttons["Done"].tap()
+        app.buttons["Open Step By Step Apps - Animal Jigsaw"].tap()
+        let textError = app.staticTexts["Error"]
+        XCTAssertTrue(textError.exists, "The error is not visible")
+        app.buttons["Okay"].tap()
+        
+        //check Messenger App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Animal Maze")
+        
+        //check Differ By Kind - Find the visually odd one out App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Differ By Kind")
+                                        
+        //check Baby Jigsaw - Assemble 3 pieces of a picture App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Baby Jigsaw")
+        
+        //check Create a Series - Arrange items in a sequence App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Create a Series")
+        
+        //check Differ By Nature - Find the logically odd one out App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Differ By Nature")
+        
+        //check Fairytale Jigsaw - Assemble 9 pieces of a picture App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Fairytale Jigsaw")
+        
+        //check Fill the Matrix - Place items in the correct cells App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Fill the MAtrix")
+        
+        //check Monster Maze - Find a route through the maze App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Monster Maze")
+        
+        //check Mosaics - Arrange colorful pieces to form a mosaic App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Mosaics")
+        
+        //check Pair By Kind - Match visually related items App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Sort By Kind")
+        
+        //check Pair By Nature - Match logically related items App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Pair By Nature")
+        
+        //check Pair By Number - Match quantities and numbers App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Pair By Number")
+        
+        //check Place in Groups - Create groups of related items App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Place in Groups")
+        
+        //check Same Same - Match identical items App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Same Same")
+        
+        //check Sort By Kind - Sort visually related items App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Sort By Kind")
+        
+        //check Sort By Nature - Sort logically related items App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Sort By Nature")
+        
+        //check Stack Up - Stack items bottom-up to build a tower App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Stack up")
+        
+        //check Vehicle Jigsaw - Assemble 6 pieces of a picture App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Vehicle Jigsaw")
+        
+        //check Vehicle Maze - Find a route through the maze App
+        grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Vehicle Maze")
+       
+        pages.backToVocab()
+        
+        //check copied vocab - open Website
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "4copied vocabulary open website", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Google Website Toggle On")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add website with restricted toggle turned on
+        actionsPage.addANewAction(actionName: "Open Website")
+        actionsPage.addWebsiteToggleOn()
+        
+        //add website with restricted toggle turned off
+        grammarActionsPage.addWebsiteRestrictedToggleOff()
+        
+        //check if the Google website works as expected - Toggle On
+        actionsPage.checkTheWebsiteToggleOn()
+        
+        //check if the Google website works as expected - Toggle Off
+        actionsPage.checkTheWebsiteToggleOff()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - pauseResume Tracking
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "5copied vocabulary pause resume tracking", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Pause/Resume Tracking")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Pause/Resume Tracking")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        app.buttons["Pause/Resume Tracking"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - play Video
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "6copied vocabulary play video", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Play YouTube Video")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Play Video")
+        
+        //check Library Video tab
+        actionsPage.checkLibraryVideoTab()
+        
+        //check youtube video tab and insert a video
+        actionsPage.checkYoutubeVideoTab()
+        
+        //check if the action works as expected
+        actionsPage.checkYoutubeVideoBtn()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - system Keyboards
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "7copied vocabulary system keyboard", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "System Keyboard")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "System Keyboard")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        actionsPage.checkSystemKeyboardAction()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - textCopyPaste
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "8copied vocabulary copy paste text", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Text Copy Button")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add a new action "Text Copy"
+        actionsPage.addANewAction(actionName: "Text Copy")
+        
+        //save the action
+        actionsPage.editTextPasteBtn()
+        actionsPage.removeSpeechMessageAction()
+        actionsPage.addANewAction(actionName: "Text Paste")
+        actionsPage.saveTheAction()
+        
+        //check if the actions work as expected
+        actionsPage.checkTextPasteCopyFunctions()
+        
+        pages.checkSdbText(sdbText: "Endtoend ")
+        app.buttons["BackButton"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - visit Exception
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "9copied vocabulary visit exception1", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Visit Exception")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add time/date action
+        actionsPage.addANewAction(actionName: "Visit Exception")
+        
+        //save the action
+        actionsPage.saveTheAction()
+       
+        //check if the action works
+        app.buttons["Visit Exception"].tap()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - visit To
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "11copied vocabulary visit to", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Visit to Page No Anim")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add no animation action
+        actionsPage.addANewAction(actionName: "Visit")
+        actionsPage.addNoAnimAction()
+        
+        //add navigation - up
+        grammarActionsPage.addVisitAction(button: 26, jumpDirection: "Visit to Page Up", directionType: "  Animate Up")
+        
+        //add navigation - down
+        grammarActionsPage.addVisitAction(button: 27, jumpDirection: "Visit to Page Down", directionType: "  Animate Down")
+        
+        //add navigation - right
+        grammarActionsPage.addVisitAction(button: 28, jumpDirection: "Visit to Page Right", directionType: "  Animate Right")
+        
+        //add navigation - left
+        grammarActionsPage.addVisitAction(button: 29, jumpDirection: "Visit to Page Left", directionType: "  Animate Left")
+        
+        //check if the action works
+        actionsPage.checkVisitAction()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - wordFinder
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "01copied vocabulary wordfinder", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Word Finder Btn")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add a new action "Text Copy"
+        actionsPage.addANewAction(actionName: "Word Finder")
+        actionsPage.saveTheAction()
+        //check the Word Finder action
+        actionsPage.checkWordFinderAction()
+        
+        pages.backToVocab()
+        
+        //check copied vocab - wordPrediction
+        //copy a new vocab
+        mainPage.nameVocab(vocabName: "02copied vocabulary wordprediction", vocabDescription: "vocabulary description e2e")
+        
+        pages.editPage()
+        //add an action
+        actionsPage.editButtonForAction(nameButton: "Word Prediction Btn 1")
+        
+        //remove the speech message action
+        actionsPage.removeSpeechMessageAction()
+        
+        //add a new action "Text Copy"
+        actionsPage.addANewAction(actionName: "Word Prediction")
+        app.staticTexts["  Number 1"].tap()
+        app.buttons["Save"].tap()
+        //check the Word Finder action
+        grammarActionsPage.addNavigateActionsHomeBack(button: 26, navigateDirection: "Word Prediction Btn 2", actionType: "Word Prediction", directionType: "  Number 2")
+        //add no3
+        grammarActionsPage.addNavigateActionsHomeBack(button: 27, navigateDirection: "Word Prediction Btn 3", actionType: "Word Prediction", directionType: "  Number 3")
+        //add no4
+        grammarActionsPage.addNavigateActionsHomeBack(button: 28, navigateDirection: "Word Prediction Btn 4", actionType: "Word Prediction", directionType: "  Number 4")
+        //add no5
+        grammarActionsPage.addNavigateActionsHomeBack(button: 22, navigateDirection: "Word Prediction Btn 5", actionType: "Word Prediction", directionType: "  Number 5")
+        //add no6
+        grammarActionsPage.addNavigateActionsHomeBack(button: 23, navigateDirection: "Word Prediction Btn 6", actionType: "Word Prediction", directionType: "  Number 6")
+        //add no7
+        grammarActionsPage.addNavigateActionsHomeBack(button: 24, navigateDirection: "Word Prediction Btn 7", actionType: "Word Prediction", directionType: "  Number 7")
+        //add no8
+        grammarActionsPage.addNavigateActionsHomeBack(button: 29, navigateDirection: "Word Prediction Btn 8", actionType: "Word Prediction", directionType: "  Number 8")
+        //add no9
+        grammarActionsPage.addNavigateActionsHomeBack(button: 30, navigateDirection: "Word Prediction Btn 9", actionType: "Word Prediction", directionType: "  Number 9")
+        //add no10
+        grammarActionsPage.addNavigateActionsHomeBack(button: 31, navigateDirection: "Word Prediction Btn 10", actionType: "Word Prediction", directionType: "  Number 10")
+        
+        actionsPage.checkWordPredictionsAction()
+        
+        pages.backToVocab()
+        
+    }
 }

@@ -119,6 +119,32 @@ class LanguagesRegionPage {
             app.buttons["Back"].tap()
         }
     
+    func changeEnglishVoiceToAlmaguVoiceMegaTest(){
+            XCUIApplication().popovers.tables/*@START_MENU_TOKEN@*/.staticTexts["English voice"]/*[[".cells.staticTexts[\"English voice\"]",".staticTexts[\"English voice\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+            app.staticTexts["Liam (child)"].tap()
+            app.staticTexts["William (teen)"].tap()
+            // Check how many "DownloadButton" elements exist before starting the download
+            let initialDownloadButtonsCount = app.buttons.matching(identifier: "arrow.down").count
+            XCTAssertGreaterThan(initialDownloadButtonsCount, 0, "There should be at least one 'DownloadButton'")
+            
+            // Wait until the number of "DownloadButton" buttons decreases by 1
+            let expectation = XCTNSPredicateExpectation(
+                        predicate: NSPredicate(format: "count == %d", initialDownloadButtonsCount - 1),
+                        object: app.buttons.matching(identifier: "arrow.down")
+                    )
+
+                    let result = XCTWaiter.wait(for: [expectation], timeout: 40)
+
+                    // Check if the waiting succeeded
+                    if result == .completed {
+                        XCTAssertEqual(app.buttons.matching(identifier: "arrow.down").count, initialDownloadButtonsCount - 1, "One 'DownloadButton' should have disappeared after the download started")
+                    } else {
+                        XCTFail("The 'DownloadButton' did not disappear within the timeout period")
+                    }
+            app.staticTexts["William (teen)"].tap()
+            app.buttons["Back"].tap()
+        }
+    
     func trySelectAlmaguVoice(){
         XCUIApplication().popovers.tables.staticTexts["Chinese (China mainland) voice"].tap()
         app.staticTexts["Tingting"].tap()
