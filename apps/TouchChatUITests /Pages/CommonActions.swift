@@ -65,6 +65,20 @@ class CommonActions {
         popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
     }
     
+    // MARK: - Store Text Button
+    func openStoreTextBtn() {
+        app.navigationBars.buttons["Menu"].tap()
+        app.popovers.scrollViews.otherElements.buttons["Store Text to Button"].tap()
+        XCTAssertTrue(app.staticTexts["Select the button where you want to store your composed message"].exists, "The Store Text modal doesn't appear")
+        app.alerts["Store Text to Button?"].scrollViews.otherElements.buttons["Continue"].tap()
+    }
+    
+    func checkIfTheStoreButtonWorks() {
+        app.buttons["SPACE"].tap()
+        XCTAssertTrue(app.buttons["Testby"].exists, "The StoreTextButton is not visible")
+        app.buttons["Testby"].tap()
+    }
+    
     // MARK: - Utility Methods
     func clearAppCache() {
         let appDomain = Bundle.main.bundleIdentifier!

@@ -31,6 +31,38 @@ class PronunciationsPage {
         pronunciationsNavigationBar.buttons["Save"].tap()
     }
     
+    func scrollForSearchPronunciations() {
+        let scrollViewToolbar = app.staticTexts["⛄"]
+        XCTAssertTrue(scrollViewToolbar.exists, "Toolbar doesn't exist.")
+        
+        let elementPosition = scrollViewToolbar.frame.origin
+        let elementSize = scrollViewToolbar.frame.size
+        let centerX = elementPosition.x + elementSize.width / 2
+        let centerY = elementPosition.y + elementSize.height / 2
+        
+        let startCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: centerY / UIScreen.main.bounds.height))
+        let endCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: (centerY + 100) / UIScreen.main.bounds.height))
+        
+        startCoordinate.press(forDuration: 0.1, thenDragTo: endCoordinate)
+    }
+    
+    func searchPronunciations() {
+        app.searchFields["Search"].tap()
+        app.searchFields["Search"].typeText("test")
+    }
+    
+    func deletePronunciations() {
+        let popoversQuery = XCUIApplication().popovers
+        let toolbar = popoversQuery.toolbars["Toolbar"]
+        toolbar.buttons["Edit"].tap()
+        
+        let tablesQuery = popoversQuery.tables
+        tablesQuery.buttons["Remove test, Test by e2e"].tap()
+        tablesQuery.buttons["Delete"].tap()
+        toolbar.buttons["Done"].tap()
+        popoversQuery.navigationBars["Pronunciations"].buttons["Cancel"].tap()
+    }
+    
     func clearAllPronunciations() {
         app.buttons["Clear"].tap()
         XCTAssertTrue(app.staticTexts["Are you sure you want to erase all?"].exists, "The clear modal doesn't appear")
