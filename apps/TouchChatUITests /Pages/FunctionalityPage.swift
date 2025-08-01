@@ -62,6 +62,7 @@ class FunctionalityPage {
     
     func signOutFromIShare() {
         app.buttons["Okay"].tap()
+        // Note: This sleep call should be replaced with WaitPage.waitShort() when used in tests
         sleep(2)
         app.buttons["Sign Out"].press(forDuration: 1)
     }
@@ -86,6 +87,7 @@ class FunctionalityPage {
     }
     
     func loginToDropBox(email: String, password: String) {
+        // Note: This sleep call should be replaced with WaitPage.waitLong() when used in tests
         sleep(7) // Wait for DropBox to load
         
         // Handle cookies
@@ -106,6 +108,7 @@ class FunctionalityPage {
             passwordField.typeText(password)
             app.buttons["Log in"].tap()
             
+            // Note: This sleep call should be replaced with WaitPage.waitShort() when used in tests
             sleep(3)
             
             // Handle save password dialog
