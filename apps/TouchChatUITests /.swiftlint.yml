@@ -1,0 +1,91 @@
+# SwiftLint Configuration for TouchChatUITests
+# This configuration is optimized for UI testing code
+
+# Basic rules to disable (too strict for test code)
+disabled_rules:
+  - trailing_whitespace  # Tests often have spacing for readability
+  - force_cast           # Tests sometimes need force casting for XCUIElement
+  - force_try            # Tests may use try! for setup that should always work
+  - function_body_length # Test functions can be longer for comprehensive scenarios
+  - type_body_length     # Page objects may have many elements defined
+
+# Rules to enable for better code quality
+opt_in_rules:
+  - unused_declaration
+  - explicit_init
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - unused_import
+  - vertical_whitespace_closing_braces
+  - vertical_whitespace_opening_braces
+  - empty_count
+  - first_where
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - empty_string
+  - toggle_bool
+
+# File and directory exclusions
+excluded:
+  - "apps/TouchChatUITests /modifiers.ce"         # Generated file
+  - "apps/TouchChatUITests /project.pbxproj"      # Xcode project file
+  - "apps/TouchChatUITests /backups/"             # Backup directory
+  - .git                                          # Git directory
+  - "**/*.generated.swift"                        # Any generated Swift files
+
+# Only lint Swift files in our test directories
+included:
+  - "apps/TouchChatUITests /Pages/"
+  - "apps/TouchChatUITests /Tests/"
+  - "apps/TouchChatUITests /Core/"
+  - TouchChatUITests.swift
+  - TouchChatUITestsLaunchTests.swift
+
+# Adjust limits for test code
+line_length: 120                    # Tests often have longer descriptive lines
+file_length: 800                    # We'll break down the large Pages.swift file
+type_name:
+  min_length: 3
+  max_length: 50
+identifier_name:
+  min_length: 1                     # Allow single letter variables in tests (i, x, y)
+  max_length: 60
+function_parameter_count: 8         # Page objects may have many initialization parameters
+
+# Custom rules for better test practices
+custom_rules:
+  no_sleep:
+    included: 
+      - "apps/TouchChatUITests"
+      - TouchChatUITests.swift
+      - TouchChatUITestsLaunchTests.swift
+    name: "No raw sleep calls"
+    regex: "\\bsleep\\s*\\("
+    message: "Use Wait.forExistence() or Wait.short/medium/long instead of raw sleep() calls."
+    severity: error
+    
+  no_force_unwrap_ui_elements:
+    included:
+      - "apps/TouchChatUITests"
+      - TouchChatUITests.swift 
+      - TouchChatUITestsLaunchTests.swift
+    name: "Avoid force unwrapping UI elements"
+    regex: "\\.(first|last|element)!\\."
+    message: "Avoid force unwrapping UI elements. Use safe unwrapping or waitForExistence instead."
+    severity: warning
+    
+  prefer_xcuielement_exists:
+    included:
+      - "apps/TouchChatUITests"
+      - TouchChatUITests.swift
+      - TouchChatUITestsLaunchTests.swift
+    name: "Use .exists property for element checks"
+    regex: "waitForExistence\\(timeout:\\s*0"
+    message: "For immediate existence checks, use .exists property instead of waitForExistence(timeout: 0)."
+    severity: warning
+
+# Reporter format (choose one)
+reporter: "xcode"  # Shows warnings/errors inline in Xcode
+
+# Treat warnings as errors in CI (can be overridden with --lenient)
+strict: false 
