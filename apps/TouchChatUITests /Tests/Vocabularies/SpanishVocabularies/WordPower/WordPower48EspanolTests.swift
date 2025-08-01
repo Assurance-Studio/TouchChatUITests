@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class WordPower48EspanolTests: BaseTest {
@@ -13,12 +18,16 @@ final class WordPower48EspanolTests: BaseTest {
         
         // Select WordPower48 Español vocabulary
         pages.vocabularyPage.selectWordPower48Espanol()
-        pages.vocabularyPage.openVocabulary()
-        
+        pages.common.openAVocab()
+
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
-        
+        pages.vocabularyPage.verifyTheVocab(lastElement: "porque", vocabWord: "comer", vocabElement: 4, nameElement: "GENTE")
+        XCTAssertTrue(app.buttons["que"].exists)
+        app.buttons["que"].tap()
+        app.buttons["el"].tap()
+        pages.common.checkSdbText(sdbText: "Comer que el ")
+
         // MARK: - Cleanup
         pages.common.backToVocab()
         

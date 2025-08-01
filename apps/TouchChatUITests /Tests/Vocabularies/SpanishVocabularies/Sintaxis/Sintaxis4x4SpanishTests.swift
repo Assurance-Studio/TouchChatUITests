@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class Sintaxis4x4SpanishTests: BaseTest {
@@ -13,13 +18,18 @@ final class Sintaxis4x4SpanishTests: BaseTest {
         
         // Select sin sintaxis 4 x 4 Spanish vocabulary
         pages.vocabularyPage.selectSintaxis4x4Spanish()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "lugares", vocabWord: "casa", vocabElement: 3, nameElement: "comida")
+        XCTAssertTrue(app.buttons["cochera"].exists)
+        app.buttons["cochera"].tap()
+        app.buttons["sala"].tap()
+        pages.common.checkSdbText(sdbText: "Cochera sala ")
         
         // MARK: - Cleanup
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("Sintaxis 4x4 Spanish Test Finished Successfully!")

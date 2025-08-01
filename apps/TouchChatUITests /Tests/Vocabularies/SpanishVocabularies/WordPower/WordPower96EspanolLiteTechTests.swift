@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class WordPower96EspanolLiteTechTests: BaseTest {
@@ -15,23 +20,16 @@ final class WordPower96EspanolLiteTechTests: BaseTest {
         pages.vocabularyPage.selectWordPower96EspanolLiteTech()
         pages.vocabularyPage.openVocabulary()
         
-        pages.verifyTheVocab(lastElement: "ya", vocabWord: "yo mi", vocabElement: 8, nameElement: "ACCIONES")
-        
+        // MARK: - Then (Verification)
+        // Verify vocabulary structure and test interactions
+        pages.vocabularyPage.verifyTheVocab(lastElement: "ya", vocabWord: "yo mi", vocabElement: 8, nameElement: "ACCIONES")
         XCTAssertTrue(app.buttons["comer"].exists)
         app.buttons["comer"].tap()
         app.buttons["la"].tap()
         app.buttons["BackButton"].tap()
-        
-        pages.checkSdbText(sdbText: "Yo comer ")
-        
-        pages.backToVocab();
-        
-        print("Word Power 96 Espanol Lite-Tech SS Test Finished with success!")
-        
-        // MARK: - Then (Verification)
-        // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
-        
+        pages.common.checkSdbText(sdbText: "Yo comer ")
+        pages.common.backToVocab();
+
         // MARK: - Cleanup
         pages.common.backToVocab()
         

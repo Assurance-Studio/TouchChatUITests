@@ -1,4 +1,7 @@
-import XCTest
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.import XCTest
 
 final class MultiChat15BilingualTests: BaseTest {
     
@@ -13,7 +16,7 @@ final class MultiChat15BilingualTests: BaseTest {
         
         // Select MultiChat 15 Spanish Bilingual vocabulary
         pages.vocabularyPage.selectMultiChat15Bilingual()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure
@@ -31,14 +34,11 @@ final class MultiChat15BilingualTests: BaseTest {
         pages.vocabularyPage.tapVocabularyElement("uvas - grapes")
         
         // Verify speech display bar
-        pages.vocabularyPage.verifySpeechDisplayBarText("Yo quiero comer uvas ")
-        
-        // Navigate back
-        pages.vocabularyPage.tapBackButton()
-        pages.vocabularyPage.tapBackButton()
-        pages.vocabularyPage.tapBackButton()
+        pages.vocabularyPage.verifySpeechDisplayBarText(expectedText: "Yo quiero comer uvas ")
         
         // MARK: - Cleanup
+        // Navigate back
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("MultiChat 15 Bilingual Test Finished Successfully!")

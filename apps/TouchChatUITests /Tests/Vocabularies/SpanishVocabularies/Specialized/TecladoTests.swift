@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class TecladoTests: BaseTest {
@@ -13,13 +18,17 @@ final class TecladoTests: BaseTest {
         
         // Select Teclado vocabulary
         pages.vocabularyPage.selectTecladoSS()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
-        
+        pages.vocabularyPage.verifyTheVocab(lastElement: "?", vocabWord: "FRASES", vocabElement: 6, nameElement: "FRASES")
+        XCTAssertTrue(app.buttons["Hola, ¿cómo estás?"].exists)
+        app.buttons["Hola, ¿cómo estás?"].tap()
+        pages.common.checkSdbText(sdbText: "Hola, ¿cómo estás? ")
+
         // MARK: - Cleanup
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("Teclado Test Finished Successfully!")

@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class WordPower25EspanolTests: BaseTest {
@@ -13,10 +18,11 @@ final class WordPower25EspanolTests: BaseTest {
         
         // Select WordPower25 Español vocabulary
         pages.vocabularyPage.selectWordPower25Espanol()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure
+        
         pages.vocabularyPage.verifyVocabulary(
             lastElement: "jugar",
             vocabWord: "toma",
@@ -30,7 +36,7 @@ final class WordPower25EspanolTests: BaseTest {
         pages.vocabularyPage.tapBackButton()
         
         // Verify speech display bar
-        pages.vocabularyPage.verifySpeechDisplayBarText("Toma una ")
+        pages.vocabularyPage.verifySpeechDisplayBarText(expectedText:"Toma una ")
         
         // MARK: - Cleanup
         pages.common.backToVocab()

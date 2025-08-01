@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class WordPower60EspanolBasicoTests: BaseTest {
@@ -13,11 +18,16 @@ final class WordPower60EspanolBasicoTests: BaseTest {
         
         // Select WordPower60 Español Básico vocabulary
         pages.vocabularyPage.selectWordPower60EspanolBasico()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "ya", vocabWord: "yo", vocabElement: 7, nameElement: "ACCIONES")
+        XCTAssertTrue(app.buttons["espero"].exists)
+        app.buttons["espero"].tap()
+        app.buttons["la"].tap()
+        app.buttons["BackButton"].tap()
+        pages.common.checkSdbText(sdbText: "Espero ")
         
         // MARK: - Cleanup
         pages.common.backToVocab()

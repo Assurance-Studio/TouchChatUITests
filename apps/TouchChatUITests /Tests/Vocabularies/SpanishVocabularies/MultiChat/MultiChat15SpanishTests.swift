@@ -13,11 +13,15 @@ final class MultiChat15SpanishTests: BaseTest {
         
         // Select MultiChat15 Spanish vocabulary
         pages.vocabularyPage.selectMultiChat15Spanish()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "Mis escenas ", vocabWord: "Yo necesito", vocabElement: 4, nameElement: "Personas")
+        XCTAssertTrue(app.buttons["ir a la oficina"].exists)
+        app.buttons["ir a la oficina"].tap()
+        app.buttons["BackButton"].tap()
+        pages.common.checkSdbText(sdbText: "Yo necesito ir a la ")
         
         // MARK: - Cleanup
         pages.common.backToVocab()
