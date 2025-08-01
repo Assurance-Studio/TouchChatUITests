@@ -42,7 +42,7 @@ final class tapActionTests: XCTestCase {
         
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary tap action"], vocab: vocabularyName)
+        mainPage.openVocab(vocab: vocabularyName)
         
         //enable rename vocab option
         pages.openTheSettingsTab()

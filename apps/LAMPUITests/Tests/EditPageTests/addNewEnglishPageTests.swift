@@ -53,7 +53,7 @@ final class addNewEnglishPageTests: XCTestCase {
        app.textFields.element(boundBy: 0).typeText(vocabularyName)
        app.buttons["Save"].tap()
        
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary add new EnglishPage"], vocab: vocabularyName)
+       mainPage.openVocab(vocab: vocabularyName)
        
        //open the Edit Page Layout tab
        pages.editPage()

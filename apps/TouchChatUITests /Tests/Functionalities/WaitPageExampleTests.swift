@@ -72,9 +72,9 @@ final class WaitPageExampleTests: BaseTest {
         // MARK: - Conditional Wait Examples
         
         // Wait until a condition is met
-        pages.waitPage.waitUntil({
-            return app.staticTexts["Loading Complete"].exists
-        }, timeout: 10)
+pages.waitPage.waitUntil({
+    return self.app.staticTexts["Loading Complete"].exists
+}, timeout: 10)
         
         // Wait until element exists
         let elementExists = pages.waitPage.waitUntilElementExists(app.buttons["Dynamic Button"])

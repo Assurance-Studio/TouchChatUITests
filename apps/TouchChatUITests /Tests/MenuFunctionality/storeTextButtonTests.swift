@@ -41,7 +41,7 @@ final class storeTextButtonTests: XCTestCase {
         
         //copy a Spelling Vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary"], vocab: vocabularyName)
+        mainPage.openVocab(vocab: vocabularyName)
         
         //enable rename vocab option
         pages.openTheSettingsTab()

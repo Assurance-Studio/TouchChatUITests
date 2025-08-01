@@ -47,7 +47,7 @@ final class addNewListTests: XCTestCase {
        app.staticTexts["English"].firstMatch.tap()
        //copy a new vocab
        mainPage.copyLampWflHit(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary add new list"], vocab: vocabularyName)
+       mainPage.openVocab(vocab: vocabularyName)
        
        //open the Vocab Builder tab
        vocabBuilder.openVocabBuilder()

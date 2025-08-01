@@ -52,7 +52,7 @@ final class addNewSpanishPageTests: XCTestCase {
        
        //copy a new vocab
        mainPage.copySpanish1Hit(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary add new SpanishPage"], vocab: vocabularyName)
+       mainPage.openVocab(vocab: vocabularyName)
        
        //open the Edit Page Layout tab
        pages.editPage()

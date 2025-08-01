@@ -41,7 +41,7 @@ final class pageStyleOverrideTests: XCTestCase {
         
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary page style override"], vocab: vocabularyName)
+        mainPage.openVocab(vocab: vocabularyName)
 
         //enable rename vocab option
         pages.openTheSettingsTab()

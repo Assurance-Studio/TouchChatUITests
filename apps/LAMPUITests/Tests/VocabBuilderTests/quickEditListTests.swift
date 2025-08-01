@@ -48,7 +48,7 @@ final class quickEditListTests: XCTestCase {
        app.staticTexts["English"].firstMatch.tap()
        //copy a new vocab
        mainPage.copyLampWflFull(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary quick edit list"], vocab: vocabularyName)
+       mainPage.openVocab(vocab: vocabularyName)
        
        //open the Vocab Builder tab
        vocabBuilder.openVocabBuilder()

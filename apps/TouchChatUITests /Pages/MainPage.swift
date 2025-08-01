@@ -151,12 +151,12 @@ class MainPage {
     
     func nameVocab(vocabName: String, vocabDescription: String) {
         copySpellingVocab(vocabName: vocabName, vocabDescription: vocabDescription)
-        openVocab(vocabToOpen: app.staticTexts[vocabName], vocab: vocabName)
+        openVocab(vocab: vocabName)
     }
     
     func nameVocabPC(vocabName: String, vocabDescription: String) {
         copyVocabPC(vocabName: vocabName, vocabDescription: vocabDescription)
-        openVocab(vocabToOpen: app.staticTexts[vocabName], vocab: vocabName)
+        openVocab(vocab: vocabName)
     }
     // To add more vocabs
     
@@ -174,15 +174,27 @@ class MainPage {
         return input + "  "
     }
     
-    func openVocab(vocabToOpen: XCUIElement, vocab: String) {
+    func openVocab(vocab: String) {
         sleep(4)
         let vocabToOpen = app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", vocab)).firstMatch
 
-    if vocabToOpen.exists && vocabToOpen.isHittable {
+        if vocabToOpen.exists && vocabToOpen.isHittable {
             vocabToOpen.press(forDuration: 1)
-            sleep(3)
+            XCTAssertTrue(vocabToOpen.waitForExistence(timeout: 5))
         } else {
-            print("The vocabulary you're trying to open does not exist or is not hittable")
+            print("The vocabulary '\(vocab)' does not exist or is not hittable.")
         }
     }
+    
+//    func openVocab(vocabToOpen: XCUIElement, vocab: String) {
+//        sleep(4)
+//        let vocabToOpen = app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", vocab)).firstMatch
+//
+//    if vocabToOpen.exists && vocabToOpen.isHittable {
+//            vocabToOpen.press(forDuration: 1)
+//            sleep(3)
+//        } else {
+//            print("The vocabulary you're trying to open does not exist or is not hittable")
+//        }
+//    }
 }

@@ -44,7 +44,7 @@ final class adddDateAndTimeTests: XCTestCase {
        
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary date and time action"], vocab: vocabularyName)
+       mainPage.openVocab(vocab: vocabularyName)
 
        //enable delete vocab option
        pages.openTheSettingsTab()

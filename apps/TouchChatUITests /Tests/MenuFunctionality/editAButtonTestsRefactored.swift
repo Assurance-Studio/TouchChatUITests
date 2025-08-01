@@ -12,7 +12,7 @@ final class editAButtonTestsRefactored: BaseTest {
         
         // Open the test vocabulary
         pages.mainPage.openVocab(
-            vocabToOpen: app.staticTexts[testVocabName], 
+            , 
             vocab: testVocabName
         )
         

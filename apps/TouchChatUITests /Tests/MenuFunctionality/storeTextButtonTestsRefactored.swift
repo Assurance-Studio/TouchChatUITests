@@ -11,7 +11,7 @@ final class storeTextButtonTestsRefactored: BaseTest {
         createSpellingTestVocabulary(name: testVocabName, description: testVocabDescription)
         
         pages.mainPage.openVocab(
-            vocabToOpen: app.staticTexts[testVocabName], 
+            , 
             vocab: testVocabName
         )
         

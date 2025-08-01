@@ -48,7 +48,7 @@ final class applyGrammarStateTests: XCTestCase {
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
        sleep(2)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary grammar action"], vocab: vocabularyName)
+       mainPage.openVocab(vocab: vocabularyName)
         
        //enable delete vocab option
        pages.openTheSettingsTab()

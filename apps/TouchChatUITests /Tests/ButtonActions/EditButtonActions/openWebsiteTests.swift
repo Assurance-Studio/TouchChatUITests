@@ -45,7 +45,7 @@ final class openWebsiteTests: XCTestCase {
         
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary open website"], vocab: vocabularyName)
+        mainPage.openVocab(vocab: vocabularyName)
         
         //enable delete vocab option
         pages.openTheSettingsTab()

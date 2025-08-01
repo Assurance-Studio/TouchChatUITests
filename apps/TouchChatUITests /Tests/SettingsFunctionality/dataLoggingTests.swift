@@ -43,7 +43,7 @@ final class dataLoggingTests: XCTestCase {
         //copy a new vocab
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         sleep(3)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary data logging"], vocab: vocabularyName)
+        mainPage.openVocab(vocab: vocabularyName)
         
         //enable rename vocab option
         pages.openTheSettingsTab()

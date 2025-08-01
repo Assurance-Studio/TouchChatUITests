@@ -44,7 +44,7 @@ final class createButtonVisitToTests: XCTestCase {
        
        //copy a new vocab
        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary visit to"], vocab: vocabularyName)
+       mainPage.openVocab(vocab: vocabularyName)
 
        //enable delete vocab option
        pages.openTheSettingsTab()

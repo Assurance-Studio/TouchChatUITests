@@ -54,7 +54,7 @@ final class skinToneTests: XCTestCase {
        app.buttons["Clear text"].tap()
        app.textFields.element(boundBy: 0).typeText(vocabularyName)
        app.buttons["Save"].tap()
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary skin tone settings"], vocab: vocabularyName)
+       mainPage.openVocab(vocab: vocabularyName)
        
        pages.verifyTheVocab(lastElement: "Transportation", vocabWord: "Toys", vocabElement: 3, nameElement: "People")
        

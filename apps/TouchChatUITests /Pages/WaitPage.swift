@@ -1,3 +1,10 @@
+//
+//  WaitPage.swift
+//  TouchChatUITests
+//
+//  Created by Marius N on 01.08.2025
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 class WaitPage {
@@ -17,29 +24,30 @@ class WaitPage {
     }
     
     // MARK: - Basic Wait Methods
+    // sleep() expects an UInt32.
     func waitShort() {
-        sleep(WaitDuration.short)
+        usleep(UInt32(WaitDuration.short * 1_000_000))
     }
     
     func waitMedium() {
-        sleep(WaitDuration.medium)
+        usleep(UInt32(WaitDuration.medium * 1_000_000))
     }
     
     func waitLong() {
-        sleep(WaitDuration.long)
+        usleep(UInt32(WaitDuration.long * 1_000_000))
     }
     
     func waitExtraLong() {
-        sleep(WaitDuration.extraLong)
+        usleep(UInt32(WaitDuration.extraLong * 1_000_000))
     }
     
     func waitVeryLong() {
-        sleep(WaitDuration.veryLong)
+        usleep(UInt32(WaitDuration.veryLong * 1_000_000))
     }
     
     // MARK: - Custom Duration Wait
     func wait(duration: TimeInterval) {
-        sleep(duration)
+        usleep(UInt32(duration * 1_000_000))
     }
     
     // MARK: - Element Wait Methods
@@ -170,58 +178,72 @@ class WaitPage {
     }
     
     // MARK: - Conditional Wait Methods
-    func waitUntil(_ condition: @escaping () -> Bool, timeout: TimeInterval = WaitDuration.medium, file: StaticString = #file, line: UInt = #line) {
+
+    func waitUntil(
+        _ condition: @escaping () -> Bool,
+        timeout: TimeInterval = WaitDuration.medium,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
         let startTime = Date()
         while !condition() {
             if Date().timeIntervalSince(startTime) >= timeout {
                 XCTFail("Condition not met within \(timeout) seconds", file: file, line: line)
                 return
             }
-            sleep(0.5)
+            usleep(500_000) // 0.5 seconds
         }
     }
-    
-    func waitUntilElementExists(_ element: XCUIElement, timeout: TimeInterval = WaitDuration.medium) -> Bool {
+
+    func waitUntilElementExists(
+        _ element: XCUIElement,
+        timeout: TimeInterval = WaitDuration.medium
+    ) -> Bool {
         let startTime = Date()
         while !element.exists {
             if Date().timeIntervalSince(startTime) >= timeout {
                 return false
             }
-            sleep(0.5)
+            usleep(500_000) // 0.5 seconds
         }
         return true
     }
     
     // MARK: - Network/API Wait Methods
+
+    /// Wait for a network request to complete (placeholder)
     func waitForNetworkRequest(timeout: TimeInterval = WaitDuration.long) {
-        // This is a placeholder for network request waits
-        // In a real implementation, you might wait for specific network indicators
-        sleep(timeout)
+        // In real tests, replace this with logic that waits for a network indicator or spinner
+        usleep(UInt32(timeout * 1_000_000))
     }
-    
+
     // MARK: - Animation Wait Methods
+
+    /// Wait for UI animation to complete (placeholder)
     func waitForAnimationToComplete(timeout: TimeInterval = WaitDuration.medium) {
-        // This is a placeholder for animation completion waits
-        // In a real implementation, you might wait for specific animation indicators
-        sleep(timeout)
+        // In real tests, wait for an animation element to disappear or become hittable
+        usleep(UInt32(timeout * 1_000_000))
     }
-    
+
     // MARK: - Page Load Wait Methods
+
+    /// Wait for a page to fully load (placeholder)
     func waitForPageToLoad(timeout: TimeInterval = WaitDuration.long) {
-        // This is a placeholder for page load waits
-        // In a real implementation, you might wait for specific page load indicators
-        sleep(timeout)
+        // Replace with element existence/assertion once page structure is known
+        usleep(UInt32(timeout * 1_000_000))
     }
-    
+
     // MARK: - Utility Wait Methods
+
+    /// Wait for the app to become ready or idle (placeholder)
     func waitForAppToBeReady(timeout: TimeInterval = WaitDuration.medium) {
-        // Wait for the app to be in a ready state
-        // This could be customized based on your app's specific indicators
-        sleep(timeout)
+        // This could wait for specific elements like "Ready" label or disable state of a loading overlay
+        usleep(UInt32(timeout * 1_000_000))
     }
-    
+
+    /// Wait for background processing to complete (placeholder)
     func waitForBackgroundProcess(timeout: TimeInterval = WaitDuration.long) {
-        // Wait for background processes to complete
-        sleep(timeout)
+        // This could monitor CPU usage or progress indicators in production code
+        usleep(UInt32(timeout * 1_000_000))
     }
 } 

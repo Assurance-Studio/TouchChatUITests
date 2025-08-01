@@ -41,7 +41,7 @@ final class createANewButtonTests: XCTestCase {
         
         //copy a new vocab
         mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary create button"], vocab: vocabularyName)
+        mainPage.openVocab(vocab: vocabularyName)
 
         //enable delete vocab option
         pages.openTheSettingsTab()

@@ -3,8 +3,8 @@ import XCTest
 final class CopyVocabularyTests: BaseTest {
     
     // MARK: - Test Configuration
-    private let testVocabName = "copied vocabulary test"
-    private let testVocabDescription = "vocabulary description e2e"
+    private let vocabularyName = "Copy A Vocabulary Test"
+    private let testVocabDescription = "Vocabulary description created by e2e"
     
     func testCopyVocabulary() throws {
         // MARK: - Given (Setup)
@@ -12,7 +12,13 @@ final class CopyVocabularyTests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Copy vocabulary using the main page functionality
-        pages.mainPage.copy4BasicSS(vocabName: testVocabName, vocabDescription: testVocabDescription)
+        pages.mainPage.copy4BasicSS(vocabName: vocabularyName, vocabDescription: testVocabDescription)
+        
+        // Enable delete vocab option
+        pages.mainPage.openVocab(vocab: vocabularyName)
+        pages.common.openTheSettingsTab()
+        pages.settingsPage.ensureAllowDeleteIsOn()
+        pages.common.backToVocab()
         
         // MARK: - Then (Verification)
         // Verify the vocabulary was copied successfully
@@ -24,4 +30,4 @@ final class CopyVocabularyTests: BaseTest {
         
         print("Copy Vocabulary Test Finished Successfully!")
     }
-} 
+}

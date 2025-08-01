@@ -40,7 +40,7 @@ final class buttonsDwellReleaseTimeTests: XCTestCase {
         let dataLoginPage = DataLoggingPage(app: app)
        
         mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary button Dwell Time"], vocab: vocabularyName)
+        mainPage.openVocab(vocab: vocabularyName)
         
         //enable rename vocab option
         pages.openTheSettingsTab()
