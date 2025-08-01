@@ -1,78 +1,43 @@
-//  TouchChatUITests
-//
-//  Created by Alin V on 29.10.2024.
-//  Copyright © 2024 PRC-Saltillo. All rights reserved.
-//
-
 import XCTest
 
-final class iShareTests: XCTestCase {
-
-    var app = XCUIApplication()
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        continueAfterFailure = false
-        
-        let pages = Pages(app: app)
-        
-        app = XCUIApplication()
-        app.launchArguments.append("--reset-app-state")
-        app.launchArguments += ["-AppleLocale", "en_US"]
-        app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
-        pages.reachMenuPageIfOnVocabPage()
-    }
+final class IShareTests: BaseTest {
     
-    override func tearDownWithError() throws {
-        app.terminate()
-        try super.tearDownWithError()
-    }
-
-    func testAbout() throws {
+    // MARK: - Test Configuration
+    private let testPassword = "E2ePassword"
+    
+    func testIShareRegistration() throws {
+        // MARK: - Given (Setup)
+        // BaseTest handles all setup automatically
+        // Set up pasteboard with test password
+        UIPasteboard.general.string = testPassword
         
-        let pages = Pages(app: app)
+        // Generate random text for unique test data
+        let randomText = pages.functionalityPage.generateRandomString(length: 5)
+        let testFirstName = "Test by e2e" + randomText
+        let testEmail = "TestBye2e" + randomText + "@gmail.com"
         
-        func randomString(length: Int) -> String{
-            let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0123456789"
-            return String((0..<length).map{ _ in characters.randomElement()! })
-        }
+        // MARK: - When (Test Actions)
+        // Navigate to iShare service
+        pages.vocabPage.menuButton.tap()
+        pages.mainPage.iShareServiceMButton.tap()
+        sleep(5)
         
-        let randomText = randomString(length: 5)
+        // Register for iShare
+        pages.functionalityPage.registerForIShare(
+            firstName: testFirstName,
+            email: testEmail,
+            password: testPassword
+        )
         
-        UIPasteboard.general.string = "E2ePassword"
+        // MARK: - Then (Verification)
+        // Verify registration was successful
+        let registrationSuccessful = pages.functionalityPage.verifyIShareRegistration()
+        XCTAssertTrue(registrationSuccessful, "iShare registration failed")
         
-        pages.reachIShareService()
+        // MARK: - Cleanup
+        // Sign out from iShare
+        pages.functionalityPage.signOutFromIShare()
         
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Register for iShare"].tap()
-        app.textFields["First Last"].tap()
-        app.textFields["First Last"].typeText("Test by e2e" + randomText)
-        app.textFields["name@domain.com"].tap()
-        app.textFields["name@domain.com"].typeText("TestBye2e" + randomText + "@gmail.com")
-        app.secureTextFields.element(boundBy: 0).press(forDuration: 1.0)
-        app.menuItems["Paste"].tap()
-        app.secureTextFields.element(boundBy: 1).press(forDuration: 1.0)
-        app.secureTextFields.element(boundBy: 1).typeText("E2ePassword")
-        
-        app.textFields["Test by e2e" + randomText].tap()
-        sleep(2)
-        app.secureTextFields.element(boundBy: 0).tap()
-        sleep(2)
-        app.buttons["Register"].press(forDuration: 1)
-        
-        let firstRegisterIShare = app.staticTexts["Thank you for registering for iShare. You have been granted a free 365 day trial of the iShare services."]
-        let existsFirstRegister = firstRegisterIShare.waitForExistence(timeout: 5)
-        let secondRegisterIShare = app.staticTexts["Successful registration"]
-        let existsSecondRegister = secondRegisterIShare.waitForExistence(timeout: 5)
-        
-        XCTAssertTrue(existsFirstRegister || existsSecondRegister, "The iShare modal is not visible")
-        
-        app.buttons["Okay"].tap()
-        sleep(2)
-        app.buttons["Sign Out"].press(forDuration: 1)
-        
-        
+        print("iShare Registration Test Finished Successfully!")
     }
 }
