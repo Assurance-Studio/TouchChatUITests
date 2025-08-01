@@ -349,7 +349,8 @@ class Pages {
         let elementsQuery = scrollViewsQuery.otherElements
         elementsQuery.buttons["Edit Abbreviations"].tap()
         let abbreviationsNavigationBar = popoversQuery.navigationBars["Abbreviations"]
-        let existsAbbreviationNavigationBar = abbreviationsNavigationBar.waitForExistence(timeout: 5)
+        let existsAbbreviationNavigationBar = abbreviationsNavigationBar.waitForExistence(timeout: 10)
+        XCTAssertTrue(existsAbbreviationNavigationBar)
         abbreviationsNavigationBar.buttons["Add"].tap()
     }
     
@@ -382,7 +383,8 @@ class Pages {
     
     func writeTestBy(){
         let tbutton = app.buttons["t"]
-        let waitForTButton = tbutton.waitForExistence(timeout: 5)
+        let waitForTButton = tbutton.waitForExistence(timeout: 10)
+        XCTAssertTrue(waitForTButton)
         app.buttons["t"].tap()
         app.buttons["e"].tap()
         app.buttons["s"].tap()
@@ -396,7 +398,8 @@ class Pages {
         let popoversQuery = app.popovers
         popoversQuery.scrollViews.otherElements.buttons["Edit Abbreviations"].tap()
         let editAbbreviationPage = popoversQuery.toolbars["Toolbar"].buttons["Edit"]
-        let waitForTheEditAbbreviation = editAbbreviationPage.waitForExistence(timeout: 5)
+        let waitForTheEditAbbreviation = editAbbreviationPage.waitForExistence(timeout: 10)
+        XCTAssertTrue(waitForTheEditAbbreviation)
         editAbbreviationPage.tap()
     }
     
@@ -430,7 +433,8 @@ class Pages {
         let elementsQuery = scrollViewsQuery.otherElements
         elementsQuery.buttons["Edit Pronunciations"].tap()
         let pronunciationsNavigationBar = popoversQuery.navigationBars["Pronunciations"]
-        let existsPronunciationsNavigationBar = pronunciationsNavigationBar.waitForExistence(timeout: 5)
+        let existsPronunciationsNavigationBar = pronunciationsNavigationBar.waitForExistence(timeout: 10)
+        XCTAssertTrue(existsPronunciationsNavigationBar)
         pronunciationsNavigationBar.buttons["Add"].tap()
     }
     
@@ -521,7 +525,7 @@ class Pages {
     func vocabDesc(){
         let vocabularyName = "copied vocabulary"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -1528,7 +1532,7 @@ class Pages {
           let frenchIndicator = frenchCell.images.firstMatch
           let englishIndicator = englishCell.images.firstMatch
 
-          // 🔹 For FRENCH: if it is expanded (arrow down), tap to collapse or interact
+          //  For FRENCH: if it is expanded (arrow down), tap to collapse or interact
           if frenchIndicator.exists {
               let label = frenchIndicator.label.lowercased()
               if label == "expanded" || label.contains("down") || label == "▼" {
@@ -1538,7 +1542,7 @@ class Pages {
               }
           }
 
-          // 🔹 For ENGLISH: if it is collapsed (arrow right), tap to expand
+          // For ENGLISH: if it is collapsed (arrow right), tap to expand
           if englishIndicator.exists {
               let label = englishIndicator.label.lowercased()
               if label == "expanded" || label.contains("right") || label == "►" {

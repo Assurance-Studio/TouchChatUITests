@@ -201,6 +201,48 @@ class GrammarActionaPageClass {
         XCTAssertTrue(quicksBtnExists, "The grammar actions don't work as expected")
     }
     
+    func checkGrammarActionMegaT(){
+        //check if the grammar actions work as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -ed"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -en works as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -en"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -er works as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -er"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -est works as expected
+        app.buttons["quick"].tap()
+        app.buttons["Grammar Action -est"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -ing works as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -ing"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -ly works as expected
+        app.buttons["quick"].tap()
+        app.buttons["Grammar Action -ly"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -s works as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -s"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+
+        let grammarActions = app.textFields["Broke broken breaker quickest breaking quickly breaks "]
+        XCTAssertTrue(grammarActions.exists, "The grammar actions don't work as expected")
+        
+    }
+    
     func addJumpAction(button: Int, jumpDirection: String, directionType: String){
         app.buttons.element(boundBy: button).tap()
         app.buttons["Edit This Button"].tap()
