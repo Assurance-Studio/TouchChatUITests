@@ -12,7 +12,6 @@ final class editAButtonTestsRefactored: BaseTest {
         
         // Open the test vocabulary
         pages.mainPage.openVocab(
-            , 
             vocab: testVocabName
         )
         

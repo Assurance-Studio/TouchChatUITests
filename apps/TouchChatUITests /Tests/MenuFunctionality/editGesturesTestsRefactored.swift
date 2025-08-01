@@ -11,7 +11,6 @@ final class editGesturesTestsRefactored: BaseTest {
         createSpellingTestVocabulary(name: testVocabName, description: testVocabDescription)
         
         pages.mainPage.openVocab(
-            , 
             vocab: testVocabName
         )
         

@@ -15,6 +15,8 @@ class PageManager {
     lazy var functionalityPage: FunctionalityPage = FunctionalityPage(app: app)
     lazy var modifiersPage: ModifiersPage = ModifiersPage(app: app)
     lazy var waitPage: WaitPage = WaitPage(app: app)
+    lazy var vocabularyPage: VocabularyPage = VocabularyPage(app: app)
+    lazy var languageSelectionPage: LanguageSelectionPage = LanguageSelectionPage(app: app)
     lazy var common: CommonActions = CommonActions(app: app)
     
     init(app: XCUIApplication) {
