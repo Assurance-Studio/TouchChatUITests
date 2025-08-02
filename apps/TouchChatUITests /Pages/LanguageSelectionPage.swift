@@ -22,7 +22,7 @@ class LanguageSelectionPage {
         app.buttons["Done"].tap()
     }
     
-    func selectLanguageIfExists(languageName: String) {
+    func selectLanguageIfExists(_ languageName: String) {
         openLanguageAndRegionSettings()
         let languageType = app.staticTexts[languageName]
         if languageType.exists {
