@@ -140,12 +140,12 @@ class VocabularyPage {
         vocabWordVocab.press(forDuration: 2)
     }
     
-    func verifyVocabularyElementExists(elementName: String, timeout: TimeInterval = 10) -> Bool {
+    func verifyVocabularyElementExists(_ elementName: String, timeout: TimeInterval = 10) -> Bool {
         let element = app.buttons[elementName]
         return element.waitForExistence(timeout: timeout)
     }
     
-    func tapVocabularyElement(elementName: String) {
+    func tapVocabularyElement(_ elementName: String) {
         let element = app.buttons[elementName]
         XCTAssertTrue(element.waitForExistence(timeout: 10), "Vocabulary element '\(elementName)' not found")
         element.tap()
@@ -164,7 +164,7 @@ class VocabularyPage {
         XCTAssertTrue(sdbElement.exists, "Speech Display Bar text '\(expectedText)' not found")
     }
     
-    func checkSpeechDisplayBarText(text: String) {
+    func checkSpeechDisplayBarText(_ text: String) {
         let sdbElement = app.textFields[text]
         XCTAssertTrue(sdbElement.exists, "Speech Display Bar text '\(text)' not found")
     }
