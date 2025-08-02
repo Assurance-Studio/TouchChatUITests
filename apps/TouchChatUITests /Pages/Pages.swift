@@ -1528,7 +1528,7 @@ class Pages {
           let frenchIndicator = frenchCell.images.firstMatch
           let englishIndicator = englishCell.images.firstMatch
 
-          // 🔹 For FRENCH: if it is expanded (arrow down), tap to collapse or interact
+          //  For FRENCH: if it is expanded (arrow down), tap to collapse or interact
           if frenchIndicator.exists {
               let label = frenchIndicator.label.lowercased()
               if label == "expanded" || label.contains("down") || label == "▼" {
@@ -1538,7 +1538,7 @@ class Pages {
               }
           }
 
-          // 🔹 For ENGLISH: if it is collapsed (arrow right), tap to expand
+          //  For ENGLISH: if it is collapsed (arrow right), tap to expand
           if englishIndicator.exists {
               let label = englishIndicator.label.lowercased()
               if label == "expanded" || label.contains("right") || label == "►" {

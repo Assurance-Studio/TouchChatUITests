@@ -8,10 +8,10 @@ final class WordPower25Tests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
         
         // Select WordPower25 vocabulary
-        pages.vocabularyPage.selectWordPower25SS()
+        pages.vocabularyPage.selectWordPower()
+        pages.vocabularyPage.select25PositionSS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)
@@ -32,7 +32,7 @@ final class WordPower25Tests: BaseTest {
         pages.vocabularyPage.checkSpeechDisplayBarText("I want to eat cookies ")
         
         // Navigate back
-        pages.vocabularyPage.tapBackButton()
+        pages.common.pressBackButton()
         
         // MARK: - Cleanup
         pages.common.backToVocab()

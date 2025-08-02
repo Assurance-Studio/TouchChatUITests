@@ -8,15 +8,18 @@ final class AphasiaUSTests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
-        
         // Select Aphasia US vocabulary
         pages.vocabularyPage.selectAphasiaUSSS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "Scales", vocabWord: "Me", vocabElement: 10, nameElement: "Clear")
+        app.buttons["Feelings"].tap()
+        XCTAssertTrue(app.buttons["happy"].exists)
+        app.buttons["happy"].tap()
+        pages.common.checkSdbText(sdbText: "Happy ")
+        pages.common.pressBackButton()
         
         // MARK: - Cleanup
         pages.common.backToVocab()

@@ -8,15 +8,18 @@ final class AphasiaUKTests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
-        
         // Select Aphasia UK vocabulary
         pages.vocabularyPage.selectAphasiaUKSS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "Scales", vocabWord: "Places", vocabElement: 7, nameElement: "Social")
+        app.buttons["Shopping"].tap()
+        XCTAssertTrue(app.buttons["supermarket "].exists)
+        app.buttons["supermarket "].tap()
+        pages.common.checkSdbText(sdbText: "Supermarket ")
+        pages.common.pressBackButton()
         
         // MARK: - Cleanup
         pages.common.backToVocab()

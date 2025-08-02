@@ -11,27 +11,54 @@ class VocabularyPage {
     
     // English Vocabularies
     func selectBasic4SS() {
-        app.tables.staticTexts["Simple 4-Basic SS"].tap()
+        let simple4BasicSSElement = app.tables.staticTexts["Simple 4-Basic SS"]
+        scrollToVocabularyElement(element: simple4BasicSSElement)
+        simple4BasicSSElement.tap()
     }
     
     func selectEngageForiOS() {
-        app.tables.staticTexts["Engage for iOS SS"].tap()
+        let engageForIOSElement = app.tables.staticTexts["Engage for iOS SS"]
+        scrollToVocabularyElement(element: engageForIOSElement)
+        engageForIOSElement.tap()
     }
     
     func selectMyCoreSS() {
-        app.tables.staticTexts["MyCore SS"].tap()
+        let myCoreSSElement = app.tables.staticTexts["MyCore SS"]
+        scrollToVocabularyElement(element: myCoreSSElement)
+        myCoreSSElement.tap()
     }
     
     func selectSpellingSS() {
-        app.tables.staticTexts["Spelling SS"].tap()
+        let spellingSSElement = app.tables.staticTexts["Spelling SS"]
+        scrollToVocabularyElement(element: spellingSSElement)
+        spellingSSElement.tap()
     }
     
     func selectVocabPCSS() {
-        app.tables.staticTexts["VocabPC SS"].tap()
+        let vocabPCSSElement = app.tables.staticTexts["VocabPC SS"]
+        scrollToVocabularyElement(element: vocabPCSSElement)
+        vocabPCSSElement.tap()
+    }
+    
+    func selectWordPower() {
+        let wordPowerVocabularies = app.tables.staticTexts["WordPower"]
+        scrollToVocabularyElement(element: wordPowerVocabularies)
+        wordPowerVocabularies.tap()
     }
     
     func selectWordPower25SS() {
-        app.tables.staticTexts["WordPower25 SS"].tap()
+        let wordPowerVocabularies = app.tables.staticTexts["WordPower"]
+        scrollToVocabularyElement(element: wordPowerVocabularies)
+        wordPowerVocabularies.tap()
+    }
+    
+    func select25PositionSS() {
+        let wordPower25Position = app.tables.staticTexts["25 Position"]
+        let wordPower25SSElement = app.tables.staticTexts["WordPower25 SS"]
+        scrollToVocabularyElement(element: wordPower25Position)
+        wordPower25Position.tap()
+        scrollToVocabularyElement(element: wordPower25SSElement)
+        wordPower25SSElement.tap()
     }
     
     func selectWordPower42SS() {
@@ -93,10 +120,16 @@ class VocabularyPage {
     
     // Aphasia English Vocabularies
     func selectAphasiaUSSS() {
+        let aphasiaElement = app.tables.staticTexts["Aphasia"]
+        scrollToVocabularyElement(element: aphasiaElement)
+        app.tables.staticTexts["Aphasia"].tap()
         app.tables.staticTexts["Aphasia US SS"].tap()
     }
     
     func selectAphasiaUKSS() {
+        let aphasiaElement = app.tables.staticTexts["Aphasia"]
+        scrollToVocabularyElement(element: aphasiaElement)
+        app.tables.staticTexts["Aphasia"].tap()
         app.tables.staticTexts["Aphasia UK SS"].tap()
     }
     
@@ -313,4 +346,4 @@ class VocabularyPage {
             sleep(1)
         }
     }
-} 
+}
