@@ -30,6 +30,97 @@ class VocabularyPage {
         app.tables.staticTexts["VocabPC SS"].tap()
     }
     
+    func selectWordPower25SS() {
+        app.tables.staticTexts["WordPower25 SS"].tap()
+    }
+    
+    func selectWordPower42SS() {
+        app.tables.staticTexts["WordPower42 SS"].tap()
+    }
+    
+    func selectWordPower42BasicSS() {
+        app.tables.staticTexts["WordPower42 Basic SS"].tap()
+    }
+    
+    func selectWordPower48SS() {
+        app.tables.staticTexts["WordPower48 SS"].tap()
+    }
+    
+    func selectWordPower48BasicSS() {
+        app.tables.staticTexts["WordPower48 Basic SS"].tap()
+    }
+    
+    func selectWordPower60SS() {
+        app.tables.staticTexts["WordPower60 SS"].tap()
+    }
+    
+    func selectWordPower60BasicSS() {
+        app.tables.staticTexts["WordPower60 Basic SS"].tap()
+    }
+    
+    func selectWordPower80SS() {
+        app.tables.staticTexts["WordPower80 SS"].tap()
+    }
+    
+    func selectWordPower108SS() {
+        app.tables.staticTexts["WordPower108 SS"].tap()
+    }
+    
+    func selectWordPower108KeyboardSS() {
+        app.tables.staticTexts["WordPower108 Keyboard SS"].tap()
+    }
+    
+    func selectWordPower140SS() {
+        app.tables.staticTexts["WordPower140 SS"].tap()
+    }
+    
+    func selectWordPower20SimplySS() {
+        app.tables.staticTexts["WordPower20 Simply SS"].tap()
+    }
+    
+    // MultiChat English Vocabularies
+    func selectMultiChat15AdultSS() {
+        app.tables.staticTexts["MultiChat15 Adult SS"].tap()
+    }
+    
+    func selectMultiChat15AdolescentSS() {
+        app.tables.staticTexts["MultiChat15 Adolescent SS"].tap()
+    }
+    
+    func selectMultiChat15StudentSS() {
+        app.tables.staticTexts["MultiChat15 Student SS"].tap()
+    }
+    
+    // Aphasia English Vocabularies
+    func selectAphasiaUSSS() {
+        app.tables.staticTexts["Aphasia US SS"].tap()
+    }
+    
+    func selectAphasiaUKSS() {
+        app.tables.staticTexts["Aphasia UK SS"].tap()
+    }
+    
+    // QuickChat English Vocabularies
+    func selectMyQuickChatChild4SS() {
+        app.tables.staticTexts["My QuickChat Child 4 SS"].tap()
+    }
+    
+    func selectMyQuickChatChild8SS() {
+        app.tables.staticTexts["My QuickChat Child 8 SS"].tap()
+    }
+    
+    func selectMyQuickChatChild12SS() {
+        app.tables.staticTexts["My QuickChat Child 12 SS"].tap()
+    }
+    
+    func selectMyQuickChatAdult8SS() {
+        app.tables.staticTexts["My QuickChat Adult 8 SS"].tap()
+    }
+    
+    func selectMyQuickChatAdult12SS() {
+        app.tables.staticTexts["My QuickChat Adult 12 SS"].tap()
+    }
+    
     func selectSintaxis4x4English() {
         app.tables.staticTexts["sin sintaxis 4 x 4 English SS"].tap()
     }

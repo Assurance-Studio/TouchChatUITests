@@ -18,7 +18,7 @@ final class WordPower96EspanolLiteTechTests: BaseTest {
         
         // Select WordPower96 Español Lite-Tech vocabulary
         pages.vocabularyPage.selectWordPower96EspanolLiteTech()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions

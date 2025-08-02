@@ -3,6 +3,8 @@
 //  Created by Alin Voinescu
 //  Copyright © 2024 PRC-Saltillo. All rights reserved.import XCTest
 
+import XCTest
+
 final class MultiChat15BilingualTests: BaseTest {
     
     func testMultiChat15Bilingual() throws {
