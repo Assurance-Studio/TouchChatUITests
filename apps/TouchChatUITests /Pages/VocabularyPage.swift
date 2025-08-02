@@ -45,14 +45,14 @@ class VocabularyPage {
         scrollToVocabularyElement(element: wordPowerVocabularies)
         wordPowerVocabularies.tap()
     }
-    
-    func selectWordPower25SS() {
-        let wordPowerVocabularies = app.tables.staticTexts["WordPower"]
-        scrollToVocabularyElement(element: wordPowerVocabularies)
-        wordPowerVocabularies.tap()
+
+    func selectMyQuickChat() {
+        let myQuickChat = app.tables.staticTexts["My QuickChat"]
+        scrollToVocabularyElement(element: myQuickChat)
+        myQuickChat.tap()
     }
     
-    func select25PositionSS() {
+    func selectWordPower25SS() {
         let wordPower25Position = app.tables.staticTexts["25 Position"]
         let wordPower25SSElement = app.tables.staticTexts["WordPower25 SS"]
         scrollToVocabularyElement(element: wordPower25Position)
@@ -62,60 +62,130 @@ class VocabularyPage {
     }
     
     func selectWordPower42SS() {
-        app.tables.staticTexts["WordPower42 SS"].tap()
+        let wordPower42Position = app.tables.staticTexts["42 Position"]
+        let wordPower42SSElement = app.tables.staticTexts["WordPower42 SS"]
+        scrollToVocabularyElement(element: wordPower42Position)
+        wordPower42Position.tap()
+        scrollToVocabularyElement(element: wordPower42SSElement)
+        wordPower42SSElement.tap()
     }
     
     func selectWordPower42BasicSS() {
-        app.tables.staticTexts["WordPower42 Basic SS"].tap()
+        let wordPower42Position = app.tables.staticTexts["42 Position"]
+        let wordPower42BasicSSElement = app.tables.staticTexts["WordPower42 Basic SS"]
+        scrollToVocabularyElement(element: wordPower42BasicPosition)
+        wordPower42BasicPosition.tap()
+        scrollToVocabularyElement(element: wordPower42BasicSSElement)
+        wordPower42BasicSSElement.tap()
     }
     
     func selectWordPower48SS() {
-        app.tables.staticTexts["WordPower48 SS"].tap()
+        let wordPower48Position = app.tables.staticTexts["48 Position"]
+        let wordPower48SSElement = app.tables.staticTexts["WordPower48 SS"]
+        scrollToVocabularyElement(element: wordPower48Position)
+        wordPower48Position.tap()
+        scrollToVocabularyElement(element: wordPower48SSElement)
+        wordPower48SSElement.tap()
     }
     
     func selectWordPower48BasicSS() {
-        app.tables.staticTexts["WordPower48 Basic SS"].tap()
+        let wordPower48Position = app.tables.staticTexts["48 Position"]
+        let wordPower48BasicSSElement = app.tables.staticTexts["WordPower48 Basic SS"]
+        scrollToVocabularyElement(element: wordPower48Position)
+        wordPower48Position.tap()
+        scrollToVocabularyElement(element: wordPower48BasicSSElement)
+        wordPower48BasicSSElement.tap()
     }
     
     func selectWordPower60SS() {
-        app.tables.staticTexts["WordPower60 SS"].tap()
+        let wordPower60Position = app.tables.staticTexts["60 Position"]
+        let wordPower60SSElement = app.tables.staticTexts["WordPower60 SS"]
+        scrollToVocabularyElement(element: wordPower60Position)
+        wordPower60Position.tap()
+        scrollToVocabularyElement(element: wordPower60SSElement)
+        wordPower60SSElement.tap()
     }
     
     func selectWordPower60BasicSS() {
-        app.tables.staticTexts["WordPower60 Basic SS"].tap()
+        let wordPower60Position = app.tables.staticTexts["60 Position"]
+        let wordPower60BasicSSElement = app.tables.staticTexts["WordPower60 Basic SS"]
+        scrollToVocabularyElement(element: wordPower60Position)
+        wordPower60Position.tap()
+        scrollToVocabularyElement(element: wordPower60BasicSSElement)
+        wordPower60BasicSSElement.tap()
     }
     
     func selectWordPower80SS() {
-        app.tables.staticTexts["WordPower80 SS"].tap()
+        let wordPower80Position = app.tables.staticTexts["80 Position"]
+        let wordPower80SSElement = app.tables.staticTexts["WordPower80 SS"]
+        scrollToVocabularyElement(element: wordPower80Position)
+        wordPower80Position.tap()
+        scrollToVocabularyElement(element: wordPower80SSElement)
+        wordPower80SSElement.tap()
     }
     
     func selectWordPower108SS() {
-        app.tables.staticTexts["WordPower108 SS"].tap()
+        let wordPower108Position = app.tables.staticTexts["108 Position"]
+        let wordPower108SSElement = app.tables.staticTexts["WordPower108 SS"]
+        scrollToVocabularyElement(element: wordPower108Position)
+        wordPower108Position.tap()
+        scrollToVocabularyElement(element: wordPower108SSElement)
+        wordPower108SSElement.tap()
     }
     
     func selectWordPower108KeyboardSS() {
-        app.tables.staticTexts["WordPower108 Keyboard SS"].tap()
+        let wordPower108Position = app.tables.staticTexts["108 Position"]
+        let wordPower108KeyboardSSElement = app.tables.staticTexts["WordPower108 Keyboard SS"]
+        scrollToVocabularyElement(element: wordPower108Position)
+        wordPower108Position.tap()
+        scrollToVocabularyElement(element: wordPower108KeyboardSSElement)
+        wordPower108KeyboardSSElement.tap()
     }
     
     func selectWordPower140SS() {
-        app.tables.staticTexts["WordPower140 SS"].tap()
+        let wordPower140Position = app.tables.staticTexts["140 Position"]
+        let wordPower140SSElement = app.tables.staticTexts["WordPower140 SS"]
+        scrollToVocabularyElement(element: wordPower140Position)
+        wordPower140Position.tap()
+        scrollToVocabularyElement(element: wordPower140SSElement)
+        wordPower140SSElement.tap()
     }
     
     func selectWordPower20SimplySS() {
-        app.tables.staticTexts["WordPower20 Simply SS"].tap()
+        let wordPower20Position = app.tables.staticTexts["20 Position"]
+        let wordPower20SimplySSElement = app.tables.staticTexts["WordPower20 Simply SS"]
+        scrollToVocabularyElement(element: wordPower20Position)
+        wordPower20Position.tap()
+        scrollToVocabularyElement(element: wordPower20SimplySSElement)
+        wordPower20SimplySSElement.tap()
     }
     
     // MultiChat English Vocabularies
     func selectMultiChat15AdultSS() {
-        app.tables.staticTexts["MultiChat15 Adult SS"].tap()
+        let multiChat15 = app.tables.staticTexts["MultiChat 15"]
+        let multiChat15AdultSSElement = app.tables.staticTexts["MultiChat 15 Adult SS"]
+        scrollToVocabularyElement(element: multiChat15)
+        multiChat15.tap()
+        scrollToVocabularyElement(element: multiChat15AdultSSElement)
+        multiChat15AdultSSElement.tap()
     }
     
     func selectMultiChat15AdolescentSS() {
-        app.tables.staticTexts["MultiChat15 Adolescent SS"].tap()
+        let multiChat15 = app.tables.staticTexts["MultiChat 15"]
+        let multiChat15AdolescentSSElement = app.tables.staticTexts["MultiChat 15 Adolescent SS"]
+        scrollToVocabularyElement(element: multiChat15)
+        multiChat15.tap()
+        scrollToVocabularyElement(element: multiChat15AdolescentSSElement)
+        multiChat15AdolescentSSElement.tap()
     }
     
     func selectMultiChat15StudentSS() {
-        app.tables.staticTexts["MultiChat15 Student SS"].tap()
+        let multiChat15 = app.tables.staticTexts["MultiChat 15"]
+        let multiChat15StudentSSElement = app.tables.staticTexts["MultiChat 15 Student SS"]
+        scrollToVocabularyElement(element: multiChat15)
+        multiChat15.tap()
+        scrollToVocabularyElement(element: multiChat15StudentSSElement)
+        multiChat15StudentSSElement.tap()
     }
     
     // Aphasia English Vocabularies
@@ -135,31 +205,60 @@ class VocabularyPage {
     
     // QuickChat English Vocabularies
     func selectMyQuickChatChild4SS() {
-        app.tables.staticTexts["My QuickChat Child 4 SS"].tap()
+        let myQuickChatChild = app.tables.staticTexts["Child"]
+        scrollToVocabularyElement(element: myQuickChatChild)
+        myQuickChatChild.tap()
+        let myQuickChatChild4SS = app.tables.staticTexts["My QuickChat Child 4 SS"]
+        scrollToVocabularyElement(element: myQuickChatChild4SS)
+        myQuickChatChild4SS.tap()
     }
     
     func selectMyQuickChatChild8SS() {
-        app.tables.staticTexts["My QuickChat Child 8 SS"].tap()
+        let myQuickChatChild = app.tables.staticTexts["Child"]
+        scrollToVocabularyElement(element: myQuickChatChild)
+        myQuickChatChild.tap()
+        let myQuickChatChild8SS = app.tables.staticTexts["My QuickChat Child 8 SS"]
+        scrollToVocabularyElement(element: myQuickChatChild8SS)
+        myQuickChatChild8SS.tap()
     }
     
     func selectMyQuickChatChild12SS() {
-        app.tables.staticTexts["My QuickChat Child 12 SS"].tap()
+        let myQuickChatChild = app.tables.staticTexts["Child"]
+        scrollToVocabularyElement(element: myQuickChatChild)
+        myQuickChatChild.tap()
+        let myQuickChatChild12SS = app.tables.staticTexts["My QuickChat Child 12 SS"]
+        scrollToVocabularyElement(element: myQuickChatChild12SS)
+        myQuickChatChild12SS.tap()
     }
     
     func selectMyQuickChatAdult8SS() {
-        app.tables.staticTexts["My QuickChat Adult 8 SS"].tap()
+        let myQuickChatAdult = app.tables.staticTexts["Adult"]
+        scrollToVocabularyElement(element: myQuickChatAdult)
+        myQuickChatAdult.tap()
+        let myQuickChatAdult8SS = app.tables.staticTexts["My QuickChat Adult 8 SS"]
+        scrollToVocabularyElement(element: myQuickChatAdult8SS)
+        myQuickChatAdult8SS.tap()        
     }
     
     func selectMyQuickChatAdult12SS() {
-        app.tables.staticTexts["My QuickChat Adult 12 SS"].tap()
+        let myQuickChatAdult = app.tables.staticTexts["Adult"]
+        scrollToVocabularyElement(element: myQuickChatAdult)
+        myQuickChatAdult.tap()
+        let myQuickChatAdult12SS = app.tables.staticTexts["My QuickChat Adult 12 SS"]
+        scrollToVocabularyElement(element: myQuickChatAdult12SS)
+        myQuickChatAdult12SS.tap()        
     }
     
     func selectSintaxis4x4English() {
-        app.tables.staticTexts["sin sintaxis 4 x 4 English SS"].tap()
+        let sintaxis4x4English = app.tables.staticTexts["sin sintaxis 4 x 4 English SS"]
+        scrollToVocabularyElement(element: sintaxis4x4English)
+        sintaxis4x4English.tap()
     }
     
     func selectSintaxis4x5English() {
-        app.tables.staticTexts["sintaxis 4 x 5 English SS"].tap()
+        let sintaxis4x5English = app.tables.staticTexts["sintaxis 4 x 5 English SS"]
+        scrollToVocabularyElement(element: sintaxis4x5English)
+        sintaxis4x5English.tap()
     }
     
     // Spanish Vocabularies

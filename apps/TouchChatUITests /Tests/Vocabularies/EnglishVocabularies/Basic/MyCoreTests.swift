@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class MyCoreTests: BaseTest {
@@ -7,17 +12,19 @@ final class MyCoreTests: BaseTest {
         // BaseTest handles all setup automatically
         
         // MARK: - When (Test Actions)
-        // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
-        
+        // Select English language (default)        
         // Select MyCore vocabulary
         pages.vocabularyPage.selectMyCoreSS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
-        
+        pages.vocabularyPage.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
+        XCTAssertTrue(app.buttons["eating"].exists)
+        app.buttons["eating"].tap()
+        app.buttons["BackButton"].tap()
+        pages.common.checkSdbText(sdbText: "Are ")
+
         // MARK: - Cleanup
         pages.common.backToVocab()
         

@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class EngageForiOSTests: BaseTest {
@@ -8,17 +13,20 @@ final class EngageForiOSTests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
-        
         // Select Engage for iOS vocabulary
         pages.vocabularyPage.selectEngageForiOS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "i", vocabWord: "2 BUTTONS", vocabElement: 3, nameElement: "PRACTICE")
+        XCTAssertTrue(app.buttons["Feelings"].exists)
+        app.buttons["Feelings"].tap()
+        app.buttons["happy"].tap()
+        pages.common.checkSdbText(sdbText: "Happy ")
         
         // MARK: - Cleanup
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("Engage for iOS Test Finished Successfully!")

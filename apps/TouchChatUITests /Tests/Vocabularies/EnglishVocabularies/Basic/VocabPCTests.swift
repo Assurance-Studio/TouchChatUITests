@@ -8,15 +8,17 @@ final class VocabPCTests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
-        
         // Select VocabPC vocabulary
         pages.vocabularyPage.selectVocabPCSS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "time", vocabWord: "I feel", vocabElement: 3, nameElement: "I want")
+        XCTAssertTrue(app.buttons["confused"].exists)
+        app.buttons["confused"].tap()
+        app.buttons["BackButton"].tap()
+        pages.common.checkSdbText(sdbText: "I feel ")
         
         // MARK: - Cleanup
         pages.common.backToVocab()

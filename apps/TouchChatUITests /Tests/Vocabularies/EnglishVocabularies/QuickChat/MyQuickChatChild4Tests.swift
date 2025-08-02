@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class MyQuickChatChild4Tests: BaseTest {
@@ -8,17 +13,20 @@ final class MyQuickChatChild4Tests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
-        
         // Select My QuickChat Child 4 vocabulary
+        pages.vocabularyPage.selectMyQuickChat()
         pages.vocabularyPage.selectMyQuickChatChild4SS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "Greetings/Closings", vocabWord: "Playing", vocabElement: 18, nameElement: "Greetings/Closings")
+        XCTAssertTrue(app.buttons["Can I play?"].exists)
+        app.buttons["Can I play?"].tap()
+        pages.common.checkSdbText(sdbText: "Can I play? ")
         
         // MARK: - Cleanup
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("My QuickChat Child 4 Test Finished Successfully!")

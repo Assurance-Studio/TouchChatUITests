@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class WordPower25Tests: BaseTest {
@@ -11,7 +16,7 @@ final class WordPower25Tests: BaseTest {
         
         // Select WordPower25 vocabulary
         pages.vocabularyPage.selectWordPower()
-        pages.vocabularyPage.select25PositionSS()
+        pages.vocabularyPage.selectWordPower25SS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)

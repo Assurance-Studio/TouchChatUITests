@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class WordPower60Tests: BaseTest {
@@ -8,17 +13,23 @@ final class WordPower60Tests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
-        
         // Select WordPower60 vocabulary
+        pages.vocabularyPage.selectWordPower()
         pages.vocabularyPage.selectWordPower60SS()
         pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
-        
+        pages.vocabularyPage.verifyTheVocab(lastElement: "out", vocabWord: "finish", vocabElement: 7, nameElement: "ACTIONS")
+        XCTAssertTrue(app.buttons["the"].exists)
+        app.buttons["the"].tap()
+        app.buttons["and"].tap()
+        app.buttons["BackButton"].tap()
+        app.buttons["BackButton"].tap()
+        pages.common.checkSdbText(sdbText: "Finish ")
+
         // MARK: - Cleanup
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("WordPower 60 Test Finished Successfully!")

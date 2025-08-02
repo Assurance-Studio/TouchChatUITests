@@ -1,3 +1,8 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
 import XCTest
 
 final class Basic4Tests: BaseTest {
@@ -8,8 +13,6 @@ final class Basic4Tests: BaseTest {
         
         // MARK: - When (Test Actions)
         // Select English language (default)
-        pages.languageSelectionPage.selectEnglishVocabulary()
-        
         // Select Simple 4-Basic vocabulary
         pages.vocabularyPage.selectBasic4SS()
         pages.common.openAVocab()
