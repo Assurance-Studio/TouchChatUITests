@@ -13,11 +13,15 @@ final class Base4FrenchTests: BaseTest {
         
         // Select 4 de base français vocabulary
         pages.vocabularyPage.selectBase4French()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
-        // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "TOUT SUR MOI", vocabWord: "Je veux", vocabElement: 3, nameElement: "Je veux")
+        XCTAssertTrue(app.buttons["boire"].exists)
+        app.buttons["boire"].tap()
+        app.buttons["lait"].tap()
+        app.buttons["BackButton"].tap()
+        pages.common.checkSdbText(sdbText: "Je veux boire du ")
         
         // MARK: - Cleanup
         pages.common.backToVocab()

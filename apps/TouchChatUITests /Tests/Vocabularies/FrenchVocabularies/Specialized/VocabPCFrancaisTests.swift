@@ -13,11 +13,15 @@ final class VocabPCFrancaisTests: BaseTest {
         
         // Select VocabPC français vocabulary
         pages.vocabularyPage.selectVocabPCFrancais()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "temps", vocabWord: "Je suis", vocabElement: 3, nameElement: "Je veux")
+        XCTAssertTrue(app.buttons["mélangé"].exists)
+        app.buttons["mélangé"].tap()
+        app.buttons["BackButton"].tap()
+        pages.common.checkSdbText(sdbText: "Je suis ")
         
         // MARK: - Cleanup
         pages.common.backToVocab()

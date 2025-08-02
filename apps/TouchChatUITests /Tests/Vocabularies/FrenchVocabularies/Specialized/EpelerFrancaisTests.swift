@@ -13,13 +13,16 @@ final class EpelerFrancaisTests: BaseTest {
         
         // Select Épeler français vocabulary
         pages.vocabularyPage.selectEpelerFrancais()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
-        // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
-        
+        pages.vocabularyPage.verifyTheVocab(lastElement: "?", vocabWord: "PHRASES", vocabElement: 6, nameElement: "PHRASES")
+        XCTAssertTrue(app.buttons["Bonjour!"].exists)
+        app.buttons["Bonjour!"].tap()
+        pages.common.checkSdbText(sdbText: "Bonjour, comment-allez vous? ")
+    
         // MARK: - Cleanup
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("Epeler Francais Test Finished Successfully!")

@@ -59,6 +59,30 @@ class CommonActions {
         XCTAssertTrue(editButtonExists)
     }
     
+    func pressBackButton(timeout: TimeInterval = 15) {
+        let vocabButton = app.buttons["Vocab"]
+        let startTime = Date()
+
+        while !vocabButton.exists {
+            let backButton = app.navigationBars.buttons["Back"]
+            if backButton.waitForExistence(timeout: 2) {
+                backButton.tap()
+            } else {
+                XCTFail("Back button not found during back-navigation")
+                return
+            }
+
+            if Date().timeIntervalSince(startTime) > timeout {
+                XCTFail("Timed out waiting for 'Vocab' button to appear after back navigation")
+                return
+            }
+
+            usleep(500_000) // brief delay to allow screen to update
+        }
+
+        XCTAssertTrue(vocabButton.exists, "'Vocab' button did not appear after back-navigation")
+    }
+    
     func openTheSettingsTab() {
         app.navigationBars.buttons["Menu"].tap()
         let popoversQuery = app.popovers

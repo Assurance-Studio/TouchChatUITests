@@ -13,7 +13,7 @@ final class MultiChat15FrancaisTests: BaseTest {
         
         // Select MultiChat15 français vocabulary
         pages.vocabularyPage.selectMultiChat15Francais()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure

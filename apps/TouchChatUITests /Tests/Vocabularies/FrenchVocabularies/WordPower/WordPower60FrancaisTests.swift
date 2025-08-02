@@ -13,7 +13,7 @@ final class WordPower60FrancaisTests: BaseTest {
         
         // Select WordPower60 français vocabulary
         pages.vocabularyPage.selectWordPower60Francais()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
         // Verify vocabulary structure
@@ -33,6 +33,7 @@ final class WordPower60FrancaisTests: BaseTest {
         pages.vocabularyPage.checkSpeechDisplayBarText("Je ")
         
         // MARK: - Cleanup
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("WordPower 60 Francais Test Finished Successfully!")

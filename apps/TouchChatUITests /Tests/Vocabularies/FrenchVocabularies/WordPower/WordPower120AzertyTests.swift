@@ -13,11 +13,13 @@ final class WordPower120AzertyTests: BaseTest {
         
         // Select WordPower120 français AZERTY vocabulary
         pages.vocabularyPage.selectWordPower120Azerty()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
-        // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "efface tout", vocabWord: "je", vocabElement: 4, nameElement: "QUESTNS")
+        XCTAssertTrue(app.buttons["'adore"].waitForExistence(timeout: 5), "Button 'adore' not found")
+        app.buttons["'adore"].tap()
+        pages.common.checkSdbText(sdbText: "J'adore ")
         
         // MARK: - Cleanup
         pages.common.backToVocab()

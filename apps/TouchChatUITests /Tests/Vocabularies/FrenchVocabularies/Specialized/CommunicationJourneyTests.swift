@@ -13,13 +13,16 @@ final class CommunicationJourneyTests: BaseTest {
         
         // Select Communication Journey Aphasie français vocabulary
         pages.vocabularyPage.selectCommunicationFrancais()
-        pages.vocabularyPage.openVocabulary()
+        pages.common.openAVocab()
         
         // MARK: - Then (Verification)
-        // Verify vocabulary structure and test interactions
-        // Note: Specific elements will need to be updated based on actual vocabulary content
+        pages.vocabularyPage.verifyTheVocab(lastElement: "Échelles", vocabWord: "Social", vocabElement: 3, nameElement: "Objets")
+        XCTAssertTrue(app.buttons["Comment ça va?"].exists)
+        app.buttons["Comment ça va?"].tap()
+        pages.common.checkSdbText(sdbText: "Comment ça va? ")
         
         // MARK: - Cleanup
+        pages.common.pressBackButton()
         pages.common.backToVocab()
         
         print("Communication Journey Test Finished Successfully!")
