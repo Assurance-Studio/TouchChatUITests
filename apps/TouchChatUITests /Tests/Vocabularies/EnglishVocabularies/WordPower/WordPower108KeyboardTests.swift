@@ -26,7 +26,7 @@ final class WordPower108KeyboardTests: BaseTest {
         app.buttons["T"].tap()
         app.buttons["E"].tap()
         app.buttons["S"].tap()
-        pages.backButton.tap()
+        app.buttons["BackButton"].tap()
         app.buttons["more"].tap()
         app.buttons["BackButton"].tap()
         pages.common.checkSdbText(sdbText: "Mom ")

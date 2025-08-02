@@ -49,7 +49,7 @@ final class WordPower108SSKeyboardTests: XCTestCase {
         app.buttons["T"].tap()
         app.buttons["E"].tap()
         app.buttons["S"].tap()
-        pages.backButton.tap()
+        app.buttons["BackButton"].tap()
         app.buttons["more"].tap()
         app.buttons["BackButton"].tap()
         

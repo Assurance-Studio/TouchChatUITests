@@ -135,7 +135,7 @@ class VocabularyPage {
     
     func selectWordPower108KeyboardSS() {
         let wordPower108Position = app.tables.staticTexts["108 Position"]
-        let wordPower108KeyboardSSElement = app.tables.staticTexts["WordPower108 Keyboard SS"]
+        let wordPower108KeyboardSSElement = app.tables.staticTexts["WordPower108 with Keyboard SS"]
         scrollToVocabularyElement(element: wordPower108Position)
         wordPower108Position.tap()
         scrollToVocabularyElement(element: wordPower108KeyboardSSElement)

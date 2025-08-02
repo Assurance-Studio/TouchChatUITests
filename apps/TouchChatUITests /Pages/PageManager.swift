@@ -12,6 +12,7 @@ class PageManager {
     lazy var pronunciationsPage: PronunciationsPage = PronunciationsPage(app: app)
     lazy var settingsPage: SettingsPage = SettingsPage(app: app)
     lazy var buttonActionsPage: ButtonActionsPage = ButtonActionsPage(app: app)
+    lazy var actionsPage: ActionaPageClass = ActionaPageClass(app: app)
     lazy var functionalityPage: FunctionalityPage = FunctionalityPage(app: app)
     lazy var modifiersPage: ModifiersPage = ModifiersPage(app: app)
     lazy var waitPage: WaitPage = WaitPage(app: app)
