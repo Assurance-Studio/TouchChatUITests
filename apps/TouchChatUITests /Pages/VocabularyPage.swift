@@ -73,8 +73,8 @@ class VocabularyPage {
     func selectWordPower42BasicSS() {
         let wordPower42Position = app.tables.staticTexts["42 Position"]
         let wordPower42BasicSSElement = app.tables.staticTexts["WordPower42 Basic SS"]
-        scrollToVocabularyElement(element: wordPower42BasicPosition)
-        wordPower42BasicPosition.tap()
+        scrollToVocabularyElement(element: wordPower42Position)
+        wordPower42Position.tap()
         scrollToVocabularyElement(element: wordPower42BasicSSElement)
         wordPower42BasicSSElement.tap()
     }
