@@ -177,10 +177,9 @@ class MainPage {
     func openVocab(vocab: String) {
         sleep(4)
         let vocabToOpen = app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", vocab)).firstMatch
-
         if vocabToOpen.exists && vocabToOpen.isHittable {
             vocabToOpen.press(forDuration: 1)
-            XCTAssertTrue(vocabToOpen.waitForExistence(timeout: 5))
+            XCTAssertTrue(menuButton.waitForExistence(timeout: 5))
         } else {
             print("The vocabulary '\(vocab)' does not exist or is not hittable.")
         }

@@ -48,7 +48,8 @@ This document summarizes the refactoring work done on the ButtonActions tests to
 
 ### 2. **Updated PageManager.swift**
 - **Added**: `lazy var actionsPage: ActionaPageClass = ActionaPageClass(app: app)`
-- **Purpose**: Provides access to the existing ActionsPage functionality
+- **Added**: `lazy var grammarActionsPage: GrammarActionaPageClass = GrammarActionaPageClass(app: app)`
+- **Purpose**: Provides access to the existing ActionsPage and GrammarActionsPage functionality
 
 ### 3. **Created Refactored Test Examples**
 
@@ -67,6 +68,51 @@ This document summarizes the refactoring work done on the ButtonActions tests to
 - **Actions**: Time Only, Word Finder, Data Logging, Cancel Visit, System Keyboard, Texting Conversations
 - **Architecture**: Uses BaseTest inheritance and page objects
 
+#### **CreateButtonActions4Refactored.swift**
+- **Tests**: 4 different button actions
+- **Actions**: Google Website Toggle On/Off, Pause/Resume Tracking, Text Copy/Paste, Visit Exception
+- **Architecture**: Uses BaseTest inheritance and page objects
+
+#### **CreateButtonGrammarActionsRefactored.swift**
+- **Tests**: 8 different grammar actions
+- **Actions**: Grammar Action -ed, -en, -er, -est, -ing, -ly, -s, Create Verb/Adjective
+- **Architecture**: Uses BaseTest inheritance and page objects
+
+#### **CreateButtonWordPredictionTestsRefactored.swift**
+- **Tests**: 10 different word prediction buttons
+- **Actions**: Word Prediction Buttons 1-10 with different number selections
+- **Architecture**: Uses BaseTest inheritance and page objects
+
+#### **CreateButtonVisitToTestsRefactored.swift**
+- **Tests**: 5 different visit actions
+- **Actions**: Visit to Page No Anim, Up, Down, Right, Left
+- **Architecture**: Uses BaseTest inheritance and page objects
+
+#### **CreateButtonStepByStepAppsTestsRefactored.swift**
+- **Tests**: 20 different Step By Step apps
+- **Actions**: Various educational apps like Animal Jigsaw, Baby Jigsaw, Create a Series, etc.
+- **Architecture**: Uses BaseTest inheritance and page objects
+
+#### **CreateButtonsOpenMetaTestsRefactored.swift**
+- **Tests**: 3 different Meta apps
+- **Actions**: Facebook, Facebook Messenger, Instagram
+- **Architecture**: Uses BaseTest inheritance and page objects
+
+#### **CreateButtonOpenGoogleAppsTestsRefactored.swift**
+- **Tests**: 6 different Google apps
+- **Actions**: Gmail, Google, Google Docs, Google Drive, Google Maps, Google Slides
+- **Architecture**: Uses BaseTest inheritance and page objects
+
+#### **CreateButtonOpenAppleAppsTestsRefactored.swift**
+- **Tests**: 6 different Apple apps
+- **Actions**: Apple Maps, Calendar, Notes, Photos, Safari, iMessage
+- **Architecture**: Uses BaseTest inheritance and page objects
+
+#### **CreateButtonOpenDifferentAppsTestsRefactored.swift**
+- **Tests**: 25 different third-party apps
+- **Actions**: Various apps like Disney+, Netflix, Spotify, WhatsApp, YouTube, etc.
+- **Architecture**: Uses BaseTest inheritance and page objects
+
 ## Functions Used in Tests
 
 ### **From `pages` (Pages.swift):**
@@ -79,7 +125,10 @@ This document summarizes the refactoring work done on the ButtonActions tests to
 - `removeSpeechMessageAction()`, `addANewAction()`, `saveTheAction()`
 - `checkLibraryVideoTab()`, `checkYoutubeVideoTab()`, `checkYoutubeVideoBtn()`
 - `checkWordFinderAction()`, `checkSystemKeyboardAction()`
-- `checkIfTheTextingConversationsWorks()`
+- `checkIfTheTextingConversationsWorks()`, `addWebsiteToggleOn()`
+- `checkTheWebsiteToggleOn()`, `checkTheWebsiteToggleOff()`
+- `editTextPasteBtn()`, `checkTextPasteCopyFunctions()`
+- `addNoAnimAction()`, `checkVisitAction()`
 
 ### **From `grammarActionsPage` (GrammarActionsPage.swift):**
 - `createButtonWordPrediction()`, `createButtonOpenAppsAction()`, `createBtnGrammar()`
@@ -109,6 +158,10 @@ This document summarizes the refactoring work done on the ButtonActions tests to
 - **Before**: Similar setup code repeated in each test
 - **After**: Common setup handled by `BaseTest`
 
+### **6. Improved Wait Handling**
+- **Before**: Hardcoded `sleep()` calls
+- **After**: Using `pages.waitPage.waitShort()` for better reliability
+
 ## Test Structure Pattern
 
 ```swift
@@ -117,8 +170,8 @@ final class CreateButtonActionsXRefactored: BaseTest {
     func testCreateButtonActionsX() throws {
         // MARK: - Given (Setup)
         // BaseTest handles all setup automatically
-        let vocabularyName = "copied vocabulary create button actionsX"
-        let vocabularyDesc = "vocabulary description e2e"
+        let vocabularyName = "Create Button Actions X Vocabulary"
+        let vocabularyDesc = "Vocabulary Description by e2e"
         
         // MARK: - When (Test Actions)
         // Copy a new vocabulary
@@ -156,38 +209,39 @@ final class CreateButtonActionsXRefactored: BaseTest {
 }
 ```
 
+## Completed Refactoring
+
+### **✅ All 12 Test Files Successfully Refactored:**
+
+1. ✅ `createButtonActions1.swift` → `CreateButtonActions1Refactored.swift`
+2. ✅ `createButtonActions2.swift` → `CreateButtonActions2Refactored.swift`
+3. ✅ `createButtonActions3.swift` → `CreateButtonActions3Refactored.swift`
+4. ✅ `createButtonActions4.swift` → `CreateButtonActions4Refactored.swift`
+5. ✅ `createButtonGrammarActions.swift` → `CreateButtonGrammarActionsRefactored.swift`
+6. ✅ `createButtonWordPredictionTests.swift` → `CreateButtonWordPredictionTestsRefactored.swift`
+7. ✅ `createButtonVisitToTests.swift` → `CreateButtonVisitToTestsRefactored.swift`
+8. ✅ `createButtonStepByStepAppsTests.swift` → `CreateButtonStepByStepAppsTestsRefactored.swift`
+9. ✅ `createButtonsOpenMetaTests.swift` → `CreateButtonsOpenMetaTestsRefactored.swift`
+10. ✅ `createButtonOpenGoogleAppsTests.swift` → `CreateButtonOpenGoogleAppsTestsRefactored.swift`
+11. ✅ `createButtonOpenAppleAppsTests.swift` → `CreateButtonOpenAppleAppsTestsRefactored.swift`
+12. ✅ `createButtonOpenDifferentAppsTests.swift` → `CreateButtonOpenDifferentAppsTestsRefactored.swift`
+
+### **✅ Page Objects Updated:**
+- ✅ `ButtonActionsPage.swift` - Expanded with comprehensive button action methods
+- ✅ `PageManager.swift` - Added `actionsPage` and `grammarActionsPage` access
+- ✅ All refactored tests pass syntax validation
+
 ## Next Steps
 
-### **Immediate Actions:**
-1. **Refactor remaining 9 test files** following the established pattern
-2. **Move functions from Pages.swift** to appropriate page objects
-3. **Expand GrammarActionsPage** with missing functions
-4. **Create specialized page objects** for different action types
-
 ### **Future Improvements:**
-1. **Replace sleep() calls** with WaitPage methods
+1. **Replace remaining sleep() calls** with WaitPage methods
 2. **Add comprehensive error handling**
 3. **Create action-specific page objects** (e.g., `VideoActionsPage`, `AppActionsPage`)
 4. **Add parameterized tests** for similar actions
 5. **Implement test data management**
-
-## Files to Refactor
-
-### **Remaining Test Files:**
-- `createButtonActions4.swift` → `CreateButtonActions4Refactored.swift`
-- `createButtonGrammarActions.swift` → `CreateButtonGrammarActionsRefactored.swift`
-- `createButtonWordPredictionTests.swift` → `CreateButtonWordPredictionTestsRefactored.swift`
-- `createButtonVisitToTests.swift` → `CreateButtonVisitToTestsRefactored.swift`
-- `createButtonStepByStepAppsTests.swift` → `CreateButtonStepByStepAppsTestsRefactored.swift`
-- `createButtonsOpenMetaTests.swift` → `CreateButtonsOpenMetaTestsRefactored.swift`
-- `createButtonOpenGoogleAppsTests.swift` → `CreateButtonOpenGoogleAppsTestsRefactored.swift`
-- `createButtonOpenDifferentAppsTests.swift` → `CreateButtonOpenDifferentAppsTestsRefactored.swift`
-- `createButtonOpenAppleAppsTests.swift` → `CreateButtonOpenAppleAppsTestsRefactored.swift`
-
-### **Page Objects to Update:**
-- `Pages.swift` - Move button-specific functions to appropriate page objects
-- `GrammarActionsPage.swift` - Add missing grammar action functions
-- `CommonActions.swift` - Add common button action utilities
+6. **Move functions from Pages.swift** to appropriate page objects
+7. **Expand GrammarActionsPage** with missing functions
+8. **Create specialized page objects** for different action types
 
 ## Conclusion
 
@@ -197,5 +251,9 @@ The ButtonActions refactoring demonstrates the successful application of the Pag
 - **Improved readability** with clear test structure and naming
 - **Enhanced reliability** through centralized setup and error handling
 - **Consistent patterns** across all button action tests
+- **Reduced code duplication** through shared BaseTest functionality
+- **Improved wait handling** using WaitPage methods
+
+**All 12 ButtonActions test files have been successfully refactored and are ready for execution!** 🎉
 
 This refactoring serves as a template for future test improvements and establishes best practices for the entire test suite. 

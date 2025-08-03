@@ -26,17 +26,21 @@ class ButtonActionsPage {
         let confirmDeleteBtnExists = confirmDeleteBtn.waitForExistence(timeout: 10)
         XCTAssertTrue(confirmDeleteBtnExists, "The delete modal doesn't appear")
         app.buttons["Okay"].tap()
+    }
     
     func createButtonForActions(button: Int, nameButton: String) {
         app.buttons.element(boundBy: button).tap()
-        app.buttons["Edit This Button"].tap()
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
         
         let buttonLabel = app.textFields.element(boundBy: 0)
         let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
         XCTAssertTrue(existsButtonLabel, "The button label is not visible")
         
-        app.textFields.element(boundBy: 0).doubleTap()
+        app.textFields.element(boundBy: 0).tap()
         app.textFields.element(boundBy: 0).typeText(nameButton)
+        
+        app.textFields.element(boundBy: 2).tap()
+        app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
     }
     
     // MARK: - Basic Button Actions
