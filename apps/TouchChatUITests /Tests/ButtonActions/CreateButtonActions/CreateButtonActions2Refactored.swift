@@ -5,8 +5,8 @@ final class CreateButtonActions2Refactored: BaseTest {
     func testCreateButtonActions2() throws {
         // MARK: - Given (Setup)
         // BaseTest handles all setup automatically
-        let vocabularyName = "copied vocabulary create button actions2"
-        let vocabularyDesc = "vocabulary description e2e"
+        let vocabularyName = "Create Button Actions 2 Vocabulary"
+        let vocabularyDesc = "Vocabulary Description by e2e"
         
         // MARK: - When (Test Actions)
         // Copy a new vocabulary

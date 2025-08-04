@@ -30,15 +30,12 @@ class ButtonActionsPage {
     
     func createButtonForActions(button: Int, nameButton: String) {
         app.buttons.element(boundBy: button).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
-        
+        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()    
         let buttonLabel = app.textFields.element(boundBy: 0)
         let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
         XCTAssertTrue(existsButtonLabel, "The button label is not visible")
-        
         app.textFields.element(boundBy: 0).tap()
         app.textFields.element(boundBy: 0).typeText(nameButton)
-        
         app.textFields.element(boundBy: 2).tap()
         app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
     }
