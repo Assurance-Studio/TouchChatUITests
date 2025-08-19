@@ -1,0 +1,69 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+
+import XCTest
+
+final class storeTextButtonTests: XCTestCase {
+    
+    var app = XCUIApplication()
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        continueAfterFailure = false
+        
+        let pages = Pages(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset-app-state")
+        app.launch()
+        pages.checkLicenseModal()
+        pages.checkStartModal()
+        pages.clickWelcomeX()
+        pages.reachMenuPageIfOnVocabPage()
+    }
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
+    }
+
+    func testLaunchStoreTextButton() throws {
+        
+        let pages = Pages(app: app)
+        let vocabularyName = "copied vocabulary"
+        let vocabylaryDesc = "vocabulary description e2e"
+        let vocabName = "vocabulary"
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        
+        //copy a Spelling Vocab
+        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
+        mainPage.openVocab(vocab: vocabularyName)
+        
+        //enable rename vocab option
+        pages.openTheSettingsTab()
+        pages.ensureAllowDeleteIsOn()
+        
+        //storeTextToAButton
+        pages.writeTestBy()
+        pages.openStoreTextBtn()
+        
+        //check if the storeTextButton is displayed
+        pages.checkIfTheStoreButtonWorks()
+        
+        //check if the word appears
+        pages.checkSdbText(sdbText: "TestbyTestby ")
+        pages.backToVocab();
+        
+        //delete the copied vocab
+        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+        
+        print("Store Text Button function Test Finished with success!")
+        
+        app.terminate()
+        
+    }
+}
