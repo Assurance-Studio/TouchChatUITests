@@ -18,13 +18,14 @@ final class Child8SSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,21 +37,22 @@ final class Child8SSTests: XCTestCase {
     func testLaunchchild8SS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
         pages.myQuickChatVocab.tap()
         pages.childQuickChatVocab.tap()
         pages.quickChatChild8SS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Playing", vocabWord: "Greetings/Closings", vocabElement: 18, nameElement: "Greetings/Closings")
         
         XCTAssertTrue(app.buttons["Hey!"].exists)
         app.buttons["Hey!"].tap()
         
-        pages.checkSdbText(sdbText: "Hey! ")
+        commonActions.checkSdbText(sdbText: "Hey! ")
         pages.backButton.tap()
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("myQuickChat Child 8SS Test Finished with success!")
         

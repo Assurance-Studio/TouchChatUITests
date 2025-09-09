@@ -18,12 +18,14 @@ final class pageSizeTests: XCTestCase {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
+        
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -37,17 +39,17 @@ final class pageSizeTests: XCTestCase {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
         let vocabularyName = "copied vocabulary Page Size"
-        let vocabylaryDesc = "vocabulary description e2e"
+        let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
+        let commonActions = CommonActions(app: app)
         
-        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary Page Size"], vocab: vocabularyName)
+        mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
         
         //enable rename vocab option
-        pages.openTheSettingsTab()
-        pages.ensureAllowDeleteIsOn()
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
         
         //open The Settings Menu
         profilesAndEditingPage.openTheSettingsTab()
@@ -63,7 +65,7 @@ final class pageSizeTests: XCTestCase {
         profilesAndEditingPage.openTheSettingsTab()
         profilesAndEditingPage.returnToInitialSettingsPageSize()
         
-        pages.backToVocab()
+        commonActions.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Page Size Tests Test Finished with success!")

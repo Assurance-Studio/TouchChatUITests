@@ -46,13 +46,13 @@ class PredictionsSettingsPage {
         app.textFields.element(boundBy: 2).tap()
         app.textFields.element(boundBy: 2).typeText("NewPredictionbye2e")
         app.buttons["Save"].tap()
-        sleep(2)
+        sleep(3)
         //edit the new prediction
         app.staticTexts["newpredictionbye2e"].tap()
         app.textFields.element(boundBy: 2).doubleTap()
         app.textFields.element(boundBy: 2).typeText("renamenewpredictionbye2e")
         app.buttons["Save"].tap()
-        sleep(2)
+        sleep(4)
     }
     
     func deleteTheRenamedPredictions(){

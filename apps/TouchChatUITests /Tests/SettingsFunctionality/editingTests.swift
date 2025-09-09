@@ -18,13 +18,14 @@ final class editingTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -37,9 +38,10 @@ final class editingTests: XCTestCase {
         
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
+        let commonActions = CommonActions(app: app)
         
         pages.myCoreSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
         
@@ -55,7 +57,7 @@ final class editingTests: XCTestCase {
         //Remove the password and check if it was removed
         profilesAndEditingPage.removeThePass()
         
-        pages.backToVocab()
+        commonActions.backToVocab()
                 
         print("Editing Tests Test Finished with success!")
         

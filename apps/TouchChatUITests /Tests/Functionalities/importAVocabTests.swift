@@ -15,13 +15,14 @@ final class importAVocabTests: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -100,13 +101,13 @@ final class importAVocabTests: XCTestCase {
         modifiers.openModifiersVocab()
         
         //Test the FN modifiers
-        pages.testFnRow1()
-        pages.testFnRow2()
-        pages.testFnRow3()
+        modifiers.testFnRow1()
+        modifiers.testFnRow2()
+        modifiers.testFnRow3()
         
         //Test the Lock Modifiers
-        pages.testFirstRowLock()
-        pages.testSecondRowLock()
+        modifiers.testFirstRowLock()
+        modifiers.testSecondRowLock()
         
         //check Shift Btn
         modifiers.checkShiftBtn()

@@ -18,13 +18,14 @@ final class MultiChatStudentTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -37,10 +38,11 @@ final class MultiChatStudentTests: XCTestCase {
     func testLaunchMultiChatStudent() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.multiChat15Vocab)
         pages.multiChat15Vocab.tap()
         pages.multiChatStudentSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "My Scenes", vocabWord: "I don't want", vocabElement: 11, nameElement: "I need")
         
@@ -49,15 +51,14 @@ final class MultiChatStudentTests: XCTestCase {
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "I don't want ")
+        commonActions.checkSdbText(sdbText: "I don't want ")
         pages.backButton.tap()
         pages.backButton.tap()
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("multiChatStudent15 SS Test Finished with success!")
         
         app.terminate()
-        
     }
 }

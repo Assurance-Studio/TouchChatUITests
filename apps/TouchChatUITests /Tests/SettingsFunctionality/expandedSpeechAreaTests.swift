@@ -15,13 +15,14 @@ final class expandedSpeechAreaTests: XCTestCase {
             continueAfterFailure = false
             
             let pages = Pages(app: app)
+            let commonActions = CommonActions(app: app)
             
             app = XCUIApplication()
             app.launchArguments.append("--reset-app-state")
             app.launch()
-            pages.checkLicenseModal()
-            pages.checkStartModal()
-            pages.clickWelcomeX()
+            commonActions.checkLicenseModal()
+            commonActions.checkStartModal()
+            commonActions.clickWelcomeX()
             pages.reachMenuPageIfOnVocabPage()
         }
         
@@ -32,7 +33,7 @@ final class expandedSpeechAreaTests: XCTestCase {
         
         func testExpandedSpeechAreaTests() throws {
             let vocabularyName = "copied vocabulary speech display bar"
-            let vocabylaryDesc = "vocabulary description e2e"
+            let vocabularyDesc = "vocabulary description e2e"
             let vocabName = "vocabulary"
             lazy var mainPage: MainPage = {
                 return MainPage(app: XCUIApplication(), vocabName: vocabName)
@@ -40,14 +41,14 @@ final class expandedSpeechAreaTests: XCTestCase {
             let pages = Pages(app: app)
             let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
             let expandedSpeechArea = ExpandedSpeechDisplayArea(app: app)
+            let commonActions = CommonActions(app: app)
             
             //copy a new vocab
-            mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-            mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary speech display bar"], vocab: vocabularyName)
+            mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
              
             //enable rename vocab option
-            pages.openTheSettingsTab()
-            pages.ensureAllowDeleteIsOn()
+            commonActions.openTheSettingsTab()
+            commonActions.ensureAllowDeleteIsOn()
             
             //open The Settings Menu
             profilesAndEditingPage.openTheSettingsTab()
@@ -64,7 +65,7 @@ final class expandedSpeechAreaTests: XCTestCase {
             //check the background color
             expandedSpeechArea.checkBackgroundColors()
             
-            pages.backToVocab()
+            commonActions.backToVocab()
             mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
             
             print("Expanded Speech Area Test Finished with success!")

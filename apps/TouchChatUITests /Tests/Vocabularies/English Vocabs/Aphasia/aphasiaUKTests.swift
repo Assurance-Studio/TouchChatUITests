@@ -17,13 +17,14 @@ final class AphasiaUKSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -35,10 +36,11 @@ final class AphasiaUKSSTests: XCTestCase {
     func testLaunchaphasiaUKSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.aphasiaVocab)
         pages.aphasiaVocab.tap()
         pages.aphasiaUKSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Scales", vocabWord: "Places", vocabElement: 7, nameElement: "Social")
         
@@ -46,21 +48,14 @@ final class AphasiaUKSSTests: XCTestCase {
         XCTAssertTrue(app.buttons["supermarket "].exists)
         app.buttons["supermarket "].tap()
         
-        pages.checkSdbText(sdbText: "Supermarket ")
+        commonActions.checkSdbText(sdbText: "Supermarket ")
         pages.backButton.tap()
         pages.backButton.tap()
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("aphasia UK SS Test Finished with success!")
         
         app.terminate()
     }
 }
-
-
-
-
-
-
-

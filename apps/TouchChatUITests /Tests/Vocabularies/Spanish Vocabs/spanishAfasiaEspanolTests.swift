@@ -18,13 +18,14 @@ final class afasiaEspanolSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class afasiaEspanolSSTests: XCTestCase {
     func testLaunchafasiaEspanolSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.aphasiaSpanishSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         pages.verifyTheVocab(lastElement: "Escalas", vocabWord: "Mis Actividades", vocabElement: 3, nameElement: "Cosas")
         
         XCTAssertTrue(app.buttons["Terapia"].exists)
@@ -49,12 +51,12 @@ final class afasiaEspanolSSTests: XCTestCase {
         
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Esto es muy ")
+        commonActions.checkSdbText(sdbText: "Esto es muy ")
         
         pages.backButton.tap()
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Afasia Espanol Test Finished with success!")
         

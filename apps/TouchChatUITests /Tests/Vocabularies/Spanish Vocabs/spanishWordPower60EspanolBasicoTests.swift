@@ -18,13 +18,14 @@ final class WordPower60EspanolBasicoTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower60EspanolBasicoTests: XCTestCase {
     func testLaunchWordPower60EspanolBasico() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.wordPowerBasico60.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "ya", vocabWord: "yo", vocabElement: 7, nameElement: "ACCIONES")
         
@@ -49,9 +51,9 @@ final class WordPower60EspanolBasicoTests: XCTestCase {
         app.buttons["la"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Espero ")
+        commonActions.checkSdbText(sdbText: "Espero ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Word Power 60 Espanol Basico SS Test Finished with success!")
         

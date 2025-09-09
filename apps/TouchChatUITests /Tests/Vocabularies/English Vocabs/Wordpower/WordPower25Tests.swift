@@ -18,13 +18,14 @@ final class WordPower25SSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower25SSTests: XCTestCase {
     func testLaunchWordPower25SS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower25Position.tap()
         pages.wordPower25TouchScan.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "stop", vocabWord: "I want", vocabElement: 4, nameElement: "clear")
         
@@ -48,14 +50,13 @@ final class WordPower25SSTests: XCTestCase {
         app.buttons["to eat"].tap()
         app.buttons["cookies"].tap()
         
-        pages.checkSdbText(sdbText: "I want to eat cookies ")
+        commonActions.checkSdbText(sdbText: "I want to eat cookies ")
         
         pages.backButton.tap()
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 25 SS Test Finished with success!")
         
         app.terminate()
-        
     }
 }

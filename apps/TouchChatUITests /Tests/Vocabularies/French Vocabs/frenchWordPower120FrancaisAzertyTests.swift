@@ -18,13 +18,14 @@ final class WordPower120AzertyTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,20 +37,21 @@ final class WordPower120AzertyTests: XCTestCase {
     func testLaunchWordPowerAzertySS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.wordPower120Azerty.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "efface tout", vocabWord: "je", vocabElement: 4, nameElement: "QUESTNS")
         
         XCTAssertTrue(app.buttons["'adore "].exists)
         app.buttons["'adore "].tap()
         
-        pages.checkSdbText(sdbText: "J'adore ")
+        commonActions.checkSdbText(sdbText: "J'adore ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 120 Francais Azerty Test Finished with success!")
         

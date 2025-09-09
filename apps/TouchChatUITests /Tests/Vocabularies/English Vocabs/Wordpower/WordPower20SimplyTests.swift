@@ -18,13 +18,14 @@ final class WordPower20SimplySSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower20SimplySSTests: XCTestCase {
     func testLaunchWordPower20SimplySS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower20Position.tap()
         pages.wordPower20SimplySS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "GROUPS", vocabWord: "I like", vocabElement: 4, nameElement: "QUESTIONS")
         
@@ -48,12 +50,12 @@ final class WordPower20SimplySSTests: XCTestCase {
         app.buttons["to drink"].tap()
         app.buttons["juice"].tap()
         
-        pages.checkSdbText(sdbText: "I like to drink juice ")
+        commonActions.checkSdbText(sdbText: "I like to drink juice ")
         
         pages.backButton.tap()
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 20 Simply SS Test Finished with success!")
         

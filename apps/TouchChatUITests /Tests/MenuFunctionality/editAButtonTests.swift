@@ -14,13 +14,14 @@ final class editAButtonTests: XCTestCase {
          continueAfterFailure = false
          
          let pages = Pages(app: app)
+         let commonActions = CommonActions(app: app)
          
          app = XCUIApplication()
          app.launchArguments.append("--reset-app-state")
          app.launch()
-         pages.checkLicenseModal()
-         pages.checkStartModal()
-         pages.clickWelcomeX()
+         commonActions.checkLicenseModal()
+         commonActions.checkStartModal()
+         commonActions.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -32,6 +33,7 @@ final class editAButtonTests: XCTestCase {
     func testeditAButtonTests() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         let vocabularyName = "copied vocabulary edit button"
         let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
@@ -40,12 +42,11 @@ final class editAButtonTests: XCTestCase {
         }()
         
         //copy a new vocab
-        mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary edit button"], vocab: vocabularyName)
+        mainPage.nameVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
 
         //enable delete vocab option
-        pages.openTheSettingsTab()
-        pages.ensureAllowDeleteIsOn()
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
         
         //open the Edit Page tab
         pages.editPage()
@@ -84,7 +85,7 @@ final class editAButtonTests: XCTestCase {
         pages.addActionButton(buttonName: "Edit Button by e2e")
         
         //check the Speech Display Bar
-        pages.checkSdbText(sdbText: "Edit Button by e2e ")
+        commonActions.checkSdbText(sdbText: "Edit Button by e2e ")
         
         //change button size
         pages.changeButtonSize(buttonName: "Edit Button by e2e")
@@ -92,7 +93,7 @@ final class editAButtonTests: XCTestCase {
         //remove the new button
         pages.removeTheButton(buttonName: "Edit Button by e2e")
         
-        pages.backToVocab()
+        commonActions.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Edit Button Test Finished with success!")

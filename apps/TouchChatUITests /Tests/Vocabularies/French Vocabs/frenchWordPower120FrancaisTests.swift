@@ -18,13 +18,14 @@ final class WordPower120FrancaisTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,20 +37,21 @@ final class WordPower120FrancaisTests: XCTestCase {
     func testLaunchwordPower120FrancaisSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.wordPower120FrancaisSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "efface tout", vocabWord: "tu", vocabElement: 4, nameElement: "QUESTNS")
         
         XCTAssertTrue(app.buttons["espères"].exists)
         app.buttons["espères"].tap()
         
-        pages.checkSdbText(sdbText: "Tu espères ")
+        commonActions.checkSdbText(sdbText: "Tu espères ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 120 Francais Test Finished with success!")
         

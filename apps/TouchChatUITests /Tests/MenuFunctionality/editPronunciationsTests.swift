@@ -18,13 +18,14 @@ final class editPronunciationsTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,25 +37,27 @@ final class editPronunciationsTests: XCTestCase {
     func testLaunchEditPronunciations() throws {
         
         let pages = Pages(app: app)
+        let pronunctiationsPage = PronunciationsPage(app: app)
+        let commonActions = CommonActions(app: app)
         pages.spellingSS.tap()
         pages.openAVocab()
         
         //add pronunciations
-        pages.reachEditPronunciations()
-        pages.addPronunciations()
+        pronunctiationsPage.reachEditPronunciations()
+        pronunctiationsPage.addPronunciations()
         
         //edit & delete pronunciations
-        pages.scrollForSearchPronunciations()
-        pages.searchPronunciations()
-        pages.deletePronunciations()
+        pronunctiationsPage.scrollForSearchPronunciations()
+        pronunctiationsPage.searchPronunciations()
+        pronunctiationsPage.deletePronunciations()
         
         //clearAllPronunciations
-        pages.clearAllPronunciations()
+        pronunctiationsPage.clearAllPronunciations()
         
         //restoreToDefaults
-        pages.restoreToDefaultsPronunciations()
+        pronunctiationsPage.restoreToDefaultsPronunciations()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Edit Pronunciations Test Finished with success!")
         

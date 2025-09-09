@@ -16,13 +16,14 @@ final class profilesTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
         }
     
@@ -35,10 +36,11 @@ final class profilesTests: XCTestCase {
         
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
+        let commonActions = CommonActions(app: app)
         
         pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
         pages.basic4SS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "ALL ABOUT ME", vocabWord: "I want", vocabElement: 3, nameElement: "I want")
         
@@ -48,11 +50,11 @@ final class profilesTests: XCTestCase {
         //check the new profile and check the override message
         profilesAndEditingPage.checkTheOverrideMessage()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         //open a new vocab and load the new profile
         pages.engageForiOS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         profilesAndEditingPage.loadTheNewProfile()
         
         //rename the new profile
@@ -61,7 +63,7 @@ final class profilesTests: XCTestCase {
         //Remove the new profile and check if it was removed
         profilesAndEditingPage.removeTheNewProfile()
         
-        pages.backToVocab()
+        commonActions.backToVocab()
                 
         print("Profiles Tests Test Finished with success!")
         

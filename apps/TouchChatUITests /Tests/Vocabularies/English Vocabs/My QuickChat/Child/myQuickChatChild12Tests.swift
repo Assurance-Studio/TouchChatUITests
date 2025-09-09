@@ -18,13 +18,14 @@ final class Child12SSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,25 +37,25 @@ final class Child12SSTests: XCTestCase {
     func testLaunchchild12SS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
         pages.myQuickChatVocab.tap()
         pages.childQuickChatVocab.tap()
         pages.quickChatChild12SS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Playing", vocabWord: "Drinks", vocabElement: 14, nameElement: "Places")
         
         XCTAssertTrue(app.buttons["Lemonade"].exists)
         app.buttons["Lemonade"].tap()
         
-        pages.checkSdbText(sdbText: "I want some lemonade. ")
+        commonActions.checkSdbText(sdbText: "I want some lemonade. ")
         pages.backButton.tap()
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("myQuickChat Child 12SS Test Finished with success!")
         
         app.terminate()
-       
     }
 }

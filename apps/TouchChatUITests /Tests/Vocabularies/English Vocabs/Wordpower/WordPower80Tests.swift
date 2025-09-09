@@ -18,13 +18,14 @@ final class WordPower80SSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower80SSTests: XCTestCase {
     func testLaunchWordPower80SS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower80Position.tap()
         pages.wordPower80SS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "with", vocabWord: "is", vocabElement: 9, nameElement: "PLACES")
         
@@ -51,9 +53,9 @@ final class WordPower80SSTests: XCTestCase {
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Is eating ")
+        commonActions.checkSdbText(sdbText: "Is eating ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 80 SS Test Finished with success!")
         

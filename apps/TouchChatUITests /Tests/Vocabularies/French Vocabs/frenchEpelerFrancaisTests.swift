@@ -18,13 +18,14 @@ final class epelerFrancaisTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,21 +37,22 @@ final class epelerFrancaisTests: XCTestCase {
     func testLaunchEpelerFrancaisSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.epelerFrancaisSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "?", vocabWord: "PHRASES", vocabElement: 6, nameElement: "PHRASES")
         
         XCTAssertTrue(app.buttons["Bonjour!"].exists)
         app.buttons["Bonjour!"].tap()
         
-        pages.checkSdbText(sdbText: "Bonjour, comment-allez vous? ")
+        commonActions.checkSdbText(sdbText: "Bonjour, comment-allez vous? ")
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Epeler Francais Test Finished with success!")
         

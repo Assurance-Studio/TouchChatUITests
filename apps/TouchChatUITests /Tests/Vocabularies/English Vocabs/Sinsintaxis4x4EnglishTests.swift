@@ -18,13 +18,14 @@ final class SinSintaxis4x4EnglishSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,8 +37,9 @@ final class SinSintaxis4x4EnglishSSTests: XCTestCase {
     func testLaunchSinSintaxis4x4EnglishSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.sintaxis4x4English.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Places", vocabWord: "Body Parts", vocabElement: 3, nameElement: "Food/Drink")
         
@@ -45,11 +47,11 @@ final class SinSintaxis4x4EnglishSSTests: XCTestCase {
         app.buttons["eyes"].tap()
         app.buttons["nose"].tap()
         
-        pages.checkSdbText(sdbText: "Eyes nose ")
+        commonActions.checkSdbText(sdbText: "Eyes nose ")
         
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("SinSintaxis 4x4 English Test Finished with success!")
         

@@ -23,9 +23,12 @@ final class copyVocabularyTests: XCTestCase {
         try super.setUpWithError()
         continueAfterFailure = false
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        let commonActions = CommonActions(app: app)
+        let pages = Pages(app: app)
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
+    
         pages.reachMenuPageIfOnVocabPage()
     }
     

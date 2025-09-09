@@ -18,13 +18,14 @@ final class WordPower42BasicSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower42BasicSSTests: XCTestCase {
     func testLaunchWordPower42BasicSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower42Position.tap()
         pages.wordPower42BasicSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "clear", vocabWord: "PLACES", vocabElement: 7, nameElement: "TIME")
         
@@ -49,9 +51,9 @@ final class WordPower42BasicSSTests: XCTestCase {
         app.buttons["can"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Restaurant ")
+        commonActions.checkSdbText(sdbText: "Restaurant ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 42 Basic SS Test Finished with success!")
         

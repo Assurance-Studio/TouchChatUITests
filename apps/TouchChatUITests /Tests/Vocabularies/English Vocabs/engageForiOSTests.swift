@@ -18,13 +18,14 @@ final class EngageiOSSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,9 +37,10 @@ final class EngageiOSSSTests: XCTestCase {
     func testLaunchEngageForiOS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.engageForiOS)
         pages.engageForiOS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "i", vocabWord: "2 BUTTONS", vocabElement: 3, nameElement: "PRACTICE")
         
@@ -46,11 +48,11 @@ final class EngageiOSSSTests: XCTestCase {
         app.buttons["Feelings"].tap()
         app.buttons["happy"].tap()
         
-        pages.checkSdbText(sdbText: "Happy ")
+        commonActions.checkSdbText(sdbText: "Happy ")
         pages.backButton.tap()
         pages.backButton.tap()
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Engage for iOS SS Test Finished with success!")
         

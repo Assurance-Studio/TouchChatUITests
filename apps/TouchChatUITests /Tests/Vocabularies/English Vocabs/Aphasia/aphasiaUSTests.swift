@@ -19,13 +19,14 @@ final class AphasiaUSSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -37,10 +38,11 @@ final class AphasiaUSSSTests: XCTestCase {
     func testLaunchaphasiaUSSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.aphasiaVocab)
         pages.aphasiaVocab.tap()
         pages.aphasiaUSSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Scales", vocabWord: "Me", vocabElement: 10, nameElement: "Clear")
         
@@ -48,11 +50,11 @@ final class AphasiaUSSSTests: XCTestCase {
         XCTAssertTrue(app.buttons["happy"].exists)
         app.buttons["happy"].tap()
         
-        pages.checkSdbText(sdbText: "Happy ")
+        commonActions.checkSdbText(sdbText: "Happy ")
         pages.backButton.tap()
         pages.backButton.tap()
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("aphasia US SS Test Finished with success!")
         

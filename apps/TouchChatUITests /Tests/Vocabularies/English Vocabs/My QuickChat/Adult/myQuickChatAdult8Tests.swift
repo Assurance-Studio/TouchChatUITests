@@ -18,13 +18,14 @@ final class Adult8SSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,21 +37,22 @@ final class Adult8SSTests: XCTestCase {
     func testLaunchAdult8SS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.myQuickChatVocab)
         pages.myQuickChatVocab.tap()
         pages.adultQuickChatVocab.tap()
         pages.quickChatAdult8SS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Interact", vocabWord: "Emotions", vocabElement: 8, nameElement: "Break")
         
         XCTAssertTrue(app.buttons["Happy"].exists)
         app.buttons["Happy"].tap()
         
-        pages.checkSdbText(sdbText: "I'm happy. ")
+        commonActions.checkSdbText(sdbText: "I'm happy. ")
         pages.backButton.tap()
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("myQuickChat Adult 8SS Test Finished with success!")
         

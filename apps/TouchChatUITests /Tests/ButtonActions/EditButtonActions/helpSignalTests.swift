@@ -15,13 +15,14 @@ final class helpSignalTests: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
    }
    
@@ -34,21 +35,20 @@ final class helpSignalTests: XCTestCase {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)
+       let commonActions = CommonActions(app: app)
        let vocabularyName = "copied vocabulary help signal"
-       let vocabylaryDesc = "vocabulary description e2e"
+       let vocabularyDesc = "vocabulary description e2e"
        let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
        
        //copy a new vocab
-       mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       sleep(2)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary help signal"], vocab: vocabularyName)
+       mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
 
        //enable delete vocab option
-       pages.openTheSettingsTab()
-       pages.ensureAllowDeleteIsOn()
+       commonActions.openTheSettingsTab()
+       commonActions.ensureAllowDeleteIsOn()
        
        pages.editPage()
        //add an action
@@ -66,7 +66,7 @@ final class helpSignalTests: XCTestCase {
        //check if the action works
        app.buttons["Help Signal"].tap()
        
-       pages.backToVocab()
+       commonActions.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
        print("Help Signal Action Test Finished with success!")

@@ -51,6 +51,7 @@ class GrammarActionaPageClass {
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: "Grammar Action")
         app.staticTexts["add -en"].tap()
+        sleep(3)
         app.buttons["Save"].tap()
     }
     
@@ -63,6 +64,7 @@ class GrammarActionaPageClass {
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: "Grammar Action")
         app.staticTexts["add -er"].tap()
+        sleep(3)
         app.buttons["Save"].tap()
     }
     
@@ -75,6 +77,7 @@ class GrammarActionaPageClass {
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: "Grammar Action")
         app.staticTexts["add -est"].tap()
+        sleep(3)
         app.buttons["Save"].tap()
     }
     
@@ -87,6 +90,7 @@ class GrammarActionaPageClass {
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: "Grammar Action")
         app.staticTexts["add -ing"].tap()
+        sleep(3)
         app.buttons["Save"].tap()
     }
     
@@ -99,6 +103,7 @@ class GrammarActionaPageClass {
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: "Grammar Action")
         app.staticTexts["add -ly"].tap()
+        sleep(3)
         app.buttons["Save"].tap()
     }
     
@@ -111,6 +116,7 @@ class GrammarActionaPageClass {
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: "Grammar Action")
         app.staticTexts["add -s"].tap()
+        sleep(3)
         app.buttons["Save"].tap()
     }
     
@@ -120,6 +126,7 @@ class GrammarActionaPageClass {
         sleep(2)
         app.textFields.element(boundBy: 0).doubleTap()
         app.textFields.element(boundBy: 0).typeText("break")
+        sleep(3)
         app.buttons["Save"].tap()
     }
     
@@ -134,7 +141,68 @@ class GrammarActionaPageClass {
     }
     
     func checkGrammarAction(){
-        //check if the grammar action -ed works as expected
+        //check if the grammar actions work as expected
+        app.buttons["break"].tap()
+//        app.buttons["Grammar Action -ed"].tap()
+//        app.buttons["g"].tap()
+//        app.buttons["BackButton"].tap()
+//        //check if the grammar action -en works as expected
+//        app.buttons["break"].tap()
+//        app.buttons["Grammar Action -en"].tap()
+//        app.buttons["g"].tap()
+//        app.buttons["BackButton"].tap()
+//        //check if the grammar action -er works as expected
+//        app.buttons["break"].tap()
+//        app.buttons["Grammar Action -er"].tap()
+//        app.buttons["g"].tap()
+//        app.buttons["BackButton"].tap()
+//        //check if the grammar action -est works as expected
+//        app.buttons["quick"].tap()
+//        app.buttons["Grammar Action -est"].tap()
+//        app.buttons["g"].tap()
+//        app.buttons["BackButton"].tap()
+//        //check if the grammar action -ing works as expected
+//        app.buttons["break"].tap()
+//        app.buttons["Grammar Action -ing"].tap()
+//        app.buttons["g"].tap()
+//        app.buttons["BackButton"].tap()
+//        //check if the grammar action -ly works as expected
+//        app.buttons["quick"].tap()
+//        app.buttons["Grammar Action -ly"].tap()
+//        app.buttons["g"].tap()
+//        app.buttons["BackButton"].tap()
+//        //check if the grammar action -s works as expected
+//        app.buttons["break"].tap()
+//        app.buttons["Grammar Action -s"].tap()
+//        app.buttons["g"].tap()
+//        app.buttons["BackButton"].tap()
+//        
+//        let grammarActions = app.textFields["Broke broken breaker quickest breaking quickly breaks "]
+//        XCTAssertTrue(grammarActions.exists, "The grammar actions don't work as expected")
+        
+        let brokeBtn = app.buttons["broke"]
+        let brokenBtn = app.buttons["broken"]
+        let breakerBtn = app.buttons["breaker"]
+        let breakingBtn = app.buttons["breaking"]
+        let breaksBtn = app.buttons["breaks"]
+        
+        let breakBtnExists = brokeBtn.exists && brokenBtn.exists && breakerBtn.exists && breakingBtn.exists && breaksBtn.exists
+        XCTAssertTrue(breakBtnExists, "The grammar actions don't work as expected")
+        app.buttons["BackButton"].tap()
+        
+        app.buttons["quick"].tap()
+        
+        let quickestBtn = app.buttons["quickest"]
+        let quickerBtn = app.buttons["quicker"]
+        let quicklyBtn = app.buttons["quickly"]
+        let quicksBtn = app.buttons["quicks"]
+        
+        let quicksBtnExists = quickestBtn.exists && quickerBtn.exists && quicklyBtn.exists && quicksBtn.exists
+        XCTAssertTrue(quicksBtnExists, "The grammar actions don't work as expected")
+    }
+    
+    func checkGrammarActionMegaT(){
+        //check if the grammar actions work as expected
         app.buttons["break"].tap()
         app.buttons["Grammar Action -ed"].tap()
         app.buttons["g"].tap()
@@ -169,9 +237,10 @@ class GrammarActionaPageClass {
         app.buttons["Grammar Action -s"].tap()
         app.buttons["g"].tap()
         app.buttons["BackButton"].tap()
-        
+
         let grammarActions = app.textFields["Broke broken breaker quickest breaking quickly breaks "]
         XCTAssertTrue(grammarActions.exists, "The grammar actions don't work as expected")
+        
     }
     
     func addJumpAction(button: Int, jumpDirection: String, directionType: String){
@@ -184,6 +253,7 @@ class GrammarActionaPageClass {
         actionsPage.addANewAction(actionName: "Jump To Page")
         app.staticTexts[".Template"].tap()
         app.staticTexts[directionType].tap()
+        sleep(3)
         app.buttons["Save"].tap()
     }
     
@@ -197,7 +267,10 @@ class GrammarActionaPageClass {
         actionsPage.addANewAction(actionName: "Navigate")
         app.staticTexts[".Template"].tap()
         app.staticTexts[directionType].tap()
-        app.buttons["Save"].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
     }
     
     func addNavigateActionsHomeBack(button: Int, navigateDirection: String, actionType: String, directionType: String){
@@ -210,7 +283,10 @@ class GrammarActionaPageClass {
         actionsPage.addANewAction(actionName: actionType)
         app.staticTexts[directionType].tap()
         sleep(3)
-        app.buttons["Save"].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
     }
     
     func createButtonWordPrediction(button: Int, navigateDirection: String, actionType: String, directionType: String){
@@ -226,8 +302,10 @@ class GrammarActionaPageClass {
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: actionType)
         app.staticTexts[directionType].tap()
-        sleep(3)
-        app.buttons["Save"].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
     }
     
     func checkNotesApp(){
@@ -270,12 +348,14 @@ class GrammarActionaPageClass {
         app.textFields.element(boundBy: 0).typeText(navigateDirection)
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: actionType)
-        sleep(2)
+        sleep(3)
         app.staticTexts[directionType].tap()
         sleep(3)
         app.staticTexts[appType].tap()
-        sleep(3)
-        app.buttons["Save"].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
     }
     
     func createButtonOpenAppsAction(button: Int, navigateDirection: String, actionType: String, directionType: String, appType: String){
@@ -349,14 +429,21 @@ class GrammarActionaPageClass {
     
     func addSubAction(ActionName: String, buttonPosition: Int, buttonName:String, subActionName:String){
         app.buttons.element(boundBy: buttonPosition).tap()
-        app.buttons["Edit This Button"].tap()
-        sleep(2)
+        let editBtn = app.buttons["Edit This Button"]
+        let editBtnExists = editBtn.waitForExistence(timeout: 15)
+        XCTAssertTrue(editBtnExists)
+        editBtn.tap()
+        sleep(3)
         app.textFields.element(boundBy: 0).doubleTap()
         app.textFields.element(boundBy: 0).typeText(buttonName)
+        sleep(3)
         actionsPage.removeSpeechMessageAction()
         actionsPage.addANewAction(actionName: ActionName)
         app.staticTexts[subActionName].tap()
-        app.buttons["Save"].tap()
+        let saveBtn = app.buttons["Save"]
+        let saveBtnExists = saveBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(saveBtnExists)
+        saveBtn.tap()
     }
     
     func addSubActionGrammarProperty(ActionName: String, buttonPosition: Int, buttonName:String, subActionName:String){
@@ -429,7 +516,7 @@ class GrammarActionaPageClass {
     }
     
     func checkTheDynamicLabelsToggle(){
-        let enableDynamicGrammarLabels = app.switches.element(boundBy: 28)
+        let enableDynamicGrammarLabels = app.switches.element(boundBy: 29)
         //enableDynamicGrammarLabels.tap()
         if enableDynamicGrammarLabels.value as? String == "1" {
                 // If the switch is already ON, do nothing.

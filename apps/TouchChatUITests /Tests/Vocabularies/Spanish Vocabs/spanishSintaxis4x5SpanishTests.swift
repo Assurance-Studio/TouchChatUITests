@@ -18,13 +18,14 @@ final class Sintaxis4x5SpanishSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class Sintaxis4x5SpanishSSTests: XCTestCase {
     func testLaunchSintaxis4x5SpanishSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.sintaxis4x5Spanish.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: " transporte", vocabWord: "comida", vocabElement: 4, nameElement: "lugares")
         
@@ -49,11 +51,11 @@ final class Sintaxis4x5SpanishSSTests: XCTestCase {
         app.buttons["pescado"].tap()
         app.buttons["pan"].tap()
         
-        pages.checkSdbText(sdbText: "Pescado pan ")
+        commonActions.checkSdbText(sdbText: "Pescado pan ")
         
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("SinSintaxis 4x5 Spanish Test Finished with success!")
         

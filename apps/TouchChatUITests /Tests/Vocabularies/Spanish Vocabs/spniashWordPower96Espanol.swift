@@ -21,13 +21,14 @@ final class spniashWordPower96Espanol: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -39,11 +40,12 @@ final class spniashWordPower96Espanol: XCTestCase {
     func testLaunchWordPower96EspanolLiteTech() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.wordPowerLiteTech96.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "ya", vocabWord: "yo mi", vocabElement: 8, nameElement: "ACCIONES")
         
@@ -52,9 +54,9 @@ final class spniashWordPower96Espanol: XCTestCase {
         app.buttons["la"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Yo comer ")
+        commonActions.checkSdbText(sdbText: "Yo comer ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Word Power 96 Espanol Lite-Tech SS Test Finished with success!")
         

@@ -18,13 +18,14 @@ final class WordPower48EspanolTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower48EspanolTests: XCTestCase {
     func testLaunchWordPower48EspanolSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.wordPowerEspanol48.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "porque", vocabWord: "comer", vocabElement: 4, nameElement: "GENTE")
         
@@ -48,9 +50,9 @@ final class WordPower48EspanolTests: XCTestCase {
         app.buttons["que"].tap()
         app.buttons["el"].tap()
         
-        pages.checkSdbText(sdbText: "Comer que el ")
+        commonActions.checkSdbText(sdbText: "Comer que el ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Word Power 48 Espanol SS Test Finished with success!")
         

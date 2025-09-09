@@ -153,6 +153,11 @@ class MainPage {
         copySpellingVocab(vocabName: vocabName, vocabDescription: vocabDescription)
         openVocab(vocabToOpen: app.staticTexts[vocabName], vocab: vocabName)
     }
+    
+    func nameVocabPC(vocabName: String, vocabDescription: String) {
+        copyVocabPC(vocabName: vocabName, vocabDescription: vocabDescription)
+        openVocab(vocabToOpen: app.staticTexts[vocabName], vocab: vocabName)
+    }
     // To add more vocabs
     
     func deleteVocabFromMainPage(vocabDesc:String) {
@@ -170,7 +175,7 @@ class MainPage {
     }
     
     func openVocab(vocabToOpen: XCUIElement, vocab: String) {
-        sleep(2)
+        sleep(4)
         let vocabToOpen = app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", vocab)).firstMatch
 
     if vocabToOpen.exists && vocabToOpen.isHittable {

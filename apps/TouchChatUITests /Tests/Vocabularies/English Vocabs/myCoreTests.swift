@@ -18,13 +18,14 @@ final class MyCoreSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,9 +37,10 @@ final class MyCoreSSTests: XCTestCase {
     func testLaunchmyCoreSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.myCoreSS)
         pages.myCoreSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
         
@@ -46,9 +48,9 @@ final class MyCoreSSTests: XCTestCase {
         app.buttons["eating"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Are ")
+        commonActions.checkSdbText(sdbText: "Are ")
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("myCore SS Test Finished with success!")
         

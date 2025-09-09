@@ -18,13 +18,14 @@ final class WordPower108SSKeyboardTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower108SSKeyboardTests: XCTestCase {
     func testLaunchWordPower108SSKeyboard() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower108Position.tap()
         pages.wordPower108SSKeyboard.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "clear", vocabWord: "PEOPLE", vocabElement: 3, nameElement: "PEOPLE")
         
@@ -53,9 +55,9 @@ final class WordPower108SSKeyboardTests: XCTestCase {
         app.buttons["more"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Mom ")
+        commonActions.checkSdbText(sdbText: "Mom ")
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 108 Keyboard Test Finished with success!")
         

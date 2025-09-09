@@ -14,13 +14,14 @@ final class copyPasteButtonFunctionalitieTests: XCTestCase {
          continueAfterFailure = false
          
          let pages = Pages(app: app)
+         let commonActions = CommonActions(app: app)
          
          app = XCUIApplication()
          app.launchArguments.append("--reset-app-state")
          app.launch()
-         pages.checkLicenseModal()
-         pages.checkStartModal()
-         pages.clickWelcomeX()
+         commonActions.checkLicenseModal()
+         commonActions.checkStartModal()
+         commonActions.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -32,6 +33,7 @@ final class copyPasteButtonFunctionalitieTests: XCTestCase {
     func testcopyPasteButtonFunctionalitiesTests() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         let vocabularyName = "copied vocabulary edit button"
         let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
@@ -40,12 +42,11 @@ final class copyPasteButtonFunctionalitieTests: XCTestCase {
         }()
         
         //copy a new vocab
-        mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary edit button"], vocab: vocabularyName)
+        mainPage.nameVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
 
         //enable delete vocab option
-        pages.openTheSettingsTab()
-        pages.ensureAllowDeleteIsOn()
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
         
         //open the Edit Page tab
         pages.editPage()
@@ -56,7 +57,7 @@ final class copyPasteButtonFunctionalitieTests: XCTestCase {
         //paste the button
         pages.pasteTheButton()
         
-        pages.checkSdbText(sdbText: "I want a drink ")
+        commonActions.checkSdbText(sdbText: "I want a drink ")
         
         app.buttons["Back"].tap()
         
@@ -65,11 +66,11 @@ final class copyPasteButtonFunctionalitieTests: XCTestCase {
         //use the same button
         pages.useTheSameButton()
         
-        pages.checkSdbText(sdbText: "I want a drink I want a snack ")
+        commonActions.checkSdbText(sdbText: "I want a drink I want a snack ")
         
         app.buttons["Back"].tap()
         
-        pages.backToVocab()
+        commonActions.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Copy & Paste Button Test Finished with success!")

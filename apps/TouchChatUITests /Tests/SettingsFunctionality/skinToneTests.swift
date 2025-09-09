@@ -17,13 +17,14 @@ final class skinToneTests: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
    }
    
@@ -35,11 +36,9 @@ final class skinToneTests: XCTestCase {
    func testSkinTone() throws {
        
        let pages = Pages(app: app)
-       let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
-       let predictionsSettingsPage = PredictionsSettingsPage(app: app)
+       let commonActions = CommonActions(app: app)
        let vocabularyName = "copied vocabulary skin tone settings"
-       let vocabylaryDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -59,8 +58,8 @@ final class skinToneTests: XCTestCase {
        pages.verifyTheVocab(lastElement: "Transportation", vocabWord: "Toys", vocabElement: 3, nameElement: "People")
        
        //enable rename vocab option
-       pages.openTheSettingsTab()
-       pages.ensureAllowDeleteIsOn()
+       commonActions.openTheSettingsTab()
+       commonActions.ensureAllowDeleteIsOn()
        
        //clear all predictions
        app.buttons["Menu"].tap()
@@ -77,7 +76,7 @@ final class skinToneTests: XCTestCase {
        app.buttons["Done"].tap()
        app.buttons["Back"].tap()
        
-       pages.backToVocab()
+       commonActions.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
        print("Skin Tone Test Finished with success!")

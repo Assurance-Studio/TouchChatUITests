@@ -18,13 +18,14 @@ final class Sintaxis4x5EnglishSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,19 +37,20 @@ final class Sintaxis4x5EnglishSSTests: XCTestCase {
     func testLaunchSintaxis4x5EnglishSS() throws {
       
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.sintaxis4x5English.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Transportation", vocabWord: "Toys", vocabElement: 3, nameElement: "People")
         
         XCTAssertTrue(app.buttons["Buy me"].exists)
         app.buttons["Buy me"].tap()
         
-        pages.checkSdbText(sdbText: "Buy me ")
+        commonActions.checkSdbText(sdbText: "Buy me ")
         
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("SinSintaxis 4x5 English Test Finished with success!")
         

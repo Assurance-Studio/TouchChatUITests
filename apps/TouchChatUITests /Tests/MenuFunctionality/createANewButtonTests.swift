@@ -14,13 +14,14 @@ final class createANewButtonTests: XCTestCase {
          continueAfterFailure = false
          
          let pages = Pages(app: app)
+         let commonActions = CommonActions(app: app)
          
          app = XCUIApplication()
          app.launchArguments.append("--reset-app-state")
          app.launch()
-         pages.checkLicenseModal()
-         pages.checkStartModal()
-         pages.clickWelcomeX()
+         commonActions.checkLicenseModal()
+         commonActions.checkStartModal()
+         commonActions.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -32,6 +33,7 @@ final class createANewButtonTests: XCTestCase {
     func testcreateANewButtonTests() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         let vocabularyName = "copied vocabulary create button"
         let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
@@ -40,12 +42,11 @@ final class createANewButtonTests: XCTestCase {
         }()
         
         //copy a new vocab
-        mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary create button"], vocab: vocabularyName)
+        mainPage.nameVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
 
         //enable delete vocab option
-        pages.openTheSettingsTab()
-        pages.ensureAllowDeleteIsOn()
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
         
         //open the Edit Page tab
         pages.editPage()
@@ -87,7 +88,7 @@ final class createANewButtonTests: XCTestCase {
         pages.addActionButton(buttonName: "Create Button by e2e")
         
         //check the Speech Display Bar
-        pages.checkSdbText(sdbText: "Create Button by e2e Create Button by e2e ")
+        commonActions.checkSdbText(sdbText: "Create Button by e2e Create Button by e2e ")
         
         //change button size
         pages.changeButtonSize(buttonName: "Create Button by e2e")
@@ -95,7 +96,7 @@ final class createANewButtonTests: XCTestCase {
         //remove the new button
         pages.removeTheButton(buttonName: "Create Button by e2e")
         
-        pages.backToVocab()
+        commonActions.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Create Button Test Finished with success!")

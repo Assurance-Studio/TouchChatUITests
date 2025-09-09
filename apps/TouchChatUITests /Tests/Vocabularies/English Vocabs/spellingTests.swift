@@ -18,13 +18,14 @@ final class SpellingSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,19 +37,20 @@ final class SpellingSSTests: XCTestCase {
     func testLaunchSpellingSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
         pages.spellingSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "BACKSPACE", vocabWord: "PHRASES", vocabElement: 5, nameElement: "TEXTING")
         
         XCTAssertTrue(app.buttons["Good Morning"].exists)
         app.buttons["Good Morning"].tap()
         
-        pages.checkSdbText(sdbText: "Good morning, how are you? ")
+        commonActions.checkSdbText(sdbText: "Good morning, how are you? ")
         pages.backButton.tap()
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Spelling SS Test Finished with success!")
         

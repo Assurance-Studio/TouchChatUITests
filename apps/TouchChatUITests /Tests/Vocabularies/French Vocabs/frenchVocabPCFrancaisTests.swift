@@ -18,13 +18,14 @@ final class vocabPCFrancaisTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class vocabPCFrancaisTests: XCTestCase {
     func testLaunchvocabPCFrancaisSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.vocabPCFrancaisSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "temps", vocabWord: "Je suis", vocabElement: 3, nameElement: "Je veux")
         
@@ -48,9 +50,9 @@ final class vocabPCFrancaisTests: XCTestCase {
         app.buttons["mélangé"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Je suis ")
+        commonActions.checkSdbText(sdbText: "Je suis ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("VocabPC Francais Test Finished with success!")
         

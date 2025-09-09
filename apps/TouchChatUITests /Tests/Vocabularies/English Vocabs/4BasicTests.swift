@@ -18,13 +18,14 @@ final class test4BasicSS: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,8 +37,9 @@ final class test4BasicSS: XCTestCase {
     func testLaunch4BasicSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.basic4SS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "ALL ABOUT ME", vocabWord: "I want", vocabElement: 3, nameElement: "I want")
         
@@ -46,9 +48,9 @@ final class test4BasicSS: XCTestCase {
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "I want ")
+        commonActions.checkSdbText(sdbText: "I want ")
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("4 Basic SS Test Finished with success!")
         

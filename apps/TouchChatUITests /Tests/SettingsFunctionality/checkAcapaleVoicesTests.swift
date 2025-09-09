@@ -15,13 +15,14 @@ final class checkAcapaleVoicesTests: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
    }
    
@@ -35,8 +36,9 @@ final class checkAcapaleVoicesTests: XCTestCase {
        let pages = Pages(app: app)
        let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
        let languagesPage = LanguagesRegionPage(app: app)
+       let commonActions = CommonActions(app: app)
        let vocabularyName = "copied vocabulary acapela voices"
-       let vocabylaryDesc = "vocabulary description e2e"
+       let vocabularyDesc = "vocabulary description e2e"
        let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
@@ -53,12 +55,11 @@ final class checkAcapaleVoicesTests: XCTestCase {
        app.buttons["Done"].tap()
        
        //copy a new vocab
-       mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary acapela voices"], vocab: vocabularyName)
+       mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
        
        //enable rename vocab option
-       pages.openTheSettingsTab()
-       pages.ensureAllowDeleteIsOn()
+       commonActions.openTheSettingsTab()
+       commonActions.ensureAllowDeleteIsOn()
        
        //check if the force font size works
        profilesAndEditingPage.openTheSettingsTab()
@@ -72,7 +73,7 @@ final class checkAcapaleVoicesTests: XCTestCase {
        //try to select another Acapela Voice
        languagesPage.trySelectAcapelaVoice()
               
-       pages.backToVocab()
+       commonActions.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
        
        print("Acapela Voices Test Finished with success!")

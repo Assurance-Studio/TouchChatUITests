@@ -18,13 +18,14 @@ final class editAbbreviationsTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,28 +37,30 @@ final class editAbbreviationsTests: XCTestCase {
     func testLaunchEditAbbreviations() throws {
         
         let pages = Pages(app: app)
+        let abbreviationsPage = AbbreviationsPage(app: app)
+        let commonActions = CommonActions(app: app)
         
         pages.spellingSS.tap()
         pages.openAVocab()
         
         //add abbreviation
-        pages.reachAddAbbreviation()
-        pages.addAbbreviation()
-        pages.checkAddAbbreviation()
-        pages.checkSdbText(sdbText: "Test by e2e ")
+        abbreviationsPage.reachAddAbbreviation()
+        abbreviationsPage.addAbbreviation()
+        abbreviationsPage.checkAddAbbreviation()
+        commonActions.checkSdbText(sdbText: "Test by e2e ")
         
         //edit&delete abbreviation
-        pages.reachToEditAbbreviation()
-        pages.removeTheAbbreviation()
+        abbreviationsPage.reachToEditAbbreviation()
+        abbreviationsPage.removeTheAbbreviation()
         
         //clearAllAbbreviation
-        pages.reachToEditAbbreviation()
-        pages.clearAllAbbreviations()
+        abbreviationsPage.reachToEditAbbreviation()
+        abbreviationsPage.clearAllAbbreviations()
         
         //restoreToDefaults
-        pages.restoreToDefaultsAbbreviation()
+        abbreviationsPage.restoreToDefaultsAbbreviation()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Edit Abbreviations Test Finished with success!")
         

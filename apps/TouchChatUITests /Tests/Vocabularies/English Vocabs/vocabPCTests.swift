@@ -18,13 +18,14 @@ final class vocabPCSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,9 +37,10 @@ final class vocabPCSSTests: XCTestCase {
     func testLaunchVocabPc() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.vocabPCSS)
         pages.vocabPCSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "time", vocabWord: "I feel", vocabElement: 3, nameElement: "I want")
         
@@ -46,9 +48,9 @@ final class vocabPCSSTests: XCTestCase {
         app.buttons["confused"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "I feel ")
+        commonActions.checkSdbText(sdbText: "I feel ")
     
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("VocabPC SS Test Finished with success!")
         

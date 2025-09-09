@@ -14,13 +14,14 @@ final class pageStyleOverrideTests: XCTestCase {
          continueAfterFailure = false
          
          let pages = Pages(app: app)
+         let commonActions = CommonActions(app: app)
          
          app = XCUIApplication()
          app.launchArguments.append("--reset-app-state")
          app.launch()
-         pages.checkLicenseModal()
-         pages.checkStartModal()
-         pages.clickWelcomeX()
+         commonActions.checkLicenseModal()
+         commonActions.checkStartModal()
+         commonActions.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -32,6 +33,7 @@ final class pageStyleOverrideTests: XCTestCase {
     func testPageStyleOverrideTests() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         let vocabularyName = "copied vocabulary page style override"
         let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
@@ -40,12 +42,11 @@ final class pageStyleOverrideTests: XCTestCase {
         }()
         
         //copy a new vocab
-        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary page style override"], vocab: vocabularyName)
+        mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
 
         //enable rename vocab option
-        pages.openTheSettingsTab()
-        pages.ensureAllowDeleteIsOn()
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
         
         //open the Edit Page tab
         pages.editPage()
@@ -59,7 +60,7 @@ final class pageStyleOverrideTests: XCTestCase {
         //choose a color and check if multiple colors exist
         pages.chooseAColorandChecktheOptions()
         
-        pages.backToVocab()
+        commonActions.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Page Style Override Test Finished with success!")

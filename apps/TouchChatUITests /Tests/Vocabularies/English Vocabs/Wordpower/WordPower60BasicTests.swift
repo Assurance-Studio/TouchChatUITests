@@ -18,13 +18,14 @@ final class WordPower60BasicSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower60BasicSSTests: XCTestCase {
     func testLaunchWordPower60BasicSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower60Position.tap()
         pages.wordPower60BasicSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "with", vocabWord: "it", vocabElement: 9, nameElement: "SOCIAL")
         
@@ -48,9 +50,9 @@ final class WordPower60BasicSSTests: XCTestCase {
         app.buttons["help"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "It ")
+        commonActions.checkSdbText(sdbText: "It ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 60 Basic SS Test Finished with success!")
         

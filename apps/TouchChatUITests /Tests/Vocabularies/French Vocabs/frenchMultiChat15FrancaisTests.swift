@@ -18,13 +18,14 @@ final class multiChat15FrancaisTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class multiChat15FrancaisTests: XCTestCase {
     func testLaunchMultiChat15FrancaisSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.multiChat15FrancaisSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Mon environnement", vocabWord: "J'ai besoin", vocabElement: 3, nameElement: "Questions ")
         
@@ -48,9 +50,9 @@ final class multiChat15FrancaisTests: XCTestCase {
         app.buttons["de prendre un pause"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "J'ai besoin de prendre une ")
+        commonActions.checkSdbText(sdbText: "J'ai besoin de prendre une ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("MultiChat15 Francais Test Finished with success!")
         

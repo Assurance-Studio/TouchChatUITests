@@ -18,13 +18,14 @@ final class WordPower108SSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower108SSTests: XCTestCase {
     func testLaunchWordPower108SS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.scrollDownUntilElementIsVisible(element: pages.wordPowerVocab)
         pages.wordPowerVocab.tap()
         pages.wordPower108Position.tap()
         pages.wordPower108SS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "clear", vocabWord: "GROUPS", vocabElement: 24, nameElement: "GROUPS")
         
@@ -48,11 +50,11 @@ final class WordPower108SSTests: XCTestCase {
         app.buttons["BODY"].tap()
         app.buttons["hair"].tap()
         
-        pages.checkSdbText(sdbText: "Hair ")
+        commonActions.checkSdbText(sdbText: "Hair ")
         pages.backButton.tap()
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 108 SS Test Finished with success!")
         

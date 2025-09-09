@@ -14,13 +14,14 @@ final class EditPageLayoutTests: XCTestCase {
          continueAfterFailure = false
          
          let pages = Pages(app: app)
+         let commonActions = CommonActions(app: app)
          
          app = XCUIApplication()
          app.launchArguments.append("--reset-app-state")
          app.launch()
-         pages.checkLicenseModal()
-         pages.checkStartModal()
-         pages.clickWelcomeX()
+         commonActions.checkLicenseModal()
+         commonActions.checkStartModal()
+         commonActions.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -32,20 +33,20 @@ final class EditPageLayoutTests: XCTestCase {
     func testEditPageLayoutPage() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         let vocabularyName = "copied vocabulary pagelayout"
-        let vocabylaryDesc = "vocabulary description e2e"
+        let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
         
         //copy a new vocab
-        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary pagelayout"], vocab: vocabularyName)
+        mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
 
         //enable delete vocab option
-        pages.openTheSettingsTab()
-        pages.ensureAllowDeleteIsOn()
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
         
         //open the Edit Page Layout tab
         pages.editPage()
@@ -66,7 +67,7 @@ final class EditPageLayoutTests: XCTestCase {
         //clear image and save the section
         pages.clearImageLayout()
         
-        pages.backToVocab()
+        commonActions.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Edit Page Layout Test Finished with success!")

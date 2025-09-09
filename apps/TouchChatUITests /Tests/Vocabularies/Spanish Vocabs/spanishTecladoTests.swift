@@ -18,13 +18,14 @@ final class TecladoSSTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,22 +37,23 @@ final class TecladoSSTests: XCTestCase {
     func testLaunchTecladoSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.tecladoSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "?", vocabWord: "FRASES", vocabElement: 6, nameElement: "FRASES")
         
         XCTAssertTrue(app.buttons["Hola, ¿cómo estás?"].exists)
         app.buttons["Hola, ¿cómo estás?"].tap()
         
-        pages.checkSdbText(sdbText: "Hola, ¿cómo estás? ")
+        commonActions.checkSdbText(sdbText: "Hola, ¿cómo estás? ")
         
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Teclado SS Test Finished with success!")
         

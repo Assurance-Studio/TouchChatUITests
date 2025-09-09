@@ -14,13 +14,14 @@ final class addNewHomePageTests: XCTestCase {
          continueAfterFailure = false
          
          let pages = Pages(app: app)
+         let commonActions = CommonActions(app: app)
          
          app = XCUIApplication()
          app.launchArguments.append("--reset-app-state")
          app.launch()
-         pages.checkLicenseModal()
-         pages.checkStartModal()
-         pages.clickWelcomeX()
+         commonActions.checkLicenseModal()
+         commonActions.checkStartModal()
+         commonActions.clickWelcomeX()
          pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -32,20 +33,20 @@ final class addNewHomePageTests: XCTestCase {
     func testAddNewHomePageTests() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         let vocabularyName = "copied vocabulary homepage"
-        let vocabylaryDesc = "vocabulary description e2e"
+        let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
         
         //copy a new vocab
-        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary homepage"], vocab: vocabularyName)
+        mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
 
         //enable delete vocab option
-        pages.openTheSettingsTab()
-        pages.ensureAllowDeleteIsOn()
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
         
         //open the Edit Page tab
         pages.editPage()
@@ -68,7 +69,7 @@ final class addNewHomePageTests: XCTestCase {
                 
         XCUIApplication().navigationBars["Page by e2e"].buttons["Done"].tap()
         
-        pages.backToVocab()
+        commonActions.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
         
         print("Add Home Page Type Test Finished with success!")

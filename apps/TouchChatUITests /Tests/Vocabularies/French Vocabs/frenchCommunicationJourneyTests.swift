@@ -18,13 +18,14 @@ final class communicationJourneyFrancaisTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,21 +37,22 @@ final class communicationJourneyFrancaisTests: XCTestCase {
     func testLaunchCommunityJourneyFrancaisSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.communicationFrancaisSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "Échelles", vocabWord: "Social", vocabElement: 3, nameElement: "Objets")
         
         XCTAssertTrue(app.buttons["Comment ça va?"].exists)
         app.buttons["Comment ça va?"].tap()
         
-        pages.checkSdbText(sdbText: "Comment ça va? ")
+        commonActions.checkSdbText(sdbText: "Comment ça va? ")
         pages.backButton.tap()
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Communication francais Test Finished with success!")
         

@@ -18,13 +18,14 @@ final class WordPower60FrancaisTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower60FrancaisTests: XCTestCase {
     func testLaunchWordPower60FrancaisSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "French (Canada)")
         pages.scrollDownUntilElementIsVisible(element: pages.frenchVocab)
         pages.frenchVocab.tap()
         pages.wordPower60FrancaisSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "tout", vocabWord: "je", vocabElement: 4, nameElement: "ABC 123")
         
@@ -48,9 +50,9 @@ final class WordPower60FrancaisTests: XCTestCase {
         app.buttons["donne"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Je ")
+        commonActions.checkSdbText(sdbText: "Je ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("WordPower 60 Francais Test Finished with success!")
         

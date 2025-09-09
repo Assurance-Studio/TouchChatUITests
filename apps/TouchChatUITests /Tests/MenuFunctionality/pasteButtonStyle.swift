@@ -17,13 +17,14 @@ final class pasteButtonStyle: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
    }
    
@@ -35,6 +36,7 @@ final class pasteButtonStyle: XCTestCase {
    func testPasteButtonStyleTests() throws {
        
        let pages = Pages(app: app)
+       let commonActions = CommonActions(app: app)
        let vocabularyName = "copied vocabulary paste button"
        let vocabularyDesc = "vocabulary description e2e"
        let vocabName = "vocabulary"
@@ -43,12 +45,11 @@ final class pasteButtonStyle: XCTestCase {
        }()
        
        //copy a new vocab
-       mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-       mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary paste button"], vocab: vocabularyName)
+       mainPage.nameVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
 
        //enable rename vocab option
-       pages.openTheSettingsTab()
-       pages.ensureAllowDeleteIsOn()
+       commonActions.openTheSettingsTab()
+       commonActions.ensureAllowDeleteIsOn()
        
        //open the Edit Page tab
        pages.editPage()
@@ -67,7 +68,7 @@ final class pasteButtonStyle: XCTestCase {
        //check if the paste button style works as expected
        pages.checkIfTheButtonStyleWasCopied()
        
-       pages.backToVocab()
+       commonActions.backToVocab()
        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
     }
 }

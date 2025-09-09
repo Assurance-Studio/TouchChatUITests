@@ -18,13 +18,14 @@ final class WordPower25EspanolTests: XCTestCase {
         }()
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -36,11 +37,12 @@ final class WordPower25EspanolTests: XCTestCase {
     func testLaunchWordPower25EspanolSS() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         pages.openDifferentLanguagePage(languageVocab: "Spanish (United States)")
         pages.scrollDownUntilElementIsVisible(element: pages.SpanishVocab)
         pages.SpanishVocab.tap()
         pages.wordPowerEspanol25.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         pages.verifyTheVocab(lastElement: "jugar", vocabWord: "toma", vocabElement: 4, nameElement: "borrar")
         
@@ -48,9 +50,9 @@ final class WordPower25EspanolTests: XCTestCase {
         app.buttons["una foto"].tap()
         app.buttons["BackButton"].tap()
         
-        pages.checkSdbText(sdbText: "Toma una ")
+        commonActions.checkSdbText(sdbText: "Toma una ")
         
-        pages.backToVocab();
+        commonActions.backToVocab();
         
         print("Word Power 25 Espanol SS Test Finished with success!")
         

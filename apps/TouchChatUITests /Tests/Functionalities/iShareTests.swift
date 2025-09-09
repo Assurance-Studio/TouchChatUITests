@@ -15,14 +15,14 @@ final class iShareTests: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
-        app.launchArguments += ["-AppleLocale", "en_US"]
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -72,7 +72,5 @@ final class iShareTests: XCTestCase {
         app.buttons["Okay"].tap()
         sleep(2)
         app.buttons["Sign Out"].press(forDuration: 1)
-        
-        
     }
 }

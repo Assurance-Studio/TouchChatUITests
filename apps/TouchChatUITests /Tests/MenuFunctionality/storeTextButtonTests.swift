@@ -14,13 +14,14 @@ final class storeTextButtonTests: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
     }
     
@@ -32,31 +33,31 @@ final class storeTextButtonTests: XCTestCase {
     func testLaunchStoreTextButton() throws {
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         let vocabularyName = "copied vocabulary"
-        let vocabylaryDesc = "vocabulary description e2e"
+        let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
         
         //copy a Spelling Vocab
-        mainPage.copySpellingVocab(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary"], vocab: vocabularyName)
+        mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
         
         //enable rename vocab option
-        pages.openTheSettingsTab()
-        pages.ensureAllowDeleteIsOn()
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
         
         //storeTextToAButton
-        pages.writeTestBy()
-        pages.openStoreTextBtn()
+        commonActions.writeTestBy()
+        commonActions.openStoreTextBtn()
         
         //check if the storeTextButton is displayed
-        pages.checkIfTheStoreButtonWorks()
+        commonActions.checkIfTheStoreButtonWorks()
         
         //check if the word appears
-        pages.checkSdbText(sdbText: "TestbyTestby ")
-        pages.backToVocab();
+        commonActions.checkSdbText(sdbText: "TestbyTestby ")
+        commonActions.backToVocab();
         
         //delete the copied vocab
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)

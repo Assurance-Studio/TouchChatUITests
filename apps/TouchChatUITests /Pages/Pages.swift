@@ -95,106 +95,13 @@ class Pages {
         backButton = app.buttons["Back"]
     }
     
-    func clickWelcomeX() {
-        sleep(5)
-        let welcomeModal = app.staticTexts["Welcome"]
-        let screenWidth = UIScreen.main.bounds.size.width
-        let screenHeight = UIScreen.main.bounds.size.height
-        let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.3, dy: 0.3))
-        // Adjust this based on the actual element type
-
-                if welcomeModal.exists {
-                    centerScreenCoordinate.tap()
-                        sleep(1) // Adds a second pause
-                }
-        }
-    
-    func checkStartModal(){
-        let startModal = app.staticTexts["Select your language and voice"]
-        if startModal.exists{
-            app.buttons["Continue"].tap()
-            sleep(1)
-        }
-    }
-    
-    func checkLicenseModal(){
-        let licenseAgreement = app.staticTexts["License Agreement"]
-        let continueBtn = app.buttons["Continue"]
-        
-        if licenseAgreement.exists{
-            app.switches.element(boundBy: 0).tap()
-            continueBtn.tap()
-        }
-    }
-    
-    func openAVocab(){
-        let openAVocabModal = app.staticTexts["What would you like to do with this vocabulary?"]
-        XCTAssertTrue(openAVocabModal.exists, "The open vocab modal is not visible.")
-        app.buttons["Open"].tap()
-    }
-    
-    func clearAppCache() {
-        let appDomain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-        UserDefaults.standard.synchronize()
-    }
-    
     //new functions
-    func backToVocab(){
-        let vocabButton = app.navigationBars.buttons["Vocab"]
-        let vocabButtonExists = vocabButton.waitForExistence(timeout: 5)
-        XCTAssertTrue(vocabButtonExists)
-        vocabButton.tap()
-        app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
-        let editButtonPage = app.buttons["Edit"]
-        let editButtonExists = editButtonPage.waitForExistence(timeout: 8)
-        XCTAssertTrue(editButtonExists)
-        
-        //        XCUIApplication().tables.staticTexts["MyCore SS  "].tap()
-    }
     
     func editPage() {
         sleep(5)
         app.navigationBars.buttons["Menu"].tap()
         app.buttons["Edit Page"].tap()
         sleep(2)
-    }
-    
-    func addNewGesture() {
-        app.navigationBars.buttons["Menu"].tap()
-        app.buttons["Edit Gestures"].tap()
-        let addGestureButton = app.buttons["Add"]
-        let addGestureButtonExists = addGestureButton.waitForExistence(timeout: 5)
-        XCTAssertTrue(addGestureButtonExists, "The Add button is visible")
-        addGestureButton.tap()
-        
-        let firstTextField = app.textFields.element(boundBy: 0)
-        firstTextField.tap()
-        firstTextField.typeText("Gesture by e2e")
-        
-        let popoversQuery = app.popovers
-        popoversQuery.scrollViews.otherElements.buttons["Add"].tap()
-        
-        let tablesQuery = popoversQuery.tables
-        
-        tablesQuery.staticTexts["Clear Display"].swipeUp()
-        sleep(2)
-        tablesQuery.staticTexts["Help Signal"].swipeUp()
-        sleep(2)
-        tablesQuery.staticTexts["Navigate To Home"].swipeUp()
-        sleep(2)
-        tablesQuery.staticTexts["Speak"].swipeUp()
-        sleep(3)
-        let speechMessageOption = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Speech Message"]/*[[".cells.staticTexts[\"Speech Message\"]",".staticTexts[\"Speech Message\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-        let speechMessageOptionExists = speechMessageOption.waitForExistence(timeout: 5)
-        XCTAssertTrue(speechMessageOptionExists, "The Speech Message option is not visible.")
-        speechMessageOption.tap()
-        
-        app.buttons["Save"].tap()
-        sleep(3)
-        app.popovers.navigationBars["Select Gesture"].buttons["Done"].tap()
-        sleep(3)
-        app.navigationBars["SPKBD-QWERTY"].buttons["Done"].tap()
     }
     
     func addPageLayout() {
@@ -273,7 +180,6 @@ class Pages {
         testByE2eNavigationBar.buttons["Menu"].tap()
         sleep(3)
         elementsQuery.buttons["Edit Page Layout"].tap()
-        
         let clearImageLayout = elementsQuery.buttons["Clear Image"]
         let clearImageLayoutExists = clearImageLayout.waitForExistence(timeout: 5)
         XCTAssertTrue(clearImageLayoutExists)
@@ -284,29 +190,6 @@ class Pages {
         XCTAssertTrue(saveButtonExists)
         saveButton.tap()
         testByE2eNavigationBar.buttons["Done"].tap()
-    }
-    
-    func verifyGestureExists() {
-        let scrollViewToolbar = app.buttons["t"]
-        XCTAssertTrue(scrollViewToolbar.exists, "Toolbar doesn't exist.")
-        
-        let elementPosition = scrollViewToolbar.frame.origin
-        let elementSize = scrollViewToolbar.frame.size
-        let centerX = elementPosition.x + elementSize.width / 2
-        let centerY = elementPosition.y + elementSize.height / 2
-        
-        let startCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: centerY / UIScreen.main.bounds.height))
-        let endCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: (centerY - 100) / UIScreen.main.bounds.height))
-        
-        startCoordinate.press(forDuration: 0.1, thenDragTo: endCoordinate)
-        
-        let sdbElement = app.textFields["Gesture by e2e "]
-        XCTAssertTrue(sdbElement.exists, "Searched text not found")
-    }
-    
-    func checkSdbText(sdbText: String){
-        let sdbElement = app.textFields[sdbText]
-        XCTAssertTrue(sdbElement.exists, "Searched text not found")
     }
     
     func verifyTheVocab(lastElement: String, vocabWord: String, vocabElement: NSInteger, nameElement: String){
@@ -327,164 +210,6 @@ class Pages {
         vocabWordVocab.press(forDuration: 2)
     }
     
-    func ensureAllowDeleteIsOn() {
-        sleep(3)
-        let allowDeleteSwitch = app.switches.element(boundBy: 7)
-        if allowDeleteSwitch.value as? String == "0" {
-                    allowDeleteSwitch.tap()
-                }
-                app.buttons["Done"].tap()
-            }
-    func openTheSettingsTab(){
-            app.navigationBars.buttons["Menu"].tap()
-            
-            let popoversQuery = app.popovers
-            popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
-        }
-    
-    func reachAddAbbreviation(){
-        app.navigationBars.buttons["Menu"].tap()
-        let popoversQuery = app.popovers
-        let scrollViewsQuery = popoversQuery.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        elementsQuery.buttons["Edit Abbreviations"].tap()
-        let abbreviationsNavigationBar = popoversQuery.navigationBars["Abbreviations"]
-        let existsAbbreviationNavigationBar = abbreviationsNavigationBar.waitForExistence(timeout: 5)
-        abbreviationsNavigationBar.buttons["Add"].tap()
-    }
-    
-    func addAbbreviation(){
-        let popoversQuery = app.popovers
-        let scrollViewsQuery = popoversQuery.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        let abbreviationsNavigationBar = popoversQuery.navigationBars["Abbreviations"]
-        let abbreviationElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Abbreviation")
-        abbreviationElementsQuery.children(matching: .textField).element(boundBy: 0).tap()
-        abbreviationElementsQuery.children(matching: .textField).element(boundBy: 0).typeText("test")
-        
-        let clearTextTextField = elementsQuery.textFields.containing(.button, identifier:"Clear text").element
-        clearTextTextField.tap()
-        abbreviationElementsQuery.children(matching: .textField).element(boundBy: 1).tap()
-        abbreviationElementsQuery.children(matching: .textField).element(boundBy: 1).typeText("Test by e2e")
-        abbreviationsNavigationBar.buttons["Save"].tap()
-        abbreviationsNavigationBar.buttons["Done"].tap()
-    }
-    
-    func checkAddAbbreviation(){
-        app.buttons["t"].tap()
-        app/*@START_MENU_TOKEN@*/.staticTexts["e"]/*[[".buttons[\"e\"].staticTexts[\"e\"]",".staticTexts[\"e\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        app.buttons["s"].tap()
-        app.buttons["t"].tap()
-        app.buttons["."].tap()
-        app.buttons["t"].tap()
-        app.buttons["BackButton"].tap()
-    }
-    
-    func writeTestBy(){
-        let tbutton = app.buttons["t"]
-        let waitForTButton = tbutton.waitForExistence(timeout: 5)
-        app.buttons["t"].tap()
-        app.buttons["e"].tap()
-        app.buttons["s"].tap()
-        app.buttons["t"].tap()
-        app.buttons["b"].tap()
-        app.buttons["y"].tap()
-    }
-    
-    func reachToEditAbbreviation(){
-        app.navigationBars.buttons["Menu"].tap()
-        let popoversQuery = app.popovers
-        popoversQuery.scrollViews.otherElements.buttons["Edit Abbreviations"].tap()
-        let editAbbreviationPage = popoversQuery.toolbars["Toolbar"].buttons["Edit"]
-        let waitForTheEditAbbreviation = editAbbreviationPage.waitForExistence(timeout: 5)
-        editAbbreviationPage.tap()
-    }
-    
-    func removeTheAbbreviation(){
-        app.buttons["Remove test., Test by e2e"].tap()
-        app.buttons["Delete"].tap()
-        
-        let popoversQuery = app.popovers
-        let scrollViewsQuery = popoversQuery.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        let abbreviationsNavigationBar = popoversQuery.navigationBars["Abbreviations"]
-        abbreviationsNavigationBar.buttons["Done"].tap()
-    }
-    
-    func clearAllAbbreviations(){
-        app.popovers.toolbars["Toolbar"].buttons["Clear"].tap()
-        XCTAssertTrue(app.staticTexts["Are you sure you want to erase all?"].exists, "The clear modal doesn't appear")
-        app.alerts["Clear"].scrollViews.otherElements.buttons["Yes"].tap()
-    }
-    
-    func clearAllPronunciations(){
-        app.buttons["Clear"].tap()
-        XCTAssertTrue(app.staticTexts["Are you sure you want to erase all?"].exists, "The clear modal doesn't appear")
-        app.buttons["Yes"].tap()
-    }
-    
-    func reachEditPronunciations(){
-        app.navigationBars.buttons["Menu"].tap()
-        let popoversQuery = app.popovers
-        let scrollViewsQuery = popoversQuery.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        elementsQuery.buttons["Edit Pronunciations"].tap()
-        let pronunciationsNavigationBar = popoversQuery.navigationBars["Pronunciations"]
-        let existsPronunciationsNavigationBar = pronunciationsNavigationBar.waitForExistence(timeout: 5)
-        pronunciationsNavigationBar.buttons["Add"].tap()
-    }
-    
-    func restoreToDefaultsAbbreviation(){
-        let popoversQuery = app.popovers
-        popoversQuery.toolbars["Toolbar"].buttons["Restore Defaults"].tap()
-        XCTAssertTrue(app.staticTexts["Are you sure you want to restore all default values?"].exists, "The restore modal doesn't appear")
-        app.alerts["Restore Defaults"].scrollViews.otherElements.buttons["Yes"].tap()
-        popoversQuery.navigationBars["Abbreviations"].buttons["Done"].tap()
-    }
-    
-    func addPronunciations(){
-        let popoversQuery = app.popovers
-        let scrollViewsQuery = popoversQuery.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        let pronunciationsNavigationBar = popoversQuery.navigationBars["Pronunciations"]
-        app.textFields.element(boundBy: 2).tap()
-        app.textFields.element(boundBy: 2).typeText("test")
-        app.textFields.element(boundBy: 3).tap()
-        app.textFields.element(boundBy: 3).typeText("Test by e2e")
-        pronunciationsNavigationBar.buttons["Save"].tap()
-    }
-    
-    func scrollForSearchPronunciations(){
-        let scrollViewToolbar = app.staticTexts["⛄"]
-        XCTAssertTrue(scrollViewToolbar.exists, "Toolbar doesn't exist.")
-        
-        let elementPosition = scrollViewToolbar.frame.origin
-        let elementSize = scrollViewToolbar.frame.size
-        let centerX = elementPosition.x + elementSize.width / 2
-        let centerY = elementPosition.y + elementSize.height / 2
-        
-        let startCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: centerY / UIScreen.main.bounds.height))
-        let endCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: centerX / UIScreen.main.bounds.width, dy: (centerY + 100) / UIScreen.main.bounds.height))
-        
-        startCoordinate.press(forDuration: 0.1, thenDragTo: endCoordinate)
-    }
-    
-    func searchPronunciations(){
-        app.searchFields["Search"].tap()
-        app.searchFields["Search"].typeText("test")
-    }
-    
-    func deletePronunciations(){
-        let popoversQuery = XCUIApplication().popovers
-        let toolbar = popoversQuery.toolbars["Toolbar"]
-        toolbar.buttons["Edit"].tap()
-        
-        let tablesQuery = popoversQuery.tables
-        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Remove test, Test by e2e"]/*[[".cells.buttons[\"Remove test, Test by e2e\"]",".buttons[\"Remove test, Test by e2e\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Delete"]/*[[".cells.buttons[\"Delete\"]",".buttons[\"Delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        toolbar.buttons["Done"].tap()
-        popoversQuery.navigationBars["Pronunciations"].buttons["Cancel"].tap()
-    }
     
     func checkTheiOSGallery(){
         sleep(2)
@@ -498,30 +223,11 @@ class Pages {
         sleep(3)
     }
     
-    func restoreToDefaultsPronunciations(){
-        app.buttons["Restore Defaults"].tap()
-        XCTAssertTrue(app.staticTexts["Are you sure you want to restore all default values?"].exists, "The Restore Defaults modal doesn't appear")
-        app.buttons["Yes"].tap()
-        app.buttons["Done"].tap()
-    }
-    
-    func openStoreTextBtn(){
-        app.navigationBars.buttons["Menu"].tap()
-        app.popovers.scrollViews.otherElements.buttons["Store Text to Button"].tap()
-        XCTAssertTrue(app.staticTexts["Select the button where you want to store your composed message"].exists, "The Store Text modal doesn't appear")
-        app.alerts["Store Text to Button?"].scrollViews.otherElements.buttons["Continue"].tap()
-    }
-    
-    func checkIfTheStoreButtonWorks(){
-        app.buttons["SPACE"].tap()
-        XCTAssertTrue(app.buttons["Testby"].exists, "The StoreTextButton is not visible")
-        app.buttons["Testby"].tap()
-    }
     
     func vocabDesc(){
         let vocabularyName = "copied vocabulary"
         let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -1024,6 +730,7 @@ class Pages {
     func removeAnExistingButton(){
         app.buttons.element(boundBy: 12).tap()
         XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
+        sleep(3)
         XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
         app.buttons["Okay"].tap()
     }
@@ -1075,6 +782,25 @@ class Pages {
         
         let tablesQuery = app.tables
         tablesQuery/*@START_MENU_TOKEN@*/.images["minus.circle.fill"]/*[[".cells",".buttons[\"Remove copied vocabulary edit\/rename  Modified 23 September 2024 at 13:49, vocabulary description e2e, ✓\"]",".images[\"remove\"]",".images[\"minus.circle.fill\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
+        tablesQuery/*@START_MENU_TOKEN@*/.buttons["Rename"]/*[[".cells.buttons[\"Rename\"]",".buttons[\"Rename\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.textFields.element(boundBy: 0).tap()
+        XCUIApplication().popovers.scrollViews.otherElements/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.textFields.element(boundBy: 0).typeText("Renamed by e2e")
+        app.textViews.element(boundBy: 0).tap()
+        app.textViews.element(boundBy: 0).doubleTap()
+        app.textViews.element(boundBy: 0).typeText("Renamed")
+        sleep(3)
+        app.buttons["Save"].tap()
+        app.buttons["Done"].tap()
+    }
+    
+    func renameACopiedVocabMegaTest(){
+        app.navigationBars.buttons["Edit"].tap()
+        let allMinusIcons = app.images.matching(identifier: "remove")
+        let seventhMinusIcon = allMinusIcons.element(boundBy: 5)
+        seventhMinusIcon.tap()
+        let tablesQuery = app.tables
+        //tablesQuery/*@START_MENU_TOKEN@*/.images["minus.circle.fill"]/*[[".cells",".buttons[\"Remove copied vocabulary edit\/rename  Modified 23 September 2024 at 13:49, vocabulary description e2e, ✓\"]",".images[\"remove\"]",".images[\"minus.circle.fill\"]"],[[[-1,3],[-1,2],[-1,1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
         tablesQuery/*@START_MENU_TOKEN@*/.buttons["Rename"]/*[[".cells.buttons[\"Rename\"]",".buttons[\"Rename\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         app.textFields.element(boundBy: 0).tap()
         XCUIApplication().popovers.scrollViews.otherElements/*@START_MENU_TOKEN@*/.buttons["Clear text"]/*[[".textFields.buttons[\"Clear text\"]",".buttons[\"Clear text\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
@@ -1396,94 +1122,6 @@ class Pages {
         return (vocabularyName: name, vocabularyDesc: description)
     }
     
-    func testFnRow1() {
-        for i in 1...35 {
-            let buttonID = "Fn\(i)"
-            let labelText = "Function \(i)"
-            
-            // Press the button
-            let button = app.buttons[buttonID]
-            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
-            button.tap()
-            
-            
-            let labelID = "Function \(i)"
-            let label = app.buttons[labelID]
-            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
-            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
-        }
-    }
-    
-    func testFnRow2() {
-        for i in 36...79 {
-            let buttonID = "Fn\(i)"
-            let labelText = "FN \(i)"
-            
-            // Press the button
-            let button = app.buttons[buttonID]
-            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
-            button.tap()
-            
-            let labelID = "FN \(i)"
-            let label = app.buttons[labelID]
-            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
-            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
-        }
-    }
-    
-    func testFnRow3() {
-        for i in 81...100 {
-            let buttonID = "Fn\(i)"
-            let labelText = "FN \(i)"
-            
-            // Press the button
-            let button = app.buttons[buttonID]
-            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
-            button.tap()
-            
-            let labelID = "FN \(i)"
-            let label = app.buttons[labelID]
-            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
-            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
-        }
-    }
-    
-    func testFirstRowLock() {
-        let letters = "ABCDEFGHIJ"
-        for letter in letters {
-            let buttonID = "Fn Lock \(letter)"
-            let labelText = "Function Lock \(letter)"
-            
-            // Press the button
-            let button = app.buttons[buttonID]
-            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
-            button.tap()
-            
-            let labelID = "Function Lock \(letter)"
-            let label = app.buttons[labelID]
-            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
-            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
-        }
-    }
-    
-    func testSecondRowLock() {
-        let letters = "KLMNOPQRST"
-        for letter in letters {
-            let buttonID = "Fn Lock \(letter)"
-            let labelText = "FN Lock \(letter)"
-            
-            // Press the button
-            let button = app.buttons[buttonID]
-            XCTAssertTrue(button.exists, "Button \(buttonID) does not exist.")
-            button.tap()
-            
-            let labelID = "FN Lock \(letter)"
-            let label = app.buttons[labelID]
-            XCTAssertTrue(label.exists, "Label \(labelID) does not exist.")
-            XCTAssertEqual(label.label, labelText, "Label \(labelID) did not update correctly.")
-        }
-    }
-    
     func tapFirstLockedImage() {
         // Access the first image with the identifier 'locked'
         let lockedImages = app.images.matching(identifier: "locked")
@@ -1508,7 +1146,7 @@ class Pages {
           let frenchIndicator = frenchCell.images.firstMatch
           let englishIndicator = englishCell.images.firstMatch
 
-          // 🔹 For FRENCH: if it is expanded (arrow down), tap to collapse or interact
+          //  For FRENCH: if it is expanded (arrow down), tap to collapse or interact
           if frenchIndicator.exists {
               let label = frenchIndicator.label.lowercased()
               if label == "expanded" || label.contains("down") || label == "▼" {
@@ -1518,7 +1156,7 @@ class Pages {
               }
           }
 
-          // 🔹 For ENGLISH: if it is collapsed (arrow right), tap to expand
+          // For ENGLISH: if it is collapsed (arrow right), tap to expand
           if englishIndicator.exists {
               let label = englishIndicator.label.lowercased()
               if label == "expanded" || label.contains("right") || label == "►" {

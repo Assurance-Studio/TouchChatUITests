@@ -17,13 +17,14 @@ final class editRenameACopiedVocab: XCTestCase {
         continueAfterFailure = false
         
         let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
         
         app = XCUIApplication()
         app.launchArguments.append("--reset-app-state")
         app.launch()
-        pages.checkLicenseModal()
-        pages.checkStartModal()
-        pages.clickWelcomeX()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
         pages.reachMenuPageIfOnVocabPage()
    }
    
@@ -35,6 +36,7 @@ final class editRenameACopiedVocab: XCTestCase {
    func testEditRenameACopiedVocab() throws {
        
        let pages = Pages(app: app)
+       let commonActions = CommonActions(app: app)
        let vocabularyName = "copied vocabulary edit/rename"
        let vocabularyDesc = "vocabulary description e2e"
        let vocabName = "vocabulary"
@@ -43,14 +45,13 @@ final class editRenameACopiedVocab: XCTestCase {
        }()
        
        //copy a new vocab
-        mainPage.copyVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
-        mainPage.openVocab(vocabToOpen: app.staticTexts["copied vocabulary edit/rename"], vocab: vocabularyName)
+       mainPage.nameVocabPC(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
               
        //enable rename vocab option
-       pages.openTheSettingsTab()
-       pages.ensureAllowDeleteIsOn()
+       commonActions.openTheSettingsTab()
+       commonActions.ensureAllowDeleteIsOn()
               
-        pages.backToVocab()
+       commonActions.backToVocab()
         //rename the copied vocab
         pages.renameACopiedVocab()
               
