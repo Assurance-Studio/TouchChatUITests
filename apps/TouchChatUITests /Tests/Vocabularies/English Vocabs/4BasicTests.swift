@@ -26,7 +26,7 @@ final class test4BasicSS: XCTestCase {
         commonActions.checkLicenseModal()
         commonActions.checkStartModal()
         commonActions.clickWelcomeX()
-        pages.reachMenuPageIfOnVocabPage()
+        //pages.reachMenuPageIfOnVocabPage()
     }
     
     override func tearDownWithError() throws {

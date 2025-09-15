@@ -40,7 +40,7 @@ final class editPronunciationsTests: XCTestCase {
         let pronunctiationsPage = PronunciationsPage(app: app)
         let commonActions = CommonActions(app: app)
         pages.spellingSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         //add pronunciations
         pronunctiationsPage.reachEditPronunciations()

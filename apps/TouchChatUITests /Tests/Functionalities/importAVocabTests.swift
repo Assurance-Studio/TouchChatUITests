@@ -94,7 +94,7 @@ final class importAVocabTests: XCTestCase {
         descriptionVocab.tap()
         descriptionVocab.typeText("gotomodif")
         app.buttons["Save"].tap()
-        
+        let commonActions = CommonActions(app: app)
         
         
         //open the modifiers vocab
@@ -124,7 +124,7 @@ final class importAVocabTests: XCTestCase {
         //Check the Clear All Modifiers function
         modifiers.checkClearAllModifiersBtn()
         
-        pages.backToVocab()
+        commonActions.backToVocab()
         
         print("Import a Vocab Test Finished with success!")
         

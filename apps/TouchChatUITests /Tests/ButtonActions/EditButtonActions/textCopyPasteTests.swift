@@ -71,7 +71,7 @@ final class textCopyPasteTests: XCTestCase {
        //check if the actions work as expected
        actionsPage.checkTextPasteCopyFunctions()
        
-       pages.checkSdbText(sdbText: "Endtoend ")
+       commonActions.checkSdbText(sdbText: "Endtoend ")
       
        //Paste function for sdb
 //       let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1))

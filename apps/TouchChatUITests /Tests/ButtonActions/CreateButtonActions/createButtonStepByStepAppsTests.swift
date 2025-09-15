@@ -211,7 +211,7 @@ final class createButtonStepByStepAppsTests: XCTestCase {
         //check Vehicle Maze - Find a route through the maze App
         grammarActionsPage.checkAppType(appType: "Open Step By Step Apps - Vehicle Maze")
        
-        pages.backToVocab()
+        commonActions.backToVocab()
         mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
             
         print("Create buttons for Open Step by Step Apps Test Finished with success!")

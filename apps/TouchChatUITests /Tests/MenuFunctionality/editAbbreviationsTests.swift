@@ -41,7 +41,7 @@ final class editAbbreviationsTests: XCTestCase {
         let commonActions = CommonActions(app: app)
         
         pages.spellingSS.tap()
-        pages.openAVocab()
+        commonActions.openAVocab()
         
         //add abbreviation
         abbreviationsPage.reachAddAbbreviation()

@@ -112,7 +112,7 @@ final class createButtonActions: XCTestCase {
        //check if the actions work as expected
        actionsPage.checkTextPasteCopyFunctions()
        
-       pages.checkSdbText(sdbText: "Endtoend ")
+       commonActions.checkSdbText(sdbText: "Endtoend ")
        
        pages.editPage()
        //add an action

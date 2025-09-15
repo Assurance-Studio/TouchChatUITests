@@ -1483,7 +1483,7 @@ final class megaTests: XCTestCase {
         abbreviationsPage.reachAddAbbreviation()
         abbreviationsPage.addAbbreviation()
         abbreviationsPage.checkAddAbbreviation()
-        pages.checkSdbText(sdbText: "Test by e2e ")
+        commonActions.checkSdbText(sdbText: "Test by e2e ")
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
@@ -1546,7 +1546,7 @@ final class megaTests: XCTestCase {
         pages.addActionButton(buttonName: "Edit Button by e2e")
         
         //check the Speech Display Bar
-        pages.checkSdbText(sdbText: "Edit Button by e2e ")
+        commonActions.checkSdbText(sdbText: "Edit Button by e2e ")
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
         app.buttons["BackButton"].tap()
@@ -2738,7 +2738,7 @@ final class megaTests: XCTestCase {
         //check if the actions work as expected
         actionsPage.checkTextPasteCopyFunctions()
         
-        pages.checkSdbText(sdbText: "Endtoend ")
+        commonActions.checkSdbText(sdbText: "Endtoend ")
         app.buttons["BackButton"].tap()
         
         commonActions.backToVocab()
@@ -3220,7 +3220,7 @@ final class megaTests: XCTestCase {
         //check if the actions work as expected
         actionsPage.checkTextPasteCopyFunctions()
         
-        pages.checkSdbText(sdbText: "Endtoend ")
+        commonActions.checkSdbText(sdbText: "Endtoend ")
         app.buttons["CLEAR "].tap()
         
         pages.editPage()
