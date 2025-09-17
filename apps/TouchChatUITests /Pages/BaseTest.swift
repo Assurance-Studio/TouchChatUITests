@@ -12,6 +12,16 @@ class BaseTest: XCTestCase {
         app.launchArguments.append("--reset-app-state")
         app.launch()
         
+        // Wait for app to be running and ready
+        let waitPage = WaitPage(app: app)
+        // Wait for app window to be visible
+        let appWindow = app.windows.firstMatch
+        let windowExists = appWindow.waitForExistence(timeout: WaitDuration.long)
+        XCTAssertTrue(windowExists, "App window did not appear within \(WaitDuration.long) seconds")
+        
+        // Verify app is running in foreground
+        let isRunning = app.wait(for: .runningForeground, timeout: WaitDuration.long)
+        XCTAssertTrue(isRunning, "App did not enter foreground state within \(WaitDuration.long) seconds")
         pages = PageManager(app: app)
         
         // Handle common modals
@@ -20,8 +30,11 @@ class BaseTest: XCTestCase {
     }
     
     override func tearDownWithError() throws {
+        let waitPage = WaitPage(app: app)
+        waitPage.waitShort() // Wait 5 seconds before terminating
         app.terminate()
         try super.tearDownWithError()
+        waitPage.waitMedium()
     }
     
     // MARK: - Common Setup Methods
