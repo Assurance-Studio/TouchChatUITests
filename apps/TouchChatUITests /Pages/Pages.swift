@@ -61,13 +61,13 @@ class Pages {
     let aphasiaUKSS = XCUIApplication().tables.staticTexts["Aphasia UK SS"]
     let aphasiaUSSS = XCUIApplication().tables.staticTexts["Aphasia US SS"]
     let basic4SS = XCUIApplication().tables.staticTexts["Simple 4-Basic SS"]
-    let engageForiOS = XCUIApplication().tables.staticTexts["Engage for iOS SS"]
+    let engageForiOS = XCUIApplication().tables.staticTexts["Engage SS"]
     let myCoreSS = XCUIApplication().tables.staticTexts["MyCore SS"]
     let spellingSS = XCUIApplication().tables.staticTexts["Spelling SS"]
     let vocabPCSS = XCUIApplication().tables.staticTexts["VocabPC SS"]
     let tecladoSS = XCUIApplication().tables.staticTexts["Teclado SS"]
     let vocabPCSpanishSS = XCUIApplication().tables.staticTexts["Vocab PC Spanish SS"]
-    let wordPowerEspanol48 = XCUIApplication().tables.staticTexts["WordPower 48 Español SS"]
+    let wordPowerEspanol48 = XCUIApplication().tables.staticTexts["WordPower48 Español SS"]
     let wordPowerEspanol25 = XCUIApplication().tables.staticTexts["WordPower25 Español SS"]
     let wordPowerBasico48 = XCUIApplication().tables.staticTexts["WordPower48 Español Básico SS"]
     let wordPowerBasico60 = XCUIApplication().tables.staticTexts["WordPower60 Español Básico SS"]
@@ -245,8 +245,9 @@ class Pages {
         let popoversQuery = app.popovers
         let scrollViewsQuery = popoversQuery.scrollViews
         let elementsQuery = scrollViewsQuery.otherElements
-        let newBlankPage = elementsQuery.buttons["New Blank Page"]
-        let existsNewBlankPage = newBlankPage.waitForExistence(timeout: 5)
+        let newBlankPage = app.buttons["New Blank Page"]
+        let existsNewBlankPage = newBlankPage.waitForExistence(timeout: 8)
+        XCTAssertTrue(existsNewBlankPage)
         
         newBlankPage.tap()
     }
@@ -255,8 +256,9 @@ class Pages {
         let popoversQuery = app.popovers
         let scrollViewsQuery = popoversQuery.scrollViews
         let elementsQuery = scrollViewsQuery.otherElements
-        let newPageTemplate = elementsQuery.buttons["New Page from Template"]
-        let existsNewTemplatePage = newPageTemplate.waitForExistence(timeout: 5)
+        let newPageTemplate = app.buttons["New Page from Template"]
+        let existsNewTemplatePage = newPageTemplate.waitForExistence(timeout: 8)
+        XCTAssertTrue(existsNewTemplatePage)
         
         newPageTemplate.tap()
     }
@@ -317,12 +319,10 @@ class Pages {
     func deleteThePage(){
         let popoversQuery = app.popovers
         let scrollViewsQuery = popoversQuery.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        let pageNameElementsQuery = scrollViewsQuery.otherElements.containing(.staticText, identifier:"Page Name")
         
         let testNavigationBar = app.navigationBars["Page by e2e"]
         testNavigationBar.buttons["Menu"].tap()
-        let deleteThisPageBtn = elementsQuery.buttons["Delete This Page"]
+        let deleteThisPageBtn = app.buttons["Delete This Page"]
         let deleteThisPageBtnExists = deleteThisPageBtn.waitForExistence(timeout: 10)
         XCTAssertTrue(deleteThisPageBtnExists)
         deleteThisPageBtn.tap()
@@ -1184,7 +1184,7 @@ class Pages {
             let existsExpandIndicator = assertElementExists(element: expandIndicator, timeout: 5)
             
             if existsExpandIndicator {
-                scrollUpUntilElementIsVisible(element: mainPage.cancelSearchButton)
+                //scrollUpUntilElementIsVisible(element: mainPage.cancelSearchButton)
                 tapFirstLockedImage()
                 print("********* We opened the first vocabulary")
                 

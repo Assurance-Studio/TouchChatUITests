@@ -46,8 +46,8 @@ final class WordPower120AzertyTests: XCTestCase {
         
         pages.verifyTheVocab(lastElement: "efface tout", vocabWord: "je", vocabElement: 4, nameElement: "QUESTNS")
         
-        XCTAssertTrue(app.buttons["'adore "].exists)
-        app.buttons["'adore "].tap()
+        XCTAssertTrue(app.buttons["'adore"].exists)
+        app.buttons["'adore"].tap()
         
         commonActions.checkSdbText(sdbText: "J'adore ")
         

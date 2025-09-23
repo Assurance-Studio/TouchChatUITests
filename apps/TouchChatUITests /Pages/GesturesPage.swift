@@ -46,7 +46,10 @@ class GesturesPage {
                 XCTAssertTrue(speechMessageOptionExists, "The Speech Message option is not visible.")
                 speechMessageOption.tap()
 
-                app.buttons["Save"].tap()
+                let saveBtn = app.buttons["Save"]
+                let saveBtnExists = saveBtn.waitForExistence(timeout: 7)
+                XCTAssertTrue(saveBtnExists)
+                saveBtn.tap()
                 sleep(3)
                 app.popovers.navigationBars["Select Gesture"].buttons["Done"].tap()
                 sleep(3)

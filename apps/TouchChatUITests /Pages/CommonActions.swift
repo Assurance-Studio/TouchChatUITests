@@ -60,7 +60,7 @@ class CommonActions {
         let vocabButtonExists = vocabButton.waitForExistence(timeout: 5)
         XCTAssertTrue(vocabButtonExists)
         vocabButton.tap()
-        app.popovers.scrollViews.otherElements.buttons["Choose New Vocab"].tap()
+        app.buttons["Choose New Vocab"].tap()
         let editButtonPage = app.buttons["Edit"]
         let editButtonExists = editButtonPage.waitForExistence(timeout: 8)
         XCTAssertTrue(editButtonExists)
@@ -92,8 +92,8 @@ class CommonActions {
     
     func openTheSettingsTab() {
         app.navigationBars.buttons["Menu"].tap()
-        let popoversQuery = app.popovers
-        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        sleep(2)
+        app.buttons["Settings"].tap()
     }
     
     // MARK: - Store Text Button
