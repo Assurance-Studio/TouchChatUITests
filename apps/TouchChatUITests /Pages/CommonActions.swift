@@ -20,6 +20,12 @@ class CommonActions {
     
     // MARK: - Modal Handling
     func clickWelcomeX() {
+        let skipBtn = app.buttons["Skip"]
+        let skipBtnExists = skipBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(skipBtnExists)
+        skipBtn.tap()
+        
+        //to do a separate function
         sleep(5)
         let welcomeModal = app.staticTexts["Welcome"]
         let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.3, dy: 0.3))
@@ -46,6 +52,13 @@ class CommonActions {
             app.switches.element(boundBy: 0).tap()
             continueBtn.tap()
         }
+    }
+    
+    func skipAutomaticBackup(){
+        let skipBtn = app.buttons["Skip"]
+        let skipBtnExists = skipBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(skipBtnExists)
+        skipBtn.tap()
     }
     
     func openAVocab() {
