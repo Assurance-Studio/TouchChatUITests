@@ -29,6 +29,7 @@ final class MyCoreSSTests: XCTestCase {
         pages.reachMenuPageIfOnVocabPage()
     }
     
+    
     override func tearDownWithError() throws {
         app.terminate()
         try super.tearDownWithError()

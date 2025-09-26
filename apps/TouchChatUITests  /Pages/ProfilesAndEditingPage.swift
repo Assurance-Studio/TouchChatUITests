@@ -96,9 +96,8 @@ class ProfilesAndEditingPage {
     
     func openTheSettingsTab(){
         app.navigationBars.buttons["Menu"].tap()
-        
-        let popoversQuery = app.popovers
-        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        sleep(3)
+        app.buttons["Settings"].tap()
     }
     
     func setAPassMenu(){

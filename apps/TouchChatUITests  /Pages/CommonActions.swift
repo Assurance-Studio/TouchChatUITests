@@ -48,7 +48,7 @@ class CommonActions {
         let licenseAgreement = app.staticTexts["License Agreement"]
         let continueBtn = app.buttons["Continue"]
         
-        if licenseAgreement.exists {
+        if licenseAgreement.waitForExistence(timeout: 20) {
             app.switches.element(boundBy: 0).tap()
             continueBtn.tap()
         }
