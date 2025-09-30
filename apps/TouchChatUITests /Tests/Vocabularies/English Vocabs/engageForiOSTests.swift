@@ -38,6 +38,7 @@ final class EngageiOSSSTests: XCTestCase {
         
         let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.scrollDownUntilElementIsVisible(element: pages.engageForiOS)
         pages.engageForiOS.tap()
         commonActions.openAVocab()

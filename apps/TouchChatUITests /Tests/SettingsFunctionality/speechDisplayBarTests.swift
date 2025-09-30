@@ -38,7 +38,6 @@ final class speechDisplayBarTests: XCTestCase {
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
-        let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let speechDisplayBarPage = SpeechDisplayBarPage(app: app)
         let commonActions = CommonActions(app: app)

@@ -48,7 +48,7 @@ class CommonActions {
         let licenseAgreement = app.staticTexts["License Agreement"]
         let continueBtn = app.buttons["Continue"]
         
-        if licenseAgreement.exists {
+        if licenseAgreement.waitForExistence(timeout: 30) {
             app.switches.element(boundBy: 0).tap()
             continueBtn.tap()
         }
@@ -113,6 +113,7 @@ class CommonActions {
     func openStoreTextBtn() {
         app.navigationBars.buttons["Menu"].tap()
         app.popovers.scrollViews.otherElements.buttons["Store Text to Button"].tap()
+        sleep(3)
         XCTAssertTrue(app.staticTexts["Select the button where you want to store your composed message"].exists, "The Store Text modal doesn't appear")
         app.alerts["Store Text to Button?"].scrollViews.otherElements.buttons["Continue"].tap()
     }
@@ -185,7 +186,7 @@ class CommonActions {
                 app.buttons["Done"].tap()
             }
 
-        func assertElementExists(element: XCUIElement, timeout: TimeInterval = 5) -> Bool {
+    func assertElementExists(element: XCUIElement, timeout: TimeInterval = 5) -> Bool {
             let existsPredicate = NSPredicate(format: "exists == true")
             let expectation = XCTNSPredicateExpectation(predicate: existsPredicate, object: element)
 
@@ -193,8 +194,29 @@ class CommonActions {
             return result == .completed
         }
 
-        func randomString(length: Int) -> String {
+    func randomString(length: Int) -> String {
             let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0123456789"
             return String((0..<length).map{ _ in characters.randomElement()! })
         }
+    
+    func checkIfEnglishVocabIsExpanded(){
+        let spellingSS = XCUIApplication().tables.staticTexts["Spelling SS"]
+        let englishText = app.staticTexts["English"]
+            
+            // Wait up to 2 seconds for the "Spelling SS" button to appear
+        let spellingSSExists = spellingSS.waitForExistence(timeout: 2)
+
+            // If the button doesn't exist or isn't visible/interactable
+            if !spellingSSExists || !spellingSS.isHittable {
+                // Wait for "English" text and tap it if it's visible
+                if englishText.waitForExistence(timeout: 2), englishText.isHittable {
+                    englishText.tap()
+                } else {
+                    XCTFail("The 'English' label is not accessible for tapping.")
+                }
+            } else {
+                // The "Spelling SS" button is visible — continue the test
+                print("The 'Spelling SS' Vocabulary button is visible. Proceeding with the test...")
+            }
+    }
     }

@@ -12,9 +12,7 @@ final class MultiChatAdolescentTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
-        let vocabularyName = "copied vocabulary"
-        let vocabylaryDesc = "vocabulary description e2e"
-        var vocabName = "vocabulary"
+        let vocabName = "vocabulary"
         lazy var mainPage: MainPage = {
             return MainPage(app: XCUIApplication(), vocabName: vocabName)
         }()
@@ -40,6 +38,7 @@ final class MultiChatAdolescentTests: XCTestCase {
         
         let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.scrollDownUntilElementIsVisible(element: pages.multiChat15Vocab)
         pages.multiChat15Vocab.tap()
         pages.multiChatAdolescentSS.tap()

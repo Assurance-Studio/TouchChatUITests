@@ -47,7 +47,7 @@ class ButtonsSettingsPage {
     }
     
     func checkTheForceFontSize(){
-        let forceFontSize = app.switches.element(boundBy: 22)
+        let forceFontSize = app.switches.element(boundBy: 23)
         forceFontSize.tap()
         XCTAssertTrue(app.buttons["E"].exists, "The force font size is not working as expected")
         forceFontSize.tap()
@@ -55,7 +55,7 @@ class ButtonsSettingsPage {
     }
     
     func checkHideButtons(){
-        let hiddenButtons = app.switches.element(boundBy: 26)
+        let hiddenButtons = app.switches.element(boundBy: 27)
         hiddenButtons.tap()
         XCTAssertTrue(app.buttons["z"].exists, "The hide button is not visible")
         hiddenButtons.tap()

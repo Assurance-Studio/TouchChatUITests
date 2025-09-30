@@ -176,7 +176,7 @@ class Pages {
         let elementsQuery = popoversQuery.scrollViews.otherElements
         
         let tablesQuery = popoversQuery.tables
-        let testByE2eNavigationBar = app.navigationBars["Test by e2e"]
+        let testByE2eNavigationBar = app.navigationBars["SPKBD-Test by e2e"]
         testByE2eNavigationBar.buttons["Menu"].tap()
         sleep(3)
         elementsQuery.buttons["Edit Page Layout"].tap()
@@ -218,7 +218,7 @@ class Pages {
         let photosBtn = app.staticTexts["Photos"]
         let photosBtnExists = photosBtn.waitForExistence(timeout: 8)
         XCTAssertTrue(photosBtnExists, "The ios gallery is not opening")
-        let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.2))
+        let centerScreenCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0.05, dy: 0.07))
         centerScreenCoordinate.tap()
         sleep(3)
     }
@@ -357,6 +357,7 @@ class Pages {
         
         app.buttons["z"].tap()
         XCUIApplication().navigationBars["* Hide Mode *"].buttons["Done"].tap()
+        sleep(3)
         XCTAssertFalse(app.buttons["z"].exists, "The element should no exist")
     }
     
@@ -480,6 +481,7 @@ class Pages {
     func editThisButton(){
         sleep(2)
         app.buttons.element(boundBy: 12).tap()
+        sleep(2)
         app.buttons["Edit This Button"].tap()
         
         let buttonLabel = app.textFields.element(boundBy: 0)
@@ -655,6 +657,7 @@ class Pages {
         elementsQuery.buttons["Edit Page"].tap()
         sleep(2)
         app.buttons[buttonName].tap()
+        sleep(2)
         elementsQuery.buttons["Change Button Size"].tap()
         sleep(2)
         app.staticTexts["1 Column"].tap()
@@ -665,8 +668,13 @@ class Pages {
     
     func removeTheButton(buttonName: String){
         app.buttons[buttonName].tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
-        XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
+        let removeBtn = app.buttons["Remove Button From Page"]
+        let removeBtnExists = removeBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(removeBtnExists)
+        removeBtn.tap()
+        let confirmBtnDeletion = app.staticTexts["Confirm Button Deletion"]
+        let confirmBtnDeletionExists = confirmBtnDeletion.waitForExistence(timeout: 10)
+        XCTAssertTrue(confirmBtnDeletionExists, "The delete modal doesn't appear")
         app.buttons["Okay"].tap()
         app.buttons["Done"].tap()
     }
@@ -680,7 +688,8 @@ class Pages {
     
     func pasteTheButton(){
         app.buttons.element(boundBy: 14).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Paste Button"].tap()
+        sleep(2)
+        app.buttons["Paste Button"].tap()
         app.navigationBars["Main"].buttons["Done"].tap()
         app.buttons.element(boundBy: 14).tap()
         app.buttons["drink"].tap()
@@ -688,10 +697,11 @@ class Pages {
     
     func useTheSameButton(){
         app.buttons.element(boundBy: 13).tap()
+        sleep(2)
         XCUIApplication().popovers.scrollViews.otherElements.buttons["Use Same Button"].tap()
         app.buttons.element(boundBy: 12).tap()
+        sleep(2)
         XCUIApplication().popovers.scrollViews.otherElements.buttons["Use Same Button"].tap()
-        
         app.navigationBars["Main"].buttons["Done"].tap()
         app.buttons.element(boundBy: 13).tap()
         app.buttons["snack"].tap()
@@ -699,15 +709,13 @@ class Pages {
     
     func createANewButton(){
         app.buttons.element(boundBy: 12).tap()
+        sleep(3)
         XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
-        
         let buttonLabel = app.textFields.element(boundBy: 0)
         let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
         XCTAssertTrue(existsButtonLabel, "The button label is not visible")
-        
         app.textFields.element(boundBy: 0).tap()
         app.textFields.element(boundBy: 0).typeText("Create Button by e2e")
-        
         app.textFields.element(boundBy: 2).tap()
         app.textFields.element(boundBy: 2).typeText("Pronunciation by e2e")
     }
@@ -729,9 +737,13 @@ class Pages {
     
     func removeAnExistingButton(){
         app.buttons.element(boundBy: 12).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove Button From Page"].tap()
-        sleep(3)
-        XCTAssertTrue(app.staticTexts["Confirm Button Deletion"].exists, "The delete modal doesn't appear")
+        let removeBtn = app.buttons["Remove Button From Page"]
+        let removeBtnExists = removeBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(removeBtnExists)
+        removeBtn.tap()
+        let confirmDeletion = app.staticTexts["Confirm Button Deletion"]
+        let confirmDeletionExists = confirmDeletion.waitForExistence(timeout: 10)
+        XCTAssertTrue(confirmDeletionExists, "The delete modal doesn't appear")
         app.buttons["Okay"].tap()
     }
     
@@ -837,15 +849,18 @@ class Pages {
     func copyPasteButtonStyle(){
         //copy the button
         app.buttons.element(boundBy: 12).tap()
+        sleep(3)
         app.buttons["Copy Button"].tap()
         
         //paste the button style
         app.buttons.element(boundBy: 11).tap()
+        sleep(3)
         app.buttons["Paste Button Style"].tap()
     }
     
     func checkIfTheButtonStyleWasCopied(){
         app.buttons.element(boundBy: 11).tap()
+        sleep(3)
         app.buttons["Edit This Button"].tap()
         
         let labelOnTopToggle = app.switches.element(boundBy: 0)

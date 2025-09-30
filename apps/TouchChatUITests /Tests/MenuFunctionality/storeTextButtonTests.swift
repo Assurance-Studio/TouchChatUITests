@@ -32,7 +32,6 @@ final class storeTextButtonTests: XCTestCase {
 
     func testLaunchStoreTextButton() throws {
         
-        let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
         let vocabularyName = "copied vocabulary"
         let vocabularyDesc = "vocabulary description e2e"

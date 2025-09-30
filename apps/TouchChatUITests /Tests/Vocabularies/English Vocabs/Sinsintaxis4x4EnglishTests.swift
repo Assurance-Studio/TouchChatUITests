@@ -38,6 +38,7 @@ final class SinSintaxis4x4EnglishSSTests: XCTestCase {
         
         let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.sintaxis4x4English.tap()
         commonActions.openAVocab()
         

@@ -39,6 +39,7 @@ final class MultiChatStudentTests: XCTestCase {
         
         let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.scrollDownUntilElementIsVisible(element: pages.multiChat15Vocab)
         pages.multiChat15Vocab.tap()
         pages.multiChatStudentSS.tap()

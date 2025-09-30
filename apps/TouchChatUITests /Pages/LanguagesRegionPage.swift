@@ -96,7 +96,7 @@ class LanguagesRegionPage {
     func changeEnglishVoiceToAlmaguVoice(){
             XCUIApplication().popovers.tables/*@START_MENU_TOKEN@*/.staticTexts["English voice"]/*[[".cells.staticTexts[\"English voice\"]",".staticTexts[\"English voice\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
             app.staticTexts["Samantha"].tap()
-            app.staticTexts["William (teen)"].tap()
+            app.staticTexts["Alfred (adult)"].tap()
             // Check how many "DownloadButton" elements exist before starting the download
             let initialDownloadButtonsCount = app.buttons.matching(identifier: "arrow.down").count
             XCTAssertGreaterThan(initialDownloadButtonsCount, 0, "There should be at least one 'DownloadButton'")

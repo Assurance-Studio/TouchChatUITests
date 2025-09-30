@@ -39,6 +39,7 @@ final class editPronunciationsTests: XCTestCase {
         let pages = Pages(app: app)
         let pronunctiationsPage = PronunciationsPage(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.spellingSS.tap()
         commonActions.openAVocab()
         

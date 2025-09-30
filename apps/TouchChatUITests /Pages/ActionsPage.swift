@@ -42,6 +42,7 @@ class ActionaPageClass {
     
     func editButtonForNavigateAction(nameButton: String){
         app.buttons.element(boundBy: 7).tap()
+        sleep(3)
         app.buttons["Edit This Button"].tap()
         
         let buttonLabel = app.textFields.element(boundBy: 0)

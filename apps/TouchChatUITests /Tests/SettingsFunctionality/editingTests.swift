@@ -39,7 +39,7 @@ final class editingTests: XCTestCase {
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let commonActions = CommonActions(app: app)
-        
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.myCoreSS.tap()
         commonActions.openAVocab()
         

@@ -18,14 +18,14 @@ class SpeechDisplayBarPage {
     func checkTheHideDisplayBar(){
         XCUIApplication().popovers.tables.staticTexts["Speech"].swipeUp()
         
-        let hideSpeechDisplayBar = app.switches.element(boundBy: 8)
+        let hideSpeechDisplayBar = app.switches.element(boundBy: 9)
         hideSpeechDisplayBar.tap()
         XCTAssertFalse(app.buttons["BackButton"].exists, "The Back button is still available")
         hideSpeechDisplayBar.tap()
     }
     
     func checkAutoCapitalization(){
-        let autoCapitalization = app.switches.element(boundBy: 10)
+        let autoCapitalization = app.switches.element(boundBy: 11)
         autoCapitalization.tap()
         app.buttons["Done"].tap()
         app.buttons["t"].tap()
@@ -35,7 +35,7 @@ class SpeechDisplayBarPage {
     }
     
     func checkHideDeleteButton(){
-        let hideDeleteButton = app.switches.element(boundBy: 12)
+        let hideDeleteButton = app.switches.element(boundBy: 13)
         hideDeleteButton.tap()
         
         XCTAssertFalse(app.buttons["BackButton"].exists, "The Back button is still available")
@@ -44,7 +44,7 @@ class SpeechDisplayBarPage {
     
     func checkFontsType(){
         let popoversQuery = XCUIApplication().popovers
-        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 23).staticTexts["Font"].tap()
+        XCUIApplication().popovers.tables.children(matching: .cell).element(boundBy: 21).staticTexts["Font"].tap()
         
         let font1 = app.staticTexts["Amaranth"]
         let font2 = app.staticTexts["Caudex"]
@@ -86,7 +86,7 @@ class SpeechDisplayBarPage {
     func checkFontColor(){
         let popoversQuery = XCUIApplication().popovers
         let tablesQuery = popoversQuery.tables
-        tablesQuery.children(matching: .cell).element(boundBy: 25).staticTexts["Font Color"].tap()
+        tablesQuery.children(matching: .cell).element(boundBy: 23).staticTexts["Font Color"].tap()
        
          
         let redTextColor = app.staticTexts["Red"]
@@ -105,7 +105,7 @@ class SpeechDisplayBarPage {
     func checkBackgroundColor(){
         let popoversQuery = XCUIApplication().popovers
         let tablesQuery = popoversQuery.tables
-        tablesQuery.children(matching: .cell).element(boundBy: 26).staticTexts["Background Color"].tap()
+        tablesQuery.children(matching: .cell).element(boundBy: 24).staticTexts["Background Color"].tap()
                         
         let redBackgroundColor = app.staticTexts["Red"]
         let brownBackgroundColor = app.staticTexts["Brown"]

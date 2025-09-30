@@ -15,7 +15,9 @@ class DataLoggingPage {
     }
     
     func checkLoggingImage(){
-        let enableLoggingSwitch = app.switches.element(boundBy: 20)
+        let enableLoggingSwitch = app.switches.element(boundBy: 21)
+        let enableLogginsSwitchExists = enableLoggingSwitch.waitForExistence(timeout: 10)
+        XCTAssertTrue(enableLogginsSwitchExists)
         enableLoggingSwitch.tap()
         let enableLogging = app.images["lam_indicator"]
         let existsEnableLogging = enableLogging.waitForExistence(timeout: 5)
@@ -67,8 +69,11 @@ class DataLoggingPage {
     func changeDwellReleaseTime(){
         let tablesQuery = XCUIApplication().popovers.tables
         tablesQuery.staticTexts["Speech"].swipeUp()
+        sleep(2)
         tablesQuery.staticTexts["Speech Display Bar"].swipeUp()
+        sleep(2)
         tablesQuery.staticTexts["Expanded Speech Area"].swipeUp()
+        sleep(2)
         tablesQuery.staticTexts["Data Logging"].swipeUp()
         XCUIApplication().popovers.tables.cells.containing(.staticText, identifier:"Dwell Time").staticTexts["None"].tap()
         app.staticTexts["4.0 Seconds"].tap()

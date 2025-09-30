@@ -38,6 +38,7 @@ final class MyCoreSSTests: XCTestCase {
         
         let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.scrollDownUntilElementIsVisible(element: pages.myCoreSS)
         pages.myCoreSS.tap()
         commonActions.openAVocab()

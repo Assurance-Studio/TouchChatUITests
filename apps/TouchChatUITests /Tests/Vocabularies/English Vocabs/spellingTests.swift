@@ -38,6 +38,7 @@ final class SpellingSSTests: XCTestCase {
         
         let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.scrollDownUntilElementIsVisible(element: pages.spellingSS)
         pages.spellingSS.tap()
         commonActions.openAVocab()

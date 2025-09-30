@@ -143,62 +143,62 @@ class GrammarActionaPageClass {
     func checkGrammarAction(){
         //check if the grammar actions work as expected
         app.buttons["break"].tap()
-//        app.buttons["Grammar Action -ed"].tap()
-//        app.buttons["g"].tap()
-//        app.buttons["BackButton"].tap()
-//        //check if the grammar action -en works as expected
-//        app.buttons["break"].tap()
-//        app.buttons["Grammar Action -en"].tap()
-//        app.buttons["g"].tap()
-//        app.buttons["BackButton"].tap()
-//        //check if the grammar action -er works as expected
-//        app.buttons["break"].tap()
-//        app.buttons["Grammar Action -er"].tap()
-//        app.buttons["g"].tap()
-//        app.buttons["BackButton"].tap()
-//        //check if the grammar action -est works as expected
-//        app.buttons["quick"].tap()
-//        app.buttons["Grammar Action -est"].tap()
-//        app.buttons["g"].tap()
-//        app.buttons["BackButton"].tap()
-//        //check if the grammar action -ing works as expected
-//        app.buttons["break"].tap()
-//        app.buttons["Grammar Action -ing"].tap()
-//        app.buttons["g"].tap()
-//        app.buttons["BackButton"].tap()
-//        //check if the grammar action -ly works as expected
-//        app.buttons["quick"].tap()
-//        app.buttons["Grammar Action -ly"].tap()
-//        app.buttons["g"].tap()
-//        app.buttons["BackButton"].tap()
-//        //check if the grammar action -s works as expected
-//        app.buttons["break"].tap()
-//        app.buttons["Grammar Action -s"].tap()
-//        app.buttons["g"].tap()
-//        app.buttons["BackButton"].tap()
-//        
-//        let grammarActions = app.textFields["Broke broken breaker quickest breaking quickly breaks "]
-//        XCTAssertTrue(grammarActions.exists, "The grammar actions don't work as expected")
-        
-        let brokeBtn = app.buttons["broke"]
-        let brokenBtn = app.buttons["broken"]
-        let breakerBtn = app.buttons["breaker"]
-        let breakingBtn = app.buttons["breaking"]
-        let breaksBtn = app.buttons["breaks"]
-        
-        let breakBtnExists = brokeBtn.exists && brokenBtn.exists && breakerBtn.exists && breakingBtn.exists && breaksBtn.exists
-        XCTAssertTrue(breakBtnExists, "The grammar actions don't work as expected")
+        app.buttons["Grammar Action -ed"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -en works as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -en"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -er works as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -er"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -est works as expected
+        app.buttons["quick"].tap()
+        app.buttons["Grammar Action -est"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -ing works as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -ing"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -ly works as expected
+        app.buttons["quick"].tap()
+        app.buttons["Grammar Action -ly"].tap()
+        app.buttons["g"].tap()
+        app.buttons["BackButton"].tap()
+        //check if the grammar action -s works as expected
+        app.buttons["break"].tap()
+        app.buttons["Grammar Action -s"].tap()
+        app.buttons["g"].tap()
         app.buttons["BackButton"].tap()
         
-        app.buttons["quick"].tap()
+        let grammarActions = app.textFields["Broke broken breaker quickest breaking quickly breaks "]
+        XCTAssertTrue(grammarActions.exists, "The grammar actions don't work as expected")
         
-        let quickestBtn = app.buttons["quickest"]
-        let quickerBtn = app.buttons["quicker"]
-        let quicklyBtn = app.buttons["quickly"]
-        let quicksBtn = app.buttons["quicks"]
-        
-        let quicksBtnExists = quickestBtn.exists && quickerBtn.exists && quicklyBtn.exists && quicksBtn.exists
-        XCTAssertTrue(quicksBtnExists, "The grammar actions don't work as expected")
+//        let brokeBtn = app.buttons["broke"]
+//        let brokenBtn = app.buttons["broken"]
+//        let breakerBtn = app.buttons["breaker"]
+//        let breakingBtn = app.buttons["breaking"]
+//        let breaksBtn = app.buttons["breaks"]
+//        
+//        let breakBtnExists = brokeBtn.exists && brokenBtn.exists && breakerBtn.exists && breakingBtn.exists && breaksBtn.exists
+//        XCTAssertTrue(breakBtnExists, "The grammar actions don't work as expected")
+//        app.buttons["BackButton"].tap()
+//        
+//        app.buttons["quick"].tap()
+//        
+//        let quickestBtn = app.buttons["quickest"]
+//        let quickerBtn = app.buttons["quicker"]
+//        let quicklyBtn = app.buttons["quickly"]
+//        let quicksBtn = app.buttons["quicks"]
+//        
+//        let quicksBtnExists = quickestBtn.exists && quickerBtn.exists && quicklyBtn.exists && quicksBtn.exists
+//        XCTAssertTrue(quicksBtnExists, "The grammar actions don't work as expected")
     }
     
     func checkGrammarActionMegaT(){
@@ -275,6 +275,7 @@ class GrammarActionaPageClass {
     
     func addNavigateActionsHomeBack(button: Int, navigateDirection: String, actionType: String, directionType: String){
         app.buttons.element(boundBy: button).tap()
+        sleep(2)
         app.buttons["Edit This Button"].tap()
         sleep(2)
         app.textFields.element(boundBy: 0).doubleTap()
@@ -342,6 +343,7 @@ class GrammarActionaPageClass {
     
     func addOpenAppsAction(button: Int, navigateDirection: String, actionType: String, directionType: String, appType: String){
         app.buttons.element(boundBy: button).tap()
+        sleep(2)
         app.buttons["Edit This Button"].tap()
         sleep(2)
         app.textFields.element(boundBy: 0).doubleTap()

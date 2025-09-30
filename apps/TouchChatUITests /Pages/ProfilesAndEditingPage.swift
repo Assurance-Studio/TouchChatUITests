@@ -104,7 +104,7 @@ class ProfilesAndEditingPage {
     func setAPassMenu(){
         app.secureTextFields.element(boundBy: 0).tap()
         app.secureTextFields.element(boundBy: 0).typeText("Testbye2e")
-        app.switches.element(boundBy: 5).tap()
+        app.switches.element(boundBy: 6).tap()
     }
     
     func checkIfThePassWorks(){
@@ -136,12 +136,12 @@ class ProfilesAndEditingPage {
     func unCheckStatusBar(){
         let imageSizeStatusBar = app.images.element(boundBy: 20)
         let imageSizeSBarBefore = imageSizeStatusBar.frame.size
-        let statusBar = app.switches.element(boundBy: 4)
+        let statusBar = app.switches.element(boundBy: 5)
         statusBar.tap()
         sleep(3)
         
         let doneButton = app.buttons["Done"]
-        let doneButtonExists = doneButton.waitForExistence(timeout: 5)
+        let doneButtonExists = doneButton.waitForExistence(timeout: 10)
         XCTAssertTrue(doneButtonExists, "Done button is not visible")
         doneButton.tap()
         

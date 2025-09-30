@@ -93,8 +93,6 @@ final class openDifferentAppsTests: XCTestCase {
         
         grammarActionsPage.addOpenAppsAction(button: 48, navigateDirection: "Open Different Apps - Pinterest", actionType: "Open App", directionType: "Pinterest", appType: "Pinterest")
         
-        grammarActionsPage.addOpenAppsAction(button: 49, navigateDirection: "Open Different Apps - Scribd", actionType: "Open App", directionType: "Scribd", appType: "Scribd")
-        
         grammarActionsPage.addOpenAppsAction(button: 50, navigateDirection: "Open Different Apps - Sort By Kind", actionType: "Open App", directionType: "Step by Step", appType: "Sort By Kind - Sort visually related items")
         
         grammarActionsPage.addOpenAppsAction(button: 63, navigateDirection: "Open Different Apps - Skype", actionType: "Open App", directionType: "Skype", appType: "Skype")
@@ -105,7 +103,7 @@ final class openDifferentAppsTests: XCTestCase {
         
         grammarActionsPage.addOpenAppsAction(button: 67, navigateDirection: "Open Diffrent Apps - First Then Visual Schedule HD", actionType: "Open App", directionType: "First Then Visual Schedule HD", appType: "First Then Visual Schedule HD")
         
-        grammarActionsPage.addOpenAppsAction(button: 68, navigateDirection: "Open Diffrent Apps - Time", actionType: "Open App", directionType: "Time", appType: "Visual Timer")
+        grammarActionsPage.addOpenAppsAction(button: 68, navigateDirection: "Open Diffrent Apps - Time", actionType: "Open App", directionType: "Time", appType: "Visual Timer (discontinued)")
         
         grammarActionsPage.addOpenAppsAction(button: 69, navigateDirection: "Open Diffrent Apps - Twitter", actionType: "Open App", directionType: "Twitter", appType: "Twitter")
         
@@ -164,9 +162,6 @@ final class openDifferentAppsTests: XCTestCase {
         
         //check Pinterest App
         grammarActionsPage.checkAppType(appType: "Open Different Apps - Pinterest")
-        
-        //check Scribd App
-        grammarActionsPage.checkAppType(appType: "Open Different Apps - Scribd")
         
         //check Sort By Kind App
         grammarActionsPage.checkAppType(appType: "Open Different Apps - Sort By Kind")

@@ -38,6 +38,7 @@ final class test4BasicSS: XCTestCase {
         
         let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.basic4SS.tap()
         commonActions.openAVocab()
         

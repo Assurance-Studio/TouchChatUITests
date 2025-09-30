@@ -41,7 +41,6 @@ final class pageSizeTests: XCTestCase {
         let vocabularyName = "copied vocabulary Page Size"
         let vocabularyDesc = "vocabulary description e2e"
         let vocabName = "vocabulary"
-        let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let commonActions = CommonActions(app: app)
         

@@ -37,6 +37,7 @@ final class AphasiaUKSSTests: XCTestCase {
         
         let pages = Pages(app: app)
         let commonActions = CommonActions(app: app)
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.scrollDownUntilElementIsVisible(element: pages.aphasiaVocab)
         pages.aphasiaVocab.tap()
         pages.aphasiaUKSS.tap()
