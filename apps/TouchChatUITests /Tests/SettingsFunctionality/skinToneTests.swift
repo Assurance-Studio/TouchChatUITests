@@ -44,6 +44,7 @@ final class skinToneTests: XCTestCase {
        }()
        
        //copy a new vocab
+       commonActions.checkIfEnglishVocabIsExpanded()
        pages.sintaxis4x5English.tap()
        app.buttons["Customize"].tap()
        let copyVocabTab = app.staticTexts["Copy Vocab"]

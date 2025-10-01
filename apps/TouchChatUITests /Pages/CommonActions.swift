@@ -204,12 +204,12 @@ class CommonActions {
         let englishText = app.staticTexts["English"]
             
             // Wait up to 2 seconds for the "Spelling SS" button to appear
-        let spellingSSExists = spellingSS.waitForExistence(timeout: 2)
+        let spellingSSExists = spellingSS.waitForExistence(timeout: 5)
 
             // If the button doesn't exist or isn't visible/interactable
             if !spellingSSExists || !spellingSS.isHittable {
                 // Wait for "English" text and tap it if it's visible
-                if englishText.waitForExistence(timeout: 2), englishText.isHittable {
+                if englishText.waitForExistence(timeout: 5), englishText.isHittable {
                     englishText.tap()
                 } else {
                     XCTFail("The 'English' label is not accessible for tapping.")

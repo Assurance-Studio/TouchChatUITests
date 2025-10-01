@@ -112,8 +112,8 @@ class ActionaPageClass {
         let expectedDateTime = dateFormatter.string(from: Date())
         
         let expectedText = app.textFields["The current date and time are \(expectedDateTime) "]
-        XCTAssertTrue(expectedText.exists, "Displayed date and time are incorrect")
-        sleep(5)
+        let expectedTextExists = expectedText.waitForExistence(timeout: 15)
+        XCTAssertTrue(expectedTextExists, "Displayed date and time are incorrect")
     }
     
     func saveTheAction(){
