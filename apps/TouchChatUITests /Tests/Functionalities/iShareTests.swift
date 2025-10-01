@@ -46,7 +46,7 @@ final class iShareTests: XCTestCase {
         
         pages.reachIShareService()
         
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Register for iShare"].tap()
+        app.buttons["Register for iShare"].tap()
         app.textFields["First Last"].tap()
         app.textFields["First Last"].typeText("Test by e2e" + randomText)
         app.textFields["name@domain.com"].tap()

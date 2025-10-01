@@ -29,7 +29,10 @@ class GrammarActionaPageClass {
     
     func createBtnGrammar(buttonName: String, actionType: String, buttonNumber: Int){
         app.buttons.element(boundBy: buttonNumber).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        let createBtn = app.buttons["Create New Button"]
+        let createBtnExists = createBtn.waitForExistence(timeout: 20)
+        XCTAssertTrue(createBtnExists)
+        createBtn.tap()
         sleep(2)
         app.textFields.element(boundBy: 0).doubleTap()
         app.textFields.element(boundBy: 0).typeText(buttonName)
@@ -292,8 +295,11 @@ class GrammarActionaPageClass {
     
     func createButtonWordPrediction(button: Int, navigateDirection: String, actionType: String, directionType: String){
         app.buttons.element(boundBy: button).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
-        
+        let createBtn = app.buttons["Create New Button"]
+        let createBtnExists = createBtn.waitForExistence(timeout: 20)
+        XCTAssertTrue(createBtnExists)
+        createBtn.tap()
+            
         let buttonLabel = app.textFields.element(boundBy: 0)
         let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
         XCTAssertTrue(existsButtonLabel, "The button label is not visible")
@@ -362,7 +368,10 @@ class GrammarActionaPageClass {
     
     func createButtonOpenAppsAction(button: Int, navigateDirection: String, actionType: String, directionType: String, appType: String){
         app.buttons.element(boundBy: button).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        let createBtn = app.buttons["Create New Button"]
+        let createBtnExists = createBtn.waitForExistence(timeout: 20)
+        XCTAssertTrue(createBtnExists)
+        createBtn.tap()
         
         let buttonLabel = app.textFields.element(boundBy: 0)
         let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
@@ -414,7 +423,10 @@ class GrammarActionaPageClass {
     
     func addVisitCreateButtonAction(button: Int, jumpDirection: String, directionType: String){
         app.buttons.element(boundBy: button).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        let createBtn = app.buttons["Create New Button"]
+        let createBtnExists = createBtn.waitForExistence(timeout: 20)
+        XCTAssertTrue(createBtnExists)
+        createBtn.tap()
         
         let buttonLabel = app.textFields.element(boundBy: 0)
         let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)

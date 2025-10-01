@@ -308,7 +308,7 @@ class Pages {
     func clearImageNewPage(){
         let popoversQuery = app.popovers
         
-        let clearImage = XCUIApplication().popovers.scrollViews.otherElements.buttons["Clear Image"]
+        let clearImage = app.buttons["Clear Image"]
         let clearImageExists = clearImage.waitForExistence(timeout: 10)
         XCTAssertTrue(clearImageExists)
         clearImage.tap()
@@ -698,10 +698,10 @@ class Pages {
     func useTheSameButton(){
         app.buttons.element(boundBy: 13).tap()
         sleep(2)
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Use Same Button"].tap()
+        app.buttons["Use Same Button"].tap()
         app.buttons.element(boundBy: 12).tap()
         sleep(2)
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Use Same Button"].tap()
+        app.buttons["Use Same Button"].tap()
         app.navigationBars["Main"].buttons["Done"].tap()
         app.buttons.element(boundBy: 13).tap()
         app.buttons["snack"].tap()
@@ -709,8 +709,12 @@ class Pages {
     
     func createANewButton(){
         app.buttons.element(boundBy: 12).tap()
-        sleep(3)
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+    
+        let createBtn = app.buttons["Create New Button"]
+        let createBtnExists = createBtn.waitForExistence(timeout: 20)
+        XCTAssertTrue(createBtnExists)
+        createBtn.tap()
+        
         let buttonLabel = app.textFields.element(boundBy: 0)
         let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
         XCTAssertTrue(existsButtonLabel, "The button label is not visible")
@@ -722,7 +726,10 @@ class Pages {
     
     func createButtonForActions(button: Int, nameButton:String){
         app.buttons.element(boundBy: button).tap()
-        XCUIApplication().popovers.scrollViews.otherElements.buttons["Create New Button"].tap()
+        let createBtn = app.buttons["Create New Button"]
+        let createBtnExists = createBtn.waitForExistence(timeout: 10)
+        XCTAssertTrue(createBtnExists)
+        createBtn.tap()
         
         let buttonLabel = app.textFields.element(boundBy: 0)
         let existsButtonLabel = buttonLabel.waitForExistence(timeout: 5)
@@ -753,10 +760,9 @@ class Pages {
         let buttonEmptyExists = buttonEmpty.waitForExistence(timeout: 10)
         XCTAssertTrue(buttonEmptyExists, "The Button empty doesn't exist.")
         buttonEmpty.tap()
-    
-        sleep(3)
-        let removeButtonSet = XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove ButtonSet From Page"]
-        let removeButtonSetExists = removeButtonSet.waitForExistence(timeout: 10)
+
+        let removeButtonSet = app.buttons["Remove ButtonSet From Page"]
+        let removeButtonSetExists = removeButtonSet.waitForExistence(timeout: 20)
         XCTAssertTrue(removeButtonSetExists)
         removeButtonSet.tap()
         //XCUIApplication().popovers.scrollViews.otherElements.buttons["Remove ButtonSet From Page"].tap()
