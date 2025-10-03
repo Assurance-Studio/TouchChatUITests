@@ -60,7 +60,7 @@ final class dataLoggingTests: XCTestCase {
         dataLoginPage.setPrivacyPass()
         
         //remove the privacy password
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         dataLoginPage.removePrivacyPass()
                         
         commonActions.backToVocab()
