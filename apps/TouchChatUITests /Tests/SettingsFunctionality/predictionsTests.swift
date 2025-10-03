@@ -52,14 +52,14 @@ final class predictionsTests: XCTestCase {
        commonActions.ensureAllowDeleteIsOn()
        
        //clear all predictions
-       profilesAndEditingPage.openTheSettingsTab()
+       commonActions.openTheSettingsTab()
        predictionsSettingsPage.clearAllPredictions()
        
        //check if the prediction works
        predictionsSettingsPage.checkIfThePredictionsWorks()
        
        //delete the new prediction
-       profilesAndEditingPage.openTheSettingsTab()
+       commonActions.openTheSettingsTab()
        predictionsSettingsPage.deleteTheNewPrediction()
        
        //add a new prediction

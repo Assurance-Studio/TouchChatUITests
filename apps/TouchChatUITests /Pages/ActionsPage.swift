@@ -54,9 +54,10 @@ class ActionaPageClass {
     }
     
     func addANewAction(actionName: String){
-        let popoversQuery = app.popovers
-        let elementsQuery = popoversQuery.scrollViews.otherElements
-        elementsQuery.buttons["Add"].tap()
+        let addBtn = app.buttons["Add"]
+        let addBtnExists = addBtn.waitForExistence(timeout: 15)
+        XCTAssertTrue(addBtnExists)
+        addBtn.tap()
         sleep(3)
         app.staticTexts[actionName].tap()
     }

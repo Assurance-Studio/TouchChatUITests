@@ -51,7 +51,7 @@ final class expandedSpeechAreaTests: XCTestCase {
             commonActions.ensureAllowDeleteIsOn()
             
             //open The Settings Menu
-            profilesAndEditingPage.openTheSettingsTab()
+            commonActions.openTheSettingsTab()
             
             //check the fonts for expanded speech area
             expandedSpeechArea.checkTheFontOptions()

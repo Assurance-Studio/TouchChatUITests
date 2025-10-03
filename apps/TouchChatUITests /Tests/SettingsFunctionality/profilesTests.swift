@@ -37,7 +37,7 @@ final class profilesTests: XCTestCase {
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
         let commonActions = CommonActions(app: app)
-        
+        commonActions.checkIfEnglishVocabIsExpanded()
         pages.scrollDownUntilElementIsVisible(element: pages.basic4SS)
         pages.basic4SS.tap()
         commonActions.openAVocab()

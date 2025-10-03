@@ -51,7 +51,7 @@ final class dataLoggingTests: XCTestCase {
         commonActions.ensureAllowDeleteIsOn()
         
         //open The Settings Menu
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         
         //check if the enable Logging image appears
         dataLoginPage.checkLoggingImage()

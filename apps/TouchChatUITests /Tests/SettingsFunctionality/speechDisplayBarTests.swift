@@ -50,7 +50,7 @@ final class speechDisplayBarTests: XCTestCase {
         commonActions.ensureAllowDeleteIsOn()
         
         //open The Settings Menu
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         
         //check the hide speech display bar and check if it works
         speechDisplayBarPage.checkTheHideDisplayBar()
@@ -73,7 +73,7 @@ final class speechDisplayBarTests: XCTestCase {
         
         commonActions.checkSdbText(sdbText: "test")
         
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         let autoCapitalization = app.switches.element(boundBy: 10)
         autoCapitalization.tap()
     

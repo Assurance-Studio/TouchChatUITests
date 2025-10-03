@@ -60,7 +60,7 @@ final class buttonsSettingsTests: XCTestCase {
        pages.hideAButton()
        
        //check if the force font size works
-       profilesAndEditingPage.openTheSettingsTab()
+       commonActions.openTheSettingsTab()
        buttonsSettingsPage.checkTheForceFontSize()
        
        //check if the hide button appears

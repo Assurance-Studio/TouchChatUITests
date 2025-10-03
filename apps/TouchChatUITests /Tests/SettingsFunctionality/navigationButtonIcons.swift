@@ -47,7 +47,7 @@ final class navigationButtonIcons: XCTestCase {
         pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
         
         //open The Settings Menu
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         
         //check the navigation button action works as expected
         profilesAndEditingPage.navigationsIcons()

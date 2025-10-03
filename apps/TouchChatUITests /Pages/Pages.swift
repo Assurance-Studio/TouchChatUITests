@@ -112,11 +112,12 @@ class Pages {
     
     func changeThePageName(){
         let textFieldLayout = app.textFields["SPKBD-QWERTY"]
+        
         textFieldLayout.tap()
         textFieldLayout.doubleTap()
-        textFieldLayout.typeText("Test")
-        app.textFields["SPKBD-Test"].doubleTap()
-        app.textFields["SPKBD-Test"].typeText("Test by e2e")
+        textFieldLayout.typeText("-")
+        app.textFields["SPKBD--"].doubleTap()
+        app.textFields["SPKBD--"].typeText("Test by e2e")
     }
     
     func changeRowsAndColumns(){
@@ -176,7 +177,7 @@ class Pages {
         let elementsQuery = popoversQuery.scrollViews.otherElements
         
         let tablesQuery = popoversQuery.tables
-        let testByE2eNavigationBar = app.navigationBars["SPKBD-Test by e2e"]
+        let testByE2eNavigationBar = app.navigationBars["Test by e2e"]
         testByE2eNavigationBar.buttons["Menu"].tap()
         sleep(3)
         elementsQuery.buttons["Edit Page Layout"].tap()
@@ -351,9 +352,11 @@ class Pages {
     
     func hideAButton(){
         app.navigationBars.buttons["Menu"].tap()
-        
-        let elementsQuery = app.popovers.scrollViews.otherElements
-        elementsQuery.buttons["Hide Mode"].tap()
+
+        let hideBtn = app.buttons["Hide Mode"]
+        let hideBtnExists = hideBtn.waitForExistence(timeout: 15)
+        XCTAssertTrue(hideBtnExists)
+        hideBtn.tap()
         
         app.buttons["z"].tap()
         XCUIApplication().navigationBars["* Hide Mode *"].buttons["Done"].tap()
@@ -682,8 +685,10 @@ class Pages {
     func copyAButton(buttonName: String){
         app.buttons[buttonName].tap()
         
-        let app = XCUIApplication()
-        app.popovers.scrollViews.otherElements.buttons["Copy Button"].tap()
+        let copyBtn = app.buttons["Copy Button"]
+        let copyBtnExists = copyBtn.waitForExistence(timeout: 15)
+        XCTAssertTrue(copyBtnExists)
+        copyBtn.tap()
     }
     
     func pasteTheButton(){

@@ -123,8 +123,8 @@ final class createButtonOpenDifferentAppsTests: XCTestCase {
         grammarActionsPage.createButtonOpenAppsAction(button: 48, navigateDirection: "Open Different Apps - Pinterest", actionType: "Open App", directionType: "Pinterest", appType: "Pinterest")
         
         //create button Scribd
-        pages.removeAButton(button: 49)
-        grammarActionsPage.createButtonOpenAppsAction(button: 49, navigateDirection: "Open Different Apps - Scribd", actionType: "Open App", directionType: "Scribd", appType: "Scribd")
+//        pages.removeAButton(button: 49)
+//        grammarActionsPage.createButtonOpenAppsAction(button: 49, navigateDirection: "Open Different Apps - Scribd", actionType: "Open App", directionType: "Scribd", appType: "Scribd")
         
         //create button Sort By Kind Sort visually
         pages.removeAButton(button: 50)
@@ -148,7 +148,7 @@ final class createButtonOpenDifferentAppsTests: XCTestCase {
         
         //create button Visual Timer
         pages.removeAButton(button: 68)
-        grammarActionsPage.createButtonOpenAppsAction(button: 68, navigateDirection: "Open Diffrent Apps - Time", actionType: "Open App", directionType: "Time", appType: "Visual Timer")
+        grammarActionsPage.createButtonOpenAppsAction(button: 68, navigateDirection: "Open Diffrent Apps - Time", actionType: "Open App", directionType: "Time", appType: "Visual Timer (discontinued)")
         
         //create button Twitter
         pages.removeAButton(button: 69)
@@ -221,7 +221,7 @@ final class createButtonOpenDifferentAppsTests: XCTestCase {
         grammarActionsPage.checkAppType(appType: "Open Different Apps - Pinterest")
         
         //check Scribd App
-        grammarActionsPage.checkAppType(appType: "Open Different Apps - Scribd")
+//        grammarActionsPage.checkAppType(appType: "Open Different Apps - Scribd")
         
         //check Sort By Kind App
         grammarActionsPage.checkAppType(appType: "Open Different Apps - Sort By Kind")

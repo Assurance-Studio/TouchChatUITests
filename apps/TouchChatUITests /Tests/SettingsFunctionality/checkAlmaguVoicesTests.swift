@@ -64,7 +64,7 @@ final class checkAlmaguVoicesTests: XCTestCase {
        commonActions.ensureAllowDeleteIsOn()
        
        //check if the force font size works
-       profilesAndEditingPage.openTheSettingsTab()
+       commonActions.openTheSettingsTab()
        
        //change the voice for English Voice
        languagesPage.changeEnglishVoiceToAlmaguVoice()

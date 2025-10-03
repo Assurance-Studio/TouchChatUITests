@@ -50,13 +50,13 @@ final class tapActionTests: XCTestCase {
         commonActions.ensureAllowDeleteIsOn()
         
         //open The Settings Menu
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         
         //enable the Speak and Enlarge Text action
         profilesAndEditingPage.enableSpeakEnlargeAction()
         
         //enable No Action - Tap Action
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         profilesAndEditingPage.enableNoActionTap()
         
         commonActions.backToVocab()

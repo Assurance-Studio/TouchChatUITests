@@ -49,7 +49,7 @@ final class buttonsDwellReleaseTimeTests: XCTestCase {
         commonActions.ensureAllowDeleteIsOn()
         
         //open the settings menu
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         
         //change the dwell & release time
         dataLoginPage.changeDwellReleaseTime()
@@ -58,7 +58,7 @@ final class buttonsDwellReleaseTimeTests: XCTestCase {
         dataLoginPage.checkIfTheDwellReleaseTimeWork()
         
         //reset the dwell & release time
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         dataLoginPage.resetDwellReleaseTime()
         
         pages.backButton.tap()

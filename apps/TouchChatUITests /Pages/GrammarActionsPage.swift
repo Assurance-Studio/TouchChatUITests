@@ -348,6 +348,7 @@ class GrammarActionaPageClass {
     }
     
     func addOpenAppsAction(button: Int, navigateDirection: String, actionType: String, directionType: String, appType: String){
+        sleep(3)
         app.buttons.element(boundBy: button).tap()
         sleep(2)
         app.buttons["Edit This Button"].tap()
@@ -367,6 +368,7 @@ class GrammarActionaPageClass {
     }
     
     func createButtonOpenAppsAction(button: Int, navigateDirection: String, actionType: String, directionType: String, appType: String){
+        sleep(2)
         app.buttons.element(boundBy: button).tap()
         let createBtn = app.buttons["Create New Button"]
         let createBtnExists = createBtn.waitForExistence(timeout: 20)

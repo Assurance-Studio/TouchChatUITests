@@ -46,7 +46,7 @@ final class editingTests: XCTestCase {
         pages.verifyTheVocab(lastElement: "with", vocabWord: "are", vocabElement: 3, nameElement: "myQuickChat")
         
         //open The Settings Menu
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         
         //set a menu password
         profilesAndEditingPage.setAPassMenu()

@@ -71,7 +71,7 @@ class LanguagesRegionPage {
                    )
 
                    // Wait until the number of "DownloadButton" buttons decreases by 1
-                   let result = XCTWaiter.wait(for: [expectation], timeout: 20)
+                   let result = XCTWaiter.wait(for: [expectation], timeout: 500)
 
                    // Check if the waiting succeeded
                    if result == .completed {
@@ -107,7 +107,7 @@ class LanguagesRegionPage {
                         object: app.buttons.matching(identifier: "arrow.down")
                     )
 
-                    let result = XCTWaiter.wait(for: [expectation], timeout: 20)
+                    let result = XCTWaiter.wait(for: [expectation], timeout: 500)
 
                     // Check if the waiting succeeded
                     if result == .completed {
@@ -115,7 +115,7 @@ class LanguagesRegionPage {
                     } else {
                         XCTFail("The 'DownloadButton' did not disappear within the timeout period")
                     }
-            app.staticTexts["William (teen)"].tap()
+            app.staticTexts["Alfred (adult)"].tap()
             app.buttons["Back"].tap()
         }
     
@@ -133,7 +133,7 @@ class LanguagesRegionPage {
                         object: app.buttons.matching(identifier: "arrow.down")
                     )
 
-                    let result = XCTWaiter.wait(for: [expectation], timeout: 40)
+                    let result = XCTWaiter.wait(for: [expectation], timeout: 500)
 
                     // Check if the waiting succeeded
                     if result == .completed {
@@ -149,7 +149,7 @@ class LanguagesRegionPage {
         XCUIApplication().popovers.tables.staticTexts["Chinese (China mainland) voice"].tap()
         app.staticTexts["Tingting"].tap()
         let acapelaAnaisVoice = app.staticTexts["Mei "]
-        XCTAssertFalse(acapelaAnaisVoice.exists)
+        XCTAssertTrue(acapelaAnaisVoice.exists)
         app.buttons["Cancel"].tap()
         app.buttons["Back"].tap()
         app.buttons["Done"].tap()

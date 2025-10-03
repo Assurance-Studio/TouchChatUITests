@@ -51,17 +51,17 @@ final class pageSizeTests: XCTestCase {
         commonActions.ensureAllowDeleteIsOn()
         
         //open The Settings Menu
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         
         //turn on the status bar and check if it works
         profilesAndEditingPage.unCheckStatusBar()
         
         //swith to Generic the keyguard inset and check if it works
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         profilesAndEditingPage.checkKeyguardInset()
                 
         //return to initial settings for Page Size Tab
-        profilesAndEditingPage.openTheSettingsTab()
+        commonActions.openTheSettingsTab()
         profilesAndEditingPage.returnToInitialSettingsPageSize()
         
         commonActions.backToVocab()

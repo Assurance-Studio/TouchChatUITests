@@ -42,7 +42,7 @@ final class applyGrammarStateTests: XCTestCase {
        let commonActions = CommonActions(app: app)
        let vocabularyName = "copied vocabulary grammar action"
        let vocabularyDesc = "vocabulary description e2e"
-       var vocabName = "vocabulary"
+       let vocabName = "vocabulary"
        lazy var mainPage: MainPage = {
            return MainPage(app: XCUIApplication(), vocabName: vocabName)
        }()
@@ -96,7 +96,7 @@ final class applyGrammarStateTests: XCTestCase {
        grammarActionsPage.doneBtn.tap()
        
        //open The Settings Menu
-       profilesAndEditingPage.openTheSettingsTab()
+       commonActions.openTheSettingsTab()
        
        //set on the Dynamic Labels Toggle
        grammarActionsPage.setOnDynamicLabels()
