@@ -22,6 +22,7 @@ final class copyVocabularyTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         continueAfterFailure = false
+        app.launchArguments.append("--reset-app-state")
         app.launch()
         let commonActions = CommonActions(app: app)
         let pages = Pages(app: app)
@@ -40,6 +41,5 @@ final class copyVocabularyTests: XCTestCase {
     func testCopyVocabulary() {
         mainPage.copy4BasicSS(vocabName: vocabularyName, vocabDescription: vocabylaryDesc)
         mainPage.verifyTextExists(textVerified: vocabylaryDesc)
-        mainPage.deleteVocabFromMainPage(vocabDesc: vocabylaryDesc)
     }
 }

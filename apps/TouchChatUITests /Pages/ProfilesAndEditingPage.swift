@@ -83,6 +83,7 @@ class ProfilesAndEditingPage {
     func removeTheNewProfile(){
         let popoversQuery = XCUIApplication().popovers
         let loadProfileNavigationBar = popoversQuery.navigationBars["Load Profile"]
+        sleep(3)
         loadProfileNavigationBar.buttons["Edit"].tap()
         
         let tablesQuery = popoversQuery.tables

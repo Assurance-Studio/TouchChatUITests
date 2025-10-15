@@ -58,7 +58,8 @@ class GesturesPage {
     
     func verifyGestureExists() {
             let scrollViewToolbar = app.buttons["t"]
-            XCTAssertTrue(scrollViewToolbar.exists, "Toolbar doesn't exist.")
+            let scrollViewToolBarExists = scrollViewToolbar.waitForExistence(timeout: 15)
+            XCTAssertTrue(scrollViewToolBarExists, "Toolbar doesn't exist.")
 
             let elementPosition = scrollViewToolbar.frame.origin
             let elementSize = scrollViewToolbar.frame.size
@@ -71,7 +72,8 @@ class GesturesPage {
             startCoordinate.press(forDuration: 0.1, thenDragTo: endCoordinate)
 
             let sdbElement = app.textFields["Gesture by e2e "]
-            XCTAssertTrue(sdbElement.exists, "Searched text not found")
+            let sdbElementExists = sdbElement.waitForExistence(timeout: 15)
+            XCTAssertTrue(sdbElementExists, "Searched text not found")
         }
     } 
         

@@ -73,6 +73,7 @@ class GrammarActionaPageClass {
     
     func addActionEST(){
         app.buttons.element(boundBy: 28).tap()
+        sleep(2)
         app.buttons["Edit This Button"].tap()
         sleep(2)
         app.textFields.element(boundBy: 0).doubleTap()
@@ -125,8 +126,9 @@ class GrammarActionaPageClass {
     
     func createAVerb(){
         app.buttons["z"].tap()
+        sleep(3)
         app.buttons["Edit This Button"].tap()
-        sleep(2)
+        sleep(3)
         app.textFields.element(boundBy: 0).doubleTap()
         app.textFields.element(boundBy: 0).typeText("break")
         sleep(3)
