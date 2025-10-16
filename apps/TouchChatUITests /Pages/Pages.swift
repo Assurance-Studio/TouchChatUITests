@@ -180,7 +180,7 @@ class Pages {
         let testByE2eNavigationBar = app.navigationBars["Test by e2e"]
         testByE2eNavigationBar.buttons["Menu"].tap()
         sleep(3)
-        elementsQuery.buttons["Edit Page Layout"].tap()
+        app.buttons["Edit Page Layout"].tap()
         let clearImageLayout = elementsQuery.buttons["Clear Image"]
         let clearImageLayoutExists = clearImageLayout.waitForExistence(timeout: 5)
         XCTAssertTrue(clearImageLayoutExists)
@@ -656,12 +656,11 @@ class Pages {
         sleep(2)
         
         let popoversQuery = app.popovers
-        let elementsQuery = popoversQuery.scrollViews.otherElements
-        elementsQuery.buttons["Edit Page"].tap()
+        app.buttons["Edit Page"].tap()
         sleep(2)
         app.buttons[buttonName].tap()
         sleep(2)
-        elementsQuery.buttons["Change Button Size"].tap()
+        app.buttons["Change Button Size"].tap()
         sleep(2)
         app.staticTexts["1 Column"].tap()
         app.staticTexts["2 Columns"].tap()
