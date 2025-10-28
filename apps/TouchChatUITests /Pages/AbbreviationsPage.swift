@@ -18,8 +18,7 @@ class AbbreviationsPage {
         app.navigationBars.buttons["Menu"].tap()
         let popoversQuery = app.popovers
         let scrollViewsQuery = popoversQuery.scrollViews
-        let elementsQuery = scrollViewsQuery.otherElements
-        elementsQuery.buttons["Edit Abbreviations"].tap()
+        app.buttons["Edit Abbreviations"].tap()
         let abbreviationsNavigationBar = popoversQuery.navigationBars["Abbreviations"]
         let existsAbbreviationNavigationBar = abbreviationsNavigationBar.waitForExistence(timeout: 10)
         XCTAssertTrue(existsAbbreviationNavigationBar)
@@ -57,7 +56,7 @@ class AbbreviationsPage {
         func reachToEditAbbreviation() {
             app.navigationBars.buttons["Menu"].tap()
             let popoversQuery = app.popovers
-            popoversQuery.scrollViews.otherElements.buttons["Edit Abbreviations"].tap()
+            app.buttons["Edit Abbreviations"].tap()
             let editAbbreviationPage = popoversQuery.toolbars["Toolbar"].buttons["Edit"]
             let waitForTheEditAbbreviation = editAbbreviationPage.waitForExistence(timeout: 10)
             XCTAssertTrue(waitForTheEditAbbreviation)

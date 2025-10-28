@@ -22,7 +22,7 @@ class PronunciationsPage {
         let popoversQuery = app.popovers
         let scrollViewsQuery = popoversQuery.scrollViews
         let elementsQuery = scrollViewsQuery.otherElements
-        elementsQuery.buttons["Edit Pronunciations"].tap()
+        app.buttons["Edit Pronunciations"].tap()
         let pronunciationsNavigationBar = popoversQuery.navigationBars["Pronunciations"]
         let existsPronunciationsNavigationBar = pronunciationsNavigationBar.waitForExistence(timeout: 5)
         pronunciationsNavigationBar.buttons["Add"].tap()

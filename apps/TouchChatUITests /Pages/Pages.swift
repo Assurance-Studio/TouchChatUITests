@@ -368,14 +368,14 @@ class Pages {
         app.navigationBars.buttons["Menu"].tap()
         
         let elementsQuery = app.popovers.scrollViews.otherElements
-        elementsQuery.buttons["Edit Page"].tap()
+        app.buttons["Edit Page"].tap()
         sleep(2)
         app.navigationBars["SPKBD-QWERTY"].buttons["Menu"].tap()
-        elementsQuery.buttons["Hide Mode"].tap()
+        app.buttons["Hide Mode"].tap()
         
         let hideModeNavigationBar = app.navigationBars["* Hide Mode *"]
         hideModeNavigationBar.buttons["Menu"].tap()
-        elementsQuery.buttons["* Hide All *"].tap()
+        app.buttons["* Hide All *"].tap()
         hideModeNavigationBar.buttons["Done"].tap()
         
         let button1 = app.buttons["TEXTING"]
@@ -393,13 +393,13 @@ class Pages {
         app.navigationBars.buttons["Menu"].tap()
         
         let elementsQuery = app.popovers.scrollViews.otherElements
-        elementsQuery.buttons["Edit Page"].tap()
+        app.buttons["Edit Page"].tap()
         app.navigationBars["SPKBD-QWERTY"].buttons["Menu"].tap()
-        elementsQuery.buttons["Hide Mode"].tap()
+        app.buttons["Hide Mode"].tap()
         
         let hideModeNavigationBar = app.navigationBars["* Hide Mode *"]
         hideModeNavigationBar.buttons["Menu"].tap()
-        elementsQuery.buttons["* Show All *"].tap()
+        app.buttons["* Show All *"].tap()
         hideModeNavigationBar.buttons["Done"].tap()
         
         let button1 = app.buttons["TEXTING"]
@@ -417,14 +417,14 @@ class Pages {
         app.navigationBars.buttons["Menu"].tap()
         
         let elementsQuery = app.popovers.scrollViews.otherElements
-        elementsQuery.buttons["Edit Page"].tap()
+        app.buttons["Edit Page"].tap()
         sleep(3)
         
         let spkbdQwertyNavigationBar = app.navigationBars["SPKBD-QWERTY"]
         spkbdQwertyNavigationBar.buttons["Menu"].tap()
-        elementsQuery.buttons["Hide Mode"].tap()
+        app.buttons["Hide Mode"].tap()
         app.navigationBars["* Hide Mode *"].buttons["Menu"].tap()
-        elementsQuery.buttons["* Normal Mode *"].tap()
+        app.buttons["* Normal Mode *"].tap()
         app.buttons["d"].tap()
         
         XCTAssertTrue(app.buttons["Edit This Button"].exists, "The button doesn't exist")
@@ -436,7 +436,7 @@ class Pages {
     func openPageStyleOverride(){
         sleep(3)
         app.navigationBars["SPKBD-QWERTY"].buttons["Menu"].tap()
-        app.popovers.scrollViews.otherElements.buttons["Page Style Override"].tap()
+        app.buttons["Page Style Override"].tap()
     }
     
     func checkTheToggleandSwitchIt(){

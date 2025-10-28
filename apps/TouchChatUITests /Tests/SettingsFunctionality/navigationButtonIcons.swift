@@ -35,7 +35,7 @@ final class navigationButtonIcons: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testEditingTests() throws {
+    func testNavigationButtonIcons() throws {
         
         let pages = Pages(app: app)
         let profilesAndEditingPage = ProfilesAndEditingPage(app: app)

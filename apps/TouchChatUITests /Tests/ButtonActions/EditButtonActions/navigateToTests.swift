@@ -33,7 +33,7 @@ final class navigateToTests: XCTestCase {
        try super.tearDownWithError()
    }
 
-   func testAddMessageDisplayTests() throws {
+   func testNavigateToTests() throws {
        
        let pages = Pages(app: app)
        let actionsPage = ActionaPageClass(app: app)

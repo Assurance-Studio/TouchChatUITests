@@ -24,7 +24,7 @@ class LicenseLanguagePage {
         
         let toggle = app.switches.element(boundBy: 0)
         toggle.tap()
-        sleep(2)
+        sleep(4)
         XCTAssertTrue(continueBtn.isEnabled, "The continue button is still disabled.")
         continueBtn.tap()
     }

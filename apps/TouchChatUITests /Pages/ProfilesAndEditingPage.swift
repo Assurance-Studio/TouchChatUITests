@@ -19,7 +19,7 @@ class ProfilesAndEditingPage {
         app.navigationBars.buttons["Menu"].tap()
         
         let popoversQuery = app.popovers
-        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        app.buttons["Settings"].tap()
         let saveProfileButton = popoversQuery.tables/*@START_MENU_TOKEN@*/.staticTexts["Save Profile"]/*[[".cells.staticTexts[\"Save Profile\"]",".staticTexts[\"Save Profile\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         let saveProfileButtonExists = saveProfileButton.waitForExistence(timeout: 5)
         XCTAssertTrue(saveProfileButtonExists, "The Save Profile Button is not visible.")
@@ -55,7 +55,7 @@ class ProfilesAndEditingPage {
         app.navigationBars.buttons["Menu"].tap()
         
         let popoversQuery = app.popovers
-        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        app.buttons["Settings"].tap()
         popoversQuery.tables.staticTexts["Load Profile"].tap()
         
         app.staticTexts["Profile name by e2e"].tap()
@@ -63,7 +63,7 @@ class ProfilesAndEditingPage {
         XCTAssertTrue(app.buttons["I want"].exists, "The profile is not correct")
         
         app.navigationBars.buttons["Menu"].tap()
-        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        app.buttons["Settings"].tap()
         popoversQuery.tables.staticTexts["Load Profile"].tap()
     }
     
@@ -122,10 +122,9 @@ class ProfilesAndEditingPage {
     }
     
     func removeThePass(){
-        let popoversQuery = app.popovers
         let passwordField = app.secureTextFields.element(boundBy: 0)
         sleep(2)
-        popoversQuery.scrollViews.otherElements.buttons["Settings"].tap()
+        app.buttons["Settings"].tap()
         app.secureTextFields.element(boundBy: 0).tap()
         app.buttons["Clear text"].tap()
         app.switches.element(boundBy: 6).tap()
