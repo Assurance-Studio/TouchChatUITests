@@ -1,0 +1,73 @@
+//  TouchChatUITests
+//
+//  Created by Alin Voinescu on 28.08.2024.
+//  Copyright © 2024 PRC-Saltillo. All rights reserved.
+//
+
+import XCTest
+
+final class buttonsDwellReleaseTimeTests: XCTestCase {
+
+    var app = XCUIApplication()
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        continueAfterFailure = false
+        let pages = Pages(app: app)
+        let commonActions = CommonActions(app: app)
+        
+        app = XCUIApplication()
+        app.launchArguments.append("--reset-app-state")
+        app.launch()
+        commonActions.checkLicenseModal()
+        commonActions.checkStartModal()
+        commonActions.clickWelcomeX()
+        pages.reachMenuPageIfOnVocabPage()
+    }
+    
+    override func tearDownWithError() throws {
+        app.terminate()
+        try super.tearDownWithError()
+    }
+    
+    func testButtonsDwellReleaseTime() throws {
+        lazy var mainPage: MainPage = {
+            return MainPage(app: XCUIApplication(), vocabName: vocabName)
+        }()
+        let vocabularyName = "copied vocabulary button Dwell Time"
+        let vocabularyDesc = "vocabulary description e2e"
+        let vocabName = "vocabulary"
+        let pages = Pages(app: app)
+        let profilesAndEditingPage = ProfilesAndEditingPage(app: app)
+        let dataLoginPage = DataLoggingPage(app: app)
+        let commonActions = CommonActions(app: app)
+       
+        mainPage.nameVocab(vocabName: vocabularyName, vocabDescription: vocabularyDesc)
+        
+        //enable rename vocab option
+        commonActions.openTheSettingsTab()
+        commonActions.ensureAllowDeleteIsOn()
+        
+        //open the settings menu
+        commonActions.openTheSettingsTab()
+        
+        //change the dwell & release time
+        dataLoginPage.changeDwellReleaseTime()
+        
+        //check if the new settings work
+        dataLoginPage.checkIfTheDwellReleaseTimeWork()
+        
+        //reset the dwell & release time
+        commonActions.openTheSettingsTab()
+        dataLoginPage.resetDwellReleaseTime()
+        
+        pages.backButton.tap()
+        commonActions.backToVocab();
+        mainPage.deleteVocabFromMainPage(vocabDesc: vocabularyName)
+        
+        print("Buttons Dwell & Release Time Test Finished with success!")
+        
+        app.terminate()
+        
+    }
+}
